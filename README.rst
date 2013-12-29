@@ -35,7 +35,7 @@ Example: Evaluate a simple equation
 
 The following shows how the arithmetic expression ``(5+5) * 23`` can be evaluated:
 
-.. code-block:: ipython
+.. code-block:: python
 
 	>>> import cexprtk
 	>>> cexprtk.evaluate_expression("(5+5) * 23", {})
@@ -47,7 +47,7 @@ Example: Using Variables
 
 Variables can be used within expressions by passing a dictionary to the evaluated_expression_ function. This maps variable names to their values. The expression from the previous example can be re-calculated using variable values:
 
-.. code-block:: ipython
+.. code-block:: python
 
 	>>> import cexprtk
 	>>> cexprtk.evaluate_expression("(A+B) * C", {"A" : 5, "B" : 5, "C" : 23})
@@ -59,9 +59,33 @@ API Reference
 
 For information about expressions supported by ``cexprtk`` please refer to the original C++ `ExprTK`_ documentation:
 
-.. autofunction:: check_expression
+.. function:: check_expression(expression)
+	
+	Check that expression can be parsed. If successful do nothing, if unsuccessful raise ParseException
 
-.. autofunction:: evaluate_expression 
+	:param expression: Formula to be evaluated
+	:type expression: str
+
+	:raises ParseException: If expression is invalid.	
+
+
+.. function:: evaluate_expression(expression, variables)
+
+	Evaluate a mathematical formula using the exprtk library and return result.
+
+	For more information about supported functions and syntax see the
+	exprtk C++ library website http://code.google.com/p/exprtk/
+
+	:param expression: Expression to be evaluated.
+	:type expression: str
+
+	:param variables: Dictionary containing variable name, variable value pairs to be used in expression.
+	:type variables: dict
+
+	:return: Evaluated expression
+	:rtype float:
+
+	:raises ParseException: if ``expression`` is invalid
 
 
 Authors
