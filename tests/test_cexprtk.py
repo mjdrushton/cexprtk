@@ -2,10 +2,10 @@ import unittest
 import math
 
 
-from atomsscripts import cexprtk
+import cexprtk
 
 class CExprtkTestCase(unittest.TestCase):
-  """Tests for atomsscripts.cexprtk"""
+  """Tests for cexprtk"""
 
   def testParseException(self):
 
@@ -99,7 +99,7 @@ class CExprtkTestCase(unittest.TestCase):
 
 
   def testBooleanNot(self):
-    self.assertEquals(1, 
+    self.assertEquals(1,
       cexprtk.evaluate_expression("not(A)", {"A" : 0.0}) )
 
 

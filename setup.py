@@ -21,9 +21,11 @@ else:
     ext_modules = cythonize([cython_cexprtk])
     cmdclass = { 'build_ext': build_ext }
 
+
 setup(name="cexprtk",
   description = "Mathematical expression parser: cython wrapper around the 'C++ Mathematical Expression Toolkit Library' ",
   author = "M.J.D. Rushton",
   author_email = "m.j.d.rushton@gmail.com",
   version = "0.1.0",
+  test_suite = "tests",
   ext_modules = ext_modules)
