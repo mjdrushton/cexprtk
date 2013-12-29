@@ -16,10 +16,12 @@ class ParseException(Exception):
 
 
 def check_expression(expression):
-  """Check that expression can be parsed. If successful do nothing,
-  if unsuccessful raise ParseException
+  """Check that expression can be parsed. If successful do nothing, if unsuccessful raise ParseException
 
-  @param expression Formula to be evaluated"""
+  :param expression: Formula to be evaluated
+  :type expression: str
+
+  :raises ParseException: If expression is invalid. """
 
   cdef vector[string] errorlist
   check(expression, errorlist)
@@ -31,16 +33,21 @@ def check_expression(expression):
 
 
 def evaluate_expression(expression, variables):
-  """Evaluate a mathematical formula using the exprtk library and
-  return result.
+  """Evaluate a mathematical formula using the exprtk library and return result.
 
   For more information about supported functions and syntax see the
   exprtk C++ library website http://code.google.com/p/exprtk/
 
-  @param expression Expression to be evaluated.
-  @param variables Dictionary containing variable name, variable value pairs to be used in expression.
+  :param expression: Expression to be evaluated.
+  :type expression: str
 
-  @return Evaluated expression"""
+  :param variables: Dictionary containing variable name, variable value pairs to be used in expression.
+  :type variables: dict
+
+  :return: Evaluated expression
+  :rtype float:
+
+  :raises ParseException: if ``expression`` is invalid"""
 
   cdef vector[string] errorlist
   cdef double v = evaluate(expression, variables.items(), errorlist)
