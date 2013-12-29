@@ -59,11 +59,14 @@ For information about expressions supported by ``cexprtk`` please refer to the o
 
 **check_expression** (*expression*)
 	
-	Check that expression can be parsed. If successful do nothing, if unsuccessful raise ParseException
+	Check that expression can be parsed. If successful do nothing, if unsuccessful raise ParseException.
 
-	**expression** (``str``) Formula to be evaluated
+	Parameters:
+
+		**expression** (*str*) Formula to be evaluated
 
 	**Raises** ``ParseException``: If expression is invalid.	
+
 
 
 **evaluate_expression** (*expression*, *variables*)
@@ -73,12 +76,15 @@ For information about expressions supported by ``cexprtk`` please refer to the o
 	For more information about supported functions and syntax see the
 	exprtk C++ library website http://code.google.com/p/exprtk/
 
-	**expression** (``str``) Expression to be evaluated.
-	**variables** (``dict``) Dictionary containing variable name, variable value pairs to be used in expression.
+	Parameters:
 
-	**Returns** (``float``): Evaluated expression
+		**expression** (*str*) Expression to be evaluated.
+		**variables** (*dict*) Dictionary containing variable name, variable value pairs to be used in expression.
+
+	**Returns** (*float*): Evaluated expression
 
 	**Raises** ``ParseException``: if ``expression`` is invalid.
+
 
 
 Authors
