@@ -62,6 +62,7 @@ For information about expressions supported by ``cexprtk`` please refer to the o
 	Check that expression can be parsed. If successful do nothing, if unsuccessful raise ParseException.
 
 	Parameters:
+	"""""""""""
 
 		**expression** (*str*) Formula to be evaluated
 
@@ -77,8 +78,10 @@ For information about expressions supported by ``cexprtk`` please refer to the o
 	exprtk C++ library website http://code.google.com/p/exprtk/
 
 	Parameters:
+	"""""""""""
 
 		**expression** (*str*) Expression to be evaluated.
+		
 		**variables** (*dict*) Dictionary containing variable name, variable value pairs to be used in expression.
 
 	**Returns** (*float*): Evaluated expression
