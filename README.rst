@@ -20,9 +20,7 @@ The latest version of ``cexprtk`` can be installed using `pip`_ :
 
 	$ pip install cexprtk
 
-.. note:: note
-
-	Installation requires a compatible C++ compiler to be installed.
+.. note:: Installation requires a compatible C++ compiler to be installed.
 
 
 Usage
@@ -59,33 +57,28 @@ API Reference
 
 For information about expressions supported by ``cexprtk`` please refer to the original C++ `ExprTK`_ documentation:
 
-.. function:: check_expression(expression)
+**check_expression** (*expression*)
 	
 	Check that expression can be parsed. If successful do nothing, if unsuccessful raise ParseException
 
-	:param expression: Formula to be evaluated
-	:type expression: str
+	**expression** (``str``) Formula to be evaluated
 
-	:raises ParseException: If expression is invalid.	
+	**Raises** ``ParseException``: If expression is invalid.	
 
 
-.. function:: evaluate_expression(expression, variables)
+**evaluate_expression** (*expression*, *variables*)
 
 	Evaluate a mathematical formula using the exprtk library and return result.
 
 	For more information about supported functions and syntax see the
 	exprtk C++ library website http://code.google.com/p/exprtk/
 
-	:param expression: Expression to be evaluated.
-	:type expression: str
+	**expression** (``str``) Expression to be evaluated.
+	**variables** (``dict``) Dictionary containing variable name, variable value pairs to be used in expression.
 
-	:param variables: Dictionary containing variable name, variable value pairs to be used in expression.
-	:type variables: dict
+	**Returns** (``float``): Evaluated expression
 
-	:return: Evaluated expression
-	:rtype float:
-
-	:raises ParseException: if ``expression`` is invalid
+	**Raises** ``ParseException``: if ``expression`` is invalid.
 
 
 Authors
