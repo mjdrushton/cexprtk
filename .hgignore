@@ -1,0 +1,4 @@
+syntax: glob
+cexprtk.so
+*.o
+*.pyc
