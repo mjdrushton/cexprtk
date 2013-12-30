@@ -1,2 +1,3 @@
-include : cython/cexprtk.hpp
-include : 3rdparty/exprtk/exprtk.hpp
+include  cython/cexprtk.hpp
+include  3rdparty/exprtk/exprtk.hpp
+recursive-include tests *.py
