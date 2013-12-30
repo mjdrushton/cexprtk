@@ -23,9 +23,18 @@ else:
 
 
 setup(name="cexprtk",
+  ext_modules = ext_modules,
+  test_suite = "tests",
   description = "Mathematical expression parser: cython wrapper around the 'C++ Mathematical Expression Toolkit Library' ",
   author = "M.J.D. Rushton",
   author_email = "m.j.d.rushton@gmail.com",
   version = "0.1.0",
-  test_suite = "tests",
-  ext_modules = ext_modules)
+  url = "https://bitbucket.org/mjdr/cexprtk",
+  download_url = "https://bitbucket.org/mjdr/cexprtk/get/0.1.0.tar.gz",
+  keywords = ["math", "formula", "parser", "arithmetic", "evaluate"],
+  classifiers = [
+    "License :: OSI Approved :: Common Public License",
+    "Programming Language :: C++",
+    "Programming Language :: Python :: 2.7",
+    "Programming Language :: Cython",
+    "Topic :: Scientific/Engineering :: Mathematics"])
