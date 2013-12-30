@@ -2,7 +2,7 @@
 cexprtk: mathematical expression parsing and evaluation in python
 ******************************************************************
 
-cexprtk is a cython wrapper around "C++ Mathematical Expression  Toolkit Library (ExprTk)"  by Arash Partow. Using ``cexprtk`` a powerful mathematical expression engine can be incorporated into your python project.
+cexprtk is a cython wrapper around "`C++ Mathematical Expression  Toolkit Library (ExprTk) <ExprTk_>`_ "  by Arash Partow. Using ``cexprtk`` a powerful mathematical expression engine can be incorporated into your python project.
 
 
 .. contents::
@@ -43,7 +43,7 @@ The following shows how the arithmetic expression ``(5+5) * 23`` can be evaluate
 Example: Using Variables
 ------------------------
 
-Variables can be used within expressions by passing a dictionary to the evaluated_expression_ function. This maps variable names to their values. The expression from the previous example can be re-calculated using variable values:
+Variables can be used within expressions by passing a dictionary to the evaluate_expression_ function. This maps variable names to their values. The expression from the previous example can be re-calculated using variable values:
 
 .. code-block:: python
 
@@ -57,6 +57,8 @@ API Reference
 
 For information about expressions supported by ``cexprtk`` please refer to the original C++ `ExprTK`_ documentation:
 
+.. _check_expression :
+
 **check_expression** (*expression*)
 	
 	Check that expression can be parsed. If successful do nothing, if unsuccessful raise ParseException.
@@ -68,6 +70,7 @@ For information about expressions supported by ``cexprtk`` please refer to the o
 	**Raises** ``ParseException``: If expression is invalid.	
 
 
+.. _evaluate_expression :
 
 **evaluate_expression** (*expression*, *variables*)
 
