@@ -59,20 +59,28 @@ void errorlist_to_strings(const ErrorList& error_list, std::vector<std::string>&
 
 void parser_compile_and_process_errors(const std::string& expression_string, Parser& parser, Expression& expression, std::vector<std::string>& error_messages)
 {
-	parser.compile(expression_string,expression);
-
-	bool isError = parser.error_count() > 0;
-	if (isError)
-	{
-		ErrorList error_list;
-		exprtk::parser_error::type error;
-		for (int i =0; i < parser.error_count(); ++i )
-		{
-			error = parser.get_error(i);
-			error_list.push_back(error);
-		}
-		errorlist_to_strings(error_list, error_messages);
-	}
+   if (!parser.compile(expression_string,expression))
+   {
+      ErrorList error_list;
+      exprtk::parser_error::type error;
+      std::size_t ecount = parser.error_count();
+      if (ecount)
+      {
+	      for (int i =0; i < ecount; ++i )
+	      {
+	         error = parser.get_error(i);
+	         error_list.push_back(error);
+	      }
+	      errorlist_to_strings(error_list, error_messages);
+  	  }
+  	  else
+  	  {
+  	  	// A compilation error has been encountered (parser.compile evaluates as false)
+  	  	// but error_count is still 0. For python wrapper to throw ParseException, something
+  	  	// needs to be in error_messages, add a generic message now.
+  	  	error_messages.push_back("Expression compilation error");
+  	  }
+   }
 }
 
 
