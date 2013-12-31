@@ -4,14 +4,53 @@ import math
 
 import cexprtk
 
-class CExprtkTestCase(unittest.TestCase):
-  """Tests for cexprtk"""
+class Symbol_TableTestCase(unittest.TestCase):
+  """Tests for cexprtk.Symbol_Table"""
 
-  def testParseException(self):
+  def testVariablesHasKey(self):
+    """Test 'in' and 'has_key' for _Symbol_Table_Variables"""
+    d = {'x' : 10.0, 'y' : 20.0 }
+    symTable = cexprtk.Symbol_Table(d)
 
-    with self.assertRaises(cexprtk.ParseException):
-      cexprtk.evaluate_expression("(1 + 1", {})
+    self.assertTrue(symTable.variables.has_key('x'))
+    self.assertFalse(symTable.variables.has_key('blah'))
+    self.assertFalse(symTable.variables.has_key(1))
 
+    self.assertTrue('x' in symTable.variables)
+    self.assertFalse('z' in symTable.variables)
+
+
+
+  def testVariableInstantiation(self):
+    """Test instantiation using variable dictionary and contents of variables dictionary"""
+    d = {'x' : 10.0, 'y' : 20.0 }
+    symTable = cexprtk.Symbol_Table(dict(d))
+    self.assertEquals(d, symTable.variables)
+
+
+  def testVariableAssignment(self):
+    """Test assignment to variables property of Symbol_Table"""
+    d = {'x' : 10.0}
+    symTable = cexprtk.Symbol_Table(d)
+    self.assertEquals(10.0, symTable.variables['x'])
+    symTable.variables['x'] = 20.0
+    self.assertEquals(20.0, symTable.variables['x'])
+
+
+  def testBadVariableAssignment(self):
+    """Test assignment to non-existent variable"""
+    d = {'x' : 10.0}
+    symTable = cexprtk.Symbol_Table(d)
+    with self.assertRaises(KeyError):
+      y = symTable.variables['y']
+
+    with self.assertRaises(KeyError):
+      symTable.variables['y'] = 11.0
+
+
+
+class CheckExpressionTestCase(unittest.TestCase):
+  """Tests for cexprtk.check_expression"""
 
   def testCheckExpression(self):
     with self.assertRaises(cexprtk.ParseException):
@@ -28,6 +67,14 @@ class CExprtkTestCase(unittest.TestCase):
     cexprtk.check_expression("log(2)")
 
 
+
+class EvaluateExpressionTestCase(unittest.TestCase):
+  """Tests for cexprtk.evaluate_expression"""
+
+  def testParseException(self):
+
+    with self.assertRaises(cexprtk.ParseException):
+      cexprtk.evaluate_expression("(1 + 1", {})
 
   def testAddition(self):
     self.assertAlmostEquals(3.57,

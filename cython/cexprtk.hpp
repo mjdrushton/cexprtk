@@ -16,6 +16,8 @@ typedef double ExpressionValueType;
 typedef exprtk::parser<ExpressionValueType> Parser;
 typedef exprtk::expression<ExpressionValueType> Expression;
 typedef Parser::unknown_symbol_resolver Resolver;
+typedef exprtk::symbol_table<ExpressionValueType> SymbolTable;
+
 
 class UnknownResolver: public virtual Resolver
 {
@@ -96,7 +98,7 @@ void check(const std::string& expression_string, std::vector<std::string>& error
 
 ExpressionValueType evaluate(const std::string& expression_string, const LabelFloatPairVector& variables, std::vector<std::string>& error_list)
 {
-	exprtk::symbol_table<ExpressionValueType> symbol_table;
+	SymbolTable symbol_table;
 
 	// Add Variables
 	for (LabelFloatPairVector::const_iterator it = variables.begin(); it != variables.end(); ++it)
@@ -116,5 +118,12 @@ ExpressionValueType evaluate(const std::string& expression_string, const LabelFl
 
 	return expression.value();
 };
+
+// Cython doesn't accept references as lvalues, provide this function to 
+// enable variableAssignment
+void variableAssign(SymbolTable& symtable, const std::string& name, double value)
+{
+	symtable.get_variable(name)->ref() = value;
+};	
 
 #endif
