@@ -6,6 +6,52 @@ import cexprtk
 class Symbol_TableVariablesTestCase(unittest.TestCase):
   """Tests for cexprtk._Symbol_Table_Variables"""
 
+  def testBadVariableNames(self):
+    """Test that Symbol_Table throws exceptions when instantiated with bad variable names"""
+    inexpect = [
+      ("a",  True),
+      ("a1", True),
+      ("2a", False),
+      (" a", False),
+      ("_a", False),
+      ("a a", False),
+      ("_", False)]
+
+    for i, e in inexpect:
+      if e:
+        cexprtk.Symbol_Table({i : 1.0})
+      else:
+        with self.assertRaises(cexprtk.BadVariableException):
+          cexprtk.Symbol_Table({i : 1.0})
+
+    for i, e in inexpect:
+      if e:
+        cexprtk.Symbol_Table({}, {i : 1.0})
+      else:
+        with self.assertRaises(cexprtk.BadVariableException):
+          cexprtk.Symbol_Table({}, {i : 1.0})
+
+  def testNameShadowingException(self):
+    """Test that an exception is raised if variable names and constant names overlap"""
+
+    with self.assertRaises(cexprtk.VariableNameShadowException):
+      cexprtk.Symbol_Table({"a" : 1.0, "b" : 2.0}, {"e" : 1.0, "f" : 3.0, "b" : 2.0})
+
+
+
+  def testGetItem(self):
+    """Test item access for Symbol_Table"""
+    symTable = cexprtk.Symbol_Table({'x' : 10.0, 'y' : 20.0 }, {'a' : 1})
+
+    with self.assertRaises(KeyError):
+      v = symTable.variables['a']
+
+    with self.assertRaises(KeyError):
+      v = symTable.variables['z']
+
+    self.assertEquals(20.0, symTable.variables['y'])
+
+
   def testVariablesHasKey(self):
     """Test 'in' and 'has_key' for _Symbol_Table_Variables"""
     d = {'x' : 10.0, 'y' : 20.0 }
@@ -36,12 +82,14 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
 
     self.assertEquals(sorted(d.items()), sorted(symTable.variables.items()))
 
+
   def testVariablesLen(self):
     """Test len() for _Symbol_Table_Variables"""
     d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
     symTable = cexprtk.Symbol_Table(d,{'a' : 1})
 
     self.assertEquals(3, len(symTable.variables))
+
 
   def testVariableInstantiation(self):
     """Test instantiation using variable dictionary and contents of variables dictionary"""
@@ -129,6 +177,18 @@ class Symbol_TableConstantsTestCase(unittest.TestCase):
     symTable = cexprtk.Symbol_Table({},{}, add_constants = False)
     self.assertEquals({}, dict(symTable.constants))
 
+
+  def testGetItem(self):
+    """Test item access for Symbol_Table"""
+    symTable = cexprtk.Symbol_Table({'x' : 10.0, 'y' : 20.0 }, {'a' : 1})
+
+    with self.assertRaises(KeyError):
+      v = symTable.constants['x']
+
+    with self.assertRaises(KeyError):
+      v = symTable.constants['z']
+
+    self.assertEquals(1.0, symTable.constants['a'])
 
   def testConstantsHasKey(self):
     """Test 'in' and 'has_key' for _Symbol_Table_Constants"""
@@ -229,8 +289,6 @@ class Symbol_TableConstantsTestCase(unittest.TestCase):
       iter(con)
 
 
-
-
 class CheckExpressionTestCase(unittest.TestCase):
   """Tests for cexprtk.check_expression"""
 
@@ -247,7 +305,6 @@ class CheckExpressionTestCase(unittest.TestCase):
 
     cexprtk.check_expression("log(a + 1)")
     cexprtk.check_expression("log(2)")
-
 
 
 class EvaluateExpressionTestCase(unittest.TestCase):

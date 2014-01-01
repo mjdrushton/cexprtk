@@ -12,7 +12,6 @@ cdef extern from "cexprtk.hpp":
   double evaluate(string expression_string, LabelFloatPairVector variables, vector[string] error_messages)
   void check(string expression_string, vector[string] error_list)
 
-
 cdef extern from "exprtk.hpp" namespace "exprtk::details":
   cdef cppclass variable_node[T]:
     T& ref()
@@ -33,14 +32,17 @@ cdef extern from "exprtk.hpp" namespace "exprtk":
     int get_variable_list(LabelFloatPairVector& vlist)
     int variable_count()
 
-
-
 ctypedef symbol_table[double] symbol_table_type
 
 cdef extern from "cexprtk.hpp":
   void variableAssign(symbol_table_type & symtable, string& name, double value)
 
 
+class BadVariableException(Exception):
+  pass
+
+class VariableNameShadowException(Exception):
+  pass
 
 class ParseException(Exception):
   pass
@@ -112,11 +114,11 @@ cdef class Symbol_Table:
     self._constants._csymtableptr = self._csymtableptr
 
 
-
   def __dealloc__(self):
     del self._csymtableptr
     self._variables._csymtableptr = NULL
     self._constants._csymtableptr = NULL
+
 
   def __init__(self, variables, constants = {}, add_constants = False):
     """Instantiate Symbol_Table defining variables and constants for Expression class.
@@ -131,23 +133,36 @@ cdef class Symbol_Table:
       to the 'constants' dictionary before populating the ``Symbol_Table``
     :type add_constants: bool
     """
+
+    shadowed = set(variables.keys()) & set(constants.keys())
+    if shadowed:
+      msg = [str(s) for s in sorted(shadowed)]
+      msg = "The following names are in both variables and constants: %s" % ",".join(msg)
+      raise VariableNameShadowException(msg)
+
     self._populateVariables(variables)
     self._populateConstants(constants, add_constants)
 
-  cdef _populateVariables(self,object variables):
-    for s, v in variables.iteritems():
-      self._csymtableptr[0].create_variable(s,v)
 
-  cdef _populateConstants(self, object constants, int add_constants):
+  def _populateVariables(self,object variables):
+    for s, v in variables.iteritems():
+      if not self._csymtableptr[0].create_variable(s,v):
+        raise BadVariableException("Error creating variable named: %s with value: %s" % (s,v))
+
+
+  def _populateConstants(self, object constants, int add_constants):
     if add_constants:
       self._csymtableptr[0].add_constants()
 
     for s,v in constants.iteritems():
-      self._csymtableptr[0].add_constant(s,v)
+      if not self._csymtableptr[0].add_constant(s,v):
+        raise BadVariableException("Error creating constant named: %s with value: %s" % (s,v))
+
 
   property variables:
     def __get__(self):
       return self._variables
+
 
   property constants:
     def __get__(self):
