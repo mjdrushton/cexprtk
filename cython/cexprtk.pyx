@@ -6,9 +6,10 @@ from libcpp.vector cimport vector
 from libcpp.pair cimport pair
 
 ctypedef pair[string,double] LabelFloatPair
+ctypedef vector[LabelFloatPair] LabelFloatPairVector
 
 cdef extern from "cexprtk.hpp":
-  double evaluate(string expression_string, vector[LabelFloatPair] variables, vector[string] error_messages)
+  double evaluate(string expression_string, LabelFloatPairVector variables, vector[string] error_messages)
   void check(string expression_string, vector[string] error_list)
 
 
@@ -26,6 +27,10 @@ cdef extern from "exprtk.hpp" namespace "exprtk":
     int create_variable(string& variable_name, T& value)
     variable_ptr get_variable(string& variable_name)
     int is_variable(string& variable_name)
+    int get_variable_list(LabelFloatPairVector& vlist)
+    int variable_count()
+
+
 
 ctypedef symbol_table[double] symbol_table_type
 
@@ -132,10 +137,43 @@ cdef class _Symbol_Table_Variables:
     val = vptr[0].value()
     return val
 
+
   def __setitem__(self, key, double value):
     if not self.has_key(key):
       raise KeyError("Unknown variable: "+str(key))
     variableAssign(self._csymtableptr[0], key, value)
+
+  def __iter__(self):
+    return self.iterkeys()
+
+  def __len__(self):
+    return self._csymtableptr.variable_count()
+
+  def items(self):
+    return self._get_variable_list()
+
+  def iteritems(self):
+    return iter(self._get_variable_list())
+
+  def iterkeys(self):
+    return iter(self.keys())
+
+  def itervalues(self):
+    return iter(self.values())
+
+  def keys(self):
+    return [ k for (k,v) in self._get_variable_list() ]
+
+  def values(self):
+    return [ v for (k,v) in self._get_variable_list() ]
+
+
+
+
+  cdef list _get_variable_list(self):
+    cdef LabelFloatPairVector itemvector = LabelFloatPairVector()
+    self._csymtableptr.get_variable_list(itemvector)
+    return itemvector
 
 
   def has_key(self, key):

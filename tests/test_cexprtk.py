@@ -20,6 +20,29 @@ class Symbol_TableTestCase(unittest.TestCase):
     self.assertFalse('z' in symTable.variables)
 
 
+  def testVariablesKeys(self):
+    """Test keys() method _Symbol_Table_Variables"""
+    d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
+    symTable = cexprtk.Symbol_Table(d)
+
+    self.assertEquals(['x','y','z'], sorted(symTable.variables.keys()))
+    self.assertEquals(['x','y','z'], sorted(symTable.variables.iterkeys()))
+    self.assertEquals(['x','y','z'], sorted(symTable.variables))
+
+
+  def testVariablesItems(self):
+    """Test items() method _Symbol_Table_Variables"""
+    d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
+    symTable = cexprtk.Symbol_Table(d)
+
+    self.assertEquals(sorted(d.items()), sorted(symTable.variables.items()))
+
+  def testVariablesLen(self):
+    """Test len() for _Symbol_Table_Variables"""
+    d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
+    symTable = cexprtk.Symbol_Table(d)
+
+    self.assertEquals(3, len(symTable.variables))
 
   def testVariableInstantiation(self):
     """Test instantiation using variable dictionary and contents of variables dictionary"""
