@@ -1,7 +1,6 @@
 import unittest
 import math
 
-
 import cexprtk
 
 class Symbol_TableVariablesTestCase(unittest.TestCase):
@@ -10,7 +9,7 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
   def testVariablesHasKey(self):
     """Test 'in' and 'has_key' for _Symbol_Table_Variables"""
     d = {'x' : 10.0, 'y' : 20.0 }
-    symTable = cexprtk.Symbol_Table(d)
+    symTable = cexprtk.Symbol_Table(d, {'a' : 1})
 
     self.assertTrue(symTable.variables.has_key('x'))
     self.assertFalse(symTable.variables.has_key('blah'))
@@ -23,7 +22,7 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
   def testVariablesKeys(self):
     """Test keys() method _Symbol_Table_Variables"""
     d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
-    symTable = cexprtk.Symbol_Table(d)
+    symTable = cexprtk.Symbol_Table(d,{'a' : 1})
 
     self.assertEquals(['x','y','z'], sorted(symTable.variables.keys()))
     self.assertEquals(['x','y','z'], sorted(symTable.variables.iterkeys()))
@@ -33,28 +32,28 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
   def testVariablesItems(self):
     """Test items() method _Symbol_Table_Variables"""
     d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
-    symTable = cexprtk.Symbol_Table(d)
+    symTable = cexprtk.Symbol_Table(d,{'a' : 1})
 
     self.assertEquals(sorted(d.items()), sorted(symTable.variables.items()))
 
   def testVariablesLen(self):
     """Test len() for _Symbol_Table_Variables"""
     d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
-    symTable = cexprtk.Symbol_Table(d)
+    symTable = cexprtk.Symbol_Table(d,{'a' : 1})
 
     self.assertEquals(3, len(symTable.variables))
 
   def testVariableInstantiation(self):
     """Test instantiation using variable dictionary and contents of variables dictionary"""
     d = {'x' : 10.0, 'y' : 20.0 }
-    symTable = cexprtk.Symbol_Table(dict(d))
+    symTable = cexprtk.Symbol_Table(dict(d), {'a' : 1})
     self.assertEquals(d, dict(symTable.variables))
 
 
   def testVariableAssignment(self):
     """Test assignment to variables property of Symbol_Table"""
     d = {'x' : 10.0}
-    symTable = cexprtk.Symbol_Table(d)
+    symTable = cexprtk.Symbol_Table(d,{'a' : 1})
     self.assertEquals(10.0, symTable.variables['x'])
     symTable.variables['x'] = 20.0
     self.assertEquals(20.0, symTable.variables['x'])
@@ -63,7 +62,7 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
   def testBadVariableAssignment(self):
     """Test assignment to non-existent variable"""
     d = {'x' : 10.0}
-    symTable = cexprtk.Symbol_Table(d)
+    symTable = cexprtk.Symbol_Table(d,{'a' : 1})
     with self.assertRaises(KeyError):
       y = symTable.variables['y']
 
@@ -76,7 +75,7 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
     import gc
     self.assertTrue(gc.isenabled())
     d = {'x' : 10.0}
-    symTable = cexprtk.Symbol_Table(d)
+    symTable = cexprtk.Symbol_Table(d, {'a' : 1})
     variables = symTable.variables
     self.assertEquals(10.0, variables['x'])
     symTable = None
@@ -117,6 +116,118 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
 
     with self.assertRaises(ReferenceError):
       iter(variables)
+
+
+class Symbol_TableConstantsTestCase(unittest.TestCase):
+  """Tests for cexprtk._Symbol_Table_Constants"""
+
+  def testAddConstantsFlag(self):
+    """Test the Symbol_Table 'add_constants' flag"""
+    symTable = cexprtk.Symbol_Table({},{}, add_constants = True)
+    self.assertEquals(sorted(["pi", "epsilon", "inf"]), sorted(symTable.constants.keys()))
+
+    symTable = cexprtk.Symbol_Table({},{}, add_constants = False)
+    self.assertEquals({}, dict(symTable.constants))
+
+
+  def testConstantsHasKey(self):
+    """Test 'in' and 'has_key' for _Symbol_Table_Constants"""
+    d = {'x' : 10.0, 'y' : 20.0 }
+    symTable = cexprtk.Symbol_Table({'a' : 1}, d)
+
+    self.assertTrue(symTable.constants.has_key('x'))
+    self.assertFalse(symTable.constants.has_key('blah'))
+    self.assertFalse(symTable.constants.has_key(1))
+
+    self.assertTrue('x' in symTable.constants)
+    self.assertFalse('z' in symTable.constants)
+
+
+  def testConstantsKeys(self):
+    """Test keys() method _Symbol_Table_Constants"""
+    d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
+    symTable = cexprtk.Symbol_Table({'a' : 1}, d)
+
+    self.assertEquals(['x','y','z'], sorted(symTable.constants.keys()))
+    self.assertEquals(['x','y','z'], sorted(symTable.constants.iterkeys()))
+    self.assertEquals(['x','y','z'], sorted(symTable.constants))
+
+
+  def testConstantsItems(self):
+    """Test items() method _Symbol_Table_Constants"""
+    d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
+    symTable = cexprtk.Symbol_Table({'a' : 1}, d)
+
+    self.assertEquals(sorted(d.items()), sorted(symTable.constants.items()))
+
+
+  def testConstantsLen(self):
+    """Test len() for _Symbol_Table_Constants"""
+    d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
+    symTable = cexprtk.Symbol_Table({'a' : 1}, d)
+
+    self.assertEquals(3, len(symTable.constants))
+
+
+  def testVariableInstantiation(self):
+    """Test instantiation using variable dictionary and contents of constants dictionary"""
+    d = {'x' : 10.0, 'y' : 20.0 }
+    symTable = cexprtk.Symbol_Table({'a' : 1}, dict(d))
+    self.assertEquals(d, dict(symTable.constants))
+
+
+  def testVariableAssignment(self):
+    """Test assignment to constants property of Symbol_Table"""
+    d = {'x' : 10.0}
+    symTable = cexprtk.Symbol_Table({'a' : 1}, d)
+    with self.assertRaises(TypeError):
+      symTable.constants['x'] = 20.0
+
+
+  def testConstantsOwnership(self):
+    """Test sensible behaviour if _Symbol_Table_Constants reference is held after garbage collection of parent Symbol_Table object"""
+    import gc
+    self.assertTrue(gc.isenabled())
+    d = {'x' : 10.0}
+    symTable = cexprtk.Symbol_Table({'a' : 1}, d)
+    con = symTable.constants
+    self.assertEquals(10.0, con['x'])
+    symTable = None
+    gc.collect()
+
+    with self.assertRaises(ReferenceError):
+      con['x']
+
+    with self.assertRaises(ReferenceError):
+      len(con)
+
+    with self.assertRaises(ReferenceError):
+      con.items()
+
+    with self.assertRaises(ReferenceError):
+      con.iteritems()
+
+    with self.assertRaises(ReferenceError):
+      con.iteritems()
+
+    with self.assertRaises(ReferenceError):
+      con.iterkeys()
+
+    with self.assertRaises(ReferenceError):
+      con.itervalues()
+
+    with self.assertRaises(ReferenceError):
+      con.keys()
+
+    with self.assertRaises(ReferenceError):
+      con.values()
+
+    with self.assertRaises(ReferenceError):
+      con.has_key('x')
+
+    with self.assertRaises(ReferenceError):
+      iter(con)
+
 
 
 

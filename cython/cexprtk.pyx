@@ -25,8 +25,11 @@ cdef extern from "exprtk.hpp" namespace "exprtk":
   cdef cppclass symbol_table[T]:
     symbol_table() except +
     int create_variable(string& variable_name, T& value)
+    int add_constant(string& constant_name, T& value)
+    int add_constants()
     variable_ptr get_variable(string& variable_name)
     int is_variable(string& variable_name)
+    int is_constant_node(string& symbol_name)
     int get_variable_list(LabelFloatPairVector& vlist)
     int variable_count()
 
@@ -93,17 +96,29 @@ cdef class Symbol_Table:
 
   cdef symbol_table_type* _csymtableptr
   cdef _Symbol_Table_Variables _variables
+  cdef _Symbol_Table_Constants _constants
 
   def __cinit__(self):
     self._csymtableptr = new symbol_table_type()
+
+    # Set up the variables dictionary
     self._variables = _Symbol_Table_Variables()
+    # ... set the internal pointer held by _variables
     self._variables._csymtableptr = self._csymtableptr
+
+    # Set up the constants dictionary
+    self._constants = _Symbol_Table_Constants()
+    # ... set the internal pointer held by _constants
+    self._constants._csymtableptr = self._csymtableptr
+
+
 
   def __dealloc__(self):
     del self._csymtableptr
     self._variables._csymtableptr = NULL
+    self._constants._csymtableptr = NULL
 
-  def __init__(self, variables, constants = {}):
+  def __init__(self, variables, constants = {}, add_constants = False):
     """Instantiate Symbol_Table defining variables and constants for Expression class.
 
     :param variables: Mapping between variable name and initial variable value.
@@ -111,16 +126,33 @@ cdef class Symbol_Table:
 
     :param constants: Constant name to value dictionary.
     :type constants: dict
+
+    :param add_constants: If True, add the standard constants ``pi``, ``inf``, ``epsilon``
+      to the 'constants' dictionary before populating the ``Symbol_Table``
+    :type add_constants: bool
     """
     self._populateVariables(variables)
+    self._populateConstants(constants, add_constants)
 
   cdef _populateVariables(self,object variables):
     for s, v in variables.iteritems():
       self._csymtableptr[0].create_variable(s,v)
 
+  cdef _populateConstants(self, object constants, int add_constants):
+    if add_constants:
+      self._csymtableptr[0].add_constants()
+
+    for s,v in constants.iteritems():
+      self._csymtableptr[0].add_constant(s,v)
+
   property variables:
     def __get__(self):
       return self._variables
+
+  property constants:
+    def __get__(self):
+      return self._constants
+
 
 
 cdef class _Symbol_Table_Variables:
@@ -155,13 +187,13 @@ cdef class _Symbol_Table_Variables:
     return self.iterkeys()
 
   def __len__(self):
-    return self._symbolTable().variable_count()
+    return len(self.items())
 
   def items(self):
-    return self._get_variable_list()
+    return [ (k,v) for (k,v) in self._get_variable_list() if not self._symbolTable().is_constant_node(k) ]
 
   def iteritems(self):
-    return iter(self._get_variable_list())
+    return iter(self.items())
 
   def iterkeys(self):
     return iter(self.keys())
@@ -170,10 +202,10 @@ cdef class _Symbol_Table_Variables:
     return iter(self.values())
 
   def keys(self):
-    return [ k for (k,v) in self._get_variable_list() ]
+    return [ k for (k,v) in self.items()]
 
   def values(self):
-    return [ v for (k,v) in self._get_variable_list() ]
+    return [ v for (k,v) in self.items() ]
 
   cdef list _get_variable_list(self):
     cdef LabelFloatPairVector itemvector = LabelFloatPairVector()
@@ -185,8 +217,73 @@ cdef class _Symbol_Table_Variables:
       key = str(key)
     except ValueError:
       return False
-    return self._symbolTable()[0].is_variable(key)
+    return self._symbolTable()[0].is_variable(key) and not self._symbolTable()[0].is_constant_node(key)
 
   def __contains__(self, key):
     return self.has_key(key)
+
+
+cdef class _Symbol_Table_Constants:
+  """Class providing the .constants property for Symbol_Table.
+
+  Provides a dictionary like interface, methods pass-through to
+  C++ symbol_table object owned by parent Symbol_Table."""
+
+  cdef symbol_table_type* _csymtableptr
+
+  cdef symbol_table_type* _symbolTable(self) except *:
+    """Used to access _csymtableptr, raises ReferenceError if
+    the ptr has been deleted due to gc of parent Symbol_Table"""
+    if not self._csymtableptr:
+      raise ReferenceError("Parent Symbol_Table no longer exists")
+    return self._csymtableptr
+
+
+  def __getitem__(self, key):
+    if not self.has_key(key):
+      raise KeyError("Unknown variable: "+str(key))
+    vptr = self._symbolTable().get_variable(key)
+    val = vptr[0].value()
+    return val
+
+
+  def __iter__(self):
+    return self.iterkeys()
+
+  def __len__(self):
+    return len(self.items())
+
+  def items(self):
+    return [ (k,v) for (k,v) in self._get_variable_list() if self._symbolTable().is_constant_node(k)]
+
+  def iteritems(self):
+    return iter(self.items())
+
+  def iterkeys(self):
+    return iter(self.keys())
+
+  def itervalues(self):
+    return iter(self.values())
+
+  def keys(self):
+    return [ k for (k,v) in self.items() ]
+
+  def values(self):
+    return [ v for (k,v) in self.items() ]
+
+  cdef list _get_variable_list(self):
+    cdef LabelFloatPairVector itemvector = LabelFloatPairVector()
+    self._symbolTable().get_variable_list(itemvector)
+    return itemvector
+
+  def has_key(self, key):
+    try:
+      key = str(key)
+    except ValueError:
+      return False
+    return self._symbolTable()[0].is_variable(key) and self._symbolTable()[0].is_constant_node(key)
+
+  def __contains__(self, key):
+    return self.has_key(key)
+
 
