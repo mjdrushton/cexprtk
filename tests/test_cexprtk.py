@@ -4,8 +4,8 @@ import math
 
 import cexprtk
 
-class Symbol_TableTestCase(unittest.TestCase):
-  """Tests for cexprtk.Symbol_Table"""
+class Symbol_TableVariablesTestCase(unittest.TestCase):
+  """Tests for cexprtk._Symbol_Table_Variables"""
 
   def testVariablesHasKey(self):
     """Test 'in' and 'has_key' for _Symbol_Table_Variables"""
@@ -48,7 +48,7 @@ class Symbol_TableTestCase(unittest.TestCase):
     """Test instantiation using variable dictionary and contents of variables dictionary"""
     d = {'x' : 10.0, 'y' : 20.0 }
     symTable = cexprtk.Symbol_Table(dict(d))
-    self.assertEquals(d, symTable.variables)
+    self.assertEquals(d, dict(symTable.variables))
 
 
   def testVariableAssignment(self):
@@ -69,6 +69,54 @@ class Symbol_TableTestCase(unittest.TestCase):
 
     with self.assertRaises(KeyError):
       symTable.variables['y'] = 11.0
+
+
+  def testVariablesOwnership(self):
+    """Test sensible behaviour if _Symbol_Table_Variables reference is held after garbage collection of parent Symbol_Table object"""
+    import gc
+    self.assertTrue(gc.isenabled())
+    d = {'x' : 10.0}
+    symTable = cexprtk.Symbol_Table(d)
+    variables = symTable.variables
+    self.assertEquals(10.0, variables['x'])
+    symTable = None
+    gc.collect()
+
+    with self.assertRaises(ReferenceError):
+      variables['x']
+
+    with self.assertRaises(ReferenceError):
+      variables['x'] = 20.0
+
+    with self.assertRaises(ReferenceError):
+      len(variables)
+
+    with self.assertRaises(ReferenceError):
+      variables.items()
+
+    with self.assertRaises(ReferenceError):
+      variables.iteritems()
+
+    with self.assertRaises(ReferenceError):
+      variables.iteritems()
+
+    with self.assertRaises(ReferenceError):
+      variables.iterkeys()
+
+    with self.assertRaises(ReferenceError):
+      variables.itervalues()
+
+    with self.assertRaises(ReferenceError):
+      variables.keys()
+
+    with self.assertRaises(ReferenceError):
+      variables.values()
+
+    with self.assertRaises(ReferenceError):
+      variables.has_key('x')
+
+    with self.assertRaises(ReferenceError):
+      iter(variables)
 
 
 

@@ -101,6 +101,7 @@ cdef class Symbol_Table:
 
   def __dealloc__(self):
     del self._csymtableptr
+    self._variables._csymtableptr = NULL
 
   def __init__(self, variables, constants = {}):
     """Instantiate Symbol_Table defining variables and constants for Expression class.
@@ -126,14 +127,21 @@ cdef class _Symbol_Table_Variables:
   """Class providing the .variables property for Symbol_Table.
 
   Provides a dictionary like interface, methods pass-through to
-  C++ symbol_table object held within Symbol_table."""
+  C++ symbol_table object owned by parent Symbol_Table."""
 
   cdef symbol_table_type* _csymtableptr
+
+  cdef symbol_table_type* _symbolTable(self) except *:
+    """Used to access _csymtableptr, raises ReferenceError if
+    the ptr has been deleted due to gc of parent Symbol_Table"""
+    if not self._csymtableptr:
+      raise ReferenceError("Parent Symbol_Table no longer exists")
+    return self._csymtableptr
 
   def __getitem__(self, key):
     if not self.has_key(key):
       raise KeyError("Unknown variable: "+str(key))
-    vptr = self._csymtableptr.get_variable(key)
+    vptr = self._symbolTable().get_variable(key)
     val = vptr[0].value()
     return val
 
@@ -141,13 +149,13 @@ cdef class _Symbol_Table_Variables:
   def __setitem__(self, key, double value):
     if not self.has_key(key):
       raise KeyError("Unknown variable: "+str(key))
-    variableAssign(self._csymtableptr[0], key, value)
+    variableAssign(self._symbolTable()[0], key, value)
 
   def __iter__(self):
     return self.iterkeys()
 
   def __len__(self):
-    return self._csymtableptr.variable_count()
+    return self._symbolTable().variable_count()
 
   def items(self):
     return self._get_variable_list()
@@ -167,21 +175,17 @@ cdef class _Symbol_Table_Variables:
   def values(self):
     return [ v for (k,v) in self._get_variable_list() ]
 
-
-
-
   cdef list _get_variable_list(self):
     cdef LabelFloatPairVector itemvector = LabelFloatPairVector()
-    self._csymtableptr.get_variable_list(itemvector)
+    self._symbolTable().get_variable_list(itemvector)
     return itemvector
-
 
   def has_key(self, key):
     try:
       key = str(key)
     except ValueError:
       return False
-    return self._csymtableptr[0].is_variable(key)
+    return self._symbolTable()[0].is_variable(key)
 
   def __contains__(self, key):
     return self.has_key(key)
