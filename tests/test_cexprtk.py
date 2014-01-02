@@ -3,6 +3,20 @@ import math
 
 import cexprtk
 
+class ExpressionTestCase(unittest.TestCase):
+  """Tests for the cexprtk.Expression class"""
+
+  def testNoVariables(self):
+    """Perform test with no variables"""
+    st = cexprtk.Symbol_Table({},{})
+    expression = cexprtk.Expression("2+2", st)
+    v = expression.value()
+    self.assertAlmostEquals(4.0, v)
+
+    v = expression()
+    self.assertAlmostEquals(4.0, v)
+
+
 class Symbol_TableVariablesTestCase(unittest.TestCase):
   """Tests for cexprtk._Symbol_Table_Variables"""
 

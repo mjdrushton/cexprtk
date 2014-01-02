@@ -32,7 +32,19 @@ cdef extern from "exprtk.hpp" namespace "exprtk":
     int get_variable_list(LabelFloatPairVector& vlist)
     int variable_count()
 
+  cdef cppclass expression[T]:
+    expression() except +
+    void register_symbol_table(symbol_table[T])
+    T value()
+
+  cdef cppclass parser[T]:
+    parser() except +
+    int compile(string& expression_string, expression[T]&  expr)
+
+
 ctypedef symbol_table[double] symbol_table_type
+ctypedef expression[double] expression_type
+ctypedef parser[double] parser_type
 
 cdef extern from "cexprtk.hpp":
   void variableAssign(symbol_table_type & symtable, string& name, double value)
@@ -92,6 +104,51 @@ def evaluate_expression(expression, variables):
 
   return v
 
+cdef class Expression:
+  """Class representing mathematical expression"""
+
+  cdef Symbol_Table _symbol_table
+  cdef expression_type * _cexpressionptr
+
+  def __cinit__(self):
+    # Create the expression
+    self._cexpressionptr = new expression_type()
+
+
+  def __dealloc__(self):
+    del self._cexpressionptr
+
+
+  def __init__(self, expression, symbol_table):
+    """Define a mathematical expression.
+
+    :param expression: String giving expression to be calculated.
+    :type expression: str
+
+    :param symbol_table: Object defining variables and constants.
+    :type symbol_table: cexprtk.Symbol_Table"""
+
+    self._symbol_table = symbol_table
+    self._init_expression(expression)
+
+  cdef _init_expression(self, str expression_string):
+    cdef parser_type p
+    self._cexpressionptr[0].register_symbol_table(self._symbol_table._csymtableptr[0])
+    #TODO: Check this step is successful
+    p.compile(expression_string, self._cexpressionptr[0])
+
+
+  def value(self):
+    """Evaluate expression using variable values currently set within associated Symbol_Table
+
+    :return: Value resulting from evaluation of expression.
+    :rtype: float"""
+    cdef double v = self._cexpressionptr[0].value()
+    return v
+
+  def __call__(self):
+    """Equivalent to calling value() method."""
+    return self.value()
 
 cdef class Symbol_Table:
   """Class for providing variable and constant values to Expression instances."""
