@@ -16,6 +16,20 @@ class ExpressionTestCase(unittest.TestCase):
     v = expression()
     self.assertAlmostEquals(4.0, v)
 
+  def testWithVariables(self):
+    """Perform a test with some variables"""
+
+    st = cexprtk.Symbol_Table({'a' : 2, 'b' : 3},{})
+    expression = cexprtk.Expression("(a+b) * 3", st)
+    v = expression.value()
+    self.assertAlmostEquals(15.0, v)
+
+  def testParseException(self):
+    """Test that bad expressions lead to ParseException being thrown"""
+    st = cexprtk.Symbol_Table({},{})
+
+    with self.assertRaises(cexprtk.ParseException):
+      expression = cexprtk.Expression("(2+2", st)
 
 class Symbol_TableVariablesTestCase(unittest.TestCase):
   """Tests for cexprtk._Symbol_Table_Variables"""
@@ -325,7 +339,6 @@ class EvaluateExpressionTestCase(unittest.TestCase):
   """Tests for cexprtk.evaluate_expression"""
 
   def testParseException(self):
-
     with self.assertRaises(cexprtk.ParseException):
       cexprtk.evaluate_expression("(1 + 1", {})
 

@@ -9,13 +9,14 @@ ctypedef pair[string,double] LabelFloatPair
 ctypedef vector[LabelFloatPair] LabelFloatPairVector
 
 cdef extern from "cexprtk.hpp":
-  double evaluate(string expression_string, LabelFloatPairVector variables, vector[string] error_messages)
-  void check(string expression_string, vector[string] error_list)
+  pass
 
 cdef extern from "exprtk.hpp" namespace "exprtk::details":
   cdef cppclass variable_node[T]:
     T& ref()
     T value()
+
+
 
 ctypedef variable_node[double] variable_t
 ctypedef variable_t * variable_ptr
@@ -48,6 +49,8 @@ ctypedef parser[double] parser_type
 
 cdef extern from "cexprtk.hpp":
   void variableAssign(symbol_table_type & symtable, string& name, double value)
+  void parser_compile_and_process_errors(string& expression_string, parser_type& parser, expression_type& expression, vector[string]& error_messages)
+  void check(string& expression_string, vector[string]& error_list)
 
 
 class BadVariableException(Exception):
@@ -77,14 +80,14 @@ def check_expression(expression):
     raise ParseException("Error evaluating expression '%s': %s" % (expression, errorstring))
 
 
-def evaluate_expression(expression, variables):
+def evaluate_expression(expression_string, variables):
   """Evaluate a mathematical formula using the exprtk library and return result.
 
   For more information about supported functions and syntax see the
   exprtk C++ library website http://code.google.com/p/exprtk/
 
-  :param expression: Expression to be evaluated.
-  :type expression: str
+  :param expression_string: Expression to be evaluated.
+  :type expression_string: str
 
   :param variables: Dictionary containing variable name, variable value pairs to be used in expression.
   :type variables: dict
@@ -94,15 +97,10 @@ def evaluate_expression(expression, variables):
 
   :raises ParseException: if ``expression`` is invalid"""
 
-  cdef vector[string] errorlist
-  cdef double v = evaluate(expression, variables.items(), errorlist)
+  cdef Symbol_Table symbol_table = Symbol_Table(variables)
+  cdef Expression expression = Expression(expression_string, symbol_table)
+  return expression.value()
 
-  if not errorlist.empty():
-    # List is not empty, throw ParseException
-    errorstring = ", ".join(errorlist)
-    raise ParseException("Error evaluating expression '%s': %s" % (expression, errorstring))
-
-  return v
 
 cdef class Expression:
   """Class representing mathematical expression"""
@@ -129,13 +127,20 @@ cdef class Expression:
     :type symbol_table: cexprtk.Symbol_Table"""
 
     self._symbol_table = symbol_table
-    self._init_expression(expression)
 
-  cdef _init_expression(self, str expression_string):
+    cdef vector[string] error_list  = vector[string]()
+    self._init_expression(expression, error_list)
+    if not error_list.empty():
+      msg = ", ".join([ s for s in error_list])
+      raise ParseException(msg)
+
+  cdef _init_expression(self, str expression_string, vector[string]& error_list):
     cdef parser_type p
     self._cexpressionptr[0].register_symbol_table(self._symbol_table._csymtableptr[0])
-    #TODO: Check this step is successful
-    p.compile(expression_string, self._cexpressionptr[0])
+    parser_compile_and_process_errors(expression_string,
+                                      p,
+                                      self._cexpressionptr[0],
+                                      error_list)
 
 
   def value(self):

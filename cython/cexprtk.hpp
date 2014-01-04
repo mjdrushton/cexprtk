@@ -96,28 +96,28 @@ void check(const std::string& expression_string, std::vector<std::string>& error
 }
 
 
-ExpressionValueType evaluate(const std::string& expression_string, const LabelFloatPairVector& variables, std::vector<std::string>& error_list)
-{
-	SymbolTable symbol_table;
+// ExpressionValueType evaluate(const std::string& expression_string, const LabelFloatPairVector& variables, std::vector<std::string>& error_list)
+// {
+// 	SymbolTable symbol_table;
 
-	// Add Variables
-	for (LabelFloatPairVector::const_iterator it = variables.begin(); it != variables.end(); ++it)
-	{
-		const std::string & var_name = it->first;
-		double var_value = it->second;
-		symbol_table.add_constant( var_name, var_value);
-	}
+// 	// Add Variables
+// 	for (LabelFloatPairVector::const_iterator it = variables.begin(); it != variables.end(); ++it)
+// 	{
+// 		const std::string & var_name = it->first;
+// 		double var_value = it->second;
+// 		symbol_table.add_constant( var_name, var_value);
+// 	}
 
-	symbol_table.add_constants();
-	Expression expression;
+// 	symbol_table.add_constants();
+// 	Expression expression;
 
-	expression.register_symbol_table(symbol_table);
+// 	expression.register_symbol_table(symbol_table);
 	
-	Parser parser;
-	parser_compile_and_process_errors(expression_string, parser, expression, error_list);
+// 	Parser parser;
+// 	parser_compile_and_process_errors(expression_string, parser, expression, error_list);
 
-	return expression.value();
-};
+// 	return expression.value();
+// };
 
 // Cython doesn't accept references as lvalues, provide this function to 
 // enable variableAssignment
