@@ -139,11 +139,18 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
     """Test assignment to non-existent variable"""
     d = {'x' : 10.0}
     symTable = cexprtk.Symbol_Table(d,{'a' : 1})
+
     with self.assertRaises(KeyError):
       y = symTable.variables['y']
 
     with self.assertRaises(KeyError):
       symTable.variables['y'] = 11.0
+
+  def testVariableAssignmentToConstant(self):
+    """Check that variable assignment cannot happen to name taken by constant"""
+    symTable = cexprtk.Symbol_Table({'a' : 1}, {'x' : 2})
+    with self.assertRaises(KeyError):
+      symTable.variables['x'] = 2.0
 
 
   def testVariablesOwnership(self):

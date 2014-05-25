@@ -17,7 +17,6 @@ cdef extern from "exprtk.hpp" namespace "exprtk::details":
     T value()
 
 
-
 ctypedef variable_node[double] variable_t
 ctypedef variable_t * variable_ptr
 
@@ -48,7 +47,7 @@ ctypedef expression[double] expression_type
 ctypedef parser[double] parser_type
 
 cdef extern from "cexprtk.hpp":
-  void variableAssign(symbol_table_type & symtable, string& name, double value)
+  int variableAssign(symbol_table_type & symtable, string& name, double value)
   void parser_compile_and_process_errors(string& expression_string, parser_type& parser, expression_type& expression, vector[string]& error_messages)
   void check(string& expression_string, vector[string]& error_list)
 
@@ -247,18 +246,22 @@ cdef class _Symbol_Table_Variables:
       raise ReferenceError("Parent Symbol_Table no longer exists")
     return self._csymtableptr
 
-  def __getitem__(self, key):
-    if not self.has_key(key):
-      raise KeyError("Unknown variable: "+str(key))
-    vptr = self._symbolTable().get_variable(key)
-    val = vptr[0].value()
-    return val
+  def __getitem__(self, string key):
+    cdef symbol_table_type* st = self._symbolTable()
+    cdef variable_ptr vptr = st[0].get_variable(key)
+    if vptr != NULL and not st[0].is_constant_node(key):
+      return vptr[0].value()
+    else:
+      raise KeyError("Unknown variable: "+key)
 
 
-  def __setitem__(self, key, double value):
-    if not self.has_key(key):
-      raise KeyError("Unknown variable: "+str(key))
-    variableAssign(self._symbolTable()[0], key, value)
+  def __setitem__(self, string key, double value):
+    cdef int rv
+    if not self._csymtableptr:
+      raise ReferenceError("Parent Symbol_Table no longer exists")
+    rv = variableAssign(self._csymtableptr[0], key, value)
+    if not rv:
+      raise KeyError("Unknown variable: "+key)
 
   def __iter__(self):
     return self.iterkeys()
@@ -315,14 +318,13 @@ cdef class _Symbol_Table_Constants:
       raise ReferenceError("Parent Symbol_Table no longer exists")
     return self._csymtableptr
 
-
-  def __getitem__(self, key):
-    if not self.has_key(key):
-      raise KeyError("Unknown variable: "+str(key))
-    vptr = self._symbolTable().get_variable(key)
-    val = vptr[0].value()
-    return val
-
+  def  __getitem__(self, string key):
+    cdef symbol_table_type* st = self._symbolTable()
+    cdef variable_ptr vptr = st[0].get_variable(key)
+    if vptr != NULL and st[0].is_constant_node(key):
+      return vptr[0].value()
+    else:
+      raise KeyError("Unknown variable: "+key)
 
   def __iter__(self):
     return self.iterkeys()
