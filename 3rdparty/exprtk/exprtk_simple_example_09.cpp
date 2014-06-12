@@ -3,7 +3,7 @@
  *         C++ Mathematical Expression Toolkit Library        *
  *                                                            *
  * Simple Example 9                                           *
- * Author: Arash Partow (1999-2013)                           *
+ * Author: Arash Partow (1999-2014)                           *
  * URL: http://www.partow.net/programming/exprtk/index.html   *
  *                                                            *
  * Copyright notice:                                          *
@@ -31,7 +31,7 @@ void primes()
 
    T x = T(0);
 
-   exprtk::symbol_table<T> symbol_table;
+   symbol_table_t symbol_table;
 
    symbol_table.add_constants();
    symbol_table.add_variable("x",x);
@@ -41,9 +41,9 @@ void primes()
    //Mode 1 - if statement based
    compositor
       .add("is_prime_impl1",
-           "if(y == 1,true,              "
-           "   if(0 == (x % y),false,    "
-           "      is_prime_impl1(x,y-1)))",
+           "if(y == 1,true,                "
+           "   if(0 == (x % y),false,      "
+           "      is_prime_impl1(x,y - 1)))",
            "x","y");
 
    compositor
@@ -109,7 +109,7 @@ void primes()
    expression2.register_symbol_table(symbol_table);
    expression3.register_symbol_table(symbol_table);
 
-   exprtk::parser<T> parser;
+   parser_t parser;
 
    parser.compile(expression_str1,expression1);
    parser.compile(expression_str2,expression2);

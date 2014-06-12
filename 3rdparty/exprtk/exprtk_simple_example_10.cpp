@@ -3,7 +3,7 @@
  *         C++ Mathematical Expression Toolkit Library        *
  *                                                            *
  * Simple Example 10                                          *
- * Author: Arash Partow (1999-2013)                           *
+ * Author: Arash Partow (1999-2014)                           *
  * URL: http://www.partow.net/programming/exprtk/index.html   *
  *                                                            *
  * Copyright notice:                                          *
@@ -32,7 +32,7 @@ void newton_sqrt()
 
    T x = T(0);
 
-   exprtk::symbol_table<T> symbol_table;
+   symbol_table_t symbol_table;
 
    symbol_table.add_constants();
    symbol_table.add_variable("x",x);
@@ -40,27 +40,24 @@ void newton_sqrt()
    compositor_t compositor(symbol_table);
 
    compositor
-      .add("newton_sqrt_impl",
-           "switch                                "
-           "{                                     "
-           "  case x < 0  : -inf;                 "
-           "  case x == 0 : 0;                    "
-           "  case x == 1 : 1;                    "
-           "  default:                            "
-           "  ~{                                  "
-           "     z := 100;                        "
-           "     y := x / 2;                      "
-           "     repeat                           "
-           "       if (equal(y * y,x), z := 0, 0);"
-           "       y := (1 / 2) * (y + (x / y));  "
-           "     until ((z := (z - 1)) <= 0)      "
-           "   };                                 "
-           "}                                     ",
-           "x","y","z");
-
-   compositor
       .add("newton_sqrt",
-           "newton_sqrt_impl(x,0,0)","x");
+           " switch                               "
+           " {                                    "
+           "   case x < 0  : -inf;                "
+           "   case x == 0 : 0;                   "
+           "   case x == 1 : 1;                   "
+           "   default:                           "
+           "   ~{                                 "
+           "      var z := 100;                   "
+           "      var y := x / 2;                 "
+           "      repeat                          "
+           "        y := (1 / 2) * (y + (x / y)); "
+           "        if (equal(y * y,x))           "
+           "          break[y];                   "
+           "      until ((z -= 1) <= 0);          "
+           "    };                                "
+           " }                                    ",
+           "x");
 
    std::string expression_str = "newton_sqrt(x)";
 
@@ -68,7 +65,7 @@ void newton_sqrt()
 
    expression.register_symbol_table(symbol_table);
 
-   exprtk::parser<T> parser;
+   parser_t parser;
 
    parser.compile(expression_str,expression);
 
