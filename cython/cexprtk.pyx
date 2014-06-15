@@ -5,6 +5,8 @@ from libcpp.string cimport string
 from libcpp.vector cimport vector
 from libcpp.pair cimport pair
 
+from cpython.weakref  cimport PyWeakref_NewProxy
+
 ctypedef pair[string,double] LabelFloatPair
 ctypedef vector[LabelFloatPair] LabelFloatPairVector
 
@@ -147,7 +149,7 @@ cdef class Expression:
 
     :return: Value resulting from evaluation of expression.
     :rtype: float"""
-    cdef double v = self._cexpressionptr[0].value()
+    cdef double v = self._cexpressionptr.value()
     return v
 
   def __call__(self):
@@ -222,12 +224,11 @@ cdef class Symbol_Table:
 
   property variables:
     def __get__(self):
-      return self._variables
-
+      return PyWeakref_NewProxy(self._variables, None)
 
   property constants:
     def __get__(self):
-      return self._constants
+      return PyWeakref_NewProxy(self._constants, None)
 
 
 
@@ -237,23 +238,17 @@ cdef class _Symbol_Table_Variables:
   Provides a dictionary like interface, methods pass-through to
   C++ symbol_table object owned by parent Symbol_Table."""
 
+  cdef object __weakref__
+
   cdef symbol_table_type* _csymtableptr
 
-  cdef symbol_table_type* _symbolTable(self) except *:
-    """Used to access _csymtableptr, raises ReferenceError if
-    the ptr has been deleted due to gc of parent Symbol_Table"""
-    if not self._csymtableptr:
-      raise ReferenceError("Parent Symbol_Table no longer exists")
-    return self._csymtableptr
-
   def __getitem__(self, string key):
-    cdef symbol_table_type* st = self._symbolTable()
+    cdef symbol_table_type* st = self._csymtableptr
     cdef variable_ptr vptr = st[0].get_variable(key)
     if vptr != NULL and not st[0].is_constant_node(key):
       return vptr[0].value()
     else:
       raise KeyError("Unknown variable: "+key)
-
 
   def __setitem__(self, string key, double value):
     cdef int rv
@@ -269,8 +264,8 @@ cdef class _Symbol_Table_Variables:
   def __len__(self):
     return len(self.items())
 
-  def items(self):
-    return [ (k,v) for (k,v) in self._get_variable_list() if not self._symbolTable().is_constant_node(k) ]
+  cpdef list items(self):
+    return [ (k,v) for (k,v) in self._get_variable_list() if not self._csymtableptr.is_constant_node(k) ]
 
   def iteritems(self):
     return iter(self.items())
@@ -289,15 +284,15 @@ cdef class _Symbol_Table_Variables:
 
   cdef list _get_variable_list(self):
     cdef LabelFloatPairVector itemvector = LabelFloatPairVector()
-    self._symbolTable().get_variable_list(itemvector)
+    self._csymtableptr.get_variable_list(itemvector)
     return itemvector
 
-  def has_key(self, key):
+  cpdef has_key(self, key):
     try:
       key = str(key)
     except ValueError:
       return False
-    return self._symbolTable()[0].is_variable(key) and not self._symbolTable()[0].is_constant_node(key)
+    return self._csymtableptr[0].is_variable(key) and not self._csymtableptr[0].is_constant_node(key)
 
   def __contains__(self, key):
     return self.has_key(key)
@@ -309,17 +304,12 @@ cdef class _Symbol_Table_Constants:
   Provides a dictionary like interface, methods pass-through to
   C++ symbol_table object owned by parent Symbol_Table."""
 
+  cdef object __weakref__
+
   cdef symbol_table_type* _csymtableptr
 
-  cdef symbol_table_type* _symbolTable(self) except *:
-    """Used to access _csymtableptr, raises ReferenceError if
-    the ptr has been deleted due to gc of parent Symbol_Table"""
-    if not self._csymtableptr:
-      raise ReferenceError("Parent Symbol_Table no longer exists")
-    return self._csymtableptr
-
   def  __getitem__(self, string key):
-    cdef symbol_table_type* st = self._symbolTable()
+    cdef symbol_table_type* st = self._csymtableptr
     cdef variable_ptr vptr = st[0].get_variable(key)
     if vptr != NULL and st[0].is_constant_node(key):
       return vptr[0].value()
@@ -332,8 +322,8 @@ cdef class _Symbol_Table_Constants:
   def __len__(self):
     return len(self.items())
 
-  def items(self):
-    return [ (k,v) for (k,v) in self._get_variable_list() if self._symbolTable().is_constant_node(k)]
+  cpdef list items(self):
+    return [ (k,v) for (k,v) in self._get_variable_list() if self._csymtableptr.is_constant_node(k)]
 
   def iteritems(self):
     return iter(self.items())
@@ -352,15 +342,15 @@ cdef class _Symbol_Table_Constants:
 
   cdef list _get_variable_list(self):
     cdef LabelFloatPairVector itemvector = LabelFloatPairVector()
-    self._symbolTable().get_variable_list(itemvector)
+    self._csymtableptr.get_variable_list(itemvector)
     return itemvector
 
-  def has_key(self, key):
+  cpdef has_key(self, key):
     try:
       key = str(key)
     except ValueError:
       return False
-    return self._symbolTable()[0].is_variable(key) and self._symbolTable()[0].is_constant_node(key)
+    return self._csymtableptr[0].is_variable(key) and self._csymtableptr[0].is_constant_node(key)
 
   def __contains__(self, key):
     return self.has_key(key)
