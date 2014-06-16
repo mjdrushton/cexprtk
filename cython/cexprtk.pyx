@@ -204,8 +204,8 @@ cdef class Expression:
 
   cdef _init_expression(self, str expression_string, vector[string]& error_list, object unknown_symbol_resolver_callback):
     cdef parser_type p
-    cdef PythonCallableUnknownResolver * pcurPtr 
-    cdef parser[double].unknown_symbol_resolver * usrPtr
+    cdef PythonCallableUnknownResolver * pcurPtr = NULL
+    cdef parser[double].unknown_symbol_resolver * usrPtr = NULL
 
     self._cexpressionptr.register_symbol_table(self._symbol_table._csymtableptr[0])
 
@@ -220,7 +220,6 @@ cdef class Expression:
                                       self._cexpressionptr[0],
                                       error_list)
     del pcurPtr
-
 
   def value(self):
     """Evaluate expression using variable values currently set within associated Symbol_Table
