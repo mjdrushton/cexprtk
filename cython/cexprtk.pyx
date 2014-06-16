@@ -4,14 +4,15 @@
 from libcpp.string cimport string
 from libcpp.vector cimport vector
 from libcpp.pair cimport pair
+from libcpp cimport bool
 
 from cpython.weakref  cimport PyWeakref_NewProxy
 
+cimport cython
+
+
 ctypedef pair[string,double] LabelFloatPair
 ctypedef vector[LabelFloatPair] LabelFloatPairVector
-
-cdef extern from "cexprtk.hpp":
-  pass
 
 cdef extern from "exprtk.hpp" namespace "exprtk::details":
   cdef cppclass variable_node[T]:
@@ -39,19 +40,46 @@ cdef extern from "exprtk.hpp" namespace "exprtk":
     void register_symbol_table(symbol_table[T])
     T value()
 
+
   cdef cppclass parser[T]:
     parser() except +
     int compile(string& expression_string, expression[T]&  expr)
+    cppclass unknown_symbol_resolver:
+      pass
+    void enable_unknown_symbol_resolver(unknown_symbol_resolver* usr)
+
+  cdef enum c_symbol_type "exprtk::parser<double>::unknown_symbol_resolver::symbol_type":
+    e_variable_type "exprtk::parser<double>::unknown_symbol_resolver::e_variable_type"
+    e_constant_type "exprtk::parser<double>::unknown_symbol_resolver::e_constant_type"
 
 
 ctypedef symbol_table[double] symbol_table_type
 ctypedef expression[double] expression_type
 ctypedef parser[double] parser_type
 
+
 cdef extern from "cexprtk.hpp":
   int variableAssign(symbol_table_type & symtable, string& name, double value)
   void parser_compile_and_process_errors(string& expression_string, parser_type& parser, expression_type& expression, vector[string]& error_messages)
   void check(string& expression_string, vector[string]& error_list)
+
+  cdef cppclass PythonCallableReturnTuple:
+    bool handledFlag
+    int usrSymbolType
+    double value
+    string errorString
+
+
+ctypedef (bool (*)(string&, PythonCallableReturnTuple&, void*)) PythonCallableCythonFunctionPtr
+
+cdef extern from "cexprtk.hpp":
+  cdef cppclass PythonCallableUnknownResolver:
+    PythonCallableUnknownResolver(void *, PythonCallableCythonFunctionPtr)
+
+
+
+cdef extern from *:
+    parser[double].unknown_symbol_resolver* dynamic_cast_PythonCallableUnknownResolver "dynamic_cast<exprtk::parser<double>::unknown_symbol_resolver*>" (PythonCallableUnknownResolver*) except NULL
 
 
 class BadVariableException(Exception):
@@ -118,30 +146,80 @@ cdef class Expression:
     del self._cexpressionptr
 
 
-  def __init__(self, expression, symbol_table):
+  def __init__(self, expression, symbol_table, unknown_symbol_resolver_callback = None):
     """Define a mathematical expression.
+
+    Description of ``unknown_symbol_resolver_callback`` argument:
+    ----------------------------------------------------
+
+    The ``unknown_symbol_resolver_callback`` argument accepts a callable which is invoked
+    whenever a symbol (i.e. a variable or a constant), is not found in the
+    ``Symbol_Table`` given by the ``symbol_table`` argument. The ``unknown_symbol_resolver_callback``
+    can be used to provide a value for the missing value or to set an error consition.
+
+    The callable should have following signature::
+
+      def callback(symbol_name):
+        ...
+
+
+    Where ``symbol_name`` is a string identifying the missing symbol.
+
+    The callable should return a tuple of the form::
+
+      (HANDLED_FLAG, USR_SYMBOL_TYPE, SYMBOL_VALUE, ERROR_STRING)
+
+    Where:
+      * ``HANDLED_FLAG`` is a boolean, ``True`` indicates that callback was able
+        handle the error condition and that ``SYMBOL_VALUE`` should be used for
+        the missing symbol. ``False``, flags and error condition, the reason why
+        the unknown symbol could not be resolved by the callback is described by
+        ``ERROR_STRING``.
+      * ``USR_SYMBOL_TYPE`` gives type of symbol (constant or variable)
+        that should be added to the ``symbol_table`` when unkown symbol is resolved.
+        Value should be one of those given in ``cexprtk.USRSymbolType``;
+      * ``SYMBOL_VALUE``, floating point value that should be used when resolving
+        missing symbol.
+      * ``ERROR_STRING`` when ``HANDLED_FLAG`` is ``False`` this can be used to
+        describe error condition.
 
     :param expression: String giving expression to be calculated.
     :type expression: str
 
     :param symbol_table: Object defining variables and constants.
-    :type symbol_table: cexprtk.Symbol_Table"""
+    :type symbol_table: cexprtk.Symbol_Table
+
+    :param unknown_symbol_resolver_callback:
+    :type unknown_symbol_resolver_callback: callable (see above)"""
 
     self._symbol_table = symbol_table
 
     cdef vector[string] error_list  = vector[string]()
-    self._init_expression(expression, error_list)
+
+    self._init_expression(expression, error_list, unknown_symbol_resolver_callback)
     if not error_list.empty():
       msg = ", ".join([ s for s in error_list])
       raise ParseException(msg)
 
-  cdef _init_expression(self, str expression_string, vector[string]& error_list):
+
+  cdef _init_expression(self, str expression_string, vector[string]& error_list, object unknown_symbol_resolver_callback):
     cdef parser_type p
-    self._cexpressionptr[0].register_symbol_table(self._symbol_table._csymtableptr[0])
+    cdef PythonCallableUnknownResolver * pcurPtr 
+    cdef parser[double].unknown_symbol_resolver * usrPtr
+
+    self._cexpressionptr.register_symbol_table(self._symbol_table._csymtableptr[0])
+
+    if not unknown_symbol_resolver_callback == None:
+      pcurPtr = new PythonCallableUnknownResolver(
+        <void *> unknown_symbol_resolver_callback,
+        unknownResolverCythonCallable)
+      usrPtr = dynamic_cast_PythonCallableUnknownResolver(pcurPtr)
+      p.enable_unknown_symbol_resolver(usrPtr)
     parser_compile_and_process_errors(expression_string,
                                       p,
                                       self._cexpressionptr[0],
                                       error_list)
+    del pcurPtr
 
 
   def value(self):
@@ -355,4 +433,38 @@ cdef class _Symbol_Table_Constants:
   def __contains__(self, key):
     return self.has_key(key)
 
+@cython.internal
+cdef class _USRSymbolType:
+  cdef:
+    readonly int VARIABLE
+    readonly int CONSTANT
+
+  def __cinit__(self):
+    self.VARIABLE = e_variable_type
+    self.CONSTANT = e_constant_type
+
+USRSymbolType = _USRSymbolType()
+
+
+# Function with PythonCallableFunctionPtr signature that is used to allow
+# a python callback to be invoked from C++ within PythonCallableUnknownResolver.
+cdef bool unknownResolverCythonCallable(
+  const string& sym,
+  PythonCallableReturnTuple&
+  retvals, void * pyobj):
+
+  handledFlag, usrSymbolType, value, errorString = (<object>pyobj)(sym)
+  retvals.handledFlag = handledFlag
+
+  if usrSymbolType == e_variable_type:
+    retvals.usrSymbolType = e_variable_type
+  elif usrSymbolType == e_constant_type:
+    retvals.usrSymbolType = e_constant_type
+  else:
+    pass
+    #TODO: throw error here?
+
+  retvals.value = value
+  retvals.errorString = errorString
+  return True
 

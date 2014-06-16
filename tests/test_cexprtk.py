@@ -449,3 +449,43 @@ class EvaluateExpressionTestCase(unittest.TestCase):
     actual = cexprtk.evaluate_expression(expression, {'A':1.5})
     self.assertAlmostEquals(expect, actual)
 
+
+
+class UnknownSymbolResolverTestCase(unittest.TestCase):
+  """Test unknown_symbol_resolver argument to Expression"""
+
+  def testEndToEnd(self):
+    """End to end test"""
+
+    class MemoUnknownSymbolResolver(object):
+
+      def __init__(self):
+        self.callList = []
+        self.retList = {
+          'x' : (True, cexprtk.USRSymbolType.VARIABLE, 1.0, ""),
+          'y' : (True, cexprtk.USRSymbolType.CONSTANT, 2.0, ""),
+          'z' : (True, cexprtk.USRSymbolType.VARIABLE, 3.0, "")}
+
+      def __call__(self, sym):
+        self.callList.append(sym)
+        return self.retList[sym]
+
+    unknownSymbolResolver = MemoUnknownSymbolResolver()
+
+    symbolTable = cexprtk.Symbol_Table({})
+    expression = cexprtk.Expression("x+y+z", symbolTable, unknownSymbolResolver)
+
+    self.assertEquals(['x','y','z'], unknownSymbolResolver.callList)
+    self.assertEquals(6.0, expression())
+
+
+  def testErrors(self):
+    self.fail("Not implemented.")
+
+
+  def testSymbolTableContent(self):
+    self.fail("Not implemented")
+
+  def testUSRException(self):
+    """Test when the unknown symbol resolver throws"""
+    self.fail("Not implemented")

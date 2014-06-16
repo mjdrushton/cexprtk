@@ -8,6 +8,8 @@
 
 #include "exprtk.hpp"
 
+struct PythonCallableReturnTuple;
+
 
 typedef std::pair<std::string, double> LabelFloatPair;
 typedef std::vector<LabelFloatPair> LabelFloatPairVector;
@@ -18,23 +20,68 @@ typedef exprtk::expression<ExpressionValueType> Expression;
 typedef Parser::unknown_symbol_resolver Resolver;
 typedef exprtk::symbol_table<ExpressionValueType> SymbolTable;
 
+typedef bool (*PythonCallableCythonFunctionPtr)(const std::string& sym, PythonCallableReturnTuple&, void * pyobj);
 
-class UnknownResolver: public virtual Resolver
+// class UnknownResolver: public virtual Resolver
+// {
+// public:
+// 	virtual bool process (const std::string & s, 
+// 		Resolver::symbol_type & st, 
+// 		ExpressionValueType & default_value, 
+// 		std::string & error_message)
+// 	{
+// 		st = e_constant_type;
+// 		default_value = 1.0;
+// 		return true;
+// 	};
+
+// 	virtual ~UnknownResolver(){};
+
+// };
+
+
+struct PythonCallableReturnTuple
+{	
+	bool handledFlag;
+	Resolver::symbol_type usrSymbolType;
+	ExpressionValueType  value;
+	std::string errorString;
+};
+
+class PythonCallableUnknownResolver: public virtual Resolver
 {
+private:
+
+	void * _pycallable;
+	PythonCallableCythonFunctionPtr _cythonfunc;
+
 public:
+
+	PythonCallableUnknownResolver(void * pycallable, PythonCallableCythonFunctionPtr cythonfunc) :
+		_pycallable(pycallable),
+		_cythonfunc(cythonfunc)
+	{};
+
+
 	virtual bool process (const std::string & s, 
 		Resolver::symbol_type & st, 
 		ExpressionValueType & default_value, 
 		std::string & error_message)
 	{
-		st = e_constant_type;
-		default_value = 1.0;
-		return true;
+		PythonCallableReturnTuple pyvals;
+		_cythonfunc(s, pyvals, _pycallable);
+
+		// Unpack values from pyvals into references passed to this method.
+		st = pyvals.usrSymbolType;
+		default_value = pyvals.value;
+		error_message = pyvals.errorString;
+		return pyvals.handledFlag;
 	};
 
-	virtual ~UnknownResolver(){};
+	virtual ~PythonCallableUnknownResolver(){};
 
 };
+
 
 
 void errorlist_to_strings(const ErrorList& error_list, std::vector<std::string>& outlist)
@@ -90,8 +137,7 @@ void check(const std::string& expression_string, std::vector<std::string>& error
 {
 	Parser parser;
 	Expression expression;
-	UnknownResolver resolver;
-	parser.enable_unknown_symbol_resolver(&resolver);
+	parser.enable_unknown_symbol_resolver();
 	parser_compile_and_process_errors(expression_string, parser, expression, error_list);
 }
 
