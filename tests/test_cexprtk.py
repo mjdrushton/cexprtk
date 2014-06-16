@@ -452,7 +452,7 @@ class EvaluateExpressionTestCase(unittest.TestCase):
 
 
 class UnknownSymbolResolverTestCase(unittest.TestCase):
-  """Test unknown_symbol_resolver argument to Expression"""
+  """Test unknown_symbol_resolver_callback argument to Expression"""
 
   def testEndToEnd(self):
     """End to end test"""
@@ -478,14 +478,47 @@ class UnknownSymbolResolverTestCase(unittest.TestCase):
     self.assertEquals(['x','y','z'], unknownSymbolResolver.callList)
     self.assertEquals(6.0, expression())
 
+    expectVariables = {'x' : 1.0, 'z' : 3.0}
+    self.assertEquals(expectVariables, dict(symbolTable.variables.items()))
+
+    expectConstants = {'y' : 2.0}
+    self.assertEquals(expectConstants, dict(symbolTable.constants.items()))
 
   def testErrors(self):
-    self.fail("Not implemented.")
+    """Test unknown_symbol_resolver_callback when it throws errors."""
 
+    def callback(sym):
+      if sym == 'x':
+        return (True, cexprtk.USRSymbolType.VARIABLE, 1.0, "")
+      else:
+        return (False, cexprtk.USRSymbolType.VARIABLE, 0.0, "Error text")
 
-  def testSymbolTableContent(self):
-    self.fail("Not implemented")
+    symbolTable = cexprtk.Symbol_Table({})
+
+    with self.assertRaises(cexprtk.ParseException):
+      expression = cexprtk.Expression("x+y+z", symbolTable, callback)
+
+  def testBadSymbolType(self):
+    """Test that condition is correctly handled if bad USRSymbolType specified"""
+
+    def callback(sym):
+      return (True, 3, 0.0, "Error text")
+
+    symbolTable = cexprtk.Symbol_Table({})
+
+    with self.assertRaises(cexprtk.UnknownSymbolResolverException):
+      expression = cexprtk.Expression("x+y+z", symbolTable, callback)
+
 
   def testUSRException(self):
     """Test when the unknown symbol resolver throws"""
-    self.fail("Not implemented")
+
+    def callback(sym):
+      return 1.0/0
+
+    symbolTable = cexprtk.Symbol_Table({})
+
+    with self.assertRaises(cexprtk.UnknownSymbolResolverException):
+      expression = cexprtk.Expression("x+y+z", symbolTable, callback)
+
+

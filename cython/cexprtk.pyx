@@ -445,6 +445,9 @@ cdef class _USRSymbolType:
 USRSymbolType = _USRSymbolType()
 
 
+class UnknownSymbolResolverException(Exception):
+  pass
+
 # Function with PythonCallableFunctionPtr signature that is used to allow
 # a python callback to be invoked from C++ within PythonCallableUnknownResolver.
 cdef bool unknownResolverCythonCallable(
@@ -460,8 +463,7 @@ cdef bool unknownResolverCythonCallable(
   elif usrSymbolType == e_constant_type:
     retvals.usrSymbolType = e_constant_type
   else:
-    pass
-    #TODO: throw error here?
+    raise UnknownSymbolResolverException("Unknown symbol type returned by unknown_symbol_resolver_callback.")
 
   retvals.value = value
   retvals.errorString = errorString
