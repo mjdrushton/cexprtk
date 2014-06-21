@@ -6,6 +6,8 @@
 #include <utility>
 #include <sstream>
 
+#include "Python.h"
+
 #include "exprtk.hpp"
 
 struct PythonCallableReturnTuple;
@@ -22,30 +24,13 @@ typedef exprtk::symbol_table<ExpressionValueType> SymbolTable;
 
 typedef bool (*PythonCallableCythonFunctionPtr)(const std::string& sym, PythonCallableReturnTuple&, void * pyobj);
 
-// class UnknownResolver: public virtual Resolver
-// {
-// public:
-// 	virtual bool process (const std::string & s, 
-// 		Resolver::symbol_type & st, 
-// 		ExpressionValueType & default_value, 
-// 		std::string & error_message)
-// 	{
-// 		st = e_constant_type;
-// 		default_value = 1.0;
-// 		return true;
-// 	};
-
-// 	virtual ~UnknownResolver(){};
-
-// };
-
-
 struct PythonCallableReturnTuple
 {	
 	bool handledFlag;
 	Resolver::symbol_type usrSymbolType;
 	ExpressionValueType  value;
 	std::string errorString;
+	void * pyexception;
 };
 
 class PythonCallableUnknownResolver: public virtual Resolver
@@ -53,13 +38,27 @@ class PythonCallableUnknownResolver: public virtual Resolver
 private:
 
 	void * _pycallable;
+
+	// Function pointer to cythonised function that takes
+	// the actual python object (stored in void pointer, _pycallable)
+	// and callback arguments.
+	// It converts _pycallable back into a python object then calls it.
 	PythonCallableCythonFunctionPtr _cythonfunc;
+	
+	// Field that can hold pointer to a python exception thrown within _cythonfunc
+	// this is checked between process() calls.
+	// If an exception is raised then, subsequent calls will lead to process() flagging an
+	// error.
+	// When control returns  to cexprtk.Expression, if the exception is set, it is thrown 
+	// on the python side of things.
+	void * _pyexception;
 
 public:
 
 	PythonCallableUnknownResolver(void * pycallable, PythonCallableCythonFunctionPtr cythonfunc) :
 		_pycallable(pycallable),
-		_cythonfunc(cythonfunc)
+		_cythonfunc(cythonfunc),
+		_pyexception(NULL)
 	{};
 
 
@@ -68,17 +67,45 @@ public:
 		ExpressionValueType & default_value, 
 		std::string & error_message)
 	{
+		if (wasExceptionRaised())
+		{
+			error_message = "exception_raised";
+			return false;
+		}
+
 		PythonCallableReturnTuple pyvals;
+		pyvals.pyexception = NULL;
 		_cythonfunc(s, pyvals, _pycallable);
 
 		// Unpack values from pyvals into references passed to this method.
 		st = pyvals.usrSymbolType;
 		default_value = pyvals.value;
 		error_message = pyvals.errorString;
+
+		if (pyvals.pyexception)
+		{
+			_pyexception = pyvals.pyexception;
+			return false;
+		}
+
 		return pyvals.handledFlag;
 	};
 
-	virtual ~PythonCallableUnknownResolver(){};
+	virtual bool wasExceptionRaised() const
+	{
+		return _pyexception != NULL;
+	};
+
+	virtual void * exception() 
+	{
+		return _pyexception;
+	};
+
+	virtual ~PythonCallableUnknownResolver(){
+		// Make sure reference held to _pyexception is decremented.
+		PyObject* pyobjptr = static_cast<PyObject*>(_pyexception);
+		Py_XDECREF(pyobjptr);
+	};
 
 };
 

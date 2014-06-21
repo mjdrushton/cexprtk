@@ -518,7 +518,6 @@ class UnknownSymbolResolverTestCase(unittest.TestCase):
 
     symbolTable = cexprtk.Symbol_Table({})
 
-    with self.assertRaises(cexprtk.UnknownSymbolResolverException):
+    with self.assertRaises(ZeroDivisionError):
       expression = cexprtk.Expression("x+y+z", symbolTable, callback)
-
 

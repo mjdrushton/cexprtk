@@ -7,6 +7,7 @@ from libcpp.pair cimport pair
 from libcpp cimport bool
 
 from cpython.weakref  cimport PyWeakref_NewProxy
+from cpython.ref cimport Py_INCREF
 
 cimport cython
 
@@ -68,6 +69,7 @@ cdef extern from "cexprtk.hpp":
     int usrSymbolType
     double value
     string errorString
+    void* pyexception
 
 
 ctypedef (bool (*)(string&, PythonCallableReturnTuple&, void*)) PythonCallableCythonFunctionPtr
@@ -75,7 +77,8 @@ ctypedef (bool (*)(string&, PythonCallableReturnTuple&, void*)) PythonCallableCy
 cdef extern from "cexprtk.hpp":
   cdef cppclass PythonCallableUnknownResolver:
     PythonCallableUnknownResolver(void *, PythonCallableCythonFunctionPtr)
-
+    bool wasExceptionRaised() const
+    void* exception()
 
 
 cdef extern from *:
@@ -215,11 +218,22 @@ cdef class Expression:
         unknownResolverCythonCallable)
       usrPtr = dynamic_cast_PythonCallableUnknownResolver(pcurPtr)
       p.enable_unknown_symbol_resolver(usrPtr)
-    parser_compile_and_process_errors(expression_string,
-                                      p,
-                                      self._cexpressionptr[0],
-                                      error_list)
-    del pcurPtr
+
+
+    try:
+      parser_compile_and_process_errors(expression_string,
+                                        p,
+                                        self._cexpressionptr[0],
+                                        error_list)
+
+      # Check for exceptions raised by callback. Re-raise if found.
+      if pcurPtr != NULL and pcurPtr.wasExceptionRaised():
+          exception = <object> pcurPtr.exception()
+          raise exception
+
+    finally:
+      if pcurPtr != NULL:
+        del pcurPtr
 
   def value(self):
     """Evaluate expression using variable values currently set within associated Symbol_Table
@@ -454,18 +468,24 @@ cdef bool unknownResolverCythonCallable(
   const string& sym,
   PythonCallableReturnTuple&
   retvals, void * pyobj):
+  try:
+    handledFlag, usrSymbolType, value, errorString = (<object>pyobj)(sym)
+    retvals.handledFlag = handledFlag
 
-  handledFlag, usrSymbolType, value, errorString = (<object>pyobj)(sym)
-  retvals.handledFlag = handledFlag
+    if usrSymbolType == e_variable_type:
+      retvals.usrSymbolType = e_variable_type
+    elif usrSymbolType == e_constant_type:
+      retvals.usrSymbolType = e_constant_type
+    else:
+      raise UnknownSymbolResolverException("Unknown symbol type returned by unknown_symbol_resolver_callback.")
 
-  if usrSymbolType == e_variable_type:
-    retvals.usrSymbolType = e_variable_type
-  elif usrSymbolType == e_constant_type:
-    retvals.usrSymbolType = e_constant_type
-  else:
-    raise UnknownSymbolResolverException("Unknown symbol type returned by unknown_symbol_resolver_callback.")
-
-  retvals.value = value
-  retvals.errorString = errorString
-  return True
+    retvals.value = value
+    retvals.errorString = errorString
+    return True
+  except Exception as e:
+    #Increment e's ref count and then store it in return tuple as void*
+    Py_INCREF(e)
+    retvals.pyexception = <void * >e
+    retvals.errorString = str(e)
+    return False
 
