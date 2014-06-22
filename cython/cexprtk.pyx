@@ -135,25 +135,13 @@ def evaluate_expression(expression_string, variables):
 
 
 cdef class Expression:
-  """Class representing mathematical expression"""
+  """Class representing mathematical expression.
 
-  cdef Symbol_Table _symbol_table
-  cdef expression_type * _cexpressionptr
+  Following instantiation, the expression is evaluated calling the expression or
+  invoking its ``value()`` method.
 
-  def __cinit__(self):
-    # Create the expression
-    self._cexpressionptr = new expression_type()
-
-
-  def __dealloc__(self):
-    del self._cexpressionptr
-
-
-  def __init__(self, expression, symbol_table, unknown_symbol_resolver_callback = None):
-    """Define a mathematical expression.
-
-    Description of ``unknown_symbol_resolver_callback`` argument:
-    ----------------------------------------------------
+  Description of ``unknown_symbol_resolver_callback`` argument:
+  -------------------------------------------------------------
 
     The ``unknown_symbol_resolver_callback`` argument accepts a callable which is invoked
     whenever a symbol (i.e. a variable or a constant), is not found in the
@@ -185,6 +173,24 @@ cdef class Expression:
         missing symbol.
       * ``ERROR_STRING`` when ``HANDLED_FLAG`` is ``False`` this can be used to
         describe error condition.
+  """
+
+  cdef Symbol_Table _symbol_table
+  cdef expression_type * _cexpressionptr
+
+  def __cinit__(self):
+    # Create the expression
+    self._cexpressionptr = new expression_type()
+
+
+  def __dealloc__(self):
+    del self._cexpressionptr
+
+
+  def __init__(self, expression, symbol_table, unknown_symbol_resolver_callback = None):
+    """Instantiate ``Expression`` from a text string giving formula and ``Symbol_Table``
+    instance encapsulating variables and constants used by the expression.
+
 
     :param expression: String giving expression to be calculated.
     :type expression: str
@@ -246,6 +252,10 @@ cdef class Expression:
   def __call__(self):
     """Equivalent to calling value() method."""
     return self.value()
+
+  property symbol_table:
+    def __get__(self):
+      return self._symbol_table
 
 cdef class Symbol_Table:
   """Class for providing variable and constant values to Expression instances."""

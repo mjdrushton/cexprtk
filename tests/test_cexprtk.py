@@ -31,6 +31,22 @@ class ExpressionTestCase(unittest.TestCase):
     with self.assertRaises(cexprtk.ParseException):
       expression = cexprtk.Expression("(2+2", st)
 
+
+  def testSymbolTableProperty(self):
+    st = cexprtk.Symbol_Table({'a' : 2, 'b' : 3},{})
+    expression = cexprtk.Expression("(a+b) * 3", st)
+    st = None
+    v = expression.value()
+    self.assertAlmostEquals(15.0, v)
+
+    st = expression.symbol_table
+    st.variables['a'] = 3.0
+
+    v = expression()
+    self.assertAlmostEquals(18.0, v)
+
+
+
 class Symbol_TableVariablesTestCase(unittest.TestCase):
   """Tests for cexprtk._Symbol_Table_Variables"""
 
