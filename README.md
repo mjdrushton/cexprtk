@@ -282,7 +282,7 @@ Value that should be returned by an `unknown_symbol_resolver_callback` to define
 ---
 
 ### Utility Functions
-##### def check_expression (*expression*)
+#### def check_expression (*expression*)
 
 Check that expression can be parsed. If successful do nothing, if unsuccessful raise `ParseException`.
 
@@ -295,7 +295,7 @@ __Raises:__
 * `ParseException`: If expression is invalid.	
 
 
-##### def evaluate_expression (*expression*, *variables*)
+#### def evaluate_expression (*expression*, *variables*)
 Evaluate a mathematical formula using the exprtk library and return result.
 
 For more information about supported functions and syntax see the
@@ -324,9 +324,6 @@ Cython wrapper by Michael Rushton (m.j.d.rushton@gmail.com), although most credi
 ##License
 
 `cexprtk` is released under the same terms as the [ExprTK][] library the [Common Public License Version 1.0][] (CPL).
-
-
----
 
 [ExprTK]: http://www.partow.net/programming/exprtk/index.html
 [pip]: http://www.pip-installer.org/en/latest/index.html
