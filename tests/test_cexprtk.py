@@ -46,7 +46,6 @@ class ExpressionTestCase(unittest.TestCase):
     self.assertAlmostEquals(18.0, v)
 
 
-
 class Symbol_TableVariablesTestCase(unittest.TestCase):
   """Tests for cexprtk._Symbol_Table_Variables"""
 
@@ -80,7 +79,6 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
 
     with self.assertRaises(cexprtk.VariableNameShadowException):
       cexprtk.Symbol_Table({"a" : 1.0, "b" : 2.0}, {"e" : 1.0, "f" : 3.0, "b" : 2.0})
-
 
 
   def testGetItem(self):

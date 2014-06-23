@@ -137,42 +137,46 @@ def evaluate_expression(expression_string, variables):
 cdef class Expression:
   """Class representing mathematical expression.
 
-  Following instantiation, the expression is evaluated calling the expression or
+  * Following instantiation, the expression is evaluated calling the expression or
   invoking its ``value()`` method.
+  * The variable values used by the Expression can be modified through the ``variables``
+  property of the ``Symbol_Table`` instance associated with the expression.
+  The ``Symbol_Table`` can be accessed using the ``Expression.symbol_table`` property.
 
   Description of ``unknown_symbol_resolver_callback`` argument:
   -------------------------------------------------------------
 
-    The ``unknown_symbol_resolver_callback`` argument accepts a callable which is invoked
-    whenever a symbol (i.e. a variable or a constant), is not found in the
-    ``Symbol_Table`` given by the ``symbol_table`` argument. The ``unknown_symbol_resolver_callback``
-    can be used to provide a value for the missing value or to set an error consition.
+  The ``unknown_symbol_resolver_callback`` argument  to the ``Expression``
+  constructor accepts a callable which is invoked  whenever a symbol (i.e. a
+  variable or a constant), is not found in the ``Symbol_Table`` given by the
+  ``symbol_table`` argument. The ``unknown_symbol_resolver_callback`` can be
+  used to provide a value for the missing value or to set an error condition.
 
-    The callable should have following signature::
+  The callable should have following signature::
 
-      def callback(symbol_name):
-        ...
+    def callback(symbol_name):
+      ...
 
 
-    Where ``symbol_name`` is a string identifying the missing symbol.
+  Where ``symbol_name`` is a string identifying the missing symbol.
 
-    The callable should return a tuple of the form::
+  The callable should return a tuple of the form::
 
-      (HANDLED_FLAG, USR_SYMBOL_TYPE, SYMBOL_VALUE, ERROR_STRING)
+    (HANDLED_FLAG, USR_SYMBOL_TYPE, SYMBOL_VALUE, ERROR_STRING)
 
-    Where:
-      * ``HANDLED_FLAG`` is a boolean, ``True`` indicates that callback was able
-        handle the error condition and that ``SYMBOL_VALUE`` should be used for
-        the missing symbol. ``False``, flags and error condition, the reason why
-        the unknown symbol could not be resolved by the callback is described by
-        ``ERROR_STRING``.
-      * ``USR_SYMBOL_TYPE`` gives type of symbol (constant or variable)
-        that should be added to the ``symbol_table`` when unkown symbol is resolved.
-        Value should be one of those given in ``cexprtk.USRSymbolType``;
-      * ``SYMBOL_VALUE``, floating point value that should be used when resolving
-        missing symbol.
-      * ``ERROR_STRING`` when ``HANDLED_FLAG`` is ``False`` this can be used to
-        describe error condition.
+  Where:
+    * ``HANDLED_FLAG`` is a boolean, ``True`` indicates that callback was able
+      handle the error condition and that ``SYMBOL_VALUE`` should be used for
+      the missing symbol. ``False``, flags and error condition, the reason why
+      the unknown symbol could not be resolved by the callback is described by
+      ``ERROR_STRING``.
+    * ``USR_SYMBOL_TYPE`` gives type of symbol (constant or variable)
+      that should be added to the ``symbol_table`` when unkown symbol is resolved.
+      Value should be one of those given in ``cexprtk.USRSymbolType``;
+    * ``SYMBOL_VALUE``, floating point value that should be used when resolving
+      missing symbol.
+    * ``ERROR_STRING`` when ``HANDLED_FLAG`` is ``False`` this can be used to
+      describe error condition.
   """
 
   cdef Symbol_Table _symbol_table
