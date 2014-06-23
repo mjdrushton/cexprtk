@@ -10,6 +10,7 @@
 * Improved documentation:
     - API reference.
     - Examples of the new classes.
+* Updated version of `exprtk` bundled in `3rdparty`
 
 ##0.1.2 (not released to pypi)
 ### Bug-Fixes
