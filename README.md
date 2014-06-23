@@ -2,6 +2,7 @@
 
 `cexprtk` is a cython wrapper around the "[C++ Mathematical Expression  Toolkit Library (ExprTk)][ExprTk]"  by Arash Partow. Using `cexprtk` a powerful mathematical expression engine can be incorporated into your python project.
 
+## Table of Contents
 [TOC]
 
 ##Installation
