@@ -17,7 +17,9 @@ except ImportError:
 else:
     cython_cexprtk = Extension("cexprtk",
       ["cython/cexprtk.pyx"],
-      include_dirs = ["3rdparty/exprtk", "cython"])
+      include_dirs = ["3rdparty/exprtk", "cython"],
+      define_macros=[('WIN32',None)],
+      extra_compile_args=['/bigobj'])
     ext_modules = cythonize([cython_cexprtk])
     cmdclass = { 'build_ext': build_ext }
 
