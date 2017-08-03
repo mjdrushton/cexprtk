@@ -181,6 +181,8 @@ cdef class Expression:
 
   cdef Symbol_Table _symbol_table
   cdef expression_type * _cexpressionptr
+  cdef string _expression
+  cdef object _unknown_symbol_resolver_callback
 
   def __cinit__(self):
     # Create the expression
@@ -190,6 +192,9 @@ cdef class Expression:
   def __dealloc__(self):
     del self._cexpressionptr
 
+  def __reduce__(self):
+    return (Expression, (self._expression, self.symbol_table, self._unknown_symbol_resolver_callback))
+    
 
   def __init__(self, expression, symbol_table, unknown_symbol_resolver_callback = None):
     """Instantiate ``Expression`` from a text string giving formula and ``Symbol_Table``
@@ -204,8 +209,12 @@ cdef class Expression:
 
     :param unknown_symbol_resolver_callback:
     :type unknown_symbol_resolver_callback: callable (see above)"""
+    if not symbol_table:
+      symbol_table = Symbol_Table({})
 
+    self._expression = expression
     self._symbol_table = symbol_table
+    self._unknown_symbol_resolver_callback = unknown_symbol_resolver_callback
 
     cdef vector[string] error_list  = vector[string]()
 
@@ -257,6 +266,10 @@ cdef class Expression:
     """Equivalent to calling value() method."""
     return self.value()
 
+  property expression:
+    def __get__(self):
+      return self._expression
+  
   property symbol_table:
     def __get__(self):
       return self._symbol_table
@@ -267,6 +280,11 @@ cdef class Symbol_Table:
   cdef symbol_table_type* _csymtableptr
   cdef _Symbol_Table_Variables _variables
   cdef _Symbol_Table_Constants _constants
+
+  def __reduce__(self):
+    constants = dict(self.constants)
+    variables = dict(self.variables)
+    return (Symbol_Table, (variables, constants, False))
 
   def __cinit__(self):
     self._csymtableptr = new symbol_table_type()

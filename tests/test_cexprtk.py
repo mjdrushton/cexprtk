@@ -539,3 +539,117 @@ class UnknownSymbolResolverTestCase(unittest.TestCase):
     with self.assertRaises(ZeroDivisionError):
       expression = cexprtk.Expression("x+y+z", symbolTable, callback)
 
+
+class MultiProcessingTestCase(unittest.TestCase):
+  """Test that Expressions can be used in parallel with multiprocessing"""
+
+  def testWithoutSpecificSymbolTable(self):
+    """Test for expression with no variables"""
+    import multiprocessing
+    from multi import evaluate_expression
+    expression = cexprtk.Expression("2+2", None)
+    pool = multiprocessing.Pool(processes = 1)
+    results = pool.map(evaluate_expression, [expression])
+    self.assertEquals(4, results[0])
+
+  def testMultiprocesses(self):
+    """Test with multiple processes"""
+
+    exprstr = "A * exp(rho / r ) - C/(r^6)"
+    rvals = [ 1.0 + x/10.0 for x in xrange(100)]
+    rhovals = [ 0.1, 0.2, 0.3]
+
+    inputs = [ ]
+    for rhoval in rhovals:
+      for rval in rvals:
+        inputs.append((rhoval, rval))
+
+    import math
+    def pfunc(rho, r):
+      return 1000.0 * math.exp(rho / r) - 32.0/r**6
+
+    expected = [ pfunc(rho,r) for (rho,r) in inputs]
+
+    import multiprocessing
+    from multi import Worker
+    expression = cexprtk.Expression(exprstr, 
+      cexprtk.Symbol_Table({'rho' : 0, 'r' : 0}, {'A' : 1000.0, 'C' : 32.0}))
+
+    pool = multiprocessing.Pool(4)
+    results = pool.map(Worker(expression), inputs)
+    self.assertEquals(expected, results)
+
+def unknownSymbolResolver(symbol):
+    try:
+      v = {'A' : 1, 'B' : 2, 'C' : 3}[symbol]
+      return (True, cexprtk.USRSymbolType.VARIABLE, v, "")
+    except KeyError:
+      return (False, cexprtk.USRSymbolType.VARIABLE, 0.0, "Unknown ")
+
+
+class PickleTestCase(unittest.TestCase):
+  """Test pickling of the Expression and Symbol_Table classes"""  
+
+  def testSymbolTablePickle(self):
+    """Test pickling of the symbol table"""
+    import pickle
+    variables = {"A" : 1, "B" : 2, "C" : 3}
+    constants = {"d" : 4, "e" : 5, "f" : 6}
+    symbolTable = cexprtk.Symbol_Table(variables, constants, False)
+
+    self.assertEquals(constants, dict(symbolTable.constants))
+    self.assertEquals(variables, dict(symbolTable.variables))
+
+    dumped = pickle.dumps(symbolTable)
+    unpickled = pickle.loads(dumped)
+
+    self.assertIsInstance(unpickled, cexprtk.Symbol_Table)
+
+    self.assertEquals(constants, dict(unpickled.constants))
+    self.assertEquals(variables, dict(unpickled.variables))
+
+  def testExpressionPickle(self):
+    """Pickling of an expression"""
+    import pickle
+    variables = {"A" : 1, "B" : 2, "C" : 3}
+    constants = {"d" : 4, "e" : 5, "f" : 6}
+    symbolTable = cexprtk.Symbol_Table(variables, constants, False)
+
+    exprstr = "A+B+C+d+e+f"
+    expression = cexprtk.Expression(exprstr, symbolTable)
+
+    self.assertEquals(21, expression())
+
+    dumped = pickle.dumps(expression)
+    unpickled = pickle.loads(dumped)
+
+    self.assertIsInstance(unpickled, cexprtk.Expression)
+
+    self.assertEquals(constants, dict(unpickled.symbol_table.constants))
+    self.assertEquals(variables, dict(unpickled.symbol_table.variables))
+
+    self.assertEquals(21, unpickled())
+
+  def testExpressionPickleWithUnknownSymbolResolver(self):
+    """Pickling of an expression that has an unknown symbol resolver associated with it"""
+    import pickle
+
+    
+    constants = {"d" : 4, "e" : 5, "f" : 6}
+    symbolTable = cexprtk.Symbol_Table({}, constants, False)
+
+    exprstr = "A+B+C+d+e+f"
+    expression = cexprtk.Expression(exprstr, symbolTable, unknownSymbolResolver)
+
+    self.assertEquals(21, expression())
+
+    dumped = pickle.dumps(expression)
+    unpickled = pickle.loads(dumped)
+
+    self.assertIsInstance(unpickled, cexprtk.Expression)
+
+    self.assertEquals(constants, dict(unpickled.symbol_table.constants))
+    variables = {"A" : 1, "B" : 2, "C" : 3}
+    self.assertEquals(variables, dict(unpickled.symbol_table.variables))
+
+    self.assertEquals(21, unpickled())
