@@ -3,14 +3,14 @@
  *         C++ Mathematical Expression Toolkit Library        *
  *                                                            *
  * Simple Example 4                                           *
- * Author: Arash Partow (1999-2014)                           *
+ * Author: Arash Partow (1999-2017)                           *
  * URL: http://www.partow.net/programming/exprtk/index.html   *
  *                                                            *
  * Copyright notice:                                          *
  * Free use of the Mathematical Expression Toolkit Library is *
  * permitted under the guidelines and in accordance with the  *
- * most current version of the Common Public License.         *
- * http://www.opensource.org/licenses/cpl1.0.php              *
+ * most current version of the MIT License.                   *
+ * http://www.opensource.org/licenses/MIT                     *
  *                                                            *
  **************************************************************
 */
@@ -28,11 +28,14 @@ void fibonacci()
    typedef exprtk::expression<T>          expression_t;
    typedef exprtk::parser<T>                  parser_t;
    typedef exprtk::function_compositor<T> compositor_t;
+   typedef typename compositor_t::function  function_t;
 
    compositor_t compositor;
 
    compositor
-      .add("fibonacci",
+      .add(
+      function_t( // define function: fibonacci(x)
+           "fibonacci",
            " var w := 0;             "
            " var y := 0;             "
            " var z := 1;             "
@@ -49,7 +52,7 @@ void fibonacci()
            "      z                  "
            "    };                   "
            " }                       ",
-           "x");
+           "x"));
 
    T x = T(0);
 
@@ -63,15 +66,16 @@ void fibonacci()
    expression.register_symbol_table(symbol_table);
 
    parser_t parser;
-
    parser.compile(expression_str,expression);
 
    for (std::size_t i = 0; i < 40; ++i)
    {
       x = i;
+
       T result = expression.value();
+
       printf("fibonacci(%3d) = %10.0f\n",
-             static_cast<unsigned int>(i),
+             static_cast<int>(i),
              result);
    }
 }

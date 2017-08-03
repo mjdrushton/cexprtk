@@ -27,7 +27,7 @@ typedef bool (*PythonCallableCythonFunctionPtr)(const std::string& sym, PythonCa
 struct PythonCallableReturnTuple
 {	
 	bool handledFlag;
-	Resolver::symbol_type usrSymbolType;
+	Resolver::usr_symbol_type usrSymbolType;
 	ExpressionValueType  value;
 	std::string errorString;
 	void * pyexception;
@@ -63,7 +63,7 @@ public:
 
 
 	virtual bool process (const std::string & s, 
-		Resolver::symbol_type & st, 
+		Resolver::usr_symbol_type & st, 
 		ExpressionValueType & default_value, 
 		std::string & error_message)
 	{

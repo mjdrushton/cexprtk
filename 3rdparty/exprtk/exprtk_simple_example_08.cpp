@@ -3,14 +3,14 @@
  *         C++ Mathematical Expression Toolkit Library        *
  *                                                            *
  * Simple Example 8                                           *
- * Author: Arash Partow (1999-2014)                           *
+ * Author: Arash Partow (1999-2017)                           *
  * URL: http://www.partow.net/programming/exprtk/index.html   *
  *                                                            *
  * Copyright notice:                                          *
  * Free use of the Mathematical Expression Toolkit Library is *
  * permitted under the guidelines and in accordance with the  *
- * most current version of the Common Public License.         *
- * http://www.opensource.org/licenses/cpl1.0.php              *
+ * most current version of the MIT License.                   *
+ * http://www.opensource.org/licenses/MIT                     *
  *                                                            *
  **************************************************************
 */
@@ -29,6 +29,7 @@ void composite()
    typedef exprtk::parser<T>                  parser_t;
    typedef exprtk::parser_error::type          error_t;
    typedef exprtk::function_compositor<T> compositor_t;
+   typedef typename compositor_t::function  function_t;
 
    compositor_t compositor;
 
@@ -40,10 +41,15 @@ void composite()
    symbol_table.add_variable("x",x);
    symbol_table.add_variable("y",y);
 
-   compositor.add("f","sin(x / pi)","x");          // f(x) = sin(x / pi)
-   compositor.add("g","3*[f(x) + f(y)]","x","y");  // g(x,y) = 3[f(x) + f(y)]
+   compositor
+      .add(
+      function_t("f","sin(x / pi)","x"));          // f(x) = sin(x / pi)
 
-   std::string expression_string = "g(1 + f(x),f(y) / 2)";
+   compositor
+      .add(
+      function_t("g","3*[f(x) + f(y)]","x","y"));  // g(x,y) = 3[f(x) + f(y)]
+
+   std::string expression_string = "g(1 + f(x), f(y) / 2)";
 
    expression_t expression;
    expression.register_symbol_table(symbol_table);
@@ -59,6 +65,7 @@ void composite()
       for (std::size_t i = 0; i < parser.error_count(); ++i)
       {
          error_t error = parser.get_error(i);
+
          printf("Error: %02d  Position: %02d Type: [%14s] Msg: %s\tExpression: %s\n",
                 static_cast<unsigned int>(i),
                 static_cast<unsigned int>(error.token.position),
@@ -66,6 +73,7 @@ void composite()
                 error.diagnostic.c_str(),
                 expression_string.c_str());
       }
+
       return;
    }
 
