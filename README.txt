@@ -170,6 +170,16 @@ symbol resolver:
            >>> e.value()
            -18.0
 
+
+Change log
+----------
+
+* v0.2.1 (3rd August 2017): 
+
+        + Updated version of bundled `exprtk` to that current as of 3rd August 2017.
+        + Updated `cexprtk` wrapper code to be compatible with this version of `exprtk`.
+        + Enabled pickling of the `Expression` and `Symbol_Table` classes. Primarily this is to allow their use with the multiprocessing module.
+
 --------------
 
 API Reference
