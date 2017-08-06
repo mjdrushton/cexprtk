@@ -11,10 +11,10 @@ class ExpressionTestCase(unittest.TestCase):
     st = cexprtk.Symbol_Table({},{})
     expression = cexprtk.Expression("2+2", st)
     v = expression.value()
-    self.assertAlmostEquals(4.0, v)
+    self.assertAlmostEqual(4.0, v)
 
     v = expression()
-    self.assertAlmostEquals(4.0, v)
+    self.assertAlmostEqual(4.0, v)
 
   def testWithVariables(self):
     """Perform a test with some variables"""
@@ -22,7 +22,7 @@ class ExpressionTestCase(unittest.TestCase):
     st = cexprtk.Symbol_Table({'a' : 2, 'b' : 3},{})
     expression = cexprtk.Expression("(a+b) * 3", st)
     v = expression.value()
-    self.assertAlmostEquals(15.0, v)
+    self.assertAlmostEqual(15.0, v)
 
   def testParseException(self):
     """Test that bad expressions lead to ParseException being thrown"""
@@ -37,13 +37,13 @@ class ExpressionTestCase(unittest.TestCase):
     expression = cexprtk.Expression("(a+b) * 3", st)
     st = None
     v = expression.value()
-    self.assertAlmostEquals(15.0, v)
+    self.assertAlmostEqual(15.0, v)
 
     st = expression.symbol_table
     st.variables['a'] = 3.0
 
     v = expression()
-    self.assertAlmostEquals(18.0, v)
+    self.assertAlmostEqual(18.0, v)
 
 
 class Symbol_TableVariablesTestCase(unittest.TestCase):
@@ -91,7 +91,7 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
     with self.assertRaises(KeyError):
       v = symTable.variables['z']
 
-    self.assertEquals(20.0, symTable.variables['y'])
+    self.assertEqual(20.0, symTable.variables['y'])
 
 
   def testVariablesHasKey(self):
@@ -99,9 +99,9 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
     d = {'x' : 10.0, 'y' : 20.0 }
     symTable = cexprtk.Symbol_Table(d, {'a' : 1})
 
-    self.assertTrue(symTable.variables.has_key('x'))
-    self.assertFalse(symTable.variables.has_key('blah'))
-    self.assertFalse(symTable.variables.has_key(1))
+    self.assertTrue('x' in symTable.variables)
+    self.assertFalse('blah' in symTable.variables)
+    self.assertFalse(1 in symTable.variables)
 
     self.assertTrue('x' in symTable.variables)
     self.assertFalse('z' in symTable.variables)
@@ -112,9 +112,9 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
     d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
     symTable = cexprtk.Symbol_Table(d,{'a' : 1})
 
-    self.assertEquals(['x','y','z'], sorted(symTable.variables.keys()))
-    self.assertEquals(['x','y','z'], sorted(symTable.variables.iterkeys()))
-    self.assertEquals(['x','y','z'], sorted(symTable.variables))
+    self.assertEqual(['x','y','z'], sorted(symTable.variables.keys()))
+    self.assertEqual(['x','y','z'], sorted(symTable.variables.keys()))
+    self.assertEqual(['x','y','z'], sorted(symTable.variables))
 
 
   def testVariablesItems(self):
@@ -122,7 +122,7 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
     d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
     symTable = cexprtk.Symbol_Table(d,{'a' : 1})
 
-    self.assertEquals(sorted(d.items()), sorted(symTable.variables.items()))
+    self.assertEqual(sorted(d.items()), sorted(symTable.variables.items()))
 
 
   def testVariablesLen(self):
@@ -130,23 +130,23 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
     d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
     symTable = cexprtk.Symbol_Table(d,{'a' : 1})
 
-    self.assertEquals(3, len(symTable.variables))
+    self.assertEqual(3, len(symTable.variables))
 
 
   def testVariableInstantiation(self):
     """Test instantiation using variable dictionary and contents of variables dictionary"""
     d = {'x' : 10.0, 'y' : 20.0 }
     symTable = cexprtk.Symbol_Table(dict(d), {'a' : 1})
-    self.assertEquals(d, dict(symTable.variables))
+    self.assertEqual(d, dict(symTable.variables))
 
 
   def testVariableAssignment(self):
     """Test assignment to variables property of Symbol_Table"""
     d = {'x' : 10.0}
     symTable = cexprtk.Symbol_Table(d,{'a' : 1})
-    self.assertEquals(10.0, symTable.variables['x'])
+    self.assertEqual(10.0, symTable.variables['x'])
     symTable.variables['x'] = 20.0
-    self.assertEquals(20.0, symTable.variables['x'])
+    self.assertEqual(20.0, symTable.variables['x'])
 
 
   def testBadVariableAssignment(self):
@@ -174,7 +174,7 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
     d = {'x' : 10.0}
     symTable = cexprtk.Symbol_Table(d, {'a' : 1})
     variables = symTable.variables
-    self.assertEquals(10.0, variables['x'])
+    self.assertEqual(10.0, variables['x'])
     symTable = None
     gc.collect()
 
@@ -188,28 +188,28 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
       len(variables)
 
     with self.assertRaises(ReferenceError):
-      variables.items()
+      list(variables.items())
 
     with self.assertRaises(ReferenceError):
-      variables.iteritems()
+      iter(variables.items())
 
     with self.assertRaises(ReferenceError):
-      variables.iteritems()
+      iter(variables.items())
 
     with self.assertRaises(ReferenceError):
-      variables.iterkeys()
+      iter(variables.keys())
 
     with self.assertRaises(ReferenceError):
-      variables.itervalues()
+      iter(variables.values())
 
     with self.assertRaises(ReferenceError):
-      variables.keys()
+      list(variables.keys())
 
     with self.assertRaises(ReferenceError):
-      variables.values()
+      list(variables.values())
 
     with self.assertRaises(ReferenceError):
-      variables.has_key('x')
+      'x' in variables
 
     with self.assertRaises(ReferenceError):
       iter(variables)
@@ -221,10 +221,10 @@ class Symbol_TableConstantsTestCase(unittest.TestCase):
   def testAddConstantsFlag(self):
     """Test the Symbol_Table 'add_constants' flag"""
     symTable = cexprtk.Symbol_Table({},{}, add_constants = True)
-    self.assertEquals(sorted(["pi", "epsilon", "inf"]), sorted(symTable.constants.keys()))
+    self.assertEqual(sorted(["pi", "epsilon", "inf"]), sorted(symTable.constants.keys()))
 
     symTable = cexprtk.Symbol_Table({},{}, add_constants = False)
-    self.assertEquals({}, dict(symTable.constants))
+    self.assertEqual({}, dict(symTable.constants))
 
 
   def testGetItem(self):
@@ -237,16 +237,16 @@ class Symbol_TableConstantsTestCase(unittest.TestCase):
     with self.assertRaises(KeyError):
       v = symTable.constants['z']
 
-    self.assertEquals(1.0, symTable.constants['a'])
+    self.assertEqual(1.0, symTable.constants['a'])
 
   def testConstantsHasKey(self):
     """Test 'in' and 'has_key' for _Symbol_Table_Constants"""
     d = {'x' : 10.0, 'y' : 20.0 }
     symTable = cexprtk.Symbol_Table({'a' : 1}, d)
 
-    self.assertTrue(symTable.constants.has_key('x'))
-    self.assertFalse(symTable.constants.has_key('blah'))
-    self.assertFalse(symTable.constants.has_key(1))
+    self.assertTrue('x' in symTable.constants)
+    self.assertFalse('blah' in symTable.constants)
+    self.assertFalse(1 in symTable.constants)
 
     self.assertTrue('x' in symTable.constants)
     self.assertFalse('z' in symTable.constants)
@@ -257,9 +257,9 @@ class Symbol_TableConstantsTestCase(unittest.TestCase):
     d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
     symTable = cexprtk.Symbol_Table({'a' : 1}, d)
 
-    self.assertEquals(['x','y','z'], sorted(symTable.constants.keys()))
-    self.assertEquals(['x','y','z'], sorted(symTable.constants.iterkeys()))
-    self.assertEquals(['x','y','z'], sorted(symTable.constants))
+    self.assertEqual(['x','y','z'], sorted(symTable.constants.keys()))
+    self.assertEqual(['x','y','z'], sorted(symTable.constants.keys()))
+    self.assertEqual(['x','y','z'], sorted(symTable.constants))
 
 
   def testConstantsItems(self):
@@ -267,7 +267,7 @@ class Symbol_TableConstantsTestCase(unittest.TestCase):
     d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
     symTable = cexprtk.Symbol_Table({'a' : 1}, d)
 
-    self.assertEquals(sorted(d.items()), sorted(symTable.constants.items()))
+    self.assertEqual(sorted(d.items()), sorted(symTable.constants.items()))
 
 
   def testConstantsLen(self):
@@ -275,14 +275,14 @@ class Symbol_TableConstantsTestCase(unittest.TestCase):
     d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
     symTable = cexprtk.Symbol_Table({'a' : 1}, d)
 
-    self.assertEquals(3, len(symTable.constants))
+    self.assertEqual(3, len(symTable.constants))
 
 
   def testVariableInstantiation(self):
     """Test instantiation using variable dictionary and contents of constants dictionary"""
     d = {'x' : 10.0, 'y' : 20.0 }
     symTable = cexprtk.Symbol_Table({'a' : 1}, dict(d))
-    self.assertEquals(d, dict(symTable.constants))
+    self.assertEqual(d, dict(symTable.constants))
 
 
   def testVariableAssignment(self):
@@ -300,7 +300,7 @@ class Symbol_TableConstantsTestCase(unittest.TestCase):
     d = {'x' : 10.0}
     symTable = cexprtk.Symbol_Table({'a' : 1}, d)
     con = symTable.constants
-    self.assertEquals(10.0, con['x'])
+    self.assertEqual(10.0, con['x'])
     symTable = None
     gc.collect()
 
@@ -311,28 +311,28 @@ class Symbol_TableConstantsTestCase(unittest.TestCase):
       len(con)
 
     with self.assertRaises(ReferenceError):
-      con.items()
+      list(con.items())
 
     with self.assertRaises(ReferenceError):
-      con.iteritems()
+      iter(con.items())
 
     with self.assertRaises(ReferenceError):
-      con.iteritems()
+      iter(con.items())
 
     with self.assertRaises(ReferenceError):
-      con.iterkeys()
+      iter(con.keys())
 
     with self.assertRaises(ReferenceError):
-      con.itervalues()
+      iter(con.values())
 
     with self.assertRaises(ReferenceError):
-      con.keys()
+      list(con.keys())
 
     with self.assertRaises(ReferenceError):
-      con.values()
+      list(con.values())
 
     with self.assertRaises(ReferenceError):
-      con.has_key('x')
+      'x' in con
 
     with self.assertRaises(ReferenceError):
       iter(con)
@@ -368,91 +368,91 @@ class EvaluateExpressionTestCase(unittest.TestCase):
       cexprtk.evaluate_expression("(1 + 1", {})
 
   def testAddition(self):
-    self.assertAlmostEquals(3.57,
+    self.assertAlmostEqual(3.57,
       cexprtk.evaluate_expression("A+B", {"A" : 1.23, "B" : 2.34}))
 
   def testSubtraction(self):
-    self.assertAlmostEquals(
+    self.assertAlmostEqual(
       -6.33,
       cexprtk.evaluate_expression('A - 12', {"A" : 5.67}))
 
   def testMultiplication(self):
-    self.assertAlmostEquals(
+    self.assertAlmostEqual(
       6.9741,
       cexprtk.evaluate_expression('A * B', {"A" : 1.23, "B": 5.67}))
 
   def testDivision(self):
-    self.assertAlmostEquals(
+    self.assertAlmostEqual(
       4.065040650406504,
       cexprtk.evaluate_expression('5/A', {"A" : 1.23 }))
 
   def testPower(self):
-    self.assertAlmostEquals(
+    self.assertAlmostEqual(
       8.0,
       cexprtk.evaluate_expression('2^A', {"A" : 3}))
 
 
   def testSqrt(self):
     expression ='5+sqrt(3-B)-0'
-    self.assertAlmostEquals(
+    self.assertAlmostEqual(
       math.sqrt(2)+5,
       cexprtk.evaluate_expression(expression, {"B" : 1}))
 
 
   def testNegativeNumber(self):
-    self.assertAlmostEquals(-1.0,
+    self.assertAlmostEqual(-1.0,
       cexprtk.evaluate_expression("-1.0", {"A" : 1.0}))
 
-    self.assertAlmostEquals(-1.0,
+    self.assertAlmostEqual(-1.0,
       cexprtk.evaluate_expression("-A", {"A" : 1.0}))
 
-    self.assertAlmostEquals(2.0,
+    self.assertAlmostEqual(2.0,
       cexprtk.evaluate_expression("A--1", {"A" : 1.0}))
 
 
   def testVariablesStartingInE(self):
-    self.assertAlmostEquals(4.0,
+    self.assertAlmostEqual(4.0,
       cexprtk.evaluate_expression("electroneg * 4", {"electroneg" : 1.0}))
 
-    self.assertAlmostEquals(1e-3,
+    self.assertAlmostEqual(1e-3,
       cexprtk.evaluate_expression("1e-3", {"electroneg" : 1.0}))
 
 
   def testBooleanAnd(self):
-    self.assertEquals(1,
+    self.assertEqual(1,
       cexprtk.evaluate_expression("A and B", {"A" : 1.2, "B" : 1}))
 
-    self.assertEquals(0,
+    self.assertEqual(0,
       cexprtk.evaluate_expression("A and B", {"A" : 1.2, "B" : 0}))
 
   def testBooleanOr(self):
-    self.assertEquals(1,
+    self.assertEqual(1,
       cexprtk.evaluate_expression("A or B", {"A" : 1.2, "B" : 1}))
 
-    self.assertEquals(1,
+    self.assertEqual(1,
       cexprtk.evaluate_expression("A or B", {"A" : 1.2, "B" : 0}))
 
-    self.assertEquals(0,
+    self.assertEqual(0,
       cexprtk.evaluate_expression("A or B", {"A" : 0, "B" : 0}))
 
 
   def testBooleanNot(self):
-    self.assertEquals(1,
+    self.assertEqual(1,
       cexprtk.evaluate_expression("not(A)", {"A" : 0.0}) )
 
 
-    self.assertEquals(0,
+    self.assertEqual(0,
       cexprtk.evaluate_expression("not(A and B)", {"A": 1.2, "B" : 1}))
 
-    self.assertEquals(0,
+    self.assertEqual(0,
       cexprtk.evaluate_expression("not(abs(A))", {"A": 1.2, "B" : 1}))
 
 
   def testIf(self):
-    self.assertEquals(2,
+    self.assertEqual(2,
       cexprtk.evaluate_expression("if ( A>1 , 2, 3 )", {"A" : 3}))
 
-    self.assertEquals(3,
+    self.assertEqual(3,
       cexprtk.evaluate_expression("if ( not(A>2), 2, 3 )", {"A" : 3}))
 
 
@@ -460,12 +460,12 @@ class EvaluateExpressionTestCase(unittest.TestCase):
     expression = 'floor(if(abs(2)<0, 0.8, A))'
     expect = 1.0
     actual = cexprtk.evaluate_expression(expression, {'A':1.5})
-    self.assertAlmostEquals(expect, actual)
+    self.assertAlmostEqual(expect, actual)
 
     expression = 'floor(if(2<0, 0.8, if(ceil(A) > 1.9, -1.0, 3)))'
     expect = -1.0
     actual = cexprtk.evaluate_expression(expression, {'A':1.5})
-    self.assertAlmostEquals(expect, actual)
+    self.assertAlmostEqual(expect, actual)
 
 
 
@@ -493,14 +493,14 @@ class UnknownSymbolResolverTestCase(unittest.TestCase):
     symbolTable = cexprtk.Symbol_Table({})
     expression = cexprtk.Expression("x+y+z", symbolTable, unknownSymbolResolver)
 
-    self.assertEquals(['x','y','z'], unknownSymbolResolver.callList)
-    self.assertEquals(6.0, expression())
+    self.assertEqual(['x','y','z'], unknownSymbolResolver.callList)
+    self.assertEqual(6.0, expression())
 
     expectVariables = {'x' : 1.0, 'z' : 3.0}
-    self.assertEquals(expectVariables, dict(symbolTable.variables.items()))
+    self.assertEqual(expectVariables, dict(list(symbolTable.variables.items())))
 
     expectConstants = {'y' : 2.0}
-    self.assertEquals(expectConstants, dict(symbolTable.constants.items()))
+    self.assertEqual(expectConstants, dict(list(symbolTable.constants.items())))
 
   def testErrors(self):
     """Test unknown_symbol_resolver_callback when it throws errors."""
@@ -546,17 +546,17 @@ class MultiProcessingTestCase(unittest.TestCase):
   def testWithoutSpecificSymbolTable(self):
     """Test for expression with no variables"""
     import multiprocessing
-    from multi import evaluate_expression
+    from .multi import evaluate_expression
     expression = cexprtk.Expression("2+2", None)
     pool = multiprocessing.Pool(processes = 1)
     results = pool.map(evaluate_expression, [expression])
-    self.assertEquals(4, results[0])
+    self.assertEqual(4, results[0])
 
   def testMultiprocesses(self):
     """Test with multiple processes"""
 
     exprstr = "A * exp(rho / r ) - C/(r^6)"
-    rvals = [ 1.0 + x/10.0 for x in xrange(100)]
+    rvals = [ 1.0 + x/10.0 for x in range(100)]
     rhovals = [ 0.1, 0.2, 0.3]
 
     inputs = [ ]
@@ -571,13 +571,13 @@ class MultiProcessingTestCase(unittest.TestCase):
     expected = [ pfunc(rho,r) for (rho,r) in inputs]
 
     import multiprocessing
-    from multi import Worker
+    from .multi import Worker
     expression = cexprtk.Expression(exprstr, 
       cexprtk.Symbol_Table({'rho' : 0, 'r' : 0}, {'A' : 1000.0, 'C' : 32.0}))
 
     pool = multiprocessing.Pool(4)
     results = pool.map(Worker(expression), inputs)
-    self.assertEquals(expected, results)
+    self.assertEqual(expected, results)
 
 def unknownSymbolResolver(symbol):
     try:
@@ -597,16 +597,16 @@ class PickleTestCase(unittest.TestCase):
     constants = {"d" : 4, "e" : 5, "f" : 6}
     symbolTable = cexprtk.Symbol_Table(variables, constants, False)
 
-    self.assertEquals(constants, dict(symbolTable.constants))
-    self.assertEquals(variables, dict(symbolTable.variables))
+    self.assertEqual(constants, dict(symbolTable.constants))
+    self.assertEqual(variables, dict(symbolTable.variables))
 
     dumped = pickle.dumps(symbolTable)
     unpickled = pickle.loads(dumped)
 
     self.assertIsInstance(unpickled, cexprtk.Symbol_Table)
 
-    self.assertEquals(constants, dict(unpickled.constants))
-    self.assertEquals(variables, dict(unpickled.variables))
+    self.assertEqual(constants, dict(unpickled.constants))
+    self.assertEqual(variables, dict(unpickled.variables))
 
   def testExpressionPickle(self):
     """Pickling of an expression"""
@@ -618,17 +618,17 @@ class PickleTestCase(unittest.TestCase):
     exprstr = "A+B+C+d+e+f"
     expression = cexprtk.Expression(exprstr, symbolTable)
 
-    self.assertEquals(21, expression())
+    self.assertEqual(21, expression())
 
     dumped = pickle.dumps(expression)
     unpickled = pickle.loads(dumped)
 
     self.assertIsInstance(unpickled, cexprtk.Expression)
 
-    self.assertEquals(constants, dict(unpickled.symbol_table.constants))
-    self.assertEquals(variables, dict(unpickled.symbol_table.variables))
+    self.assertEqual(constants, dict(unpickled.symbol_table.constants))
+    self.assertEqual(variables, dict(unpickled.symbol_table.variables))
 
-    self.assertEquals(21, unpickled())
+    self.assertEqual(21, unpickled())
 
   def testExpressionPickleWithUnknownSymbolResolver(self):
     """Pickling of an expression that has an unknown symbol resolver associated with it"""
@@ -641,15 +641,15 @@ class PickleTestCase(unittest.TestCase):
     exprstr = "A+B+C+d+e+f"
     expression = cexprtk.Expression(exprstr, symbolTable, unknownSymbolResolver)
 
-    self.assertEquals(21, expression())
+    self.assertEqual(21, expression())
 
     dumped = pickle.dumps(expression)
     unpickled = pickle.loads(dumped)
 
     self.assertIsInstance(unpickled, cexprtk.Expression)
 
-    self.assertEquals(constants, dict(unpickled.symbol_table.constants))
+    self.assertEqual(constants, dict(unpickled.symbol_table.constants))
     variables = {"A" : 1, "B" : 2, "C" : 3}
-    self.assertEquals(variables, dict(unpickled.symbol_table.variables))
+    self.assertEqual(variables, dict(unpickled.symbol_table.variables))
 
-    self.assertEquals(21, unpickled())
+    self.assertEqual(21, unpickled())

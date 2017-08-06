@@ -3,6 +3,7 @@ cexprtk.so
 *.o
 *.pyc
 venv
+venv3
 cexprtk.egg-info
 Cython-0.20.1-py2.7-macosx-10.9-x86_64.egg
 dist

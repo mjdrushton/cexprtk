@@ -104,11 +104,15 @@ def check_expression(expression):
   :raises ParseException: If expression is invalid. """
 
   cdef vector[string] errorlist
-  check(expression, errorlist)
+  cdef list strerrorlist
+  cdef bytes c_expression = expression.encode("ascii")
+  check(c_expression, errorlist)
 
   if not errorlist.empty():
     # List is not empty, throw ParseException
-    errorstring = ", ".join(errorlist)
+    strerrorlist = [ s.decode("ascii") for s in errorlist]
+    errorstring = ", ".join(strerrorlist)
+    
     raise ParseException("Error evaluating expression '%s': %s" % (expression, errorstring))
 
 
@@ -181,7 +185,7 @@ cdef class Expression:
 
   cdef Symbol_Table _symbol_table
   cdef expression_type * _cexpressionptr
-  cdef string _expression
+  cdef object _expression
   cdef object _unknown_symbol_resolver_callback
 
   def __cinit__(self):
@@ -217,14 +221,16 @@ cdef class Expression:
     self._unknown_symbol_resolver_callback = unknown_symbol_resolver_callback
 
     cdef vector[string] error_list  = vector[string]()
+    cdef list strerror_list
 
     self._init_expression(expression, error_list, unknown_symbol_resolver_callback)
     if not error_list.empty():
-      msg = ", ".join([ s for s in error_list])
+      strerror_list = [ s.decode("ascii") for s in error_list]
+      msg =  ", ".join(strerror_list)
       raise ParseException(msg)
 
 
-  cdef _init_expression(self, str expression_string, vector[string]& error_list, object unknown_symbol_resolver_callback):
+  cdef _init_expression(self, object expression_string, vector[string]& error_list, object unknown_symbol_resolver_callback):
     cdef parser_type p
     cdef PythonCallableUnknownResolver * pcurPtr = NULL
     cdef parser[double].unknown_symbol_resolver * usrPtr = NULL
@@ -240,7 +246,7 @@ cdef class Expression:
 
 
     try:
-      parser_compile_and_process_errors(expression_string,
+      parser_compile_and_process_errors(expression_string.encode("ascii"),
                                         p,
                                         self._cexpressionptr[0],
                                         error_list)
@@ -322,7 +328,7 @@ cdef class Symbol_Table:
 
     shadowed = set(variables.keys()) & set(constants.keys())
     if shadowed:
-      msg = [str(s) for s in sorted(shadowed)]
+      msg = [s for s in sorted(shadowed)]
       msg = "The following names are in both variables and constants: %s" % ",".join(msg)
       raise VariableNameShadowException(msg)
 
@@ -331,17 +337,21 @@ cdef class Symbol_Table:
 
 
   def _populateVariables(self,object variables):
+    cdef bytes cstr
     for s, v in variables.iteritems():
-      if not self._csymtableptr[0].create_variable(s,v):
+      cstr = s.encode("ascii")
+      if not self._csymtableptr[0].create_variable(cstr,v):
         raise BadVariableException("Error creating variable named: %s with value: %s" % (s,v))
 
 
   def _populateConstants(self, object constants, int add_constants):
+    cdef bytes cstr
     if add_constants:
       self._csymtableptr[0].add_constants()
 
     for s,v in constants.iteritems():
-      if not self._csymtableptr[0].add_constant(s,v):
+      cstr = s.encode("ascii")
+      if not self._csymtableptr[0].add_constant(cstr,v):
         raise BadVariableException("Error creating constant named: %s with value: %s" % (s,v))
 
 
@@ -365,19 +375,22 @@ cdef class _Symbol_Table_Variables:
 
   cdef symbol_table_type* _csymtableptr
 
-  def __getitem__(self, string key):
+  def __getitem__(self, object key):
+    cdef bytes cstr_key = key.encode("ascii")
     cdef symbol_table_type* st = self._csymtableptr
-    cdef variable_ptr vptr = st[0].get_variable(key)
-    if vptr != NULL and not st[0].is_constant_node(key):
+    cdef variable_ptr vptr = st[0].get_variable(cstr_key)
+    if vptr != NULL and not st[0].is_constant_node(cstr_key):
       return vptr[0].value()
     else:
       raise KeyError("Unknown variable: "+key)
 
-  def __setitem__(self, string key, double value):
+  def __setitem__(self, object key, double value):
     cdef int rv
+    cdef string strkey
     if not self._csymtableptr:
       raise ReferenceError("Parent Symbol_Table no longer exists")
-    rv = variableAssign(self._csymtableptr[0], key, value)
+    strkey = key.encode("ascii")
+    rv = variableAssign(self._csymtableptr[0], strkey, value)
     if not rv:
       raise KeyError("Unknown variable: "+key)
 
@@ -388,7 +401,14 @@ cdef class _Symbol_Table_Variables:
     return len(self.items())
 
   cpdef list items(self):
-    return [ (k,v) for (k,v) in self._get_variable_list() if not self._csymtableptr.is_constant_node(k) ]
+    cdef object strk
+    cdef list retlist = []
+
+    for (k,v) in self._get_variable_list():
+      if not self._csymtableptr.is_constant_node(k):
+        strk = k.decode("ascii")
+        retlist.append((strk, v))
+    return retlist
 
   def iteritems(self):
     return iter(self.items())
@@ -410,14 +430,16 @@ cdef class _Symbol_Table_Variables:
     self._csymtableptr.get_variable_list(itemvector)
     return itemvector
 
-  cpdef has_key(self, key):
+  cpdef has_key(self, object key):
     try:
       key = str(key)
     except ValueError:
       return False
-    return self._csymtableptr[0].is_variable(key) and not self._csymtableptr[0].is_constant_node(key)
+    
+    cdef bytes cstr_key = key.encode("ascii")
+    return self._csymtableptr[0].is_variable(cstr_key) and not self._csymtableptr[0].is_constant_node(cstr_key)
 
-  def __contains__(self, key):
+  def __contains__(self, object key):
     return self.has_key(key)
 
 
@@ -431,10 +453,11 @@ cdef class _Symbol_Table_Constants:
 
   cdef symbol_table_type* _csymtableptr
 
-  def  __getitem__(self, string key):
+  def  __getitem__(self, object key):
+    cdef bytes c_key = key.encode("ascii")
     cdef symbol_table_type* st = self._csymtableptr
-    cdef variable_ptr vptr = st[0].get_variable(key)
-    if vptr != NULL and st[0].is_constant_node(key):
+    cdef variable_ptr vptr = st[0].get_variable(c_key)
+    if vptr != NULL and st[0].is_constant_node(c_key):
       return vptr[0].value()
     else:
       raise KeyError("Unknown variable: "+key)
@@ -446,7 +469,14 @@ cdef class _Symbol_Table_Constants:
     return len(self.items())
 
   cpdef list items(self):
-    return [ (k,v) for (k,v) in self._get_variable_list() if self._csymtableptr.is_constant_node(k)]
+    cdef object strk
+    cdef list retlist = []
+
+    for (k,v) in self._get_variable_list():
+      if self._csymtableptr.is_constant_node(k):
+        strk = k.decode("ascii")
+        retlist.append((strk, v))
+    return retlist
 
   def iteritems(self):
     return iter(self.items())
@@ -468,12 +498,13 @@ cdef class _Symbol_Table_Constants:
     self._csymtableptr.get_variable_list(itemvector)
     return itemvector
 
-  cpdef has_key(self, key):
+  cpdef has_key(self, object key):
     try:
       key = str(key)
     except ValueError:
       return False
-    return self._csymtableptr[0].is_variable(key) and self._csymtableptr[0].is_constant_node(key)
+    cdef bytes c_key = key.encode("ascii")
+    return self._csymtableptr[0].is_variable(c_key) and self._csymtableptr[0].is_constant_node(c_key)
 
   def __contains__(self, key):
     return self.has_key(key)
@@ -500,8 +531,11 @@ cdef bool unknownResolverCythonCallable(
   const string& sym,
   PythonCallableReturnTuple&
   retvals, void * pyobj):
+  cdef bytes c_errorString
+  cdef object py_sym
   try:
-    handledFlag, usrSymbolType, value, errorString = (<object>pyobj)(sym)
+    py_sym = sym.decode("ascii")
+    handledFlag, usrSymbolType, value, errorString = (<object>pyobj)(py_sym)
     retvals.handledFlag = handledFlag
 
     if usrSymbolType == e_variable_type:
@@ -512,12 +546,13 @@ cdef bool unknownResolverCythonCallable(
       raise UnknownSymbolResolverException("Unknown symbol type returned by unknown_symbol_resolver_callback.")
 
     retvals.value = value
-    retvals.errorString = errorString
+    c_errorString = errorString.encode("ascii")
+    retvals.errorString = c_errorString
     return True
   except Exception as e:
     #Increment e's ref count and then store it in return tuple as void*
     Py_INCREF(e)
     retvals.pyexception = <void * >e
-    retvals.errorString = str(e)
+    c_errorString  = str(e).encode("ascii")
+    retvals.errorString = c_errorString
     return False
-

@@ -142,7 +142,7 @@ void parser_compile_and_process_errors(const std::string& expression_string, Par
       std::size_t ecount = parser.error_count();
       if (ecount)
       {
-	      for (int i =0; i < ecount; ++i )
+	      for (size_t i =0; i < ecount; ++i )
 	      {
 	         error = parser.get_error(i);
 	         error_list.push_back(error);
