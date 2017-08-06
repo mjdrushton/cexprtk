@@ -15,6 +15,7 @@ COMPILER_OPTIONS = dict(
   # There is no solution for mingw32 currently, but
   # mingw32 may work in the future so we keep the
   # option here for the future.
+  gcc=['-std=c++11'],
   msvc=['/Ox', '/bigobj'],
   mingw32=['-O3', '-ffast-math', '-march=native']
   )
@@ -35,31 +36,37 @@ try:
   from Cython.Distutils import build_ext
   from Cython.Build import cythonize
 except ImportError:
+  from setuptools.command.build_ext import build_ext
   cython_cexprtk = Extension("cexprtk",
                              ["cython/cexprtk.cpp"],
                              language = "c++",
                              include_dirs = ["3rdparty/exprtk", "cython"])
   ext_modules = [ cython_cexprtk ]
-  cmdclass = {}
+#  cmdclass = {}
 else:
-  class BuildExtCustom(build_ext):
-    ''' A customised class, for handling special compiler
-    defines and options required for building on Windows. '''
-    def build_extensions(self):
-      compiler_type = self.compiler.compiler_type
-      if compiler_type in COMPILER_OPTIONS:
-        for ext in self.extensions:
-          ext.extra_compile_args = COMPILER_OPTIONS[compiler_type]
-      if compiler_type in COMPILER_DEFINES:
-        for ext in self.extensions:
-          ext.define_macros = COMPILER_DEFINES[compiler_type]
-      build_ext.build_extensions(self)
   cython_cexprtk = Extension("cexprtk",
     ["cython/cexprtk.pyx"],
     include_dirs = ["3rdparty/exprtk", "cython"])
   ext_modules = cythonize([cython_cexprtk])
-  cmdclass = { 'build_ext': BuildExtCustom }
 
+class BuildExtCustom(build_ext):
+  ''' A customised class, for handling special compiler
+  defines and options required for building on Windows. '''
+  def build_extensions(self):
+    compiler_type = self.compiler.compiler_type
+    # import pdb;pdb.set_trace()
+    if self.compiler.compiler[0].endswith('gnu-gcc'):
+      compiler_type = 'gcc'
+
+    if compiler_type in COMPILER_OPTIONS:
+      for ext in self.extensions:
+        ext.extra_compile_args = COMPILER_OPTIONS[compiler_type]
+    if compiler_type in COMPILER_DEFINES:
+      for ext in self.extensions:
+        ext.define_macros = COMPILER_DEFINES[compiler_type]
+    build_ext.build_extensions(self)
+
+cmdclass = { 'build_ext': BuildExtCustom }
 
 setup(name="cexprtk",
   ext_modules = ext_modules,
