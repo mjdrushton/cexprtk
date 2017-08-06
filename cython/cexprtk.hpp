@@ -1,114 +1,10 @@
 #ifndef EXPRTKWRAP_HPP
 #define EXPRTKWRAP_HPP
 
-#include <string>
-#include <vector>
-#include <utility>
 #include <sstream>
 
-#include "Python.h"
 
-#include "exprtk.hpp"
-
-struct PythonCallableReturnTuple;
-
-
-typedef std::pair<std::string, double> LabelFloatPair;
-typedef std::vector<LabelFloatPair> LabelFloatPairVector;
-typedef std::vector<exprtk::parser_error::type> ErrorList;
-typedef double ExpressionValueType;
-typedef exprtk::parser<ExpressionValueType> Parser;
-typedef exprtk::expression<ExpressionValueType> Expression;
-typedef Parser::unknown_symbol_resolver Resolver;
-typedef exprtk::symbol_table<ExpressionValueType> SymbolTable;
-
-typedef bool (*PythonCallableCythonFunctionPtr)(const std::string& sym, PythonCallableReturnTuple&, void * pyobj);
-
-struct PythonCallableReturnTuple
-{	
-	bool handledFlag;
-	Resolver::usr_symbol_type usrSymbolType;
-	ExpressionValueType  value;
-	std::string errorString;
-	void * pyexception;
-};
-
-class PythonCallableUnknownResolver: public virtual Resolver
-{
-private:
-
-	void * _pycallable;
-
-	// Function pointer to cythonised function that takes
-	// the actual python object (stored in void pointer, _pycallable)
-	// and callback arguments.
-	// It converts _pycallable back into a python object then calls it.
-	PythonCallableCythonFunctionPtr _cythonfunc;
-	
-	// Field that can hold pointer to a python exception thrown within _cythonfunc
-	// this is checked between process() calls.
-	// If an exception is raised then, subsequent calls will lead to process() flagging an
-	// error.
-	// When control returns  to cexprtk.Expression, if the exception is set, it is thrown 
-	// on the python side of things.
-	void * _pyexception;
-
-public:
-
-	PythonCallableUnknownResolver(void * pycallable, PythonCallableCythonFunctionPtr cythonfunc) :
-		_pycallable(pycallable),
-		_cythonfunc(cythonfunc),
-		_pyexception(NULL)
-	{};
-
-
-	virtual bool process (const std::string & s, 
-		Resolver::usr_symbol_type & st, 
-		ExpressionValueType & default_value, 
-		std::string & error_message)
-	{
-		if (wasExceptionRaised())
-		{
-			error_message = "exception_raised";
-			return false;
-		}
-
-		PythonCallableReturnTuple pyvals;
-		pyvals.pyexception = NULL;
-		_cythonfunc(s, pyvals, _pycallable);
-
-		// Unpack values from pyvals into references passed to this method.
-		st = pyvals.usrSymbolType;
-		default_value = pyvals.value;
-		error_message = pyvals.errorString;
-
-		if (pyvals.pyexception)
-		{
-			_pyexception = pyvals.pyexception;
-			return false;
-		}
-
-		return pyvals.handledFlag;
-	};
-
-	virtual bool wasExceptionRaised() const
-	{
-		return _pyexception != NULL;
-	};
-
-	virtual void * exception() 
-	{
-		return _pyexception;
-	};
-
-	virtual ~PythonCallableUnknownResolver(){
-		// Make sure reference held to _pyexception is decremented.
-		PyObject* pyobjptr = static_cast<PyObject*>(_pyexception);
-		Py_XDECREF(pyobjptr);
-	};
-
-};
-
+#include "cexprtk_common.hpp"
 
 
 void errorlist_to_strings(const ErrorList& error_list, std::vector<std::string>& outlist)
@@ -159,7 +55,6 @@ void parser_compile_and_process_errors(const std::string& expression_string, Par
    }
 }
 
-
 void check(const std::string& expression_string, std::vector<std::string>& error_list)
 {
 	Parser parser;
@@ -167,7 +62,6 @@ void check(const std::string& expression_string, std::vector<std::string>& error
 	parser.enable_unknown_symbol_resolver();
 	parser_compile_and_process_errors(expression_string, parser, expression, error_list);
 }
-
 
 // Cython doesn't accept references as lvalues, provide this function to 
 // enable variableAssignment
@@ -178,7 +72,6 @@ inline bool variableAssign(SymbolTable& symtable, const std::string& name, doubl
 	{
 		return false;
 	}
-
 
 	if (symtable.is_constant_node(name))
 	{

@@ -1,88 +1,11 @@
 # distutils: language = c++
 
-
-from libcpp.string cimport string
-from libcpp.vector cimport vector
-from libcpp.pair cimport pair
-from libcpp cimport bool
-
-from cpython.weakref  cimport PyWeakref_NewProxy
-from cpython.ref cimport Py_INCREF
-
 cimport cython
+cimport cexprtk
+cimport cexprtk_unknown_symbol_resolver
 
-
-ctypedef pair[string,double] LabelFloatPair
-ctypedef vector[LabelFloatPair] LabelFloatPairVector
-
-cdef extern from "exprtk.hpp" namespace "exprtk::details":
-  cdef cppclass variable_node[T]:
-    T& ref()
-    T value()
-
-
-ctypedef variable_node[double] variable_t
-ctypedef variable_t * variable_ptr
-
-cdef extern from "exprtk.hpp" namespace "exprtk":
-  cdef cppclass symbol_table[T]:
-    symbol_table() except +
-    int create_variable(string& variable_name, T& value)
-    int add_constant(string& constant_name, T& value)
-    int add_constants()
-    variable_ptr get_variable(string& variable_name)
-    int is_variable(string& variable_name)
-    int is_constant_node(string& symbol_name)
-    int get_variable_list(LabelFloatPairVector& vlist)
-    int variable_count()
-
-  cdef cppclass expression[T]:
-    expression() except +
-    void register_symbol_table(symbol_table[T])
-    T value()
-
-
-  cdef cppclass parser[T]:
-    parser() except +
-    int compile(string& expression_string, expression[T]&  expr)
-    cppclass unknown_symbol_resolver:
-      pass
-    void enable_unknown_symbol_resolver(unknown_symbol_resolver* usr)
-
-  cdef enum c_symbol_type "exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type":
-    e_variable_type "exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_variable_type"
-    e_constant_type "exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_constant_type"
-
-
-ctypedef symbol_table[double] symbol_table_type
-ctypedef expression[double] expression_type
-ctypedef parser[double] parser_type
-
-
-cdef extern from "cexprtk.hpp":
-  int variableAssign(symbol_table_type & symtable, string& name, double value)
-  void parser_compile_and_process_errors(string& expression_string, parser_type& parser, expression_type& expression, vector[string]& error_messages)
-  void check(string& expression_string, vector[string]& error_list)
-
-  cdef cppclass PythonCallableReturnTuple:
-    bool handledFlag
-    int usrSymbolType
-    double value
-    string errorString
-    void* pyexception
-
-
-ctypedef (bool (*)(string&, PythonCallableReturnTuple&, void*)) PythonCallableCythonFunctionPtr
-
-cdef extern from "cexprtk.hpp":
-  cdef cppclass PythonCallableUnknownResolver:
-    PythonCallableUnknownResolver(void *, PythonCallableCythonFunctionPtr)
-    bool wasExceptionRaised() const
-    void* exception()
-
-
-cdef extern from *:
-    parser[double].unknown_symbol_resolver* dynamic_cast_PythonCallableUnknownResolver "dynamic_cast<exprtk::parser<double>::unknown_symbol_resolver*>" (PythonCallableUnknownResolver*) except NULL
+from cpython.ref cimport Py_INCREF
+from cpython.weakref  cimport PyWeakref_NewProxy
 
 
 class BadVariableException(Exception):
@@ -184,13 +107,13 @@ cdef class Expression:
   """
 
   cdef Symbol_Table _symbol_table
-  cdef expression_type * _cexpressionptr
+  cdef exprtk.expression_type * _cexpressionptr
   cdef object _expression
   cdef object _unknown_symbol_resolver_callback
 
   def __cinit__(self):
     # Create the expression
-    self._cexpressionptr = new expression_type()
+    self._cexpressionptr = new exprtk.expression_type()
 
 
   def __dealloc__(self):
@@ -231,17 +154,17 @@ cdef class Expression:
 
 
   cdef _init_expression(self, object expression_string, vector[string]& error_list, object unknown_symbol_resolver_callback):
-    cdef parser_type p
-    cdef PythonCallableUnknownResolver * pcurPtr = NULL
-    cdef parser[double].unknown_symbol_resolver * usrPtr = NULL
+    cdef exprtk.parser_type p
+    cdef cexprtk_unknown_symbol_resolver.PythonCallableUnknownSymbolResolver * pcurPtr = NULL
+    cdef exprtk.parser[double].unknown_symbol_resolver * usrPtr = NULL
 
     self._cexpressionptr.register_symbol_table(self._symbol_table._csymtableptr[0])
 
     if not unknown_symbol_resolver_callback == None:
-      pcurPtr = new PythonCallableUnknownResolver(
+      pcurPtr = new cexprtk_unknown_symbol_resolver.PythonCallableUnknownSymbolResolver(
         <void *> unknown_symbol_resolver_callback,
         unknownResolverCythonCallable)
-      usrPtr = dynamic_cast_PythonCallableUnknownResolver(pcurPtr)
+      usrPtr = cexprtk_unknown_symbol_resolver.dynamic_cast_PythonCallableUnknownSymbolResolver(pcurPtr)
       p.enable_unknown_symbol_resolver(usrPtr)
 
 
@@ -283,7 +206,7 @@ cdef class Expression:
 cdef class Symbol_Table:
   """Class for providing variable and constant values to Expression instances."""
 
-  cdef symbol_table_type* _csymtableptr
+  cdef exprtk.symbol_table_type* _csymtableptr
   cdef _Symbol_Table_Variables _variables
   cdef _Symbol_Table_Constants _constants
 
@@ -293,7 +216,7 @@ cdef class Symbol_Table:
     return (Symbol_Table, (variables, constants, False))
 
   def __cinit__(self):
-    self._csymtableptr = new symbol_table_type()
+    self._csymtableptr = new exprtk.symbol_table_type()
 
     # Set up the variables dictionary
     self._variables = _Symbol_Table_Variables()
@@ -373,12 +296,12 @@ cdef class _Symbol_Table_Variables:
 
   cdef object __weakref__
 
-  cdef symbol_table_type* _csymtableptr
+  cdef exprtk.symbol_table_type* _csymtableptr
 
   def __getitem__(self, object key):
     cdef bytes cstr_key = key.encode("ascii")
-    cdef symbol_table_type* st = self._csymtableptr
-    cdef variable_ptr vptr = st[0].get_variable(cstr_key)
+    cdef exprtk.symbol_table_type* st = self._csymtableptr
+    cdef exprtk.variable_ptr vptr = st[0].get_variable(cstr_key)
     if vptr != NULL and not st[0].is_constant_node(cstr_key):
       return vptr[0].value()
     else:
@@ -426,7 +349,7 @@ cdef class _Symbol_Table_Variables:
     return [ v for (k,v) in self.items() ]
 
   cdef list _get_variable_list(self):
-    cdef LabelFloatPairVector itemvector = LabelFloatPairVector()
+    cdef exprtk.LabelFloatPairVector itemvector = exprtk.LabelFloatPairVector()
     self._csymtableptr.get_variable_list(itemvector)
     return itemvector
 
@@ -451,12 +374,12 @@ cdef class _Symbol_Table_Constants:
 
   cdef object __weakref__
 
-  cdef symbol_table_type* _csymtableptr
+  cdef exprtk.symbol_table_type* _csymtableptr
 
   def  __getitem__(self, object key):
     cdef bytes c_key = key.encode("ascii")
-    cdef symbol_table_type* st = self._csymtableptr
-    cdef variable_ptr vptr = st[0].get_variable(c_key)
+    cdef exprtk.symbol_table_type* st = self._csymtableptr
+    cdef exprtk.variable_ptr vptr = st[0].get_variable(c_key)
     if vptr != NULL and st[0].is_constant_node(c_key):
       return vptr[0].value()
     else:
@@ -494,7 +417,7 @@ cdef class _Symbol_Table_Constants:
     return [ v for (k,v) in self.items() ]
 
   cdef list _get_variable_list(self):
-    cdef LabelFloatPairVector itemvector = LabelFloatPairVector()
+    cdef exprtk.LabelFloatPairVector itemvector = exprtk.LabelFloatPairVector()
     self._csymtableptr.get_variable_list(itemvector)
     return itemvector
 
@@ -516,8 +439,8 @@ cdef class _USRSymbolType:
     readonly int CONSTANT
 
   def __cinit__(self):
-    self.VARIABLE = e_variable_type
-    self.CONSTANT = e_constant_type
+    self.VARIABLE = exprtk.e_variable_type
+    self.CONSTANT = exprtk.e_constant_type
 
 USRSymbolType = _USRSymbolType()
 
@@ -526,22 +449,24 @@ class UnknownSymbolResolverException(Exception):
   pass
 
 # Function with PythonCallableFunctionPtr signature that is used to allow
-# a python callback to be invoked from C++ within PythonCallableUnknownResolver.
+# a python callback to be invoked from C++ within PythonCallableUnknownSymbolResolver.
 cdef bool unknownResolverCythonCallable(
-  const string& sym,
-  PythonCallableReturnTuple&
-  retvals, void * pyobj):
+    const string& sym,
+    cexprtk_unknown_symbol_resolver.PythonCallableUnknownSymbolResolverReturnTuple&
+    retvals, void * pyobj):
+
   cdef bytes c_errorString
   cdef object py_sym
+  cdef bytes c_sym = sym
   try:
-    py_sym = sym.decode("ascii")
+    py_sym = c_sym.decode("ascii")
     handledFlag, usrSymbolType, value, errorString = (<object>pyobj)(py_sym)
     retvals.handledFlag = handledFlag
 
-    if usrSymbolType == e_variable_type:
-      retvals.usrSymbolType = e_variable_type
-    elif usrSymbolType == e_constant_type:
-      retvals.usrSymbolType = e_constant_type
+    if usrSymbolType == exprtk.e_variable_type:
+      retvals.usrSymbolType = exprtk.e_variable_type
+    elif usrSymbolType == exprtk.e_constant_type:
+      retvals.usrSymbolType = exprtk.e_constant_type
     else:
       raise UnknownSymbolResolverException("Unknown symbol type returned by unknown_symbol_resolver_callback.")
 

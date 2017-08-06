@@ -1,5 +1,19 @@
 #Change Log
 
+
+##0.3.0
+### New Features
+
+* Support for Python 3
+
+##0.2.1 (3rd August 2017): 
+### New Features
+
+* Updated version of bundled `exprtk` to that current as of 3rd August 2017.
+* Updated `cexprtk` wrapper code to be compatible with this version of `exprtk`.
+* Enabled pickling of the `Expression` and `Symbol_Table` classes. Primarily this is to allow their use with the multiprocessing module.
+
+
 ##0.2.0
 ###New Features
 
