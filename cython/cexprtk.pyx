@@ -3,10 +3,17 @@
 cimport cython
 cimport cexprtk
 cimport cexprtk_unknown_symbol_resolver
+from cexprtk_custom_functions cimport cfunction_ptr, cfunction_t, UnaryFunction, ifunction_ptr, PythonUnaryCythonFunctionPtr
 
 from cpython.ref cimport Py_INCREF
 from cpython.weakref  cimport PyWeakref_NewProxy
 
+from libcpp.set cimport set as cset
+from libcpp.cast cimport dynamic_cast
+
+from cython.operator cimport dereference as deref, preincrement as inc
+
+import inspect
 
 class BadVariableException(Exception):
   pass
@@ -209,11 +216,13 @@ cdef class Symbol_Table:
   cdef exprtk.symbol_table_type* _csymtableptr
   cdef _Symbol_Table_Variables _variables
   cdef _Symbol_Table_Constants _constants
+  cdef _Symbol_Table_Functions _functions
 
   def __reduce__(self):
     constants = dict(self.constants)
     variables = dict(self.variables)
-    return (Symbol_Table, (variables, constants, False))
+    functions = dict(self.functions)
+    return (Symbol_Table, (variables, constants, False, functions))
 
   def __cinit__(self):
     self._csymtableptr = new exprtk.symbol_table_type()
@@ -228,14 +237,17 @@ cdef class Symbol_Table:
     # ... set the internal pointer held by _constants
     self._constants._csymtableptr = self._csymtableptr
 
+    # Set up the functions dictionary
+    self._functions = _Symbol_Table_Functions()
+    self._functions._csymtableptr = self._csymtableptr
 
   def __dealloc__(self):
     del self._csymtableptr
     self._variables._csymtableptr = NULL
     self._constants._csymtableptr = NULL
+    self._functions._csymtableptr = NULL
 
-
-  def __init__(self, variables, constants = {}, add_constants = False):
+  def __init__(self, variables, constants = {}, add_constants = False, functions = {},):
     """Instantiate Symbol_Table defining variables and constants for Expression class.
 
     :param variables: Mapping between variable name and initial variable value.
@@ -243,10 +255,15 @@ cdef class Symbol_Table:
 
     :param constants: Constant name to value dictionary.
     :type constants: dict
-
+    
     :param add_constants: If True, add the standard constants ``pi``, ``inf``, ``epsilon``
       to the 'constants' dictionary before populating the ``Symbol_Table``
     :type add_constants: bool
+
+    :param functions: Dictionary containing custom functions to be made available to expressions. 
+      Dictionary keys specify function names and values should be functions.
+    :type functions: dict
+
     """
 
     shadowed = set(variables.keys()) & set(constants.keys())
@@ -255,9 +272,15 @@ cdef class Symbol_Table:
       msg = "The following names are in both variables and constants: %s" % ",".join(msg)
       raise VariableNameShadowException(msg)
 
+    shadowed = (set(variables.keys()) | set(constants.keys())) & set(functions.keys())
+    if shadowed:
+      msg = [s for s in sorted(shadowed)]
+      msg = "The following function names are also in variables or constants: %s" % ",".join(msg)
+      raise VariableNameShadowException(msg)
+
     self._populateVariables(variables)
     self._populateConstants(constants, add_constants)
-
+    self._populateFunctions(functions)
 
   def _populateVariables(self,object variables):
     cdef bytes cstr
@@ -265,7 +288,6 @@ cdef class Symbol_Table:
       cstr = s.encode("ascii")
       if not self._csymtableptr[0].create_variable(cstr,v):
         raise BadVariableException("Error creating variable named: %s with value: %s" % (s,v))
-
 
   def _populateConstants(self, object constants, int add_constants):
     cdef bytes cstr
@@ -277,6 +299,14 @@ cdef class Symbol_Table:
       if not self._csymtableptr[0].add_constant(cstr,v):
         raise BadVariableException("Error creating constant named: %s with value: %s" % (s,v))
 
+  def _populateFunctions(self, object functions):
+    for k,v in functions.items():
+      self.functions[k] = v
+
+
+  property functions:
+    def __get__(self):
+      return PyWeakref_NewProxy(self._functions, None)
 
   property variables:
     def __get__(self):
@@ -285,7 +315,6 @@ cdef class Symbol_Table:
   property constants:
     def __get__(self):
       return PyWeakref_NewProxy(self._constants, None)
-
 
 
 cdef class _Symbol_Table_Variables:
@@ -313,7 +342,19 @@ cdef class _Symbol_Table_Variables:
     if not self._csymtableptr:
       raise ReferenceError("Parent Symbol_Table no longer exists")
     strkey = key.encode("ascii")
-    rv = variableAssign(self._csymtableptr[0], strkey, value)
+
+    if self._csymtableptr[0].get_function(strkey) != NULL:
+      raise VariableNameShadowException("Cannot set variable as a function already exists with the same name: "+key)
+
+    cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)
+    if vptr != NULL and self._csymtableptr[0].is_constant_node(strkey):
+      raise KeyError("Cannot set variable constant already exists with the same name: "+key)
+
+    if vptr == NULL:
+      rv = self._csymtableptr[0].create_variable(strkey, value)
+    else:
+      rv = variableAssign(self._csymtableptr[0], strkey, value)
+
     if not rv:
       raise KeyError("Unknown variable: "+key)
 
@@ -444,6 +485,167 @@ cdef class _USRSymbolType:
 
 USRSymbolType = _USRSymbolType()
 
+cdef class _Symbol_Table_Functions:
+  """Class providing the .functions property for Symbol_Table.
+
+  Provides a dictionary like interface, methods pass-through to
+  C++ symbol_table object owned by parent Symbol_Table."""
+
+  cdef object __weakref__
+
+  cdef exprtk.symbol_table_type* _csymtableptr
+  cdef cset[cfunction_ptr] * _cfunction_set_ptr
+
+  def __cinit__(self):
+    self._cfunction_set_ptr = new cset[cfunction_ptr]()
+
+  cdef cfunction_ptr _getitem(self, bytes key):
+    #cdef exprtk.ifunction[double]* fptr = self._csymtableptr[0].get_function(key)
+    cdef ifunction_ptr fptr = self._csymtableptr[0].get_function(key)
+    if NULL == fptr :
+      return NULL
+    cdef cfunction_ptr cfptr = dynamic_cast[cfunction_ptr](fptr)
+    return cfptr
+
+  cdef void _remove_function_from_set(self, cfunction_ptr fptr):
+    self._cfunction_set_ptr[0].erase(fptr)
+    del fptr
+
+  cdef void _add_function_to_set(self, cfunction_ptr fptr):
+    self._cfunction_set_ptr[0].insert(fptr)
+
+  def _checkFunction(self, key, object function):
+    if not inspect.isfunction(function):
+      raise TypeError("Whilst setting function "+key+". Function was not provided: "+str(function))
+    
+    argspec = inspect.getargspec(function)
+
+    if not argspec.varargs is None:
+      raise TypeError("Functions with varargs are not supported. Whilst setting function for "+key)
+
+    if not argspec.keywords is None:
+      raise TypeError("Functions with keywords are not supported. Whilst setting function for "+key)
+
+    if len(argspec.args) != 1:
+      raise TypeError("Only unary functions are supported at present. Whilst setting function for "+key)
+    
+  cdef _wrapFunction(self, key, bytes strkey, object function):
+
+    cdef ifunction_ptr fptr
+    cdef cfunction_ptr cfptr
+    cdef PythonUnaryCythonFunctionPtr callback
+
+    cdef void* pyptr
+    pyptr = <void *>function
+    cfptr = new UnaryFunction(strkey, pyptr, unaryFunctionCythonCallable)
+    self._add_function_to_set(cfptr)
+
+    fptr = dynamic_cast[ifunction_ptr](cfptr)
+    # Add the function to the symboltable
+    self._csymtableptr[0].add_function(strkey, fptr[0])
+
+
+  def __dealloc__(self):
+    cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()
+    cdef cfunction_ptr func_ptr
+    while it != self._cfunction_set_ptr[0].end():
+      func_ptr = deref(it)
+      inc(it)
+      del func_ptr
+    del self._cfunction_set_ptr
+
+  def __getitem__(self, object key):
+    cdef void * pyptr
+    cdef cfunction_ptr fptr
+    cdef bytes cstr_key = key.encode("ascii")
+    if not self._csymtableptr:
+      raise ReferenceError("Parent Symbol_Table no longer exists")
+    fptr = self._getitem(cstr_key)
+    if fptr:
+      pyptr = fptr[0].get_pycallable()
+      pyfunction = <object>pyptr
+      return pyfunction
+    else:
+      raise KeyError("Unknown function: "+key)
+
+  def __setitem__(self, object key, object f):
+    cdef int rv
+    cdef string strkey
+    cdef cfunction_ptr cfuncptr
+    if not self._csymtableptr:
+      raise ReferenceError("Parent Symbol_Table no longer exists")
+    strkey = key.encode("ascii")
+    
+    # Check if there is already a variable or constant assigned to this key.
+    # If there is, then raise VariableShadow exception.
+    if self._csymtableptr[0].get_variable(strkey) != NULL:
+      raise VariableNameShadowException("Function cannot be set as a variable or constant shares the same name:" + key)
+
+    self._checkFunction(key,f)
+
+    # If the function already exists, try removing it.
+    cfuncptr = self._getitem(strkey)
+    if cfuncptr != NULL:
+      wasRemoved = self._csymtableptr[0].remove_function(strkey)
+      if not wasRemoved:
+        # If removal fails, this means that the function is already used by another
+        # expression - raise an exception to this effect.
+        raise KeyError("Function '"+key+"' was already in symbol table but could not be removed. Function may be in use by another Expression")
+      else:
+        self._remove_function_from_set(cfuncptr)
+    
+    # Wrap the new function
+    self._wrapFunction(key, strkey, f)
+    
+
+  def __iter__(self):
+    return self.iterkeys()
+
+  def __len__(self):
+    return self._cfunction_set_ptr[0].size()
+
+  cpdef list items(self):
+    if not self._csymtableptr:
+      raise ReferenceError("Parent Symbol_Table no longer exists")
+    cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()
+    cdef cfunction_ptr func_ptr
+    cdef object pyfunc
+    cdef string cstr
+    cdef object strk
+    cdef list retlist = []
+    while it != self._cfunction_set_ptr[0].end():
+      func_ptr = deref(it)
+      cstr = func_ptr[0].get_key()
+      strk = cstr.decode("ascii")
+      pyfunc = <object> func_ptr[0].get_pycallable()
+      retlist.append((strk, pyfunc))
+      inc(it)
+    return retlist
+
+  def iteritems(self):
+    return iter(self.items())
+
+  def iterkeys(self):
+    return iter(self.keys())
+
+  def itervalues(self):
+    return iter(self.values())
+
+  def keys(self):
+    return [ k for (k,v) in self.items()]
+
+  def values(self):
+    return [ v for (k,v) in self.items() ]
+
+  cpdef has_key(self, object key):
+    if not self._csymtableptr:
+      raise ReferenceError("Parent Symbol_Table no longer exists")
+    cdef bytes cstr_key = key.encode("ascii")
+    return self._csymtableptr[0].get_function(cstr_key) != NULL
+
+  def __contains__(self, object key):
+    return self.has_key(key)
+
 
 class UnknownSymbolResolverException(Exception):
   pass
@@ -481,3 +683,17 @@ cdef bool unknownResolverCythonCallable(
     c_errorString  = str(e).encode("ascii")
     retvals.errorString = c_errorString
     return False
+
+cdef double unaryFunctionCythonCallable(
+    void * pyobj_, void ** exception_, double arg1_):
+  cdef object pycallable
+  cdef double retval = 0.0
+  
+  try:
+    pycallable = <object>pyobj_
+    retval = pycallable(arg1_)
+    return retval
+  except Exception as e:
+    Py_INCREF(e)
+    exception_[0] = <void*> e
+    return 0.0

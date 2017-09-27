@@ -6,8 +6,6 @@ from libcpp cimport bool
 ctypedef pair[string,double] LabelFloatPair
 ctypedef vector[LabelFloatPair] LabelFloatPairVector
 
-
-
 cdef extern from "exprtk.hpp" namespace "exprtk::details":
   cdef cppclass variable_node[T]:
     T& ref()
@@ -17,22 +15,27 @@ ctypedef variable_node[double] variable_t
 ctypedef variable_t * variable_ptr
 
 cdef extern from "exprtk.hpp" namespace "exprtk":
+  cdef cppclass ifunction[T]:
+    ifunction(int& pc) except +
+
   cdef cppclass symbol_table[T]:
     symbol_table() except +
     int create_variable(string& variable_name, T& value)
-    int add_constant(string& constant_name, T& value)
-    int add_constants()
+    bool add_constant(string& constant_name, T& value)
+    bool add_constants()
     variable_ptr get_variable(string& variable_name)
-    int is_variable(string& variable_name)
-    int is_constant_node(string& symbol_name)
+    bool is_variable(string& variable_name)
+    bool is_constant_node(string& symbol_name)
     int get_variable_list(LabelFloatPairVector& vlist)
     int variable_count()
+    bool add_function(string& function_name, ifunction[T]& function)
+    ifunction[T]* get_function(string& function_name)
+    bool remove_function(string& function_name)
 
   cdef cppclass expression[T]:
     expression() except +
     void register_symbol_table(symbol_table[T])
     T value()
-
 
   cdef cppclass parser[T]:
     parser() except +

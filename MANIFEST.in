@@ -4,6 +4,7 @@ include cython/cexprtk.pyx
 include cython/cexprtk.pxd
 include cython/cexprtk_common.hpp
 include cython/cexprtk_custom_functions.hpp
+include cython/cexprtk_custom_functions.pxd
 include cython/cexprtk_unknown_symbol_resolver.cpp
 include cython/cexprtk_unknown_symbol_resolver.hpp
 include cython/cexprtk_unknown_symbol_resolver.pxd

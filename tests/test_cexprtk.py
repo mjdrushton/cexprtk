@@ -149,16 +149,27 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
     self.assertEqual(20.0, symTable.variables['x'])
 
 
-  def testBadVariableAssignment(self):
+  def testVariableCreationThroughAssignment(self):
     """Test assignment to non-existent variable"""
     d = {'x' : 10.0}
     symTable = cexprtk.Symbol_Table(d,{'a' : 1})
-
+    self.assertEquals(['x'], symTable.variables.keys())
+    self.assertEquals(['a'], symTable.constants.keys())
+    self.assertEquals([], symTable.functions.keys())
     with self.assertRaises(KeyError):
       y = symTable.variables['y']
 
-    with self.assertRaises(KeyError):
-      symTable.variables['y'] = 11.0
+    symTable.variables['y'] = 2.0
+    self.assertEquals(['x', 'y'], sorted(symTable.variables.keys()))
+    self.assertEquals(['a'], symTable.constants.keys())
+    self.assertEquals([], symTable.functions.keys())
+    self.assertEquals(2.0, symTable.variables['y'])
+
+    symTable.variables['y'] = 4.0
+    self.assertEquals(['x', 'y'], sorted(symTable.variables.keys()))
+    self.assertEquals(['a'], symTable.constants.keys())
+    self.assertEquals([], symTable.functions.keys())
+    self.assertEquals(4.0, symTable.variables['y'])
 
   def testVariableAssignmentToConstant(self):
     """Check that variable assignment cannot happen to name taken by constant"""

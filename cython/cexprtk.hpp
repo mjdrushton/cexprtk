@@ -2,7 +2,7 @@
 #define EXPRTKWRAP_HPP
 
 #include <sstream>
-
+#include <iostream>
 
 #include "cexprtk_common.hpp"
 
@@ -68,12 +68,12 @@ void check(const std::string& expression_string, std::vector<std::string>& error
 inline bool variableAssign(SymbolTable& symtable, const std::string& name, double value)
 {
 	exprtk::details::variable_node<double> * vp;
-	if (! (vp = symtable.get_variable(name)))
+	vp = symtable.get_variable(name);
+	if (!vp)
 	{
 		return false;
 	}
-
-	if (symtable.is_constant_node(name))
+	if (vp && symtable.is_constant_node(name))
 	{
 		return false;
 	}

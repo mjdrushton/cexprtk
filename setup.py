@@ -17,7 +17,7 @@ COMPILER_OPTIONS = dict(
     # option here for the future.
     msvc=['/Ox', '/bigobj'],
     gcc=['-std=c++11', '-O3'],
-    clang=['-std=c++11', '-O3'],
+    clang=['-std=c++11', '-O3', '-g'],
     mingw32=['-O3', '-ffast-math', '-march=native']
 )
 
