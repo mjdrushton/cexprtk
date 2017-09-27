@@ -122,18 +122,15 @@ cdef class Expression:
     # Create the expression
     self._cexpressionptr = new exprtk.expression_type()
 
-
   def __dealloc__(self):
     del self._cexpressionptr
 
   def __reduce__(self):
     return (Expression, (self._expression, self.symbol_table, self._unknown_symbol_resolver_callback))
-    
 
   def __init__(self, expression, symbol_table, unknown_symbol_resolver_callback = None):
     """Instantiate ``Expression`` from a text string giving formula and ``Symbol_Table``
     instance encapsulating variables and constants used by the expression.
-
 
     :param expression: String giving expression to be calculated.
     :type expression: str
@@ -174,7 +171,6 @@ cdef class Expression:
       usrPtr = cexprtk_unknown_symbol_resolver.dynamic_cast_PythonCallableUnknownSymbolResolver(pcurPtr)
       p.enable_unknown_symbol_resolver(usrPtr)
 
-
     try:
       parser_compile_and_process_errors(expression_string.encode("ascii"),
                                         p,
@@ -195,7 +191,12 @@ cdef class Expression:
 
     :return: Value resulting from evaluation of expression.
     :rtype: float"""
+    cdef _Symbol_Table_Functions funcs = self._symbol_table._functions
+    funcs._resetFunctionExceptions()
     cdef double v = self._cexpressionptr.value()
+    cdef object exception = funcs._checkForException()
+    if exception:
+      raise exception
     return v
 
   def __call__(self):
@@ -289,7 +290,7 @@ cdef class Symbol_Table:
       if not self._csymtableptr[0].create_variable(cstr,v):
         raise BadVariableException("Error creating variable named: %s with value: %s" % (s,v))
 
-  def _populateConstants(self, object constants, int add_constants):
+  def _populateConstants(self, object constants, bool add_constants):
     cdef bytes cstr
     if add_constants:
       self._csymtableptr[0].add_constants()
@@ -530,7 +531,6 @@ cdef class _Symbol_Table_Functions:
       raise TypeError("Only unary functions are supported at present. Whilst setting function for "+key)
     
   cdef _wrapFunction(self, key, bytes strkey, object function):
-
     cdef ifunction_ptr fptr
     cdef cfunction_ptr cfptr
     cdef PythonUnaryCythonFunctionPtr callback
@@ -544,6 +544,27 @@ cdef class _Symbol_Table_Functions:
     # Add the function to the symboltable
     self._csymtableptr[0].add_function(strkey, fptr[0])
 
+  cdef _resetFunctionExceptions(self):
+    cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()
+    cdef cfunction_ptr func_ptr
+    while it != self._cfunction_set_ptr[0].end():
+      func_ptr = deref(it)
+      func_ptr[0].resetException()
+      inc(it)
+
+  cdef object _checkForException(self):
+    cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()
+    cdef cfunction_ptr func_ptr
+    cdef object exception = None
+    cdef void * exception_ptr
+    while it != self._cfunction_set_ptr[0].end():
+      func_ptr = deref(it)
+      exception_ptr = func_ptr[0].exception()
+      if exception_ptr:
+        exception = <object> exception_ptr
+        return exception
+      inc(it)
+    return None
 
   def __dealloc__(self):
     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()

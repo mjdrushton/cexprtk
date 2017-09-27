@@ -11,10 +11,10 @@ typedef ExpressionValueType (*PythonUnaryCythonFunctionPtr)(void *, void **, Exp
 class UnaryFunction : public exprtk::ifunction<ExpressionValueType>
 {
   private:
+    std::string _key;
     void * _pycallable;
     PythonUnaryCythonFunctionPtr _cythonfunc;
 
-    std::string _key;
 
     void * _pyexception;
 

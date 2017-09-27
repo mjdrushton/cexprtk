@@ -65,3 +65,34 @@ class FunctionsTestCase(unittest.TestCase):
 
     with self.assertRaises(VariableNameShadowException):
       symbol_table.functions["f"] = func
+
+  def testPopulateFunctionsViaConstructor(self):
+    """Populate symbol_table functions using constructor argument"""
+
+    def f(a):
+      return 1
+
+    def g(a):
+      return 2
+
+    symbol_table = cexprtk.Symbol_Table({}, functions = {"f" : f, "g" : g})
+    self.assertEquals(['f', 'g'], sorted(symbol_table.functions.keys()))
+
+    self.assertEquals(1, symbol_table.functions['f'](3))
+    self.assertEquals(2, symbol_table.functions['g'](3))
+
+
+  def testFunctionThatThrows(self):
+    """Test a function that throws an exception"""
+
+    class CustomException(Exception):
+      pass
+
+    def f(a):
+      raise CustomException()
+
+    symbol_table = cexprtk.Symbol_Table({}, functions = {"f" : f})
+    expression = cexprtk.Expression("f(1)", symbol_table)
+    with self.assertRaises(CustomException):
+      expression.value()
+    
