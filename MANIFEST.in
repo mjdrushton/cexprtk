@@ -1,12 +1,23 @@
-include cython/cexprtk.cpp
-include cython/cexprtk.hpp
-include cython/cexprtk.pyx
-include cython/cexprtk.pxd
-include cython/cexprtk_common.hpp
-include cython/cexprtk_custom_functions.hpp
-include cython/cexprtk_custom_functions.pxd
-include cython/cexprtk_unknown_symbol_resolver.cpp
-include cython/cexprtk_unknown_symbol_resolver.hpp
-include cython/cexprtk_unknown_symbol_resolver.pxd
-include  3rdparty/exprtk/exprtk.hpp
 recursive-include tests *.py
+
+include  3rdparty/exprtk/exprtk.hpp
+
+include cpp/cexprtk.hpp
+include cpp/cexprtk_common.hpp
+include cpp/cexprtk_custom_functions.hpp
+include cpp/cexprtk_custom_functions_implementation.hpp
+include cpp/cexprtk_unknown_symbol_resolver.cpp
+include cpp/cexprtk_unknown_symbol_resolver.hpp
+
+include cython/cexprtk/__init__.py
+include cython/cexprtk/_functionargs.py
+include cython/cexprtk/_cexprtk.cpp
+include cython/cexprtk/_cexprtk.pyx
+include cython/cexprtk/_custom_function_callbacks.cpp
+include cython/cexprtk/_custom_function_callbacks.pxd
+include cython/cexprtk/_custom_function_callbacks.pyx
+include cython/cexprtk_custom_functions.pxd
+include cython/cexprtk_custom_functions_implementation.pxd
+include cython/cexprtk_unknown_symbol_resolver.pxd
+include cython/cexprtk_util.pxd
+include cython/exprtk.pxd

@@ -1,24 +1,37 @@
 # distutils: language = c++
 
 cimport cython
-cimport cexprtk
+cimport exprtk
 cimport cexprtk_unknown_symbol_resolver
-from cexprtk_custom_functions cimport cfunction_ptr, cfunction_t, UnaryFunction, ifunction_ptr, PythonUnaryCythonFunctionPtr
+
+cimport cexprtk_util
+
+from cexprtk_custom_functions cimport cfunction_ptr, cfunction_t, ifunction_ptr, CustomFunctionBase
+from cexprtk._custom_function_callbacks cimport wrapFunction
 
 from cpython.ref cimport Py_INCREF
 from cpython.weakref  cimport PyWeakref_NewProxy
 
 from libcpp.set cimport set as cset
 from libcpp.cast cimport dynamic_cast
+from libcpp.vector cimport vector
+from libcpp.string cimport string
+from libcpp cimport bool
 
 from cython.operator cimport dereference as deref, preincrement as inc
 
-import inspect
+from ._functionargs import functionargs
 
 class BadVariableException(Exception):
   pass
 
-class VariableNameShadowException(Exception):
+class NameShadowException(Exception):
+  pass
+
+class VariableNameShadowException(NameShadowException):
+  pass
+
+class ReservedFunctionShadowException(NameShadowException):
   pass
 
 class ParseException(Exception):
@@ -36,7 +49,7 @@ def check_expression(expression):
   cdef vector[string] errorlist
   cdef list strerrorlist
   cdef bytes c_expression = expression.encode("ascii")
-  check(c_expression, errorlist)
+  cexprtk_util.check(c_expression, errorlist)
 
   if not errorlist.empty():
     # List is not empty, throw ParseException
@@ -172,7 +185,7 @@ cdef class Expression:
       p.enable_unknown_symbol_resolver(usrPtr)
 
     try:
-      parser_compile_and_process_errors(expression_string.encode("ascii"),
+      cexprtk_util.parser_compile_and_process_errors(expression_string.encode("ascii"),
                                         p,
                                         self._cexpressionptr[0],
                                         error_list)
@@ -210,6 +223,7 @@ cdef class Expression:
   property symbol_table:
     def __get__(self):
       return self._symbol_table
+
 
 cdef class Symbol_Table:
   """Class for providing variable and constant values to Expression instances."""
@@ -354,7 +368,7 @@ cdef class _Symbol_Table_Variables:
     if vptr == NULL:
       rv = self._csymtableptr[0].create_variable(strkey, value)
     else:
-      rv = variableAssign(self._csymtableptr[0], strkey, value)
+      rv = cexprtk_util.variableAssign(self._csymtableptr[0], strkey, value)
 
     if not rv:
       raise KeyError("Unknown variable: "+key)
@@ -497,8 +511,22 @@ cdef class _Symbol_Table_Functions:
   cdef exprtk.symbol_table_type* _csymtableptr
   cdef cset[cfunction_ptr] * _cfunction_set_ptr
 
+  cdef object _reservedFunctions
+
+  
   def __cinit__(self):
     self._cfunction_set_ptr = new cset[cfunction_ptr]()
+
+  def __init__(self):
+    self._reservedFunctions = set([
+      'abs', 'avg', 'ceil', 'clamp', 'equal', 'erf', 'erfc', 'exp',
+      'expm1', 'floor', 'frac',  'log', 'log10', 'log1p',  'log2',
+      'logn',  'max',  'min',  'mul',  'ncdf',  'nequal',  'root',
+      'round', 'roundn', 'sgn', 'sqrt', 'sum', 'swap', 'trunc',
+      'acos', 'acosh', 'asin', 'asinh', 'atan', 'atanh',  'atan2',
+      'cos',  'cosh', 'cot',  'csc', 'sec',  'sin', 'sinc',  'sinh',
+      'tan', 'tanh', 'hypot', 'rad2deg', 'deg2grad',  'deg2rad',
+      'grad2deg' ])
 
   cdef cfunction_ptr _getitem(self, bytes key):
     #cdef exprtk.ifunction[double]* fptr = self._csymtableptr[0].get_function(key)
@@ -516,28 +544,20 @@ cdef class _Symbol_Table_Functions:
     self._cfunction_set_ptr[0].insert(fptr)
 
   def _checkFunction(self, key, object function):
-    if not inspect.isfunction(function):
-      raise TypeError("Whilst setting function "+key+". Function was not provided: "+str(function))
-    
-    argspec = inspect.getargspec(function)
-
-    if not argspec.varargs is None:
+    args = functionargs(function)
+    if args == -1:
       raise TypeError("Functions with varargs are not supported. Whilst setting function for "+key)
-
-    if not argspec.keywords is None:
-      raise TypeError("Functions with keywords are not supported. Whilst setting function for "+key)
-
-    if len(argspec.args) != 1:
-      raise TypeError("Only unary functions are supported at present. Whilst setting function for "+key)
+    if args > 20:
+      raise TypeError("Only functions with 20 or fewer arguments are supported at present. Whilst setting function for "+key)
+    return args
     
-  cdef _wrapFunction(self, key, bytes strkey, object function):
+  cdef _wrapFunction(self, key, bytes strkey, object function, int numArgs_):
     cdef ifunction_ptr fptr
     cdef cfunction_ptr cfptr
-    cdef PythonUnaryCythonFunctionPtr callback
 
     cdef void* pyptr
     pyptr = <void *>function
-    cfptr = new UnaryFunction(strkey, pyptr, unaryFunctionCythonCallable)
+    cfptr = wrapFunction(numArgs_, strkey, function)
     self._add_function_to_set(cfptr)
 
     fptr = dynamic_cast[ifunction_ptr](cfptr)
@@ -596,27 +616,23 @@ cdef class _Symbol_Table_Functions:
     if not self._csymtableptr:
       raise ReferenceError("Parent Symbol_Table no longer exists")
     strkey = key.encode("ascii")
-    
+
+    if key in self._reservedFunctions:
+      raise ReservedFunctionShadowException("Function has same name as a built-in exprtk function: "+str(key))
+
     # Check if there is already a variable or constant assigned to this key.
     # If there is, then raise VariableShadow exception.
     if self._csymtableptr[0].get_variable(strkey) != NULL:
       raise VariableNameShadowException("Function cannot be set as a variable or constant shares the same name:" + key)
 
-    self._checkFunction(key,f)
-
     # If the function already exists, try removing it.
     cfuncptr = self._getitem(strkey)
     if cfuncptr != NULL:
-      wasRemoved = self._csymtableptr[0].remove_function(strkey)
-      if not wasRemoved:
-        # If removal fails, this means that the function is already used by another
-        # expression - raise an exception to this effect.
-        raise KeyError("Function '"+key+"' was already in symbol table but could not be removed. Function may be in use by another Expression")
-      else:
-        self._remove_function_from_set(cfuncptr)
+      raise KeyError("Function '"+key+"' was already in symbol table.")
     
     # Wrap the new function
-    self._wrapFunction(key, strkey, f)
+    numArgs = self._checkFunction(key,f)
+    self._wrapFunction(key, strkey, f, numArgs)
     
 
   def __iter__(self):
@@ -705,16 +721,16 @@ cdef bool unknownResolverCythonCallable(
     retvals.errorString = c_errorString
     return False
 
-cdef double unaryFunctionCythonCallable(
-    void * pyobj_, void ** exception_, double arg1_):
-  cdef object pycallable
-  cdef double retval = 0.0
-  
-  try:
-    pycallable = <object>pyobj_
-    retval = pycallable(arg1_)
-    return retval
-  except Exception as e:
-    Py_INCREF(e)
-    exception_[0] = <void*> e
-    return 0.0
+#cdef double unaryFunctionCythonCallable(
+    #void * pyobj_, void ** exception_, double arg1_):
+  #cdef object pycallable
+  #cdef double retval = 0.0
+#  
+  #try:
+    #pycallable = <object>pyobj_
+    #retval = pycallable(arg1_)
+    #return retval
+  #except Exception as e:
+    #Py_INCREF(e)
+    #exception_[0] = <void*> e
+    #return 0.0

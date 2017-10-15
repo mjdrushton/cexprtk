@@ -4,6 +4,7 @@ from setuptools import setup
 from setuptools.extension import Extension
 
 CURR_DIR = os.path.realpath(os.path.dirname(__file__))
+PACKAGE_DIR = os.path.join(CURR_DIR, 'cython', 'cexprtk')
 
 COMPILER_OPTIONS = dict(
     # bigobj is needed because the PE/COFF binary format
@@ -30,29 +31,59 @@ COMPILER_DEFINES = dict(
     # Note that mingw32 defines both WIN32 and _WIN32.
     msvc=[('WIN32', None)])
 
-INCLUDE_DIRS = [os.path.join(CURR_DIR, "3rdparty", "exprtk"), os.path.join(CURR_DIR, "cython")]
-CPP_FILES = [
-    os.path.join(CURR_DIR, "cython", "cexprtk_unknown_symbol_resolver.cpp")
+INCLUDE_DIRS = [
+  os.path.join("3rdparty", "exprtk"), 
+  "cpp",
 ]
 
-try:
-  from Cython.Distutils import build_ext
-  from Cython.Build import cythonize
-except ImportError:
-  from setuptools.command.build_ext import build_ext
-  CPP_FILES.append(os.path.join(CURR_DIR, "cython", "cexprtk.cpp"))
-  CYTHON_CEXPRTK = Extension("cexprtk",
-                             CPP_FILES,
-                             language="c++",
-                             include_dirs=INCLUDE_DIRS)
-  EXT_MODULES = [CYTHON_CEXPRTK]
-else:
-  CPP_FILES.append(os.path.join(CURR_DIR, "cython", "cexprtk.pyx"))
-  CYTHON_CEXPRTK = Extension("cexprtk",
-                             CPP_FILES,
-                             include_dirs=INCLUDE_DIRS)
-  EXT_MODULES = cythonize([CYTHON_CEXPRTK],
-                         include_path = [os.path.join(CURR_DIR, 'cython')])
+# CPP_FILES = [
+#     os.path.join(CURR_DIR, "cpp", "cexprtk_unknown_symbol_resolver.cpp")
+# ]
+
+# PYX_FILES = [
+#   "_cexprtk", "custom_function_callbacks"
+# ]
+
+from Cython.Distutils import build_ext
+from Cython.Build import cythonize
+
+def cexprtkExtension():
+  cythonfiles = ['cython/cexprtk/_cexprtk.pyx']
+  cppfiles = [ 'cpp/cexprtk_unknown_symbol_resolver.cpp']
+  cppfiles.extend(cythonfiles)
+  extension = Extension('cexprtk._cexprtk',
+                        cppfiles,
+                        include_dirs=INCLUDE_DIRS)
+  return extension
+
+def custom_function_callbacksExtension():
+  cythonfiles = ['cython/cexprtk/_custom_function_callbacks.pyx']
+  cppfiles = []
+  cppfiles.extend(cythonfiles)
+  extension = Extension('cexprtk._custom_function_callbacks',
+                        cppfiles,
+                        include_dirs=INCLUDE_DIRS)
+  return extension
+
+
+# try:
+#   from Cython.Distutils import build_ext
+#   from Cython.Build import cythonize
+# except ImportError:
+#   from setuptools.command.build_ext import build_ext
+#   CPP_FILES.extend([os.path.join(PACKAGE_DIR, f+".cpp") for f in PYX_FILES])
+#   CYTHON_CEXPRTK = Extension("cexprtk._cexprtk",
+#                              CPP_FILES,
+#                              language="c++",
+#                              include_dirs=INCLUDE_DIRS)
+#   EXT_MODULES = [CYTHON_CEXPRTK]
+# else:
+#   CPP_FILES.extend([os.path.join(PACKAGE_DIR, f+".pyx") for f in PYX_FILES])
+#   CYTHON_CEXPRTK = Extension("cexprtk._cexprtk",
+#                              CPP_FILES,
+#                              include_dirs=INCLUDE_DIRS)
+#   EXT_MODULES = cythonize([CYTHON_CEXPRTK],
+#                          include_path = [os.path.join(CURR_DIR, 'cython')])
 
 class BuildExtCustom(build_ext):
   ''' A customised class, for handling special compiler
@@ -75,7 +106,11 @@ class BuildExtCustom(build_ext):
 CMDCLASS = {'build_ext': BuildExtCustom}
 
 setup(name="cexprtk",
-      ext_modules=EXT_MODULES,
+      packages = ['cexprtk'],
+      package_dir = {'' : 'cython' },
+      ext_modules=cythonize(
+        [cexprtkExtension(), custom_function_callbacksExtension()],
+        include_path = ['cython', 'cython/cexprtk']),
       cmdclass=CMDCLASS,
       test_suite="tests",
       description="Mathematical expression parser: cython wrapper around the 'C++ Mathematical Expression Toolkit Library' ",
