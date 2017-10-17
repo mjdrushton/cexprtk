@@ -10,14 +10,12 @@ include cpp/cexprtk_unknown_symbol_resolver.cpp
 include cpp/cexprtk_unknown_symbol_resolver.hpp
 
 include cython/cexprtk/__init__.py
-include cython/cexprtk/_functionargs.py
 include cython/cexprtk/_cexprtk.cpp
 include cython/cexprtk/_cexprtk.pyx
 include cython/cexprtk/_custom_function_callbacks.cpp
 include cython/cexprtk/_custom_function_callbacks.pxd
 include cython/cexprtk/_custom_function_callbacks.pyx
-include cython/cexprtk_custom_functions.pxd
-include cython/cexprtk_custom_functions_implementation.pxd
-include cython/cexprtk_unknown_symbol_resolver.pxd
-include cython/cexprtk_util.pxd
-include cython/exprtk.pxd
+include cython/cexprtk/_exceptions.py
+include cython/cexprtk/_functionargs.py
+include cython/cexprtk/_symbol_table.pxd
+include cython/cexprtk/_symbol_table.pyx

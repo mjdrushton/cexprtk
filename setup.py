@@ -65,6 +65,19 @@ def custom_function_callbacksExtension():
                         include_dirs=INCLUDE_DIRS)
   return extension
 
+def symbol_tableExtension():
+  cythonfiles = ['cython/cexprtk/_symbol_table.pyx']
+  cppfiles = []
+  cppfiles.extend(cythonfiles)
+  extension = Extension('cexprtk._symbol_table',
+                        cppfiles,
+                        include_dirs=INCLUDE_DIRS)
+  return extension
+
+def extensions():
+  exts = [cexprtkExtension(), custom_function_callbacksExtension(), symbol_tableExtension()]
+  return cythonize(exts,include_path = ['cython', 'cython/cexprtk'])
+
 
 # try:
 #   from Cython.Distutils import build_ext
@@ -108,9 +121,7 @@ CMDCLASS = {'build_ext': BuildExtCustom}
 setup(name="cexprtk",
       packages = ['cexprtk'],
       package_dir = {'' : 'cython' },
-      ext_modules=cythonize(
-        [cexprtkExtension(), custom_function_callbacksExtension()],
-        include_path = ['cython', 'cython/cexprtk']),
+      ext_modules= extensions(),
       cmdclass=CMDCLASS,
       test_suite="tests",
       description="Mathematical expression parser: cython wrapper around the 'C++ Mathematical Expression Toolkit Library' ",
