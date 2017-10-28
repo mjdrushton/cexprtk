@@ -15,7 +15,9 @@ cdef double callback_vararg(
     pycallable = <object>pyobj_
     retval = pycallable(*args_)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -28,7 +30,9 @@ cdef double callback_0(
     pycallable = <object>pyobj_
     retval = pycallable()
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -42,7 +46,9 @@ cdef double callback_1(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -56,7 +62,9 @@ cdef double callback_2(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -70,7 +78,9 @@ cdef double callback_3(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -84,7 +94,9 @@ cdef double callback_4(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -98,7 +110,9 @@ cdef double callback_5(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -112,7 +126,9 @@ cdef double callback_6(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -126,7 +142,9 @@ cdef double callback_7(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -140,7 +158,9 @@ cdef double callback_8(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -154,7 +174,9 @@ cdef double callback_9(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -168,7 +190,9 @@ cdef double callback_10(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9, arg_10)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -182,7 +206,9 @@ cdef double callback_11(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9, arg_10, arg_11)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -196,7 +222,9 @@ cdef double callback_12(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9, arg_10, arg_11, arg_12)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -210,7 +238,9 @@ cdef double callback_13(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9, arg_10, arg_11, arg_12, arg_13)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -224,7 +254,9 @@ cdef double callback_14(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9, arg_10, arg_11, arg_12, arg_13, arg_14)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -238,7 +270,9 @@ cdef double callback_15(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9, arg_10, arg_11, arg_12, arg_13, arg_14, arg_15)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -252,7 +286,9 @@ cdef double callback_16(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9, arg_10, arg_11, arg_12, arg_13, arg_14, arg_15, arg_16)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -266,7 +302,9 @@ cdef double callback_17(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9, arg_10, arg_11, arg_12, arg_13, arg_14, arg_15, arg_16, arg_17)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -280,7 +318,9 @@ cdef double callback_18(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9, arg_10, arg_11, arg_12, arg_13, arg_14, arg_15, arg_16, arg_17, arg_18)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -294,7 +334,9 @@ cdef double callback_19(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9, arg_10, arg_11, arg_12, arg_13, arg_14, arg_15, arg_16, arg_17, arg_18, arg_19)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -308,7 +350,9 @@ cdef double callback_20(
     pycallable = <object>pyobj_
     retval = pycallable(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9, arg_10, arg_11, arg_12, arg_13, arg_14, arg_15, arg_16, arg_17, arg_18, arg_19, arg_20)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0

@@ -17,7 +17,9 @@ cdef double callback_vararg(
     pycallable = <object>pyobj_
     retval = pycallable(*args_)
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0
@@ -34,7 +36,9 @@ TEMPLATE="""cdef double {funcname}(
     pycallable = <object>pyobj_
     retval = pycallable({pyargs})
     return retval
-  except Exception as e:
+  except:
+    import sys
+    e = sys.exc_info()
     Py_INCREF(e)
     exception_[0] = <void*> e
     return 0.0

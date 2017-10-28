@@ -194,7 +194,7 @@ cdef class Expression:
     cdef double v = self._cexpressionptr.value()
     cdef object exception = funcs._checkForException()
     if exception:
-      raise exception
+      raise exception[0], exception[1], exception[2]
     return v
 
   def __call__(self):

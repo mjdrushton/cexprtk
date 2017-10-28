@@ -7,7 +7,7 @@ cimport cexprtk_unknown_symbol_resolver
 cimport cexprtk_util
 
 from cexprtk_custom_functions cimport cfunction_ptr, cfunction_t, ifunction_ptr, ivararg_function_ptr, CustomFunctionBase
-#from cexprtk_custom_vararg_function cimport Custom_Vararg_Function
+
 from cexprtk._custom_function_callbacks cimport wrapFunction
 
 from cpython.ref cimport Py_INCREF

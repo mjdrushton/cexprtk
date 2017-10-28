@@ -8,9 +8,6 @@ class FunctionsTestCase(unittest.TestCase):
 
   def testNullaryFunction(self):
     """Test function that takes no arguments"""
-    #TODO: Test something like "foo() + 1"
-    #TODO: Make sure that the "foo + 1" style of function invocation is disabled
-    
     symbol_table = cexprtk.Symbol_Table({})
 
     def foo():
