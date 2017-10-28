@@ -114,6 +114,21 @@ class FunctionsTestCase(unittest.TestCase):
     expression = cexprtk.Expression("f(1)", symbol_table)
     self.assertAlmostEquals(5.1, expression.value())
 
+  def testFunctoolsPartial(self):
+    import functools
+
+    def f(a,b,c):
+      return 2*a + 3*b + c
+
+    p = functools.partial(f, 1,2)
+
+    st = cexprtk.Symbol_Table({})
+    st.functions["f"] = f
+    st.functions["p"] = p
+
+    e1 = cexprtk.Expression("f(1,2,3)", st)
+    e2 = cexprtk.Expression("p(3)", st)
+    self.assertEqual(e1(), e2())
 
   def testFunctionThatThrows(self):
     """Test a function that throws an exception"""
@@ -333,3 +348,12 @@ class FunctionSignatureTestCase(unittest.TestCase):
 
     self.assertEquals(0, functionargs(cb))
     self.assertEquals(0, functionargs(f))
+
+  def testFunctoolsPartial(self):
+    import functools
+
+    def f(a,b,c):
+      return 2*a + 3*b + c
+
+    p = functools.partial(f, 1,2)
+    self.assertEqual(1, functionargs(p))

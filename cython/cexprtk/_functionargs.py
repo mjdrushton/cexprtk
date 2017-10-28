@@ -1,11 +1,39 @@
 import inspect
 import collections
+import functools
+
+def _isPartial(callable_):
+  return isinstance(callable_, functools.partial)
 
 def _isFunction(callable_):
   return isinstance(callable_, collections.Callable)
 
 def _isCallable(callable_):
   return hasattr(callable_, '__call__') and not inspect.isfunction(callable_)
+
+def _callableArgs(callable_):
+  callable_ = getattr(callable_, '__call__')
+  argspec = inspect.getargspec(callable_)
+  if argspec.varargs:
+    return -1
+  numargs = len(argspec.args)
+  numargs -= 1
+  return numargs
+
+def _genericArgs(callable_):
+  argspec = inspect.getargspec(callable_)
+  if argspec.varargs:
+    return -1
+  numargs = len(argspec.args)
+  return numargs
+
+def _partialArgs(callable_):
+  argspec = inspect.getargspec(callable_.func)
+  if argspec.varargs:
+    return -1
+  numargs = len(argspec.args)
+  numargs -= len(callable_.args)
+  return numargs
 
 def functionargs(callable_):
   """Return the number of arguments taken by callable or -1 if callable 
@@ -23,20 +51,9 @@ def functionargs(callable_):
   if inspect.isbuiltin(callable_):
     raise TypeError("Cannot use builtin functions: "+str(callable_))
 
-  isc = _isCallable(callable_)
-  if isc:
-    callable_ = getattr(callable_, '__call__')
-
-  argspec = inspect.getargspec(callable_)
-
-  if argspec.varargs:
-    return -1
-
-  if not argspec.keywords is None:
-    raise TypeError("Functions with keywords are not supported.")
-
-  numargs = len(argspec.args)
-  if isc:
-    numargs -= 1
-
-  return numargs
+  if _isPartial(callable_):
+    return _partialArgs(callable_)
+  elif _isCallable(callable_):
+    return _callableArgs(callable_)
+  else:
+    return _genericArgs(callable_)
