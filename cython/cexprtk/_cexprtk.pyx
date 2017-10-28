@@ -6,18 +6,13 @@ cimport cexprtk_unknown_symbol_resolver
 
 cimport cexprtk_util
 
-#from cexprtk_custom_functions cimport cfunction_ptr, cfunction_t, ifunction_ptr, CustomFunctionBase
-#from cexprtk._custom_function_callbacks cimport wrapFunction
-
 from cpython.ref cimport Py_INCREF
-#from cpython.weakref  cimport PyWeakref_NewProxy
 
 from libcpp.cast cimport dynamic_cast
 from libcpp.vector cimport vector
 from libcpp.string cimport string
 from libcpp cimport bool
 
-#from ._functionargs import functionargs
 from ._symbol_table cimport Symbol_Table, _Symbol_Table_Functions
 
 from ._exceptions import ParseException, UnknownSymbolResolverException

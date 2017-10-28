@@ -116,7 +116,6 @@ cdef class Symbol_Table:
     for k,v in functions.items():
       self.functions[k] = v
 
-
   property functions:
     def __get__(self):
       return PyWeakref_NewProxy(self._functions, None)

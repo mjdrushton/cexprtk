@@ -5,8 +5,9 @@
 ### New Features
 
 * Support for Python 3
+* Custom python functions can now be registered with `Symbol_Table` and used in expressions.
 
-##0.2.1 (3rd August 2017): 
+##0.2.1 (2017-08-03): 
 ### New Features
 
 * Updated version of bundled `exprtk` to that current as of 3rd August 2017.
@@ -31,12 +32,12 @@
 
 * Modifications to allow `cexprtk` to build on windows.
 
-##0.1.1 (2013-12-30 21:37)
+##0.1.1 (2013-12-30)
 ### Bug-Fixes
 
 * Module would not build if cython installed. 
 * Now build from pre-cythonized `cexprtk.cpp` whether `cython` available or not.
 
-##0.1.0 (2013-12-30 19:25)
+##0.1.0 (2013-12-30)
 
 * Initial Release

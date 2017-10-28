@@ -654,7 +654,7 @@ struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table {
 };
 
 
-/* "cexprtk/_cexprtk.pyx":69
+/* "cexprtk/_cexprtk.pyx":64
  * 
  * 
  * cdef class Expression:             # <<<<<<<<<<<<<<
@@ -671,7 +671,7 @@ struct __pyx_obj_7cexprtk_8_cexprtk_Expression {
 };
 
 
-/* "cexprtk/_cexprtk.pyx":213
+/* "cexprtk/_cexprtk.pyx":208
  * 
  * @cython.internal
  * cdef class _USRSymbolType:             # <<<<<<<<<<<<<<
@@ -739,7 +739,7 @@ struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions {
 static struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *__pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_Functions;
 
 
-/* "cexprtk/_cexprtk.pyx":69
+/* "cexprtk/_cexprtk.pyx":64
  * 
  * 
  * cdef class Expression:             # <<<<<<<<<<<<<<
@@ -1191,7 +1191,7 @@ static PyObject *__pyx_tuple__9;
 static PyObject *__pyx_codeobj__8;
 static PyObject *__pyx_codeobj__10;
 
-/* "cexprtk/_cexprtk.pyx":26
+/* "cexprtk/_cexprtk.pyx":21
  * 
  * 
  * def check_expression(expression):             # <<<<<<<<<<<<<<
@@ -1235,33 +1235,33 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_check_expression(CYTHON_UNUSED PyOb
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("check_expression", 0);
 
-  /* "cexprtk/_cexprtk.pyx":36
+  /* "cexprtk/_cexprtk.pyx":31
  *   cdef vector[string] errorlist
  *   cdef list strerrorlist
  *   cdef bytes c_expression = expression.encode("ascii")             # <<<<<<<<<<<<<<
  *   cexprtk_util.check(c_expression, errorlist)
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_expression, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 36; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_expression, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 36; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(PyBytes_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 36; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(PyBytes_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_c_expression = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "cexprtk/_cexprtk.pyx":37
+  /* "cexprtk/_cexprtk.pyx":32
  *   cdef list strerrorlist
  *   cdef bytes c_expression = expression.encode("ascii")
  *   cexprtk_util.check(c_expression, errorlist)             # <<<<<<<<<<<<<<
  * 
  *   if not errorlist.empty():
  */
-  __pyx_t_3 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_expression); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 37; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_expression); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   check(__pyx_t_3, __pyx_v_errorlist);
 
-  /* "cexprtk/_cexprtk.pyx":39
+  /* "cexprtk/_cexprtk.pyx":34
  *   cexprtk_util.check(c_expression, errorlist)
  * 
  *   if not errorlist.empty():             # <<<<<<<<<<<<<<
@@ -1271,14 +1271,14 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_check_expression(CYTHON_UNUSED PyOb
   __pyx_t_4 = ((!(__pyx_v_errorlist.empty() != 0)) != 0);
   if (__pyx_t_4) {
 
-    /* "cexprtk/_cexprtk.pyx":41
+    /* "cexprtk/_cexprtk.pyx":36
  *   if not errorlist.empty():
  *     # List is not empty, throw ParseException
  *     strerrorlist = [ s.decode("ascii") for s in errorlist]             # <<<<<<<<<<<<<<
  *     errorstring = ", ".join(strerrorlist)
  * 
  */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 36; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_5 = __pyx_v_errorlist.begin();
     for (;;) {
@@ -1286,36 +1286,36 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_check_expression(CYTHON_UNUSED PyOb
       __pyx_t_3 = *__pyx_t_5;
       ++__pyx_t_5;
       __pyx_v_s = __pyx_t_3;
-      __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_s, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_s, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 36; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_1))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_1))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 36; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     }
     __pyx_v_strerrorlist = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "cexprtk/_cexprtk.pyx":42
+    /* "cexprtk/_cexprtk.pyx":37
  *     # List is not empty, throw ParseException
  *     strerrorlist = [ s.decode("ascii") for s in errorlist]
  *     errorstring = ", ".join(strerrorlist)             # <<<<<<<<<<<<<<
  * 
  *     raise ParseException("Error evaluating expression '%s': %s" % (expression, errorstring))
  */
-    __pyx_t_2 = __Pyx_PyString_Join(__pyx_kp_s__2, __pyx_v_strerrorlist); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyString_Join(__pyx_kp_s__2, __pyx_v_strerrorlist); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 37; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_errorstring = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "cexprtk/_cexprtk.pyx":44
+    /* "cexprtk/_cexprtk.pyx":39
  *     errorstring = ", ".join(strerrorlist)
  * 
  *     raise ParseException("Error evaluating expression '%s': %s" % (expression, errorstring))             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_ParseException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_ParseException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 39; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 39; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(__pyx_v_expression);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_v_expression);
@@ -1323,7 +1323,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_check_expression(CYTHON_UNUSED PyOb
     __Pyx_INCREF(__pyx_v_errorstring);
     PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_v_errorstring);
     __Pyx_GIVEREF(__pyx_v_errorstring);
-    __pyx_t_7 = __Pyx_PyString_Format(__pyx_kp_s_Error_evaluating_expression_s_s, __pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyString_Format(__pyx_kp_s_Error_evaluating_expression_s_s, __pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 39; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_6 = NULL;
@@ -1337,27 +1337,27 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_check_expression(CYTHON_UNUSED PyOb
       }
     }
     if (!__pyx_t_6) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 39; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 39; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __Pyx_GIVEREF(__pyx_t_6); __pyx_t_6 = NULL;
       PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_7);
       __Pyx_GIVEREF(__pyx_t_7);
       __pyx_t_7 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 39; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 39; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "cexprtk/_cexprtk.pyx":26
+  /* "cexprtk/_cexprtk.pyx":21
  * 
  * 
  * def check_expression(expression):             # <<<<<<<<<<<<<<
@@ -1385,7 +1385,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_check_expression(CYTHON_UNUSED PyOb
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":47
+/* "cexprtk/_cexprtk.pyx":42
  * 
  * 
  * def evaluate_expression(expression_string, variables):             # <<<<<<<<<<<<<<
@@ -1426,11 +1426,11 @@ static PyObject *__pyx_pw_7cexprtk_8_cexprtk_3evaluate_expression(PyObject *__py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_variables)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("evaluate_expression", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("evaluate_expression", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate_expression") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "evaluate_expression") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -1443,7 +1443,7 @@ static PyObject *__pyx_pw_7cexprtk_8_cexprtk_3evaluate_expression(PyObject *__py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("evaluate_expression", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("evaluate_expression", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("cexprtk._cexprtk.evaluate_expression", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1469,32 +1469,32 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_2evaluate_expression(CYTHON_UNUSED 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("evaluate_expression", 0);
 
-  /* "cexprtk/_cexprtk.pyx":64
+  /* "cexprtk/_cexprtk.pyx":59
  *   :raises ParseException: if ``expression`` is invalid"""
  * 
  *   cdef Symbol_Table symbol_table = Symbol_Table(variables)             # <<<<<<<<<<<<<<
  *   cdef Expression expression = Expression(expression_string, symbol_table)
  *   return expression.value()
  */
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 59; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_variables);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_variables);
   __Pyx_GIVEREF(__pyx_v_variables);
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_7cexprtk_13_symbol_table_Symbol_Table)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_7cexprtk_13_symbol_table_Symbol_Table)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 59; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_symbol_table = ((struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "cexprtk/_cexprtk.pyx":65
+  /* "cexprtk/_cexprtk.pyx":60
  * 
  *   cdef Symbol_Table symbol_table = Symbol_Table(variables)
  *   cdef Expression expression = Expression(expression_string, symbol_table)             # <<<<<<<<<<<<<<
  *   return expression.value()
  * 
  */
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_expression_string);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_expression_string);
@@ -1502,13 +1502,13 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_2evaluate_expression(CYTHON_UNUSED 
   __Pyx_INCREF(((PyObject *)__pyx_v_symbol_table));
   PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_symbol_table));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_symbol_table));
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_7cexprtk_8_cexprtk_Expression)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_7cexprtk_8_cexprtk_Expression)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_expression = ((struct __pyx_obj_7cexprtk_8_cexprtk_Expression *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_cexprtk.pyx":66
+  /* "cexprtk/_cexprtk.pyx":61
  *   cdef Symbol_Table symbol_table = Symbol_Table(variables)
  *   cdef Expression expression = Expression(expression_string, symbol_table)
  *   return expression.value()             # <<<<<<<<<<<<<<
@@ -1516,7 +1516,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_2evaluate_expression(CYTHON_UNUSED 
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_expression), __pyx_n_s_value); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_expression), __pyx_n_s_value); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1529,10 +1529,10 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_2evaluate_expression(CYTHON_UNUSED 
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -1540,7 +1540,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_2evaluate_expression(CYTHON_UNUSED 
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_cexprtk.pyx":47
+  /* "cexprtk/_cexprtk.pyx":42
  * 
  * 
  * def evaluate_expression(expression_string, variables):             # <<<<<<<<<<<<<<
@@ -1563,7 +1563,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_2evaluate_expression(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":119
+/* "cexprtk/_cexprtk.pyx":114
  *   cdef object _unknown_symbol_resolver_callback
  * 
  *   def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -1596,7 +1596,7 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression___cinit__(struct __pyx_obj_7
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "cexprtk/_cexprtk.pyx":121
+  /* "cexprtk/_cexprtk.pyx":116
  *   def __cinit__(self):
  *     # Create the expression
  *     self._cexpressionptr = new exprtk.expression_type()             # <<<<<<<<<<<<<<
@@ -1607,11 +1607,11 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression___cinit__(struct __pyx_obj_7
     __pyx_t_1 = new __pyx_t_6exprtk_expression_type();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_v_self->_cexpressionptr = __pyx_t_1;
 
-  /* "cexprtk/_cexprtk.pyx":119
+  /* "cexprtk/_cexprtk.pyx":114
  *   cdef object _unknown_symbol_resolver_callback
  * 
  *   def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -1630,7 +1630,7 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression___cinit__(struct __pyx_obj_7
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":123
+/* "cexprtk/_cexprtk.pyx":118
  *     self._cexpressionptr = new exprtk.expression_type()
  * 
  *   def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -1653,7 +1653,7 @@ static void __pyx_pf_7cexprtk_8_cexprtk_10Expression_2__dealloc__(struct __pyx_o
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "cexprtk/_cexprtk.pyx":124
+  /* "cexprtk/_cexprtk.pyx":119
  * 
  *   def __dealloc__(self):
  *     del self._cexpressionptr             # <<<<<<<<<<<<<<
@@ -1662,7 +1662,7 @@ static void __pyx_pf_7cexprtk_8_cexprtk_10Expression_2__dealloc__(struct __pyx_o
  */
   delete __pyx_v_self->_cexpressionptr;
 
-  /* "cexprtk/_cexprtk.pyx":123
+  /* "cexprtk/_cexprtk.pyx":118
  *     self._cexpressionptr = new exprtk.expression_type()
  * 
  *   def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -1674,7 +1674,7 @@ static void __pyx_pf_7cexprtk_8_cexprtk_10Expression_2__dealloc__(struct __pyx_o
   __Pyx_RefNannyFinishContext();
 }
 
-/* "cexprtk/_cexprtk.pyx":126
+/* "cexprtk/_cexprtk.pyx":121
  *     del self._cexpressionptr
  * 
  *   def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -1705,7 +1705,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_4__reduce__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "cexprtk/_cexprtk.pyx":127
+  /* "cexprtk/_cexprtk.pyx":122
  * 
  *   def __reduce__(self):
  *     return (Expression, (self._expression, self.symbol_table, self._unknown_symbol_resolver_callback))             # <<<<<<<<<<<<<<
@@ -1713,9 +1713,9 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_4__reduce__(struct __p
  *   def __init__(self, expression, symbol_table, unknown_symbol_resolver_callback = None):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_symbol_table); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_symbol_table); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 122; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 122; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_self->_expression);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_self->_expression);
@@ -1726,7 +1726,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_4__reduce__(struct __p
   PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_self->_unknown_symbol_resolver_callback);
   __Pyx_GIVEREF(__pyx_v_self->_unknown_symbol_resolver_callback);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 122; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(((PyObject *)((PyObject*)__pyx_ptype_7cexprtk_8_cexprtk_Expression)));
   PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)((PyObject*)__pyx_ptype_7cexprtk_8_cexprtk_Expression)));
@@ -1738,7 +1738,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_4__reduce__(struct __p
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_cexprtk.pyx":126
+  /* "cexprtk/_cexprtk.pyx":121
  *     del self._cexpressionptr
  * 
  *   def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -1758,7 +1758,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_4__reduce__(struct __p
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":129
+/* "cexprtk/_cexprtk.pyx":124
  *     return (Expression, (self._expression, self.symbol_table, self._unknown_symbol_resolver_callback))
  * 
  *   def __init__(self, expression, symbol_table, unknown_symbol_resolver_callback = None):             # <<<<<<<<<<<<<<
@@ -1804,7 +1804,7 @@ static int __pyx_pw_7cexprtk_8_cexprtk_10Expression_7__init__(PyObject *__pyx_v_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_symbol_table)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -1813,7 +1813,7 @@ static int __pyx_pw_7cexprtk_8_cexprtk_10Expression_7__init__(PyObject *__pyx_v_
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -1830,7 +1830,7 @@ static int __pyx_pw_7cexprtk_8_cexprtk_10Expression_7__init__(PyObject *__pyx_v_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("cexprtk._cexprtk.Expression.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1865,32 +1865,32 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression_6__init__(struct __pyx_obj_7
   __Pyx_RefNannySetupContext("__init__", 0);
   __Pyx_INCREF(__pyx_v_symbol_table);
 
-  /* "cexprtk/_cexprtk.pyx":141
+  /* "cexprtk/_cexprtk.pyx":136
  *     :param unknown_symbol_resolver_callback:
  *     :type unknown_symbol_resolver_callback: callable (see above)"""
  *     if not symbol_table:             # <<<<<<<<<<<<<<
  *       symbol_table = Symbol_Table({})
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_symbol_table); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_symbol_table); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_2 = ((!__pyx_t_1) != 0);
   if (__pyx_t_2) {
 
-    /* "cexprtk/_cexprtk.pyx":142
+    /* "cexprtk/_cexprtk.pyx":137
  *     :type unknown_symbol_resolver_callback: callable (see above)"""
  *     if not symbol_table:
  *       symbol_table = Symbol_Table({})             # <<<<<<<<<<<<<<
  * 
  *     self._expression = expression
  */
-    __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyDict_New(); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_7cexprtk_13_symbol_table_Symbol_Table)), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_7cexprtk_13_symbol_table_Symbol_Table)), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF_SET(__pyx_v_symbol_table, __pyx_t_3);
@@ -1899,7 +1899,7 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression_6__init__(struct __pyx_obj_7
   }
   __pyx_L3:;
 
-  /* "cexprtk/_cexprtk.pyx":144
+  /* "cexprtk/_cexprtk.pyx":139
  *       symbol_table = Symbol_Table({})
  * 
  *     self._expression = expression             # <<<<<<<<<<<<<<
@@ -1912,14 +1912,14 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression_6__init__(struct __pyx_obj_7
   __Pyx_DECREF(__pyx_v_self->_expression);
   __pyx_v_self->_expression = __pyx_v_expression;
 
-  /* "cexprtk/_cexprtk.pyx":145
+  /* "cexprtk/_cexprtk.pyx":140
  * 
  *     self._expression = expression
  *     self._symbol_table = symbol_table             # <<<<<<<<<<<<<<
  *     self._unknown_symbol_resolver_callback = unknown_symbol_resolver_callback
  * 
  */
-  if (!(likely(((__pyx_v_symbol_table) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_symbol_table, __pyx_ptype_7cexprtk_13_symbol_table_Symbol_Table))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!(likely(((__pyx_v_symbol_table) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_symbol_table, __pyx_ptype_7cexprtk_13_symbol_table_Symbol_Table))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 140; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_3 = __pyx_v_symbol_table;
   __Pyx_INCREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_3);
@@ -1928,7 +1928,7 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression_6__init__(struct __pyx_obj_7
   __pyx_v_self->_symbol_table = ((struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "cexprtk/_cexprtk.pyx":146
+  /* "cexprtk/_cexprtk.pyx":141
  *     self._expression = expression
  *     self._symbol_table = symbol_table
  *     self._unknown_symbol_resolver_callback = unknown_symbol_resolver_callback             # <<<<<<<<<<<<<<
@@ -1941,7 +1941,7 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression_6__init__(struct __pyx_obj_7
   __Pyx_DECREF(__pyx_v_self->_unknown_symbol_resolver_callback);
   __pyx_v_self->_unknown_symbol_resolver_callback = __pyx_v_unknown_symbol_resolver_callback;
 
-  /* "cexprtk/_cexprtk.pyx":148
+  /* "cexprtk/_cexprtk.pyx":143
  *     self._unknown_symbol_resolver_callback = unknown_symbol_resolver_callback
  * 
  *     cdef vector[string] error_list  = vector[string]()             # <<<<<<<<<<<<<<
@@ -1952,22 +1952,22 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression_6__init__(struct __pyx_obj_7
     __pyx_t_5 = std::vector<std::string> ();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_v_error_list = __pyx_t_5;
 
-  /* "cexprtk/_cexprtk.pyx":151
+  /* "cexprtk/_cexprtk.pyx":146
  *     cdef list strerror_list
  * 
  *     self._init_expression(expression, error_list, unknown_symbol_resolver_callback)             # <<<<<<<<<<<<<<
  *     if not error_list.empty():
  *       strerror_list = [ s.decode("ascii") for s in error_list]
  */
-  __pyx_t_3 = ((struct __pyx_vtabstruct_7cexprtk_8_cexprtk_Expression *)__pyx_v_self->__pyx_vtab)->_init_expression(__pyx_v_self, __pyx_v_expression, __pyx_v_error_list, __pyx_v_unknown_symbol_resolver_callback); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = ((struct __pyx_vtabstruct_7cexprtk_8_cexprtk_Expression *)__pyx_v_self->__pyx_vtab)->_init_expression(__pyx_v_self, __pyx_v_expression, __pyx_v_error_list, __pyx_v_unknown_symbol_resolver_callback); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cexprtk/_cexprtk.pyx":152
+  /* "cexprtk/_cexprtk.pyx":147
  * 
  *     self._init_expression(expression, error_list, unknown_symbol_resolver_callback)
  *     if not error_list.empty():             # <<<<<<<<<<<<<<
@@ -1977,14 +1977,14 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression_6__init__(struct __pyx_obj_7
   __pyx_t_2 = ((!(__pyx_v_error_list.empty() != 0)) != 0);
   if (__pyx_t_2) {
 
-    /* "cexprtk/_cexprtk.pyx":153
+    /* "cexprtk/_cexprtk.pyx":148
  *     self._init_expression(expression, error_list, unknown_symbol_resolver_callback)
  *     if not error_list.empty():
  *       strerror_list = [ s.decode("ascii") for s in error_list]             # <<<<<<<<<<<<<<
  *       msg =  ", ".join(strerror_list)
  *       raise ParseException(msg)
  */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_6 = __pyx_v_error_list.begin();
     for (;;) {
@@ -1992,34 +1992,34 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression_6__init__(struct __pyx_obj_7
       __pyx_t_7 = *__pyx_t_6;
       ++__pyx_t_6;
       __pyx_v_s = __pyx_t_7;
-      __pyx_t_4 = __Pyx_decode_cpp_string(__pyx_v_s, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_decode_cpp_string(__pyx_v_s, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_4))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_4))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __pyx_v_strerror_list = ((PyObject*)__pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "cexprtk/_cexprtk.pyx":154
+    /* "cexprtk/_cexprtk.pyx":149
  *     if not error_list.empty():
  *       strerror_list = [ s.decode("ascii") for s in error_list]
  *       msg =  ", ".join(strerror_list)             # <<<<<<<<<<<<<<
  *       raise ParseException(msg)
  * 
  */
-    __pyx_t_3 = __Pyx_PyString_Join(__pyx_kp_s__2, __pyx_v_strerror_list); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyString_Join(__pyx_kp_s__2, __pyx_v_strerror_list); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_v_msg = ((PyObject*)__pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "cexprtk/_cexprtk.pyx":155
+    /* "cexprtk/_cexprtk.pyx":150
  *       strerror_list = [ s.decode("ascii") for s in error_list]
  *       msg =  ", ".join(strerror_list)
  *       raise ParseException(msg)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_ParseException); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_ParseException); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_8 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -2032,26 +2032,26 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression_6__init__(struct __pyx_obj_7
       }
     }
     if (!__pyx_t_8) {
-      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_msg); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_msg); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
     } else {
-      __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = PyTuple_New(1+1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_9);
       PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_8); __Pyx_GIVEREF(__pyx_t_8); __pyx_t_8 = NULL;
       __Pyx_INCREF(__pyx_v_msg);
       PyTuple_SET_ITEM(__pyx_t_9, 0+1, __pyx_v_msg);
       __Pyx_GIVEREF(__pyx_v_msg);
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_9, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "cexprtk/_cexprtk.pyx":129
+  /* "cexprtk/_cexprtk.pyx":124
  *     return (Expression, (self._expression, self.symbol_table, self._unknown_symbol_resolver_callback))
  * 
  *   def __init__(self, expression, symbol_table, unknown_symbol_resolver_callback = None):             # <<<<<<<<<<<<<<
@@ -2077,7 +2077,7 @@ static int __pyx_pf_7cexprtk_8_cexprtk_10Expression_6__init__(struct __pyx_obj_7
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":158
+/* "cexprtk/_cexprtk.pyx":153
  * 
  * 
  *   cdef _init_expression(self, object expression_string, vector[string]& error_list, object unknown_symbol_resolver_callback):             # <<<<<<<<<<<<<<
@@ -2113,7 +2113,7 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_init_expression", 0);
 
-  /* "cexprtk/_cexprtk.pyx":160
+  /* "cexprtk/_cexprtk.pyx":155
  *   cdef _init_expression(self, object expression_string, vector[string]& error_list, object unknown_symbol_resolver_callback):
  *     cdef exprtk.parser_type p
  *     cdef cexprtk_unknown_symbol_resolver.PythonCallableUnknownSymbolResolver * pcurPtr = NULL             # <<<<<<<<<<<<<<
@@ -2122,7 +2122,7 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
  */
   __pyx_v_pcurPtr = NULL;
 
-  /* "cexprtk/_cexprtk.pyx":161
+  /* "cexprtk/_cexprtk.pyx":156
  *     cdef exprtk.parser_type p
  *     cdef cexprtk_unknown_symbol_resolver.PythonCallableUnknownSymbolResolver * pcurPtr = NULL
  *     cdef exprtk.parser[double].unknown_symbol_resolver * usrPtr = NULL             # <<<<<<<<<<<<<<
@@ -2131,7 +2131,7 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
  */
   __pyx_v_usrPtr = NULL;
 
-  /* "cexprtk/_cexprtk.pyx":163
+  /* "cexprtk/_cexprtk.pyx":158
  *     cdef exprtk.parser[double].unknown_symbol_resolver * usrPtr = NULL
  * 
  *     self._cexpressionptr.register_symbol_table(self._symbol_table._csymtableptr[0])             # <<<<<<<<<<<<<<
@@ -2140,20 +2140,20 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
  */
   __pyx_v_self->_cexpressionptr->register_symbol_table((__pyx_v_self->_symbol_table->_csymtableptr[0]));
 
-  /* "cexprtk/_cexprtk.pyx":165
+  /* "cexprtk/_cexprtk.pyx":160
  *     self._cexpressionptr.register_symbol_table(self._symbol_table._csymtableptr[0])
  * 
  *     if not unknown_symbol_resolver_callback == None:             # <<<<<<<<<<<<<<
  *       pcurPtr = new cexprtk_unknown_symbol_resolver.PythonCallableUnknownSymbolResolver(
  *         <void *> unknown_symbol_resolver_callback,
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_unknown_symbol_resolver_callback, Py_None, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_unknown_symbol_resolver_callback, Py_None, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = ((!__pyx_t_2) != 0);
   if (__pyx_t_3) {
 
-    /* "cexprtk/_cexprtk.pyx":166
+    /* "cexprtk/_cexprtk.pyx":161
  * 
  *     if not unknown_symbol_resolver_callback == None:
  *       pcurPtr = new cexprtk_unknown_symbol_resolver.PythonCallableUnknownSymbolResolver(             # <<<<<<<<<<<<<<
@@ -2162,17 +2162,17 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
  */
     __pyx_v_pcurPtr = new PythonCallableUnknownSymbolResolver(((void *)__pyx_v_unknown_symbol_resolver_callback), __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable);
 
-    /* "cexprtk/_cexprtk.pyx":169
+    /* "cexprtk/_cexprtk.pyx":164
  *         <void *> unknown_symbol_resolver_callback,
  *         unknownResolverCythonCallable)
  *       usrPtr = cexprtk_unknown_symbol_resolver.dynamic_cast_PythonCallableUnknownSymbolResolver(pcurPtr)             # <<<<<<<<<<<<<<
  *       p.enable_unknown_symbol_resolver(usrPtr)
  * 
  */
-    __pyx_t_4 = dynamic_cast<exprtk::parser<double>::unknown_symbol_resolver*>(__pyx_v_pcurPtr); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = dynamic_cast<exprtk::parser<double>::unknown_symbol_resolver*>(__pyx_v_pcurPtr); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_usrPtr = __pyx_t_4;
 
-    /* "cexprtk/_cexprtk.pyx":170
+    /* "cexprtk/_cexprtk.pyx":165
  *         unknownResolverCythonCallable)
  *       usrPtr = cexprtk_unknown_symbol_resolver.dynamic_cast_PythonCallableUnknownSymbolResolver(pcurPtr)
  *       p.enable_unknown_symbol_resolver(usrPtr)             # <<<<<<<<<<<<<<
@@ -2184,7 +2184,7 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
   }
   __pyx_L3:;
 
-  /* "cexprtk/_cexprtk.pyx":172
+  /* "cexprtk/_cexprtk.pyx":167
  *       p.enable_unknown_symbol_resolver(usrPtr)
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -2193,22 +2193,22 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
  */
   /*try:*/ {
 
-    /* "cexprtk/_cexprtk.pyx":173
+    /* "cexprtk/_cexprtk.pyx":168
  * 
  *     try:
  *       cexprtk_util.parser_compile_and_process_errors(expression_string.encode("ascii"),             # <<<<<<<<<<<<<<
  *                                         p,
  *                                         self._cexpressionptr[0],
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_expression_string, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L5_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_expression_string, __pyx_n_s_encode); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L5_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L5_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L5_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_5); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L5_error;}
+    __pyx_t_6 = __pyx_convert_string_from_py_std__in_string(__pyx_t_5); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L5_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "cexprtk/_cexprtk.pyx":176
+    /* "cexprtk/_cexprtk.pyx":171
  *                                         p,
  *                                         self._cexpressionptr[0],
  *                                         error_list)             # <<<<<<<<<<<<<<
@@ -2217,7 +2217,7 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
  */
     parser_compile_and_process_errors(__pyx_t_6, __pyx_v_p, (__pyx_v_self->_cexpressionptr[0]), __pyx_v_error_list);
 
-    /* "cexprtk/_cexprtk.pyx":179
+    /* "cexprtk/_cexprtk.pyx":174
  * 
  *       # Check for exceptions raised by callback. Re-raise if found.
  *       if pcurPtr != NULL and pcurPtr.wasExceptionRaised():             # <<<<<<<<<<<<<<
@@ -2235,7 +2235,7 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
     __pyx_L8_bool_binop_done:;
     if (__pyx_t_3) {
 
-      /* "cexprtk/_cexprtk.pyx":180
+      /* "cexprtk/_cexprtk.pyx":175
  *       # Check for exceptions raised by callback. Re-raise if found.
  *       if pcurPtr != NULL and pcurPtr.wasExceptionRaised():
  *           exception = <object> pcurPtr.exception()             # <<<<<<<<<<<<<<
@@ -2248,7 +2248,7 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
       __pyx_v_exception = __pyx_t_5;
       __pyx_t_5 = 0;
 
-      /* "cexprtk/_cexprtk.pyx":181
+      /* "cexprtk/_cexprtk.pyx":176
  *       if pcurPtr != NULL and pcurPtr.wasExceptionRaised():
  *           exception = <object> pcurPtr.exception()
  *           raise exception             # <<<<<<<<<<<<<<
@@ -2256,11 +2256,11 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
  *     finally:
  */
       __Pyx_Raise(__pyx_v_exception, 0, 0, 0);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 181; __pyx_clineno = __LINE__; goto __pyx_L5_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L5_error;}
     }
   }
 
-  /* "cexprtk/_cexprtk.pyx":184
+  /* "cexprtk/_cexprtk.pyx":179
  * 
  *     finally:
  *       if pcurPtr != NULL:             # <<<<<<<<<<<<<<
@@ -2272,7 +2272,7 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
       __pyx_t_3 = ((__pyx_v_pcurPtr != NULL) != 0);
       if (__pyx_t_3) {
 
-        /* "cexprtk/_cexprtk.pyx":185
+        /* "cexprtk/_cexprtk.pyx":180
  *     finally:
  *       if pcurPtr != NULL:
  *         del pcurPtr             # <<<<<<<<<<<<<<
@@ -2301,7 +2301,7 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
       __pyx_t_8 = __pyx_lineno; __pyx_t_9 = __pyx_clineno; __pyx_t_10 = __pyx_filename;
       {
 
-        /* "cexprtk/_cexprtk.pyx":184
+        /* "cexprtk/_cexprtk.pyx":179
  * 
  *     finally:
  *       if pcurPtr != NULL:             # <<<<<<<<<<<<<<
@@ -2311,7 +2311,7 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
         __pyx_t_3 = ((__pyx_v_pcurPtr != NULL) != 0);
         if (__pyx_t_3) {
 
-          /* "cexprtk/_cexprtk.pyx":185
+          /* "cexprtk/_cexprtk.pyx":180
  *     finally:
  *       if pcurPtr != NULL:
  *         del pcurPtr             # <<<<<<<<<<<<<<
@@ -2340,7 +2340,7 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
     __pyx_L6:;
   }
 
-  /* "cexprtk/_cexprtk.pyx":158
+  /* "cexprtk/_cexprtk.pyx":153
  * 
  * 
  *   cdef _init_expression(self, object expression_string, vector[string]& error_list, object unknown_symbol_resolver_callback):             # <<<<<<<<<<<<<<
@@ -2363,7 +2363,7 @@ static PyObject *__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression(struct
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":187
+/* "cexprtk/_cexprtk.pyx":182
  *         del pcurPtr
  * 
  *   def value(self):             # <<<<<<<<<<<<<<
@@ -2400,7 +2400,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_8value(struct __pyx_ob
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("value", 0);
 
-  /* "cexprtk/_cexprtk.pyx":192
+  /* "cexprtk/_cexprtk.pyx":187
  *     :return: Value resulting from evaluation of expression.
  *     :rtype: float"""
  *     cdef _Symbol_Table_Functions funcs = self._symbol_table._functions             # <<<<<<<<<<<<<<
@@ -2412,18 +2412,18 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_8value(struct __pyx_ob
   __pyx_v_funcs = ((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_cexprtk.pyx":193
+  /* "cexprtk/_cexprtk.pyx":188
  *     :rtype: float"""
  *     cdef _Symbol_Table_Functions funcs = self._symbol_table._functions
  *     funcs._resetFunctionExceptions()             # <<<<<<<<<<<<<<
  *     cdef double v = self._cexpressionptr.value()
  *     cdef object exception = funcs._checkForException()
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_funcs->__pyx_vtab)->_resetFunctionExceptions(__pyx_v_funcs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_funcs->__pyx_vtab)->_resetFunctionExceptions(__pyx_v_funcs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cexprtk/_cexprtk.pyx":194
+  /* "cexprtk/_cexprtk.pyx":189
  *     cdef _Symbol_Table_Functions funcs = self._symbol_table._functions
  *     funcs._resetFunctionExceptions()
  *     cdef double v = self._cexpressionptr.value()             # <<<<<<<<<<<<<<
@@ -2432,49 +2432,49 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_8value(struct __pyx_ob
  */
   __pyx_v_v = __pyx_v_self->_cexpressionptr->value();
 
-  /* "cexprtk/_cexprtk.pyx":195
+  /* "cexprtk/_cexprtk.pyx":190
  *     funcs._resetFunctionExceptions()
  *     cdef double v = self._cexpressionptr.value()
  *     cdef object exception = funcs._checkForException()             # <<<<<<<<<<<<<<
  *     if exception:
  *       raise exception[0], exception[1], exception[2]
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_funcs->__pyx_vtab)->_checkForException(__pyx_v_funcs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_funcs->__pyx_vtab)->_checkForException(__pyx_v_funcs); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_exception = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_cexprtk.pyx":196
+  /* "cexprtk/_cexprtk.pyx":191
  *     cdef double v = self._cexpressionptr.value()
  *     cdef object exception = funcs._checkForException()
  *     if exception:             # <<<<<<<<<<<<<<
  *       raise exception[0], exception[1], exception[2]
  *     return v
  */
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_exception); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 196; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_exception); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_2) {
 
-    /* "cexprtk/_cexprtk.pyx":197
+    /* "cexprtk/_cexprtk.pyx":192
  *     cdef object exception = funcs._checkForException()
  *     if exception:
  *       raise exception[0], exception[1], exception[2]             # <<<<<<<<<<<<<<
  *     return v
  * 
  */
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_exception, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_exception, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_exception, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_exception, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_exception, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_exception, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_1, __pyx_t_3, __pyx_t_4, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "cexprtk/_cexprtk.pyx":198
+  /* "cexprtk/_cexprtk.pyx":193
  *     if exception:
  *       raise exception[0], exception[1], exception[2]
  *     return v             # <<<<<<<<<<<<<<
@@ -2482,13 +2482,13 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_8value(struct __pyx_ob
  *   def __call__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_v); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_v); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_cexprtk.pyx":187
+  /* "cexprtk/_cexprtk.pyx":182
  *         del pcurPtr
  * 
  *   def value(self):             # <<<<<<<<<<<<<<
@@ -2511,7 +2511,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_8value(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":200
+/* "cexprtk/_cexprtk.pyx":195
  *     return v
  * 
  *   def __call__(self):             # <<<<<<<<<<<<<<
@@ -2550,7 +2550,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_10__call__(struct __py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__call__", 0);
 
-  /* "cexprtk/_cexprtk.pyx":202
+  /* "cexprtk/_cexprtk.pyx":197
  *   def __call__(self):
  *     """Equivalent to calling value() method."""
  *     return self.value()             # <<<<<<<<<<<<<<
@@ -2558,7 +2558,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_10__call__(struct __py
  *   property expression:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_value); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_value); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -2571,10 +2571,10 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_10__call__(struct __py
     }
   }
   if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -2582,7 +2582,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_10__call__(struct __py
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_cexprtk.pyx":200
+  /* "cexprtk/_cexprtk.pyx":195
  *     return v
  * 
  *   def __call__(self):             # <<<<<<<<<<<<<<
@@ -2603,7 +2603,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_10__call__(struct __py
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":205
+/* "cexprtk/_cexprtk.pyx":200
  * 
  *   property expression:
  *     def __get__(self):             # <<<<<<<<<<<<<<
@@ -2629,7 +2629,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_10expression___get__(s
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cexprtk/_cexprtk.pyx":206
+  /* "cexprtk/_cexprtk.pyx":201
  *   property expression:
  *     def __get__(self):
  *       return self._expression             # <<<<<<<<<<<<<<
@@ -2641,7 +2641,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_10expression___get__(s
   __pyx_r = __pyx_v_self->_expression;
   goto __pyx_L0;
 
-  /* "cexprtk/_cexprtk.pyx":205
+  /* "cexprtk/_cexprtk.pyx":200
  * 
  *   property expression:
  *     def __get__(self):             # <<<<<<<<<<<<<<
@@ -2656,7 +2656,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_10expression___get__(s
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":209
+/* "cexprtk/_cexprtk.pyx":204
  * 
  *   property symbol_table:
  *     def __get__(self):             # <<<<<<<<<<<<<<
@@ -2682,7 +2682,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_12symbol_table___get__
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cexprtk/_cexprtk.pyx":210
+  /* "cexprtk/_cexprtk.pyx":205
  *   property symbol_table:
  *     def __get__(self):
  *       return self._symbol_table             # <<<<<<<<<<<<<<
@@ -2694,7 +2694,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_12symbol_table___get__
   __pyx_r = ((PyObject *)__pyx_v_self->_symbol_table);
   goto __pyx_L0;
 
-  /* "cexprtk/_cexprtk.pyx":209
+  /* "cexprtk/_cexprtk.pyx":204
  * 
  *   property symbol_table:
  *     def __get__(self):             # <<<<<<<<<<<<<<
@@ -2709,7 +2709,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_10Expression_12symbol_table___get__
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":218
+/* "cexprtk/_cexprtk.pyx":213
  *     readonly int CONSTANT
  * 
  *   def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -2738,7 +2738,7 @@ static int __pyx_pf_7cexprtk_8_cexprtk_14_USRSymbolType___cinit__(struct __pyx_o
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "cexprtk/_cexprtk.pyx":219
+  /* "cexprtk/_cexprtk.pyx":214
  * 
  *   def __cinit__(self):
  *     self.VARIABLE = exprtk.e_variable_type             # <<<<<<<<<<<<<<
@@ -2747,7 +2747,7 @@ static int __pyx_pf_7cexprtk_8_cexprtk_14_USRSymbolType___cinit__(struct __pyx_o
  */
   __pyx_v_self->VARIABLE = exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_variable_type;
 
-  /* "cexprtk/_cexprtk.pyx":220
+  /* "cexprtk/_cexprtk.pyx":215
  *   def __cinit__(self):
  *     self.VARIABLE = exprtk.e_variable_type
  *     self.CONSTANT = exprtk.e_constant_type             # <<<<<<<<<<<<<<
@@ -2756,7 +2756,7 @@ static int __pyx_pf_7cexprtk_8_cexprtk_14_USRSymbolType___cinit__(struct __pyx_o
  */
   __pyx_v_self->CONSTANT = exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_constant_type;
 
-  /* "cexprtk/_cexprtk.pyx":218
+  /* "cexprtk/_cexprtk.pyx":213
  *     readonly int CONSTANT
  * 
  *   def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -2770,7 +2770,7 @@ static int __pyx_pf_7cexprtk_8_cexprtk_14_USRSymbolType___cinit__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":215
+/* "cexprtk/_cexprtk.pyx":210
  * cdef class _USRSymbolType:
  *   cdef:
  *     readonly int VARIABLE             # <<<<<<<<<<<<<<
@@ -2800,7 +2800,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_14_USRSymbolType_8VARIABLE___get__(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->VARIABLE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->VARIABLE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 210; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2817,7 +2817,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_14_USRSymbolType_8VARIABLE___get__(
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":216
+/* "cexprtk/_cexprtk.pyx":211
  *   cdef:
  *     readonly int VARIABLE
  *     readonly int CONSTANT             # <<<<<<<<<<<<<<
@@ -2847,7 +2847,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_14_USRSymbolType_8CONSTANT___get__(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->CONSTANT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 216; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->CONSTANT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 211; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2864,7 +2864,7 @@ static PyObject *__pyx_pf_7cexprtk_8_cexprtk_14_USRSymbolType_8CONSTANT___get__(
   return __pyx_r;
 }
 
-/* "cexprtk/_cexprtk.pyx":226
+/* "cexprtk/_cexprtk.pyx":221
  * # Function with PythonCallableFunctionPtr signature that is used to allow
  * # a python callback to be invoked from C++ within PythonCallableUnknownSymbolResolver.
  * cdef bool unknownResolverCythonCallable(             # <<<<<<<<<<<<<<
@@ -2903,19 +2903,19 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("unknownResolverCythonCallable", 0);
 
-  /* "cexprtk/_cexprtk.pyx":233
+  /* "cexprtk/_cexprtk.pyx":228
  *   cdef bytes c_errorString
  *   cdef object py_sym
  *   cdef bytes c_sym = sym             # <<<<<<<<<<<<<<
  *   try:
  *     py_sym = c_sym.decode("ascii")
  */
-  __pyx_t_1 = __pyx_convert_PyBytes_string_to_py_std__in_string(__pyx_v_sym); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_convert_PyBytes_string_to_py_std__in_string(__pyx_v_sym); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_c_sym = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_cexprtk.pyx":234
+  /* "cexprtk/_cexprtk.pyx":229
  *   cdef object py_sym
  *   cdef bytes c_sym = sym
  *   try:             # <<<<<<<<<<<<<<
@@ -2929,19 +2929,19 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
     __Pyx_XGOTREF(__pyx_t_4);
     /*try:*/ {
 
-      /* "cexprtk/_cexprtk.pyx":235
+      /* "cexprtk/_cexprtk.pyx":230
  *   cdef bytes c_sym = sym
  *   try:
  *     py_sym = c_sym.decode("ascii")             # <<<<<<<<<<<<<<
  *     handledFlag, usrSymbolType, value, errorString = (<object>pyobj)(py_sym)
  *     retvals.handledFlag = handledFlag
  */
-      __pyx_t_1 = __Pyx_decode_bytes(__pyx_v_c_sym, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_1 = __Pyx_decode_bytes(__pyx_v_c_sym, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_v_py_sym = __pyx_t_1;
       __pyx_t_1 = 0;
 
-      /* "cexprtk/_cexprtk.pyx":236
+      /* "cexprtk/_cexprtk.pyx":231
  *   try:
  *     py_sym = c_sym.decode("ascii")
  *     handledFlag, usrSymbolType, value, errorString = (<object>pyobj)(py_sym)             # <<<<<<<<<<<<<<
@@ -2960,16 +2960,16 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
         }
       }
       if (!__pyx_t_6) {
-        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_py_sym); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_py_sym); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         __Pyx_GOTREF(__pyx_t_1);
       } else {
-        __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         __Pyx_GOTREF(__pyx_t_7);
         PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6); __Pyx_GIVEREF(__pyx_t_6); __pyx_t_6 = NULL;
         __Pyx_INCREF(__pyx_v_py_sym);
         PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_v_py_sym);
         __Pyx_GIVEREF(__pyx_v_py_sym);
-        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_7, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
@@ -2984,7 +2984,7 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
         if (unlikely(size != 4)) {
           if (size > 4) __Pyx_RaiseTooManyValuesError(4);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         #if CYTHON_COMPILING_IN_CPYTHON
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -3007,7 +3007,7 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
           Py_ssize_t i;
           PyObject** temps[4] = {&__pyx_t_5,&__pyx_t_7,&__pyx_t_6,&__pyx_t_8};
           for (i=0; i < 4; i++) {
-            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
             __Pyx_GOTREF(item);
             *(temps[i]) = item;
           }
@@ -3017,7 +3017,7 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
       } else {
         Py_ssize_t index = -1;
         PyObject** temps[4] = {&__pyx_t_5,&__pyx_t_7,&__pyx_t_6,&__pyx_t_8};
-        __pyx_t_9 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        __pyx_t_9 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_t_10 = Py_TYPE(__pyx_t_9)->tp_iternext;
@@ -3026,7 +3026,7 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
           __Pyx_GOTREF(item);
           *(temps[index]) = item;
         }
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         __pyx_t_10 = NULL;
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         goto __pyx_L12_unpacking_done;
@@ -3034,7 +3034,7 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         __pyx_t_10 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         __pyx_L12_unpacking_done:;
       }
       __pyx_v_handledFlag = __pyx_t_5;
@@ -3046,32 +3046,32 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
       __pyx_v_errorString = __pyx_t_8;
       __pyx_t_8 = 0;
 
-      /* "cexprtk/_cexprtk.pyx":237
+      /* "cexprtk/_cexprtk.pyx":232
  *     py_sym = c_sym.decode("ascii")
  *     handledFlag, usrSymbolType, value, errorString = (<object>pyobj)(py_sym)
  *     retvals.handledFlag = handledFlag             # <<<<<<<<<<<<<<
  * 
  *     if usrSymbolType == exprtk.e_variable_type:
  */
-      __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_v_handledFlag); if (unlikely((__pyx_t_11 == (bool)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_v_handledFlag); if (unlikely((__pyx_t_11 == (bool)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __pyx_v_retvals.handledFlag = __pyx_t_11;
 
-      /* "cexprtk/_cexprtk.pyx":239
+      /* "cexprtk/_cexprtk.pyx":234
  *     retvals.handledFlag = handledFlag
  * 
  *     if usrSymbolType == exprtk.e_variable_type:             # <<<<<<<<<<<<<<
  *       retvals.usrSymbolType = exprtk.e_variable_type
  *     elif usrSymbolType == exprtk.e_constant_type:
  */
-      __pyx_t_1 = PyInt_FromLong(exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_variable_type); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_1 = PyInt_FromLong(exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_variable_type); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 234; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_8 = PyObject_RichCompare(__pyx_v_usrSymbolType, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_8 = PyObject_RichCompare(__pyx_v_usrSymbolType, __pyx_t_1, Py_EQ); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 234; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely(__pyx_t_12 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely(__pyx_t_12 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 234; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       if (__pyx_t_12) {
 
-        /* "cexprtk/_cexprtk.pyx":240
+        /* "cexprtk/_cexprtk.pyx":235
  * 
  *     if usrSymbolType == exprtk.e_variable_type:
  *       retvals.usrSymbolType = exprtk.e_variable_type             # <<<<<<<<<<<<<<
@@ -3082,22 +3082,22 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
         goto __pyx_L13;
       }
 
-      /* "cexprtk/_cexprtk.pyx":241
+      /* "cexprtk/_cexprtk.pyx":236
  *     if usrSymbolType == exprtk.e_variable_type:
  *       retvals.usrSymbolType = exprtk.e_variable_type
  *     elif usrSymbolType == exprtk.e_constant_type:             # <<<<<<<<<<<<<<
  *       retvals.usrSymbolType = exprtk.e_constant_type
  *     else:
  */
-      __pyx_t_8 = PyInt_FromLong(exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_constant_type); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_8 = PyInt_FromLong(exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_constant_type); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_1 = PyObject_RichCompare(__pyx_v_usrSymbolType, __pyx_t_8, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_1 = PyObject_RichCompare(__pyx_v_usrSymbolType, __pyx_t_8, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_12 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_12 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (__pyx_t_12) {
 
-        /* "cexprtk/_cexprtk.pyx":242
+        /* "cexprtk/_cexprtk.pyx":237
  *       retvals.usrSymbolType = exprtk.e_variable_type
  *     elif usrSymbolType == exprtk.e_constant_type:
  *       retvals.usrSymbolType = exprtk.e_constant_type             # <<<<<<<<<<<<<<
@@ -3109,61 +3109,61 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
       }
       /*else*/ {
 
-        /* "cexprtk/_cexprtk.pyx":244
+        /* "cexprtk/_cexprtk.pyx":239
  *       retvals.usrSymbolType = exprtk.e_constant_type
  *     else:
  *       raise UnknownSymbolResolverException("Unknown symbol type returned by unknown_symbol_resolver_callback.")             # <<<<<<<<<<<<<<
  * 
  *     retvals.value = value
  */
-        __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_UnknownSymbolResolverException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_UnknownSymbolResolverException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_Raise(__pyx_t_8, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
       __pyx_L13:;
 
-      /* "cexprtk/_cexprtk.pyx":246
+      /* "cexprtk/_cexprtk.pyx":241
  *       raise UnknownSymbolResolverException("Unknown symbol type returned by unknown_symbol_resolver_callback.")
  * 
  *     retvals.value = value             # <<<<<<<<<<<<<<
  *     c_errorString = errorString.encode("ascii")
  *     retvals.errorString = c_errorString
  */
-      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_13 = __pyx_PyFloat_AsDouble(__pyx_v_value); if (unlikely((__pyx_t_13 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __pyx_v_retvals.value = __pyx_t_13;
 
-      /* "cexprtk/_cexprtk.pyx":247
+      /* "cexprtk/_cexprtk.pyx":242
  * 
  *     retvals.value = value
  *     c_errorString = errorString.encode("ascii")             # <<<<<<<<<<<<<<
  *     retvals.errorString = c_errorString
  *     return True
  */
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_errorString, __pyx_n_s_encode); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_errorString, __pyx_n_s_encode); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __pyx_v_c_errorString = ((PyObject*)__pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "cexprtk/_cexprtk.pyx":248
+      /* "cexprtk/_cexprtk.pyx":243
  *     retvals.value = value
  *     c_errorString = errorString.encode("ascii")
  *     retvals.errorString = c_errorString             # <<<<<<<<<<<<<<
  *     return True
  *   except Exception as e:
  */
-      __pyx_t_14 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_errorString); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 248; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_t_14 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_errorString); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       __pyx_v_retvals.errorString = __pyx_t_14;
 
-      /* "cexprtk/_cexprtk.pyx":249
+      /* "cexprtk/_cexprtk.pyx":244
  *     c_errorString = errorString.encode("ascii")
  *     retvals.errorString = c_errorString
  *     return True             # <<<<<<<<<<<<<<
@@ -3181,7 +3181,7 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "cexprtk/_cexprtk.pyx":250
+    /* "cexprtk/_cexprtk.pyx":245
  *     retvals.errorString = c_errorString
  *     return True
  *   except Exception as e:             # <<<<<<<<<<<<<<
@@ -3191,14 +3191,14 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
     __pyx_t_15 = PyErr_ExceptionMatches(__pyx_builtin_Exception);
     if (__pyx_t_15) {
       __Pyx_AddTraceback("cexprtk._cexprtk.unknownResolverCythonCallable", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_8, &__pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 250; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_8, &__pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_INCREF(__pyx_t_8);
       __pyx_v_e = __pyx_t_8;
 
-      /* "cexprtk/_cexprtk.pyx":252
+      /* "cexprtk/_cexprtk.pyx":247
  *   except Exception as e:
  *     #Increment e's ref count and then store it in return tuple as void*
  *     Py_INCREF(e)             # <<<<<<<<<<<<<<
@@ -3207,7 +3207,7 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
  */
       Py_INCREF(__pyx_v_e);
 
-      /* "cexprtk/_cexprtk.pyx":253
+      /* "cexprtk/_cexprtk.pyx":248
  *     #Increment e's ref count and then store it in return tuple as void*
  *     Py_INCREF(e)
  *     retvals.pyexception = <void * >e             # <<<<<<<<<<<<<<
@@ -3216,41 +3216,41 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
  */
       __pyx_v_retvals.pyexception = ((void *)__pyx_v_e);
 
-      /* "cexprtk/_cexprtk.pyx":254
+      /* "cexprtk/_cexprtk.pyx":249
  *     Py_INCREF(e)
  *     retvals.pyexception = <void * >e
  *     c_errorString  = str(e).encode("ascii")             # <<<<<<<<<<<<<<
  *     retvals.errorString = c_errorString
  *     return False
  */
-      __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 254; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_INCREF(__pyx_v_e);
       PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_v_e);
       __Pyx_GIVEREF(__pyx_v_e);
-      __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_7, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 254; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_7, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_encode); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 254; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_encode); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 254; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (!(likely(PyBytes_CheckExact(__pyx_t_5))||((__pyx_t_5) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_5)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 254; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      if (!(likely(PyBytes_CheckExact(__pyx_t_5))||((__pyx_t_5) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_5)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
       __Pyx_XDECREF_SET(__pyx_v_c_errorString, ((PyObject*)__pyx_t_5));
       __pyx_t_5 = 0;
 
-      /* "cexprtk/_cexprtk.pyx":255
+      /* "cexprtk/_cexprtk.pyx":250
  *     retvals.pyexception = <void * >e
  *     c_errorString  = str(e).encode("ascii")
  *     retvals.errorString = c_errorString             # <<<<<<<<<<<<<<
  *     return False
  */
-      __pyx_t_14 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_errorString); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      __pyx_t_14 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_errorString); if (unlikely(PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 250; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
       __pyx_v_retvals.errorString = __pyx_t_14;
 
-      /* "cexprtk/_cexprtk.pyx":256
+      /* "cexprtk/_cexprtk.pyx":251
  *     c_errorString  = str(e).encode("ascii")
  *     retvals.errorString = c_errorString
  *     return False             # <<<<<<<<<<<<<<
@@ -3282,7 +3282,7 @@ static bool __pyx_f_7cexprtk_8_cexprtk_unknownResolverCythonCallable(std::string
     goto __pyx_L0;
   }
 
-  /* "cexprtk/_cexprtk.pyx":226
+  /* "cexprtk/_cexprtk.pyx":221
  * # Function with PythonCallableFunctionPtr signature that is used to allow
  * # a python callback to be invoked from C++ within PythonCallableUnknownSymbolResolver.
  * cdef bool unknownResolverCythonCallable(             # <<<<<<<<<<<<<<
@@ -3921,7 +3921,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_Exception = __Pyx_GetBuiltinName(__pyx_n_s_Exception); if (!__pyx_builtin_Exception) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 250; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_Exception = __Pyx_GetBuiltinName(__pyx_n_s_Exception); if (!__pyx_builtin_Exception) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -3931,84 +3931,84 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "cexprtk/_cexprtk.pyx":36
+  /* "cexprtk/_cexprtk.pyx":31
  *   cdef vector[string] errorlist
  *   cdef list strerrorlist
  *   cdef bytes c_expression = expression.encode("ascii")             # <<<<<<<<<<<<<<
  *   cexprtk_util.check(c_expression, errorlist)
  * 
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_n_s_ascii); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 36; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_n_s_ascii); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "cexprtk/_cexprtk.pyx":173
+  /* "cexprtk/_cexprtk.pyx":168
  * 
  *     try:
  *       cexprtk_util.parser_compile_and_process_errors(expression_string.encode("ascii"),             # <<<<<<<<<<<<<<
  *                                         p,
  *                                         self._cexpressionptr[0],
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_n_s_ascii); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_n_s_ascii); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "cexprtk/_cexprtk.pyx":244
+  /* "cexprtk/_cexprtk.pyx":239
  *       retvals.usrSymbolType = exprtk.e_constant_type
  *     else:
  *       raise UnknownSymbolResolverException("Unknown symbol type returned by unknown_symbol_resolver_callback.")             # <<<<<<<<<<<<<<
  * 
  *     retvals.value = value
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_Unknown_symbol_type_returned_by); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_Unknown_symbol_type_returned_by); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
-  /* "cexprtk/_cexprtk.pyx":247
+  /* "cexprtk/_cexprtk.pyx":242
  * 
  *     retvals.value = value
  *     c_errorString = errorString.encode("ascii")             # <<<<<<<<<<<<<<
  *     retvals.errorString = c_errorString
  *     return True
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_n_s_ascii); if (unlikely(!__pyx_tuple__5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_n_s_ascii); if (unlikely(!__pyx_tuple__5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "cexprtk/_cexprtk.pyx":254
+  /* "cexprtk/_cexprtk.pyx":249
  *     Py_INCREF(e)
  *     retvals.pyexception = <void * >e
  *     c_errorString  = str(e).encode("ascii")             # <<<<<<<<<<<<<<
  *     retvals.errorString = c_errorString
  *     return False
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_n_s_ascii); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 254; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_n_s_ascii); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "cexprtk/_cexprtk.pyx":26
+  /* "cexprtk/_cexprtk.pyx":21
  * 
  * 
  * def check_expression(expression):             # <<<<<<<<<<<<<<
  *   """Check that expression can be parsed. If successful do nothing, if unsuccessful raise ParseException
  * 
  */
-  __pyx_tuple__7 = PyTuple_Pack(6, __pyx_n_s_expression, __pyx_n_s_errorlist, __pyx_n_s_strerrorlist, __pyx_n_s_c_expression, __pyx_n_s_errorstring, __pyx_n_s_s); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 26; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__7 = PyTuple_Pack(6, __pyx_n_s_expression, __pyx_n_s_errorlist, __pyx_n_s_strerrorlist, __pyx_n_s_c_expression, __pyx_n_s_errorstring, __pyx_n_s_s); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(1, 0, 6, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Users_mr498_Documents_Developme, __pyx_n_s_check_expression, 26, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 26; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(1, 0, 6, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Users_mr498_Documents_Developme, __pyx_n_s_check_expression, 21, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "cexprtk/_cexprtk.pyx":47
+  /* "cexprtk/_cexprtk.pyx":42
  * 
  * 
  * def evaluate_expression(expression_string, variables):             # <<<<<<<<<<<<<<
  *   """Evaluate a mathematical formula using the exprtk library and return result.
  * 
  */
-  __pyx_tuple__9 = PyTuple_Pack(4, __pyx_n_s_expression_string, __pyx_n_s_variables, __pyx_n_s_symbol_table, __pyx_n_s_expression); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__9 = PyTuple_Pack(4, __pyx_n_s_expression_string, __pyx_n_s_variables, __pyx_n_s_symbol_table, __pyx_n_s_expression); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
-  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Users_mr498_Documents_Developme, __pyx_n_s_evaluate_expression, 47, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Users_mr498_Documents_Developme, __pyx_n_s_evaluate_expression, 42, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -4106,11 +4106,11 @@ PyMODINIT_FUNC PyInit__cexprtk(void)
   /*--- Type init code ---*/
   __pyx_vtabptr_7cexprtk_8_cexprtk_Expression = &__pyx_vtable_7cexprtk_8_cexprtk_Expression;
   __pyx_vtable_7cexprtk_8_cexprtk_Expression._init_expression = (PyObject *(*)(struct __pyx_obj_7cexprtk_8_cexprtk_Expression *, PyObject *, std::vector<std::string>  &, PyObject *))__pyx_f_7cexprtk_8_cexprtk_10Expression__init_expression;
-  if (PyType_Ready(&__pyx_type_7cexprtk_8_cexprtk_Expression) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7cexprtk_8_cexprtk_Expression) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7cexprtk_8_cexprtk_Expression.tp_print = 0;
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_7cexprtk_8_cexprtk_Expression, "__init__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_7cexprtk_8_cexprtk_Expression, "__init__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_7cexprtk_8_cexprtk_10Expression_6__init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_7cexprtk_8_cexprtk_10Expression_6__init__.doc = __pyx_doc_7cexprtk_8_cexprtk_10Expression_6__init__;
@@ -4120,7 +4120,7 @@ PyMODINIT_FUNC PyInit__cexprtk(void)
   #endif
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_7cexprtk_8_cexprtk_Expression, "__call__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_7cexprtk_8_cexprtk_Expression, "__call__"); if (unlikely(!wrapper)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_7cexprtk_8_cexprtk_10Expression_10__call__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_7cexprtk_8_cexprtk_10Expression_10__call__.doc = __pyx_doc_7cexprtk_8_cexprtk_10Expression_10__call__;
@@ -4128,10 +4128,10 @@ PyMODINIT_FUNC PyInit__cexprtk(void)
     }
   }
   #endif
-  if (__Pyx_SetVtable(__pyx_type_7cexprtk_8_cexprtk_Expression.tp_dict, __pyx_vtabptr_7cexprtk_8_cexprtk_Expression) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "Expression", (PyObject *)&__pyx_type_7cexprtk_8_cexprtk_Expression) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetVtable(__pyx_type_7cexprtk_8_cexprtk_Expression.tp_dict, __pyx_vtabptr_7cexprtk_8_cexprtk_Expression) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "Expression", (PyObject *)&__pyx_type_7cexprtk_8_cexprtk_Expression) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_ptype_7cexprtk_8_cexprtk_Expression = &__pyx_type_7cexprtk_8_cexprtk_Expression;
-  if (PyType_Ready(&__pyx_type_7cexprtk_8_cexprtk__USRSymbolType) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyType_Ready(&__pyx_type_7cexprtk_8_cexprtk__USRSymbolType) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_type_7cexprtk_8_cexprtk__USRSymbolType.tp_print = 0;
   __pyx_ptype_7cexprtk_8_cexprtk__USRSymbolType = &__pyx_type_7cexprtk_8_cexprtk__USRSymbolType;
   /*--- Type import code ---*/
@@ -4146,14 +4146,14 @@ PyMODINIT_FUNC PyInit__cexprtk(void)
   /*--- Function import code ---*/
   /*--- Execution code ---*/
 
-  /* "cexprtk/_cexprtk.pyx":23
+  /* "cexprtk/_cexprtk.pyx":18
  * from ._symbol_table cimport Symbol_Table, _Symbol_Table_Functions
  * 
  * from ._exceptions import ParseException, UnknownSymbolResolverException             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_ParseException);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_ParseException);
@@ -4161,53 +4161,53 @@ PyMODINIT_FUNC PyInit__cexprtk(void)
   __Pyx_INCREF(__pyx_n_s_UnknownSymbolResolverException);
   PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_s_UnknownSymbolResolverException);
   __Pyx_GIVEREF(__pyx_n_s_UnknownSymbolResolverException);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_exceptions, __pyx_t_1, 1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_exceptions, __pyx_t_1, 1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_ParseException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_ParseException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ParseException, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ParseException, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_UnknownSymbolResolverException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_UnknownSymbolResolverException); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_UnknownSymbolResolverException, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_UnknownSymbolResolverException, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cexprtk/_cexprtk.pyx":26
+  /* "cexprtk/_cexprtk.pyx":21
  * 
  * 
  * def check_expression(expression):             # <<<<<<<<<<<<<<
  *   """Check that expression can be parsed. If successful do nothing, if unsuccessful raise ParseException
  * 
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_7cexprtk_8_cexprtk_1check_expression, NULL, __pyx_n_s_cexprtk__cexprtk); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 26; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_7cexprtk_8_cexprtk_1check_expression, NULL, __pyx_n_s_cexprtk__cexprtk); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_check_expression, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 26; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_check_expression, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cexprtk/_cexprtk.pyx":47
+  /* "cexprtk/_cexprtk.pyx":42
  * 
  * 
  * def evaluate_expression(expression_string, variables):             # <<<<<<<<<<<<<<
  *   """Evaluate a mathematical formula using the exprtk library and return result.
  * 
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_7cexprtk_8_cexprtk_3evaluate_expression, NULL, __pyx_n_s_cexprtk__cexprtk); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_7cexprtk_8_cexprtk_3evaluate_expression, NULL, __pyx_n_s_cexprtk__cexprtk); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_evaluate_expression, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_evaluate_expression, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cexprtk/_cexprtk.pyx":222
+  /* "cexprtk/_cexprtk.pyx":217
  *     self.CONSTANT = exprtk.e_constant_type
  * 
  * USRSymbolType = _USRSymbolType()             # <<<<<<<<<<<<<<
  * 
  * # Function with PythonCallableFunctionPtr signature that is used to allow
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_7cexprtk_8_cexprtk__USRSymbolType)), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_7cexprtk_8_cexprtk__USRSymbolType)), __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_USRSymbolType, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_USRSymbolType, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "cexprtk/_cexprtk.pyx":1
