@@ -18,7 +18,7 @@ COMPILER_OPTIONS = dict(
     # option here for the future.
     msvc=['/Ox', '/bigobj'],
     gcc=['-std=c++11', '-O3'],
-    clang=['-std=c++11', '-O3', '-g'],
+    clang=['-std=c++11', '-O3'],
     mingw32=['-O3', '-ffast-math', '-march=native']
 )
 
@@ -36,16 +36,14 @@ INCLUDE_DIRS = [
   "cpp",
 ]
 
-# CPP_FILES = [
-#     os.path.join(CURR_DIR, "cpp", "cexprtk_unknown_symbol_resolver.cpp")
-# ]
+try:
+  from Cython.Distutils import build_ext
+  from Cython.Build import cythonize
+  USE_CYTHON = True
+except ImportError:
+  from setuptools.command.build_ext import build_ext
+  USE_CYTHON = False
 
-# PYX_FILES = [
-#   "_cexprtk", "custom_function_callbacks"
-# ]
-
-from Cython.Distutils import build_ext
-from Cython.Build import cythonize
 
 def cexprtkExtension():
   cythonfiles = ['cython/cexprtk/_cexprtk.pyx']
@@ -76,7 +74,22 @@ def symbol_tableExtension():
 
 def extensions():
   exts = [cexprtkExtension(), custom_function_callbacksExtension(), symbol_tableExtension()]
-  return cythonize(exts,include_path = ['cython', 'cython/cexprtk'])
+
+  if USE_CYTHON:
+    return cythonize(exts,include_path = ['cython', 'cython/cexprtk'])
+  else:
+    # If cython isn't present then use .cpp files instead
+    import os
+    for extension in exts:
+      srcs = []
+      for s in extension.sources:
+        root,ext = os.path.splitext(s)
+        if ext == '.pyx':
+          s = root+'.cpp'
+        srcs.append(s)
+      extension.sources = srcs
+  return exts
+
 
 
 # try:
