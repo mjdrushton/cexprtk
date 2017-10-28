@@ -8,7 +8,7 @@
 
 // typedef ExpressionValueType (*PythonUnaryCythonFunctionPtr)(void *, void **, ExpressionValueType);
 
-class CustomFunctionBase : public virtual exprtk::ifunction<ExpressionValueType>
+class CustomFunctionBase
 {
 
 private:
@@ -31,10 +31,8 @@ protected:
 
 public:
 
-  CustomFunctionBase(const size_t numargs_,
-                     const std::string &key_,
-                     void *pycallable_) : exprtk::ifunction<ExpressionValueType>(numargs_),
-                                          _key(key_),
+  CustomFunctionBase(const std::string &key_,
+                     void *pycallable_) : _key(key_),
                                           _pycallable(NULL),
                                           _pyexception(NULL)
   {
@@ -89,6 +87,5 @@ public:
   }
 };
 
-#include "cexprtk_custom_functions_implementation.hpp"
 
 #endif

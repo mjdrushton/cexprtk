@@ -6,7 +6,8 @@ cimport cexprtk_unknown_symbol_resolver
 
 cimport cexprtk_util
 
-from cexprtk_custom_functions cimport cfunction_ptr, cfunction_t, ifunction_ptr, CustomFunctionBase
+from cexprtk_custom_functions cimport cfunction_ptr, cfunction_t, ifunction_ptr, ivararg_function_ptr, CustomFunctionBase
+#from cexprtk_custom_vararg_function cimport Custom_Vararg_Function
 from cexprtk._custom_function_callbacks cimport wrapFunction
 
 from cpython.ref cimport Py_INCREF
@@ -36,19 +37,22 @@ cdef class Symbol_Table:
   def __cinit__(self):
     self._csymtableptr = new exprtk.symbol_table_type()
 
+    # Set up the functions dictionary
+    self._functions = _Symbol_Table_Functions()
+    self._functions._csymtableptr = self._csymtableptr
+
     # Set up the variables dictionary
     self._variables = _Symbol_Table_Variables()
     # ... set the internal pointer held by _variables
     self._variables._csymtableptr = self._csymtableptr
+    self._variables._functions = PyWeakref_NewProxy(self._functions, None)
+    #self._functions._variables = PyWeakref_NewProxy(self._variables, None)
 
     # Set up the constants dictionary
     self._constants = _Symbol_Table_Constants()
     # ... set the internal pointer held by _constants
     self._constants._csymtableptr = self._csymtableptr
-
-    # Set up the functions dictionary
-    self._functions = _Symbol_Table_Functions()
-    self._functions._csymtableptr = self._csymtableptr
+    
 
   def __dealloc__(self):
     del self._csymtableptr
@@ -148,7 +152,7 @@ cdef class _Symbol_Table_Variables:
       raise ReferenceError("Parent Symbol_Table no longer exists")
     strkey = key.encode("ascii")
 
-    if self._csymtableptr[0].get_function(strkey) != NULL:
+    if self._functions.has_key(key):
       raise VariableNameShadowException("Cannot set variable as a function already exists with the same name: "+key)
 
     cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)
@@ -297,11 +301,14 @@ cdef class _Symbol_Table_Functions:
       'grad2deg' ])
 
   cdef cfunction_ptr _getitem(self, bytes key):
-    cdef ifunction_ptr fptr = self._csymtableptr[0].get_function(key)
-    if NULL == fptr :
-      return NULL
-    cdef cfunction_ptr cfptr = dynamic_cast[cfunction_ptr](fptr)
-    return cfptr
+    cdef cfunction_ptr fptr
+    cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()
+    while it != self._cfunction_set_ptr[0].end():
+      fptr = deref(it)
+      if fptr[0].get_key() == key:
+        return fptr
+      inc(it)
+    return NULL
 
   cdef void _remove_function_from_set(self, cfunction_ptr fptr):
     self._cfunction_set_ptr[0].erase(fptr)
@@ -312,14 +319,15 @@ cdef class _Symbol_Table_Functions:
 
   def _checkFunction(self, key, object function):
     args = functionargs(function)
-    if args == -1:
-      raise TypeError("Functions with varargs are not supported. Whilst setting function for '"+key+"'")
+    #if args == -1:
+    #  raise TypeError("Functions with varargs are not supported. Whilst setting function for '"+key+"'")
     if args > 20:
       raise TypeError("Only functions with 20 or fewer arguments are supported at present. Whilst setting function for '"+key+"'")
     return args
     
   cdef _wrapFunction(self, key, bytes strkey, object function, int numArgs_):
     cdef ifunction_ptr fptr
+    cdef ivararg_function_ptr vaptr
     cdef cfunction_ptr cfptr
 
     cdef void* pyptr
@@ -327,9 +335,14 @@ cdef class _Symbol_Table_Functions:
     cfptr = wrapFunction(numArgs_, strkey, function)
     self._add_function_to_set(cfptr)
 
-    fptr = dynamic_cast[ifunction_ptr](cfptr)
-    # Add the function to the symboltable
-    self._csymtableptr[0].add_function(strkey, fptr[0])
+    if numArgs_ != -1:
+      fptr = dynamic_cast[ifunction_ptr](cfptr)
+      # Add the function to the symboltable
+      cexprtk_util.add_function(self._csymtableptr[0], strkey, fptr[0])
+    else:
+      # Add var arg function
+      vaptr = dynamic_cast[ivararg_function_ptr](cfptr)
+      cexprtk_util.add_varargfunction(self._csymtableptr[0], strkey, vaptr[0])
 
   cdef _resetFunctionExceptions(self):
     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()
@@ -392,7 +405,6 @@ cdef class _Symbol_Table_Functions:
     if self._csymtableptr[0].get_variable(strkey) != NULL:
       raise VariableNameShadowException("Function cannot be set as a variable or constant shares the same name:" + key)
 
-    # If the function already exists, try removing it.
     cfuncptr = self._getitem(strkey)
     if cfuncptr != NULL:
       raise KeyError("Function '"+key+"' was already in symbol table.")
@@ -442,10 +454,8 @@ cdef class _Symbol_Table_Functions:
     return [ v for (k,v) in self.items() ]
 
   cpdef has_key(self, object key):
-    if not self._csymtableptr:
-      raise ReferenceError("Parent Symbol_Table no longer exists")
     cdef bytes cstr_key = key.encode("ascii")
-    return self._csymtableptr[0].get_function(cstr_key) != NULL
+    return self._getitem(cstr_key) != NULL
 
   def __contains__(self, object key):
     return self.has_key(key)

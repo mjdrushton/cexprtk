@@ -12,4 +12,5 @@ cdef extern from "cexprtk.hpp":
                                          exprtk.expression_type& expression, 
                                          vector[string]& error_messages)
   void check(string& expression_string, vector[string]& error_list)
-
+  bool add_function(exprtk.symbol_table_type& st_, string& name_, exprtk.ifunction[double]& function_)
+  bool add_varargfunction(exprtk.symbol_table_type& st_, string& name_, exprtk.ivararg_function[double]& function_)

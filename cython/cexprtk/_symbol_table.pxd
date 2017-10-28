@@ -7,6 +7,9 @@ from cexprtk_custom_functions cimport cfunction_ptr
 
 cdef class _Symbol_Table_Variables:
   cdef object __weakref__
+
+  cdef object _functions
+
   cdef exprtk.symbol_table_type* _csymtableptr
   cpdef list items(self)
   cdef list _get_variable_list(self)
@@ -22,6 +25,8 @@ cdef class _Symbol_Table_Constants:
 
 cdef class _Symbol_Table_Functions:
   cdef object __weakref__
+
+  #cdef object _variables
 
   cdef exprtk.symbol_table_type* _csymtableptr
   cdef cset[cfunction_ptr] * _cfunction_set_ptr

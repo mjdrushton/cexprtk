@@ -2,7 +2,23 @@
 from cpython.ref cimport Py_INCREF
 cimport cexprtk_custom_functions_implementation
 from cexprtk_custom_functions cimport CustomFunctionBase
+from cexprtk_custom_vararg_function cimport Custom_Vararg_Function
 from libcpp.string cimport string
+from libcpp.vector cimport vector
+
+cdef double callback_vararg(
+    void * pyobj_, void ** exception_, const vector[double]& args_):
+  cdef object pycallable
+  cdef double retval = 0.0
+
+  try:
+    pycallable = <object>pyobj_
+    retval = pycallable(*args_)
+    return retval
+  except Exception as e:
+    Py_INCREF(e)
+    exception_[0] = <void*> e
+    return 0.0
 cdef double callback_0(
     void * pyobj_, void ** exception_):
   cdef object pycallable
@@ -301,7 +317,9 @@ cdef double callback_20(
 cdef CustomFunctionBase* wrapFunction(int numargs_, string& key_, object pycallable_):
   cdef void* pyptr = <void *> pycallable_
   cdef CustomFunctionBase* retval = NULL
-  if numargs_ == 0:
+  if numargs_ == -1:
+    retval = new Custom_Vararg_Function(key_, pyptr, callback_vararg)
+  elif numargs_ == 0:
     retval = new cexprtk_custom_functions_implementation.CustomFunction_0(key_, pyptr, callback_0) 
   elif numargs_ == 1:
     retval = new cexprtk_custom_functions_implementation.CustomFunction_1(key_, pyptr, callback_1) 

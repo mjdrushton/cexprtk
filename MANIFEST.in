@@ -8,6 +8,7 @@ include cpp/cexprtk_custom_functions.hpp
 include cpp/cexprtk_custom_functions_implementation.hpp
 include cpp/cexprtk_unknown_symbol_resolver.cpp
 include cpp/cexprtk_unknown_symbol_resolver.hpp
+include cpp/cexprtk_custom_vararg_function.hpp
 
 include cython/cexprtk/__init__.py
 include cython/cexprtk/_cexprtk.cpp

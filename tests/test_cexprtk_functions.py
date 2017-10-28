@@ -6,19 +6,23 @@ from cexprtk._functionargs import functionargs
 
 class FunctionsTestCase(unittest.TestCase):
 
-  # def testNullaryFunction(self):
-  #   """Test function that takes no arguments"""
-  #   #TODO: Test something like "foo() + 1"
-  #   #TODO: Make sure that the "foo + 1" style of function invocation is disabled
+  def testNullaryFunction(self):
+    """Test function that takes no arguments"""
+    #TODO: Test something like "foo() + 1"
+    #TODO: Make sure that the "foo + 1" style of function invocation is disabled
     
-  #   symbol_table = cexprtk.Symbol_Table({})
+    symbol_table = cexprtk.Symbol_Table({})
 
-  #   def f():
-  #     return 1.0
+    def foo():
+      return 1.0
 
-  #   with self.assertRaises(TypeError):
-  #     symbol_table.functions["f"] = f
+    symbol_table.functions["foo"] = foo
 
+    e1 = cexprtk.Expression("foo() + 1", symbol_table)
+    self.assertEqual(2.0, e1())
+
+    e2 = cexprtk.Expression("foo + 1", symbol_table)
+    self.assertEqual(2.0, e2())
 
   def testUnaryFunction(self):
     """Test function that takes single argument"""
@@ -144,6 +148,107 @@ class FunctionsTestCase(unittest.TestCase):
     # Function isn't registered with expression changing should work at this point.
     with self.assertRaises(KeyError):
       st.functions["f"] = f2
+
+class VarArgsFunctionTestCase(unittest.TestCase):
+
+  def testVarArgs(self):
+    """Test use of a varargs functions with Expression objects"""
+
+    def va(*args):
+      s = 0
+      for i in args:
+        s += i
+      return s
+
+    st = cexprtk.Symbol_Table({})
+    st.functions["va"] = va
+
+    self.assertEqual(va, st.functions["va"])
+    e = cexprtk.Expression("va(1,2,3,4)", st)
+    self.assertEqual(10, e())
+
+  def testCallable(self):
+    """Test use of a varargs functions with Expression objects"""
+
+    class Callable(object):
+
+      def __call__(self,*args):
+        s = 0
+        for i in args:
+          s += i
+        return s
+    
+    va = Callable()
+    st = cexprtk.Symbol_Table({})
+    st.functions["va"] = va
+    self.assertEqual(va, st.functions["va"])
+    e = cexprtk.Expression("va(1,2,3,4)", st)
+    self.assertEqual(10, e())
+    e = cexprtk.Expression("va(1,2,3,4,1)", st)
+    self.assertEqual(11, e())
+
+  # def testVarArgsWithKwargs(self):
+  #   def va(*args, **kwargs):
+  #     pass
+  #   st = cexprtk.Symbol_Table({})
+
+  #   with self.assertRaises(TypeError):
+  #     st.functions["va"] = va
+  
+  def testVarArgsShadowingVariable(self):
+    """Make sure that an exception is raised if a var args function shadows a variable"""
+
+    st = cexprtk.Symbol_Table({'f' : 1.0})
+
+    def va(*args):
+      pass
+
+    with self.assertRaises(VariableNameShadowException):
+      st.functions["f"] = va
+
+    st2 = cexprtk.Symbol_Table({})
+    st2.functions["f"] = va
+    self.assertTrue(st2.functions.has_key("f"))
+    self.assertFalse(st2.functions.has_key("g"))
+
+    with self.assertRaises(VariableNameShadowException):
+      st2.variables["f"] = 1.0
+
+
+  def testVarArgsShadow(self):
+    """Vararg and normal functions are held in separate collections check that there is a consistent interface to both types of function"""
+
+    def va(*args):
+      pass
+
+    def f(a):
+      pass
+
+    # Add va to symbol_table first
+    st = cexprtk.Symbol_Table({})
+    st.functions["f"] = va
+    self.assertEqual([("f", va)], st.functions.items())
+
+    # Try adding f on top of va
+    with self.assertRaises(KeyError):
+      st.functions["f"] = f
+
+    st.functions["a"] = f
+    st.functions["b"] = va
+    st.functions["c"] = va
+    st.functions["d"] = f
+    st.functions["e"] = f
+
+    expect = sorted([
+      ("a",f),
+      ("b",va),
+      ("c",va),
+      ("d",f),
+      ("e",f),
+      ("f",va)])
+    
+    actual = sorted(st.functions.items())
+    self.assertEqual(expect, actual)
 
 
 class FunctionSignatureTestCase(unittest.TestCase):

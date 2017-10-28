@@ -81,4 +81,20 @@ inline bool variableAssign(SymbolTable& symtable, const std::string& name, doubl
 	return true;
 };	
 
+// For some reason cython doesn't like the overloading of the symbol_table.add_function
+// hence this helper function and add_varargfunction
+bool add_function(SymbolTable& st_, 
+	const std::string& function_name_,  
+	exprtk::ifunction<ExpressionValueType>& function_)
+{
+	return st_.add_function(function_name_, function_);
+}
+
+bool add_varargfunction(SymbolTable& st_, 
+	const std::string& function_name_,  
+	exprtk::ivararg_function<ExpressionValueType>& function_)
+{
+	return st_.add_function(function_name_, function_);
+}
+
 #endif

@@ -16,3 +16,5 @@ ctypedef cfunction_t * cfunction_ptr
 ctypedef exprtk.ifunction[double] ifunction
 ctypedef ifunction * ifunction_ptr
 
+ctypedef exprtk.ivararg_function[double] ivararg_function
+ctypedef ivararg_function * ivararg_function_ptr

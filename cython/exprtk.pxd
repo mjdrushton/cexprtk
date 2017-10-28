@@ -15,22 +15,32 @@ ctypedef variable_node[double] variable_t
 ctypedef variable_t * variable_ptr
 
 cdef extern from "exprtk.hpp" namespace "exprtk":
-  cdef cppclass ifunction[T]:
+  cdef cppclass function_traits:
+    pass
+
+  cdef cppclass ifunction[T](function_traits):
     ifunction(int& pc) except +
+
+  cdef cppclass ivararg_function[T](function_traits):
+    T operator()(vector[T]& args)
 
   cdef cppclass symbol_table[T]:
     symbol_table() except +
-    int create_variable(string& variable_name, T& value)
     bool add_constant(string& constant_name, T& value)
     bool add_constants()
-    variable_ptr get_variable(string& variable_name)
-    bool is_variable(string& variable_name)
+    #bool add_function(string& function_name, ifunction[T]& function)
+    #bool add_function(string& vararg_function_name, ivararg_function[T]& vararg_function)
     bool is_constant_node(string& symbol_name)
+    bool is_vararg_function(string& vararg_function_name)
+    bool is_variable(string& variable_name)
+    bool remove_function(string& function_name)
+    ifunction[T]* get_function(string& function_name)
+    int create_variable(string& variable_name, T& value)
     int get_variable_list(LabelFloatPairVector& vlist)
     int variable_count()
-    bool add_function(string& function_name, ifunction[T]& function)
-    ifunction[T]* get_function(string& function_name)
-    bool remove_function(string& function_name)
+    ivararg_function[T]* get_vararg_function(string& vararg_function_name)
+    variable_ptr get_variable(string& variable_name)
+
 
   cdef cppclass expression[T]:
     expression() except +

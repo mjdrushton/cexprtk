@@ -3,7 +3,7 @@
 #include "cexprtk_custom_functions.hpp"
 
 
-class CustomFunction_0 : public virtual CustomFunctionBase
+class CustomFunction_0 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -19,7 +19,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(0), 
-                                             CustomFunctionBase (0, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -43,7 +43,7 @@ public:
 };  
 
 
-class CustomFunction_1 : public virtual CustomFunctionBase
+class CustomFunction_1 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -59,7 +59,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(1), 
-                                             CustomFunctionBase (1, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -83,7 +83,7 @@ public:
 };  
 
 
-class CustomFunction_2 : public virtual CustomFunctionBase
+class CustomFunction_2 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -99,7 +99,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(2), 
-                                             CustomFunctionBase (2, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -123,7 +123,7 @@ public:
 };  
 
 
-class CustomFunction_3 : public virtual CustomFunctionBase
+class CustomFunction_3 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -139,7 +139,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(3), 
-                                             CustomFunctionBase (3, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -163,7 +163,7 @@ public:
 };  
 
 
-class CustomFunction_4 : public virtual CustomFunctionBase
+class CustomFunction_4 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -179,7 +179,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(4), 
-                                             CustomFunctionBase (4, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -203,7 +203,7 @@ public:
 };  
 
 
-class CustomFunction_5 : public virtual CustomFunctionBase
+class CustomFunction_5 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -219,7 +219,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(5), 
-                                             CustomFunctionBase (5, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -243,7 +243,7 @@ public:
 };  
 
 
-class CustomFunction_6 : public virtual CustomFunctionBase
+class CustomFunction_6 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -259,7 +259,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(6), 
-                                             CustomFunctionBase (6, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -283,7 +283,7 @@ public:
 };  
 
 
-class CustomFunction_7 : public virtual CustomFunctionBase
+class CustomFunction_7 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -299,7 +299,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(7), 
-                                             CustomFunctionBase (7, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -323,7 +323,7 @@ public:
 };  
 
 
-class CustomFunction_8 : public virtual CustomFunctionBase
+class CustomFunction_8 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -339,7 +339,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(8), 
-                                             CustomFunctionBase (8, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -363,7 +363,7 @@ public:
 };  
 
 
-class CustomFunction_9 : public virtual CustomFunctionBase
+class CustomFunction_9 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -379,7 +379,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(9), 
-                                             CustomFunctionBase (9, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -403,7 +403,7 @@ public:
 };  
 
 
-class CustomFunction_10 : public virtual CustomFunctionBase
+class CustomFunction_10 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -419,7 +419,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(10), 
-                                             CustomFunctionBase (10, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -443,7 +443,7 @@ public:
 };  
 
 
-class CustomFunction_11 : public virtual CustomFunctionBase
+class CustomFunction_11 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -459,7 +459,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(11), 
-                                             CustomFunctionBase (11, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -483,7 +483,7 @@ public:
 };  
 
 
-class CustomFunction_12 : public virtual CustomFunctionBase
+class CustomFunction_12 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -499,7 +499,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(12), 
-                                             CustomFunctionBase (12, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -523,7 +523,7 @@ public:
 };  
 
 
-class CustomFunction_13 : public virtual CustomFunctionBase
+class CustomFunction_13 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -539,7 +539,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(13), 
-                                             CustomFunctionBase (13, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -563,7 +563,7 @@ public:
 };  
 
 
-class CustomFunction_14 : public virtual CustomFunctionBase
+class CustomFunction_14 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -579,7 +579,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(14), 
-                                             CustomFunctionBase (14, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -603,7 +603,7 @@ public:
 };  
 
 
-class CustomFunction_15 : public virtual CustomFunctionBase
+class CustomFunction_15 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -619,7 +619,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(15), 
-                                             CustomFunctionBase (15, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -643,7 +643,7 @@ public:
 };  
 
 
-class CustomFunction_16 : public virtual CustomFunctionBase
+class CustomFunction_16 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -659,7 +659,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(16), 
-                                             CustomFunctionBase (16, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -683,7 +683,7 @@ public:
 };  
 
 
-class CustomFunction_17 : public virtual CustomFunctionBase
+class CustomFunction_17 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -699,7 +699,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(17), 
-                                             CustomFunctionBase (17, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -723,7 +723,7 @@ public:
 };  
 
 
-class CustomFunction_18 : public virtual CustomFunctionBase
+class CustomFunction_18 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -739,7 +739,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(18), 
-                                             CustomFunctionBase (18, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -763,7 +763,7 @@ public:
 };  
 
 
-class CustomFunction_19 : public virtual CustomFunctionBase
+class CustomFunction_19 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -779,7 +779,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(19), 
-                                             CustomFunctionBase (19, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);
@@ -803,7 +803,7 @@ public:
 };  
 
 
-class CustomFunction_20 : public virtual CustomFunctionBase
+class CustomFunction_20 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
 public:
@@ -819,7 +819,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>(20), 
-                                             CustomFunctionBase (20, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {
     set_pycallable(pycallable_);

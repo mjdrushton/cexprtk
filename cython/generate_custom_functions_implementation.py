@@ -10,7 +10,7 @@ FOOTER = """#endif
 
 CLASS_TEMPLATE = """
 
-class {classname:s} : public virtual CustomFunctionBase
+class {classname:s} : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {{
 
 public:
@@ -26,7 +26,7 @@ public:
                  const std::string &key_,
                  void *pycallable_,
                  FunctionType cythonfunc_) : exprtk::ifunction<ExpressionValueType>({num_args:d}), 
-                                             CustomFunctionBase ({num_args:d}, key_, pycallable_),
+                                             CustomFunctionBase (key_, pycallable_),
                                              _cythonfunc(cythonfunc_)
   {{
     set_pycallable(pycallable_);
