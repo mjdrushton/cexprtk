@@ -6,6 +6,8 @@
 class CustomFunction_0 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_0();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** );
 
@@ -13,7 +15,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_0() = delete;
 
     CustomFunction_0( 
                  const std::string &key_,
@@ -46,6 +47,8 @@ public:
 class CustomFunction_1 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_1();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType);
 
@@ -53,7 +56,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_1() = delete;
 
     CustomFunction_1( 
                  const std::string &key_,
@@ -86,6 +88,8 @@ public:
 class CustomFunction_2 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_2();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType);
 
@@ -93,7 +97,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_2() = delete;
 
     CustomFunction_2( 
                  const std::string &key_,
@@ -126,6 +129,8 @@ public:
 class CustomFunction_3 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_3();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -133,7 +138,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_3() = delete;
 
     CustomFunction_3( 
                  const std::string &key_,
@@ -166,6 +170,8 @@ public:
 class CustomFunction_4 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_4();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -173,7 +179,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_4() = delete;
 
     CustomFunction_4( 
                  const std::string &key_,
@@ -206,6 +211,8 @@ public:
 class CustomFunction_5 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_5();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -213,7 +220,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_5() = delete;
 
     CustomFunction_5( 
                  const std::string &key_,
@@ -246,6 +252,8 @@ public:
 class CustomFunction_6 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_6();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -253,7 +261,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_6() = delete;
 
     CustomFunction_6( 
                  const std::string &key_,
@@ -286,6 +293,8 @@ public:
 class CustomFunction_7 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_7();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -293,7 +302,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_7() = delete;
 
     CustomFunction_7( 
                  const std::string &key_,
@@ -326,6 +334,8 @@ public:
 class CustomFunction_8 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_8();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -333,7 +343,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_8() = delete;
 
     CustomFunction_8( 
                  const std::string &key_,
@@ -366,6 +375,8 @@ public:
 class CustomFunction_9 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_9();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -373,7 +384,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_9() = delete;
 
     CustomFunction_9( 
                  const std::string &key_,
@@ -406,6 +416,8 @@ public:
 class CustomFunction_10 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_10();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -413,7 +425,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_10() = delete;
 
     CustomFunction_10( 
                  const std::string &key_,
@@ -446,6 +457,8 @@ public:
 class CustomFunction_11 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_11();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -453,7 +466,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_11() = delete;
 
     CustomFunction_11( 
                  const std::string &key_,
@@ -486,6 +498,8 @@ public:
 class CustomFunction_12 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_12();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -493,7 +507,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_12() = delete;
 
     CustomFunction_12( 
                  const std::string &key_,
@@ -526,6 +539,8 @@ public:
 class CustomFunction_13 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_13();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -533,7 +548,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_13() = delete;
 
     CustomFunction_13( 
                  const std::string &key_,
@@ -566,6 +580,8 @@ public:
 class CustomFunction_14 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_14();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -573,7 +589,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_14() = delete;
 
     CustomFunction_14( 
                  const std::string &key_,
@@ -606,6 +621,8 @@ public:
 class CustomFunction_15 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_15();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -613,7 +630,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_15() = delete;
 
     CustomFunction_15( 
                  const std::string &key_,
@@ -646,6 +662,8 @@ public:
 class CustomFunction_16 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_16();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -653,7 +671,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_16() = delete;
 
     CustomFunction_16( 
                  const std::string &key_,
@@ -686,6 +703,8 @@ public:
 class CustomFunction_17 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_17();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -693,7 +712,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_17() = delete;
 
     CustomFunction_17( 
                  const std::string &key_,
@@ -726,6 +744,8 @@ public:
 class CustomFunction_18 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_18();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -733,7 +753,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_18() = delete;
 
     CustomFunction_18( 
                  const std::string &key_,
@@ -766,6 +785,8 @@ public:
 class CustomFunction_19 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_19();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -773,7 +794,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_19() = delete;
 
     CustomFunction_19( 
                  const std::string &key_,
@@ -806,6 +826,8 @@ public:
 class CustomFunction_20 : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {
 
+private:
+    CustomFunction_20();
 public:
     typedef ExpressionValueType (*FunctionType)(void *, void ** , ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType,ExpressionValueType);
 
@@ -813,7 +835,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    CustomFunction_20() = delete;
 
     CustomFunction_20( 
                  const std::string &key_,

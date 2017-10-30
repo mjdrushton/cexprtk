@@ -1,5 +1,6 @@
 import unittest
 import math
+import sys
 
 import cexprtk
 
@@ -551,6 +552,7 @@ class UnknownSymbolResolverTestCase(unittest.TestCase):
       expression = cexprtk.Expression("x+y+z", symbolTable, callback)
 
 
+@unittest.skipIf(sys.platform.startswith("win"), "test not supported under Windows")
 class MultiProcessingTestCase(unittest.TestCase):
   """Test that Expressions can be used in parallel with multiprocessing"""
 

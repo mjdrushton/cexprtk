@@ -91,32 +91,15 @@ def extensions():
   return exts
 
 
-
-# try:
-#   from Cython.Distutils import build_ext
-#   from Cython.Build import cythonize
-# except ImportError:
-#   from setuptools.command.build_ext import build_ext
-#   CPP_FILES.extend([os.path.join(PACKAGE_DIR, f+".cpp") for f in PYX_FILES])
-#   CYTHON_CEXPRTK = Extension("cexprtk._cexprtk",
-#                              CPP_FILES,
-#                              language="c++",
-#                              include_dirs=INCLUDE_DIRS)
-#   EXT_MODULES = [CYTHON_CEXPRTK]
-# else:
-#   CPP_FILES.extend([os.path.join(PACKAGE_DIR, f+".pyx") for f in PYX_FILES])
-#   CYTHON_CEXPRTK = Extension("cexprtk._cexprtk",
-#                              CPP_FILES,
-#                              include_dirs=INCLUDE_DIRS)
-#   EXT_MODULES = cythonize([CYTHON_CEXPRTK],
-#                          include_path = [os.path.join(CURR_DIR, 'cython')])
-
 class BuildExtCustom(build_ext):
   ''' A customised class, for handling special compiler
   defines and options required for building on Windows. '''
   def build_extensions(self):
+    # import pdb; pdb.set_trace()
     compiler_type = self.compiler.compiler_type
-    if self.compiler.compiler[0].endswith('gnu-gcc'):
+    if compiler_type == 'msvc':
+      pass
+    elif self.compiler.compiler[0].endswith('gnu-gcc'):
       compiler_type = 'gcc'
     elif self.compiler.compiler[0].endswith('clang'):
       compiler_type = 'clang'
