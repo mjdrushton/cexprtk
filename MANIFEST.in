@@ -1,4 +1,22 @@
-include  cython/cexprtk.hpp
-include  cython/cexprtk.pyx
-include  3rdparty/exprtk/exprtk.hpp
 recursive-include tests *.py
+
+include  3rdparty/exprtk/exprtk.hpp
+
+include cpp/cexprtk.hpp
+include cpp/cexprtk_common.hpp
+include cpp/cexprtk_custom_functions.hpp
+include cpp/cexprtk_custom_functions_implementation.hpp
+include cpp/cexprtk_unknown_symbol_resolver.cpp
+include cpp/cexprtk_unknown_symbol_resolver.hpp
+include cpp/cexprtk_custom_vararg_function.hpp
+
+include cython/cexprtk/__init__.py
+include cython/cexprtk/_cexprtk.cpp
+include cython/cexprtk/_cexprtk.pyx
+include cython/cexprtk/_custom_function_callbacks.cpp
+include cython/cexprtk/_custom_function_callbacks.pxd
+include cython/cexprtk/_custom_function_callbacks.pyx
+include cython/cexprtk/_exceptions.py
+include cython/cexprtk/_functionargs.py
+include cython/cexprtk/_symbol_table.pxd
+include cython/cexprtk/_symbol_table.pyx

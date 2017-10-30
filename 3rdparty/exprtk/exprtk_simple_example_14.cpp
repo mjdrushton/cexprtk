@@ -2,7 +2,7 @@
  **************************************************************
  *         C++ Mathematical Expression Toolkit Library        *
  *                                                            *
- * Simple Example 1                                           *
+ * Simple Example 14                                          *
  * Author: Arash Partow (1999-2017)                           *
  * URL: http://www.partow.net/programming/exprtk/index.html   *
  *                                                            *
@@ -22,35 +22,34 @@
 
 
 template <typename T>
-void trig_function()
+void stddev_example()
 {
-   typedef exprtk::symbol_table<T> symbol_table_t;
-   typedef exprtk::expression<T>     expression_t;
-   typedef exprtk::parser<T>             parser_t;
+   typedef exprtk::expression<T> expression_t;
+   typedef exprtk::parser<T>         parser_t;
 
-   std::string expression_string = "clamp(-1.0,sin(2 * pi * x) + cos(x / 2 * pi),+1.0)";
-
-   T x;
-
-   symbol_table_t symbol_table;
-   symbol_table.add_variable("x",x);
-   symbol_table.add_constants();
+   std::string stddev_program =
+                  " var x[25] := {                     "
+                  "                 1,  2,  3,  4,  5, "
+                  "                 6,  7,  8,  9, 10, "
+                  "                11, 12, 13, 14, 15, "
+                  "                16, 17, 18, 19, 20, "
+                  "                21, 22, 23, 24, 25  "
+                  "              };                    "
+                  "                                    "
+                  " sqrt(sum([x - avg(x)]^2) / x[])    ";
 
    expression_t expression;
-   expression.register_symbol_table(symbol_table);
 
    parser_t parser;
-   parser.compile(expression_string,expression);
+   parser.compile(stddev_program,expression);
 
-   for (x = T(-5); x <= T(+5); x += T(0.001))
-   {
-      T y = expression.value();
-      printf("%19.15f\t%19.15f\n",x,y);
-   }
+   T stddev = expression.value();
+
+   printf("stddev(1..25) = %10.6f\n",stddev);
 }
 
 int main()
 {
-   trig_function<double>();
+   stddev_example<double>();
    return 0;
 }

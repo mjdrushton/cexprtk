@@ -3,14 +3,14 @@
  *         C++ Mathematical Expression Toolkit Library        *
  *                                                            *
  * Simple Example 6                                           *
- * Author: Arash Partow (1999-2014)                           *
+ * Author: Arash Partow (1999-2017)                           *
  * URL: http://www.partow.net/programming/exprtk/index.html   *
  *                                                            *
  * Copyright notice:                                          *
  * Free use of the Mathematical Expression Toolkit Library is *
  * permitted under the guidelines and in accordance with the  *
- * most current version of the Common Public License.         *
- * http://www.opensource.org/licenses/cpl1.0.php              *
+ * most current version of the MIT License.                   *
+ * http://www.opensource.org/licenses/MIT                     *
  *                                                            *
  **************************************************************
 */
@@ -21,7 +21,7 @@
 #include "exprtk.hpp"
 
 
-template<typename T>
+template <typename T>
 void vector_function()
 {
    typedef exprtk::symbol_table<T> symbol_table_t;
@@ -29,10 +29,10 @@ void vector_function()
    typedef exprtk::parser<T>             parser_t;
 
    std::string expression_string =
-                  " for (i := 0; i < min(x[],y[],z[]); i += 1) "
-                  " {                                          "
-                  "    z[i] := 3sin(x[i]) + 2log(y[i]);        "
-                  " }                                          ";
+                  " for (var i := 0; i < min(x[],y[],z[]); i += 1) "
+                  " {                                              "
+                  "   z[i] := 3sin(x[i]) + 2log(y[i]);             "
+                  " }                                              ";
 
    T x[] = { T(1.1), T(2.2), T(3.3), T(4.4), T(5.5) };
    T y[] = { T(1.1), T(2.2), T(3.3), T(4.4), T(5.5) };
@@ -47,7 +47,6 @@ void vector_function()
    expression.register_symbol_table(symbol_table);
 
    parser_t parser;
-
    parser.compile(expression_string,expression);
 
    expression.value();

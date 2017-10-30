@@ -1,5 +1,20 @@
 #Change Log
 
+
+##0.3.0
+### New Features
+
+* Support for Python 3
+* Custom python functions can now be registered with `Symbol_Table` and used in expressions.
+
+##0.2.1 (2017-08-03): 
+### New Features
+
+* Updated version of bundled `exprtk` to that current as of 3rd August 2017.
+* Updated `cexprtk` wrapper code to be compatible with this version of `exprtk`.
+* Enabled pickling of the `Expression` and `Symbol_Table` classes. Primarily this is to allow their use with the multiprocessing module.
+
+
 ##0.2.0
 ###New Features
 
@@ -17,12 +32,12 @@
 
 * Modifications to allow `cexprtk` to build on windows.
 
-##0.1.1 (2013-12-30 21:37)
+##0.1.1 (2013-12-30)
 ### Bug-Fixes
 
 * Module would not build if cython installed. 
 * Now build from pre-cythonized `cexprtk.cpp` whether `cython` available or not.
 
-##0.1.0 (2013-12-30 19:25)
+##0.1.0 (2013-12-30)
 
 * Initial Release

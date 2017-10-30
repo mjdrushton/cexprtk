@@ -2,7 +2,7 @@
  **************************************************************
  *         C++ Mathematical Expression Toolkit Library        *
  *                                                            *
- * Simple Example 1                                           *
+ * Simple Example 11                                          *
  * Author: Arash Partow (1999-2017)                           *
  * URL: http://www.partow.net/programming/exprtk/index.html   *
  *                                                            *
@@ -22,35 +22,49 @@
 
 
 template <typename T>
-void trig_function()
+void square_wave2()
 {
    typedef exprtk::symbol_table<T> symbol_table_t;
    typedef exprtk::expression<T>     expression_t;
    typedef exprtk::parser<T>             parser_t;
 
-   std::string expression_string = "clamp(-1.0,sin(2 * pi * x) + cos(x / 2 * pi),+1.0)";
+   std::string wave_program =
+                  " var r := 0;                                         "
+                  " for (var i := 0; i < 1000; i += 1)                  "
+                  " {                                                   "
+                  "   r += (1 / (2i + 1)) * sin((4i + 2) * pi * f * t); "
+                  " };                                                  "
+                  " r *= a * (4 / pi);                                  ";
 
-   T x;
+   static const T pi = T(3.141592653589793238462643383279502);
+
+   T f = pi / T(10);
+   T t = T(0);
+   T a = T(10);
 
    symbol_table_t symbol_table;
-   symbol_table.add_variable("x",x);
+   symbol_table.add_variable("f",f);
+   symbol_table.add_variable("t",t);
+   symbol_table.add_variable("a",a);
    symbol_table.add_constants();
 
    expression_t expression;
    expression.register_symbol_table(symbol_table);
 
    parser_t parser;
-   parser.compile(expression_string,expression);
+   parser.compile(wave_program,expression);
 
-   for (x = T(-5); x <= T(+5); x += T(0.001))
+   const T delta = (T(4) * pi) / T(1000);
+
+   for (t = (T(-2) * pi); t <= (T(+2) * pi); t += delta)
    {
-      T y = expression.value();
-      printf("%19.15f\t%19.15f\n",x,y);
+      T result = expression.value();
+      printf("%19.15f\t%19.15f\n",t,result);
    }
 }
 
 int main()
 {
-   trig_function<double>();
+   square_wave2<double>();
    return 0;
 }
