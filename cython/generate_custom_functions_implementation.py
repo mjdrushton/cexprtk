@@ -13,6 +13,8 @@ CLASS_TEMPLATE = """
 class {classname:s} : public virtual exprtk::ifunction<ExpressionValueType>, public virtual CustomFunctionBase
 {{
 
+private:
+    {classname:s}();
 public:
     typedef {function_signature:s};
 
@@ -20,7 +22,6 @@ protected:
     FunctionType _cythonfunc;
 
 public:
-    {classname:s}() = delete;
 
     {classname:s}( 
                  const std::string &key_,

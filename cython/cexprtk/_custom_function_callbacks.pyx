@@ -364,45 +364,45 @@ cdef CustomFunctionBase* wrapFunction(int numargs_, string& key_, object pycalla
   if numargs_ == -1:
     retval = new Custom_Vararg_Function(key_, pyptr, callback_vararg)
   elif numargs_ == 0:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_0(key_, pyptr, callback_0) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_0(key_, pyptr, callback_0) 
   elif numargs_ == 1:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_1(key_, pyptr, callback_1) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_1(key_, pyptr, callback_1) 
   elif numargs_ == 2:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_2(key_, pyptr, callback_2) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_2(key_, pyptr, callback_2) 
   elif numargs_ == 3:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_3(key_, pyptr, callback_3) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_3(key_, pyptr, callback_3) 
   elif numargs_ == 4:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_4(key_, pyptr, callback_4) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_4(key_, pyptr, callback_4) 
   elif numargs_ == 5:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_5(key_, pyptr, callback_5) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_5(key_, pyptr, callback_5) 
   elif numargs_ == 6:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_6(key_, pyptr, callback_6) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_6(key_, pyptr, callback_6) 
   elif numargs_ == 7:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_7(key_, pyptr, callback_7) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_7(key_, pyptr, callback_7) 
   elif numargs_ == 8:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_8(key_, pyptr, callback_8) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_8(key_, pyptr, callback_8) 
   elif numargs_ == 9:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_9(key_, pyptr, callback_9) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_9(key_, pyptr, callback_9) 
   elif numargs_ == 10:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_10(key_, pyptr, callback_10) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_10(key_, pyptr, callback_10) 
   elif numargs_ == 11:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_11(key_, pyptr, callback_11) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_11(key_, pyptr, callback_11) 
   elif numargs_ == 12:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_12(key_, pyptr, callback_12) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_12(key_, pyptr, callback_12) 
   elif numargs_ == 13:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_13(key_, pyptr, callback_13) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_13(key_, pyptr, callback_13) 
   elif numargs_ == 14:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_14(key_, pyptr, callback_14) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_14(key_, pyptr, callback_14) 
   elif numargs_ == 15:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_15(key_, pyptr, callback_15) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_15(key_, pyptr, callback_15) 
   elif numargs_ == 16:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_16(key_, pyptr, callback_16) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_16(key_, pyptr, callback_16) 
   elif numargs_ == 17:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_17(key_, pyptr, callback_17) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_17(key_, pyptr, callback_17) 
   elif numargs_ == 18:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_18(key_, pyptr, callback_18) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_18(key_, pyptr, callback_18) 
   elif numargs_ == 19:
-    retval = new cexprtk_custom_functions_implementation.CustomFunction_19(key_, pyptr, callback_19) 
+    retval = new cexprtk_custom_functions_implementation.CustomFunction_19(key_, pyptr, callback_19) 
   elif numargs_ == 20:
     retval = new cexprtk_custom_functions_implementation.CustomFunction_20(key_, pyptr, callback_20) 
 
