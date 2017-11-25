@@ -53,6 +53,7 @@ cdef extern from "exprtk.hpp" namespace "exprtk":
     cppclass unknown_symbol_resolver:
       pass
     void enable_unknown_symbol_resolver(unknown_symbol_resolver* usr)
+    bool replace_symbol(const string& old_symbol, const string& new_symbol)
 
   cdef enum c_symbol_type "exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type":
     e_variable_type "exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_variable_type"

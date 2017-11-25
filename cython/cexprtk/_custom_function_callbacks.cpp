@@ -500,7 +500,7 @@ typedef exprtk::details::variable_node<double>  __pyx_t_6exprtk_variable_t;
  */
 typedef __pyx_t_6exprtk_variable_t *__pyx_t_6exprtk_variable_ptr;
 
-/* "exprtk.pxd":61
+/* "exprtk.pxd":62
  *     e_constant_type "exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_constant_type"
  * 
  * ctypedef symbol_table[double] symbol_table_type             # <<<<<<<<<<<<<<
@@ -509,7 +509,7 @@ typedef __pyx_t_6exprtk_variable_t *__pyx_t_6exprtk_variable_ptr;
  */
 typedef exprtk::symbol_table<double>  __pyx_t_6exprtk_symbol_table_type;
 
-/* "exprtk.pxd":62
+/* "exprtk.pxd":63
  * 
  * ctypedef symbol_table[double] symbol_table_type
  * ctypedef expression[double] expression_type             # <<<<<<<<<<<<<<
@@ -517,7 +517,7 @@ typedef exprtk::symbol_table<double>  __pyx_t_6exprtk_symbol_table_type;
  */
 typedef exprtk::expression<double>  __pyx_t_6exprtk_expression_type;
 
-/* "exprtk.pxd":63
+/* "exprtk.pxd":64
  * ctypedef symbol_table[double] symbol_table_type
  * ctypedef expression[double] expression_type
  * ctypedef parser[double] parser_type             # <<<<<<<<<<<<<<
@@ -7869,9 +7869,9 @@ static CustomFunctionBase *__pyx_f_7cexprtk_26_custom_function_callbacks_wrapFun
  */
   __pyx_v_retval = NULL;
 
-  /* "cexprtk/_custom_function_callbacks.pyx":406
- *   elif numargs_ == 19:
+  /* "cexprtk/_custom_function_callbacks.pyx":426
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_19(key_, pyptr, callback_19)
+ * 
  *   elif numargs_ == 20:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_20(key_, pyptr, callback_20)
  * 
@@ -7902,7 +7902,7 @@ static CustomFunctionBase *__pyx_f_7cexprtk_26_custom_function_callbacks_wrapFun
  *     retval = new Custom_Vararg_Function(key_, pyptr, callback_vararg)
  *   elif numargs_ == 0:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_0(key_, pyptr, callback_0)
- *   elif numargs_ == 1:
+ * 
  */
     case 0:
 
@@ -7910,384 +7910,384 @@ static CustomFunctionBase *__pyx_f_7cexprtk_26_custom_function_callbacks_wrapFun
  *     retval = new Custom_Vararg_Function(key_, pyptr, callback_vararg)
  *   elif numargs_ == 0:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_0(key_, pyptr, callback_0)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 1:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_1(key_, pyptr, callback_1)
  */
     __pyx_v_retval = new CustomFunction_0(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_0);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":368
- *   elif numargs_ == 0:
+    /* "cexprtk/_custom_function_callbacks.pyx":369
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_0(key_, pyptr, callback_0)
+ * 
  *   elif numargs_ == 1:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_1(key_, pyptr, callback_1)
- *   elif numargs_ == 2:
+ * 
  */
     case 1:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":369
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_0(key_, pyptr, callback_0)
+    /* "cexprtk/_custom_function_callbacks.pyx":370
+ * 
  *   elif numargs_ == 1:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_1(key_, pyptr, callback_1)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 2:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_2(key_, pyptr, callback_2)
  */
     __pyx_v_retval = new CustomFunction_1(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_1);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":370
- *   elif numargs_ == 1:
+    /* "cexprtk/_custom_function_callbacks.pyx":372
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_1(key_, pyptr, callback_1)
+ * 
  *   elif numargs_ == 2:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_2(key_, pyptr, callback_2)
- *   elif numargs_ == 3:
+ * 
  */
     case 2:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":371
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_1(key_, pyptr, callback_1)
+    /* "cexprtk/_custom_function_callbacks.pyx":373
+ * 
  *   elif numargs_ == 2:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_2(key_, pyptr, callback_2)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 3:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_3(key_, pyptr, callback_3)
  */
     __pyx_v_retval = new CustomFunction_2(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_2);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":372
- *   elif numargs_ == 2:
+    /* "cexprtk/_custom_function_callbacks.pyx":375
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_2(key_, pyptr, callback_2)
+ * 
  *   elif numargs_ == 3:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_3(key_, pyptr, callback_3)
- *   elif numargs_ == 4:
+ * 
  */
     case 3:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":373
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_2(key_, pyptr, callback_2)
+    /* "cexprtk/_custom_function_callbacks.pyx":376
+ * 
  *   elif numargs_ == 3:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_3(key_, pyptr, callback_3)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 4:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_4(key_, pyptr, callback_4)
  */
     __pyx_v_retval = new CustomFunction_3(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_3);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":374
- *   elif numargs_ == 3:
+    /* "cexprtk/_custom_function_callbacks.pyx":378
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_3(key_, pyptr, callback_3)
+ * 
  *   elif numargs_ == 4:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_4(key_, pyptr, callback_4)
- *   elif numargs_ == 5:
+ * 
  */
     case 4:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":375
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_3(key_, pyptr, callback_3)
+    /* "cexprtk/_custom_function_callbacks.pyx":379
+ * 
  *   elif numargs_ == 4:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_4(key_, pyptr, callback_4)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 5:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_5(key_, pyptr, callback_5)
  */
     __pyx_v_retval = new CustomFunction_4(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_4);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":376
- *   elif numargs_ == 4:
+    /* "cexprtk/_custom_function_callbacks.pyx":381
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_4(key_, pyptr, callback_4)
+ * 
  *   elif numargs_ == 5:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_5(key_, pyptr, callback_5)
- *   elif numargs_ == 6:
+ * 
  */
     case 5:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":377
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_4(key_, pyptr, callback_4)
+    /* "cexprtk/_custom_function_callbacks.pyx":382
+ * 
  *   elif numargs_ == 5:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_5(key_, pyptr, callback_5)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 6:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_6(key_, pyptr, callback_6)
  */
     __pyx_v_retval = new CustomFunction_5(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_5);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":378
- *   elif numargs_ == 5:
+    /* "cexprtk/_custom_function_callbacks.pyx":384
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_5(key_, pyptr, callback_5)
+ * 
  *   elif numargs_ == 6:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_6(key_, pyptr, callback_6)
- *   elif numargs_ == 7:
+ * 
  */
     case 6:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":379
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_5(key_, pyptr, callback_5)
+    /* "cexprtk/_custom_function_callbacks.pyx":385
+ * 
  *   elif numargs_ == 6:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_6(key_, pyptr, callback_6)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 7:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_7(key_, pyptr, callback_7)
  */
     __pyx_v_retval = new CustomFunction_6(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_6);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":380
- *   elif numargs_ == 6:
+    /* "cexprtk/_custom_function_callbacks.pyx":387
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_6(key_, pyptr, callback_6)
+ * 
  *   elif numargs_ == 7:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_7(key_, pyptr, callback_7)
- *   elif numargs_ == 8:
+ * 
  */
     case 7:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":381
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_6(key_, pyptr, callback_6)
+    /* "cexprtk/_custom_function_callbacks.pyx":388
+ * 
  *   elif numargs_ == 7:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_7(key_, pyptr, callback_7)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 8:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_8(key_, pyptr, callback_8)
  */
     __pyx_v_retval = new CustomFunction_7(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_7);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":382
- *   elif numargs_ == 7:
+    /* "cexprtk/_custom_function_callbacks.pyx":390
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_7(key_, pyptr, callback_7)
+ * 
  *   elif numargs_ == 8:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_8(key_, pyptr, callback_8)
- *   elif numargs_ == 9:
+ * 
  */
     case 8:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":383
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_7(key_, pyptr, callback_7)
+    /* "cexprtk/_custom_function_callbacks.pyx":391
+ * 
  *   elif numargs_ == 8:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_8(key_, pyptr, callback_8)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 9:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_9(key_, pyptr, callback_9)
  */
     __pyx_v_retval = new CustomFunction_8(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_8);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":384
- *   elif numargs_ == 8:
+    /* "cexprtk/_custom_function_callbacks.pyx":393
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_8(key_, pyptr, callback_8)
+ * 
  *   elif numargs_ == 9:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_9(key_, pyptr, callback_9)
- *   elif numargs_ == 10:
+ * 
  */
     case 9:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":385
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_8(key_, pyptr, callback_8)
+    /* "cexprtk/_custom_function_callbacks.pyx":394
+ * 
  *   elif numargs_ == 9:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_9(key_, pyptr, callback_9)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 10:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_10(key_, pyptr, callback_10)
  */
     __pyx_v_retval = new CustomFunction_9(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_9);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":386
- *   elif numargs_ == 9:
+    /* "cexprtk/_custom_function_callbacks.pyx":396
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_9(key_, pyptr, callback_9)
+ * 
  *   elif numargs_ == 10:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_10(key_, pyptr, callback_10)
- *   elif numargs_ == 11:
+ * 
  */
     case 10:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":387
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_9(key_, pyptr, callback_9)
+    /* "cexprtk/_custom_function_callbacks.pyx":397
+ * 
  *   elif numargs_ == 10:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_10(key_, pyptr, callback_10)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 11:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_11(key_, pyptr, callback_11)
  */
     __pyx_v_retval = new CustomFunction_10(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_10);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":388
- *   elif numargs_ == 10:
+    /* "cexprtk/_custom_function_callbacks.pyx":399
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_10(key_, pyptr, callback_10)
+ * 
  *   elif numargs_ == 11:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_11(key_, pyptr, callback_11)
- *   elif numargs_ == 12:
+ * 
  */
     case 11:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":389
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_10(key_, pyptr, callback_10)
+    /* "cexprtk/_custom_function_callbacks.pyx":400
+ * 
  *   elif numargs_ == 11:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_11(key_, pyptr, callback_11)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 12:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_12(key_, pyptr, callback_12)
  */
     __pyx_v_retval = new CustomFunction_11(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_11);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":390
- *   elif numargs_ == 11:
+    /* "cexprtk/_custom_function_callbacks.pyx":402
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_11(key_, pyptr, callback_11)
+ * 
  *   elif numargs_ == 12:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_12(key_, pyptr, callback_12)
- *   elif numargs_ == 13:
+ * 
  */
     case 12:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":391
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_11(key_, pyptr, callback_11)
+    /* "cexprtk/_custom_function_callbacks.pyx":403
+ * 
  *   elif numargs_ == 12:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_12(key_, pyptr, callback_12)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 13:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_13(key_, pyptr, callback_13)
  */
     __pyx_v_retval = new CustomFunction_12(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_12);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":392
- *   elif numargs_ == 12:
+    /* "cexprtk/_custom_function_callbacks.pyx":405
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_12(key_, pyptr, callback_12)
+ * 
  *   elif numargs_ == 13:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_13(key_, pyptr, callback_13)
- *   elif numargs_ == 14:
+ * 
  */
     case 13:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":393
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_12(key_, pyptr, callback_12)
+    /* "cexprtk/_custom_function_callbacks.pyx":406
+ * 
  *   elif numargs_ == 13:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_13(key_, pyptr, callback_13)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 14:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_14(key_, pyptr, callback_14)
  */
     __pyx_v_retval = new CustomFunction_13(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_13);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":394
- *   elif numargs_ == 13:
+    /* "cexprtk/_custom_function_callbacks.pyx":408
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_13(key_, pyptr, callback_13)
+ * 
  *   elif numargs_ == 14:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_14(key_, pyptr, callback_14)
- *   elif numargs_ == 15:
+ * 
  */
     case 14:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":395
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_13(key_, pyptr, callback_13)
+    /* "cexprtk/_custom_function_callbacks.pyx":409
+ * 
  *   elif numargs_ == 14:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_14(key_, pyptr, callback_14)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 15:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_15(key_, pyptr, callback_15)
  */
     __pyx_v_retval = new CustomFunction_14(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_14);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":396
- *   elif numargs_ == 14:
+    /* "cexprtk/_custom_function_callbacks.pyx":411
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_14(key_, pyptr, callback_14)
+ * 
  *   elif numargs_ == 15:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_15(key_, pyptr, callback_15)
- *   elif numargs_ == 16:
+ * 
  */
     case 15:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":397
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_14(key_, pyptr, callback_14)
+    /* "cexprtk/_custom_function_callbacks.pyx":412
+ * 
  *   elif numargs_ == 15:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_15(key_, pyptr, callback_15)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 16:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_16(key_, pyptr, callback_16)
  */
     __pyx_v_retval = new CustomFunction_15(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_15);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":398
- *   elif numargs_ == 15:
+    /* "cexprtk/_custom_function_callbacks.pyx":414
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_15(key_, pyptr, callback_15)
+ * 
  *   elif numargs_ == 16:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_16(key_, pyptr, callback_16)
- *   elif numargs_ == 17:
+ * 
  */
     case 16:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":399
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_15(key_, pyptr, callback_15)
+    /* "cexprtk/_custom_function_callbacks.pyx":415
+ * 
  *   elif numargs_ == 16:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_16(key_, pyptr, callback_16)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 17:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_17(key_, pyptr, callback_17)
  */
     __pyx_v_retval = new CustomFunction_16(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_16);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":400
- *   elif numargs_ == 16:
+    /* "cexprtk/_custom_function_callbacks.pyx":417
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_16(key_, pyptr, callback_16)
+ * 
  *   elif numargs_ == 17:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_17(key_, pyptr, callback_17)
- *   elif numargs_ == 18:
+ * 
  */
     case 17:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":401
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_16(key_, pyptr, callback_16)
+    /* "cexprtk/_custom_function_callbacks.pyx":418
+ * 
  *   elif numargs_ == 17:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_17(key_, pyptr, callback_17)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 18:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_18(key_, pyptr, callback_18)
  */
     __pyx_v_retval = new CustomFunction_17(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_17);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":402
- *   elif numargs_ == 17:
+    /* "cexprtk/_custom_function_callbacks.pyx":420
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_17(key_, pyptr, callback_17)
+ * 
  *   elif numargs_ == 18:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_18(key_, pyptr, callback_18)
- *   elif numargs_ == 19:
+ * 
  */
     case 18:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":403
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_17(key_, pyptr, callback_17)
+    /* "cexprtk/_custom_function_callbacks.pyx":421
+ * 
  *   elif numargs_ == 18:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_18(key_, pyptr, callback_18)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 19:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_19(key_, pyptr, callback_19)
  */
     __pyx_v_retval = new CustomFunction_18(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_18);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":404
- *   elif numargs_ == 18:
+    /* "cexprtk/_custom_function_callbacks.pyx":423
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_18(key_, pyptr, callback_18)
+ * 
  *   elif numargs_ == 19:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_19(key_, pyptr, callback_19)
- *   elif numargs_ == 20:
+ * 
  */
     case 19:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":405
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_18(key_, pyptr, callback_18)
+    /* "cexprtk/_custom_function_callbacks.pyx":424
+ * 
  *   elif numargs_ == 19:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_19(key_, pyptr, callback_19)             # <<<<<<<<<<<<<<
+ * 
  *   elif numargs_ == 20:
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_20(key_, pyptr, callback_20)
  */
     __pyx_v_retval = new CustomFunction_19(__pyx_v_key_, __pyx_v_pyptr, __pyx_f_7cexprtk_26_custom_function_callbacks_callback_19);
     break;
 
-    /* "cexprtk/_custom_function_callbacks.pyx":406
- *   elif numargs_ == 19:
+    /* "cexprtk/_custom_function_callbacks.pyx":426
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_19(key_, pyptr, callback_19)
+ * 
  *   elif numargs_ == 20:             # <<<<<<<<<<<<<<
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_20(key_, pyptr, callback_20)
  * 
  */
     case 20:
 
-    /* "cexprtk/_custom_function_callbacks.pyx":407
- *     retval = new cexprtk_custom_functions_implementation.CustomFunction_19(key_, pyptr, callback_19)
+    /* "cexprtk/_custom_function_callbacks.pyx":427
+ * 
  *   elif numargs_ == 20:
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_20(key_, pyptr, callback_20)             # <<<<<<<<<<<<<<
  * 
@@ -8298,7 +8298,7 @@ static CustomFunctionBase *__pyx_f_7cexprtk_26_custom_function_callbacks_wrapFun
     default: break;
   }
 
-  /* "cexprtk/_custom_function_callbacks.pyx":409
+  /* "cexprtk/_custom_function_callbacks.pyx":429
  *     retval = new cexprtk_custom_functions_implementation.CustomFunction_20(key_, pyptr, callback_20)
  * 
  *   return retval             # <<<<<<<<<<<<<<
