@@ -3,7 +3,7 @@ import os
 from setuptools import setup
 from setuptools.extension import Extension
 
-CURR_DIR = os.path.realpath(os.path.dirname(__file__))
+CURR_DIR = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_DIR = os.path.join(CURR_DIR, 'cython', 'cexprtk')
 
 COMPILER_OPTIONS = dict(
