@@ -505,7 +505,7 @@ typedef exprtk::details::variable_node<double>  __pyx_t_6exprtk_variable_t;
  */
 typedef __pyx_t_6exprtk_variable_t *__pyx_t_6exprtk_variable_ptr;
 
-/* "exprtk.pxd":61
+/* "exprtk.pxd":62
  *     e_constant_type "exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_constant_type"
  * 
  * ctypedef symbol_table[double] symbol_table_type             # <<<<<<<<<<<<<<
@@ -514,7 +514,7 @@ typedef __pyx_t_6exprtk_variable_t *__pyx_t_6exprtk_variable_ptr;
  */
 typedef exprtk::symbol_table<double>  __pyx_t_6exprtk_symbol_table_type;
 
-/* "exprtk.pxd":62
+/* "exprtk.pxd":63
  * 
  * ctypedef symbol_table[double] symbol_table_type
  * ctypedef expression[double] expression_type             # <<<<<<<<<<<<<<
@@ -522,7 +522,7 @@ typedef exprtk::symbol_table<double>  __pyx_t_6exprtk_symbol_table_type;
  */
 typedef exprtk::expression<double>  __pyx_t_6exprtk_expression_type;
 
-/* "exprtk.pxd":63
+/* "exprtk.pxd":64
  * ctypedef symbol_table[double] symbol_table_type
  * ctypedef expression[double] expression_type
  * ctypedef parser[double] parser_type             # <<<<<<<<<<<<<<
