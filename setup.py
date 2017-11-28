@@ -45,8 +45,8 @@ except ImportError:
   USE_CYTHON = False
 
 
-def cexprtkExtension():
-  cythonfiles = ['cython/cexprtk/_cexprtk.pyx']
+def cexprtkExtension(ext):
+  cythonfiles = ['cython/cexprtk/_cexprtk'+ext]
   cppfiles = [ 'cpp/cexprtk_unknown_symbol_resolver.cpp']
   cppfiles.extend(cythonfiles)
   extension = Extension('cexprtk._cexprtk',
@@ -54,8 +54,8 @@ def cexprtkExtension():
                         include_dirs=INCLUDE_DIRS)
   return extension
 
-def custom_function_callbacksExtension():
-  cythonfiles = ['cython/cexprtk/_custom_function_callbacks.pyx']
+def custom_function_callbacksExtension(ext):
+  cythonfiles = ['cython/cexprtk/_custom_function_callbacks'+ext]
   cppfiles = []
   cppfiles.extend(cythonfiles)
   extension = Extension('cexprtk._custom_function_callbacks',
@@ -63,8 +63,8 @@ def custom_function_callbacksExtension():
                         include_dirs=INCLUDE_DIRS)
   return extension
 
-def symbol_tableExtension():
-  cythonfiles = ['cython/cexprtk/_symbol_table.pyx']
+def symbol_tableExtension(ext):
+  cythonfiles = ['cython/cexprtk/_symbol_table'+ext]
   cppfiles = []
   cppfiles.extend(cythonfiles)
   extension = Extension('cexprtk._symbol_table',
@@ -73,21 +73,14 @@ def symbol_tableExtension():
   return extension
 
 def extensions():
-  exts = [cexprtkExtension(), custom_function_callbacksExtension(), symbol_tableExtension()]
+  if USE_CYTHON:
+    ext = '.pyx'
+  else:
+    ext = '.cpp'
+  exts = [cexprtkExtension(ext), custom_function_callbacksExtension(ext), symbol_tableExtension(ext)]
 
   if USE_CYTHON:
     return cythonize(exts,include_path = ['cython', 'cython/cexprtk'])
-  else:
-    # If cython isn't present then use .cpp files instead
-    import os
-    for extension in exts:
-      srcs = []
-      for s in extension.sources:
-        root,ext = os.path.splitext(s)
-        if ext == '.pyx':
-          s = root+'.cpp'
-        srcs.append(s)
-      extension.sources = srcs
   return exts
 
 
@@ -99,7 +92,7 @@ class BuildExtCustom(build_ext):
     compiler_type = self.compiler.compiler_type
     if compiler_type == 'msvc':
       pass
-    elif self.compiler.compiler[0].endswith('gnu-gcc'):
+    elif self.compiler.compiler[0].endswith('gcc'):
       compiler_type = 'gcc'
     elif self.compiler.compiler[0].endswith('clang'):
       compiler_type = 'clang'
@@ -124,7 +117,7 @@ setup(name="cexprtk",
       long_description=open('README.txt').read(),
       author="M.J.D. Rushton",
       author_email="m.j.d.rushton@gmail.com",
-      version="0.3.0",
+      version="0.3.1",
       license="CPL",
       url="https://bitbucket.org/mjdr/cexprtk",
       download_url="https://bitbucket.org/mjdr/cexprtk/get/0.3.0.tar.gz",
