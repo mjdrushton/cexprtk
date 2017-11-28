@@ -18,5 +18,12 @@ include cython/cexprtk/_custom_function_callbacks.pxd
 include cython/cexprtk/_custom_function_callbacks.pyx
 include cython/cexprtk/_exceptions.py
 include cython/cexprtk/_functionargs.py
+include cython/cexprtk/_symbol_table.cpp
 include cython/cexprtk/_symbol_table.pxd
 include cython/cexprtk/_symbol_table.pyx
+include cython/cexprtk_custom_functions.pxd
+include cython/cexprtk_custom_functions_implementation.pxd
+include cython/cexprtk_custom_vararg_function.pxd
+include cython/cexprtk_unknown_symbol_resolver.pxd
+include cython/cexprtk_util.pxd
+include cython/exprtk.pxd
