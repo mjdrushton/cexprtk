@@ -115,11 +115,11 @@ class BuildExtCustom(build_ext):
 CMDCLASS = {'build_ext': BuildExtCustom}
 
 setup(name="cexprtk",
-      packages = ['cexprtk'],
+      packages = ['cexprtk', 'cexprtk.tests'],
       package_dir = {'' : 'cython' },
       ext_modules= extensions(),
       cmdclass=CMDCLASS,
-      test_suite="tests",
+      #test_suite="cexprtk.tests",
       description="Mathematical expression parser: cython wrapper around the 'C++ Mathematical Expression Toolkit Library' ",
       long_description=open('README.txt').read(),
       author="M.J.D. Rushton",
@@ -135,5 +135,6 @@ setup(name="cexprtk",
           "Programming Language :: Python :: 2.7",
           "Programming Language :: Python :: 3.5",
           "Programming Language :: Python :: 3.6",
+          "Programming Language :: Python :: 3.7",
           "Programming Language :: Cython",
           "Topic :: Scientific/Engineering :: Mathematics"])
