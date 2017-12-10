@@ -1,6 +1,6 @@
 #cexprtk: Mathematical Expression Parsing and Evaluation in Python
 
-`cexprtk` is a cython wrapper around the "[C++ Mathematical Expression  Toolkit Library (ExprTk)][ExprTk]"  by Arash Partow. Using `cexprtk` a powerful mathematical expression engine can be incorporated into your python project.
+`cexprtk` is a cython wrapper around the "[ExprTK: C++ Mathematical Expression  Toolkit Library ](http://www.partow.net/programming/exprtk/index.html)"  by Arash Partow. Using `cexprtk` a powerful mathematical expression engine can be incorporated into your python project.
 
 ## Table of Contents
 [TOC]
@@ -133,7 +133,6 @@ __The Solution:__
 * Now the callback is defined. This takes a single argument, *symbol*, which gives the name of the missing variable found in the expression:
 
 	```python
-
 	def callback(symbol):
 		# Tokenize the symbol name into prefix and VARIABLENAME components.
 		prefix,variablename = symbol.split("_", 1)
@@ -152,7 +151,6 @@ __The Solution:__
 		value *= weight
 		# Indicate success and return value to cexprtk
 		return (True, cexprtk.USRSymbolType.VARIABLE, value, "")
-
 	```
 
 * All that remains is to register the callback with an instance of `Expression` and to evaluate an expression. The expression to be evaluated is:
@@ -180,7 +178,7 @@ Class representing mathematical expression.
 * Following instantiation, the expression is evaluated calling the expression or invoking its `value()` method.
 * The variable values used by the Expression can be modified through the `variables` property of the `Symbol_Table` instance associated with the expression. The `Symbol_Table` can be accessed using the `Expression.symbol_table` property.
 
-###### Defining unknown symbol-resolver:
+##### Defining unknown symbol-resolver:
 
 The `unknown_symbol_resolver_callback` argument  to the `Expression`
 constructor accepts a callable which is invoked  whenever a symbol (i.e. a
@@ -343,7 +341,7 @@ __Raises:__
 Evaluate a mathematical formula using the exprtk library and return result.
 
 For more information about supported functions and syntax see the
-[exprtk C++ library website][ExprTk].
+[exprtk C++ library website](http://www.partow.net/programming/exprtk/index.html).
 
 __Parameters:__
 
@@ -362,13 +360,12 @@ __Raises:__
 
 ## Authors
 
-Cython wrapper by Michael Rushton (m.j.d.rushton@gmail.com), although most credit should go to Arash Partow for creating the underlying [ExprTK][] library.
+Cython wrapper by Michael Rushton (m.j.d.rushton@gmail.com), although most credit should go to Arash Partow for creating the underlying [ExprTK](http://www.partow.net/programming/exprtk/index.html) library.
 
 
 ## License
 
 `cexprtk` is released under the same terms as the [ExprTK][] library the [Common Public License Version 1.0][] (CPL).
 
-[ExprTK]: http://www.partow.net/programming/exprtk/index.html
 [pip]: http://www.pip-installer.org/en/latest/index.html
 [Common Public License Version 1.0]: http://opensource.org/licenses/cpl1.0.php

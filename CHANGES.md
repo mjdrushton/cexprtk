@@ -1,5 +1,11 @@
 #Change Log
 
+##0.3.2 (2017-12-10)
+## Bug-Fixes
+
+ * Changes to setup.py so that the correct README is displayed on PyPI
+ * Updated the exprtk_benchmark.py file so that it can run under python 3.
+
 ##0.3.1 (2017-11-28)
 ### Bug-Fixes
 

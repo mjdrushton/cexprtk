@@ -1,5 +1,3 @@
-recursive-include tests *.py
-
 include  3rdparty/exprtk/exprtk.hpp
 
 include cpp/cexprtk.hpp
@@ -21,3 +19,5 @@ include cython/cexprtk/_functionargs.py
 include cython/cexprtk/_symbol_table.pxd
 include cython/cexprtk/_symbol_table.pyx
 recursive-include cython/cexprtk/tests *.py
+
+graft benchmark

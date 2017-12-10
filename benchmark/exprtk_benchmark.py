@@ -62,10 +62,10 @@ def run_benchmark(expression, f):
   etime = time.time()
 
   t = (etime - stime)
-  print "[exprtk] Total Time:%12.8f  Rate:%14.3f evals/sec Expression: %s" % (
+  print("[exprtk] Total Time:%12.8f  Rate:%14.3f evals/sec Expression: %s" % (
     t,
     count / float(t),
-    expression)
+    expression))
 
 class EFunc(object):
   def __init__(self, expression):
@@ -81,11 +81,11 @@ class EFunc(object):
 def main():
 
 
-  print "-- NATIVE_PYTHON --"
+  print("-- NATIVE_PYTHON --")
   for e, f in expression_list:
     run_benchmark(e,f)
 
-  print "-- CEXPRTK_PYTHON --"
+  print("-- CEXPRTK_PYTHON --")
   for e, f in expression_list:
     run_benchmark(e, EFunc(e))
 

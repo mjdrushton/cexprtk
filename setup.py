@@ -6,6 +6,8 @@ from setuptools.extension import Extension
 CURR_DIR = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_DIR = os.path.join(CURR_DIR, 'cython', 'cexprtk')
 
+VERSION="0.3.2"
+
 COMPILER_OPTIONS = dict(
     # bigobj is needed because the PE/COFF binary format
     # has a limitation of 2^15 sections, and large
@@ -107,6 +109,28 @@ class BuildExtCustom(build_ext):
 
 CMDCLASS = {'build_ext': BuildExtCustom}
 
+readme_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'README.md')
+try:
+    from m2r import parse_from_file
+    readme = parse_from_file(readme_file)
+    try:
+      import restructuredtext_lint
+      errors = restructuredtext_lint.lint(readme)
+      if errors:
+        for e in errors:
+          errormsg = "Error in readme: {0}: {1}".format(e.line, e.full_message)
+          print(errormsg)
+
+        raise Exception("Error in README restructured text")
+
+    except ImportError:
+      pass
+except ImportError:
+    # m2r may not be installed in user environment
+    print("WARNING: m2r not installed - package long description will not have been converted from Markdown to RST")
+    with open(readme_file) as f:
+        readme = f.read()
+
 setup(name="cexprtk",
       packages = ['cexprtk', 'cexprtk.tests'],
       package_dir = {'' : 'cython' },
@@ -114,13 +138,13 @@ setup(name="cexprtk",
       cmdclass=CMDCLASS,
       #test_suite="cexprtk.tests",
       description="Mathematical expression parser: cython wrapper around the 'C++ Mathematical Expression Toolkit Library' ",
-      long_description=open('README.md').read(),
+      long_description=readme,
       author="M.J.D. Rushton",
       author_email="m.j.d.rushton@gmail.com",
-      version="0.3.1",
+      version=VERSION,
       license="CPL",
       url="https://bitbucket.org/mjdr/cexprtk",
-      download_url="https://bitbucket.org/mjdr/cexprtk/get/0.3.1.tar.gz",
+      download_url="https://bitbucket.org/mjdr/cexprtk/get/{0}.tar.gz".format(VERSION),
       keywords=["math", "formula", "parser", "arithmetic", "evaluate"],
       classifiers=[
           "License :: OSI Approved :: Common Public License",
