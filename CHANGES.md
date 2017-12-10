@@ -4,6 +4,7 @@
 ### Bug-Fixes
 
 * Bug fixes to `setup.py` to allow building on Linux using gcc.
+* Build scripts to assist making wheels on Linux, Windows and MacOSX
 
 ##0.3.0 (2017-11-27)
 ### New Features
