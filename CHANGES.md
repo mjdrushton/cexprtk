@@ -1,7 +1,11 @@
 #Change Log
 
+##0.3.1 (2017-11-28)
+### Bug-Fixes
 
-##0.3.0
+* Bug fixes to `setup.py` to allow building on Linux using gcc.
+
+##0.3.0 (2017-11-27)
 ### New Features
 
 * Support for Python 3

@@ -56,8 +56,8 @@ cdef extern from "exprtk.hpp" namespace "exprtk":
     bool replace_symbol(const string& old_symbol, const string& new_symbol)
 
   cdef enum c_symbol_type "exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type":
-    e_variable_type "exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_variable_type"
-    e_constant_type "exprtk::parser<double>::unknown_symbol_resolver::usr_symbol_type::e_usr_constant_type"
+    e_variable_type "exprtk::parser<double>::unknown_symbol_resolver::e_usr_variable_type"
+    e_constant_type "exprtk::parser<double>::unknown_symbol_resolver::e_usr_constant_type"
 
 ctypedef symbol_table[double] symbol_table_type
 ctypedef expression[double] expression_type
