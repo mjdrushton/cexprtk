@@ -1,6 +1,9 @@
 syntax: glob
 cexprtk.so
 *.o
+*.so
+*.dylib
+*.dll
 *.pyc
 venv
 venv3
