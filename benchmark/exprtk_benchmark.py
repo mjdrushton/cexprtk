@@ -34,17 +34,10 @@ expression_list = [
   ("if((y + (x * 2.2)) <= (x + y + 1.1), x - y, x * y) + 2 * pi / x", lambda x,y: if_func((y + (x * 2.2)) <= (x + y + 1.1), x - y, x * y) + 2 * math.pi /x ) ]
 
 def run_benchmark(expression, f):
-
-  # lower_bound_x = -100.0
-  # lower_bound_y = -100.0
-  # upper_bound_x = +100.0
-  # upper_bound_y = +100.0
-
   lower_bound_x = -10.0
   lower_bound_y = -10.0
   upper_bound_x = +10.0
   upper_bound_y = +10.0
-
 
   delta = 0.0111
 
@@ -61,34 +54,43 @@ def run_benchmark(expression, f):
     x += delta
   etime = time.time()
 
-  t = (etime - stime)
-  print("[exprtk] Total Time:%12.8f  Rate:%14.3f evals/sec Expression: %s" % (
-    t,
-    count / float(t),
-    expression))
+  native_t = (etime - stime)
+  native_rate = count/float(native_t)
 
-class EFunc(object):
-  def __init__(self, expression):
-    self._symbol_table = cexprtk.Symbol_Table({'x' : 1.0, 'y' : 1.0}, add_constants = True)
-    self._expression = cexprtk.Expression(expression, self._symbol_table)
+  symbol_table = cexprtk.Symbol_Table({'x' : 1.0, 'y' : 1.0}, add_constants = True)
+  eval_expression = cexprtk.Expression(expression, symbol_table)
+  v = symbol_table.variables
 
-  def __call__(self, x,y):
-    v = self._symbol_table.variables
-    v['x'] = x
-    v['y'] = y
-    return self._expression.value()
+  x = lower_bound_x
+  total = 0.0
+  count = 0
+  stime = time.time()
+  while x <= upper_bound_x:
+    y = lower_bound_y
+    while y <= upper_bound_y:
+      v['x'] = x
+      v['y'] = y
+      total += eval_expression.value()
+      count += 1
+      y += delta
+    x += delta
+  etime = time.time()
+
+  cexprtk_t = (etime - stime)
+  cexprtk_rate = count/float(cexprtk_t)
+
+  print("Expression: {0}".format(expression))
+  print("NATIVE_PYTHON: Total Time:%12.8f  Rate:%14.3f evals/sec" % (
+    native_t,
+    native_rate))
+
+  print("CEXPRTK: Total Time:%12.8f  Rate:%14.3f evals/sec" % (
+    cexprtk_t,
+    cexprtk_rate))
 
 def main():
-
-
-  print("-- NATIVE_PYTHON --")
   for e, f in expression_list:
     run_benchmark(e,f)
-
-  print("-- CEXPRTK_PYTHON --")
-  for e, f in expression_list:
-    run_benchmark(e, EFunc(e))
-
 
 if __name__ == '__main__':
   main()

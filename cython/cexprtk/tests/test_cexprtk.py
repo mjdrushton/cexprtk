@@ -350,6 +350,7 @@ class Symbol_TableConstantsTestCase(unittest.TestCase):
       iter(con)
 
 
+
 class CheckExpressionTestCase(unittest.TestCase):
   """Tests for cexprtk.check_expression"""
 
@@ -357,17 +358,11 @@ class CheckExpressionTestCase(unittest.TestCase):
     with self.assertRaises(cexprtk.ParseException):
       cexprtk.check_expression("(a + 1")
 
-    with self.assertRaises(cexprtk.ParseException):
-      cexprtk.check_expression("(a + log(1)+foo(bar))")
+    cexprtk.check_expression("(a + exp(bar))")
 
-    with self.assertRaises(cexprtk.ParseException):
-      cexprtk.check_expression("(a + exp(bar))")
+    cexprtk.check_expression("(a + 1)")
 
-    with self.assertRaises(cexprtk.ParseException):
-      cexprtk.check_expression("(a + 1)")
-
-    with self.assertRaises(cexprtk.ParseException):
-      cexprtk.check_expression("log(a + 1)")
+    cexprtk.check_expression("log(a + 1)")
 
     cexprtk.check_expression("log(2)")
 

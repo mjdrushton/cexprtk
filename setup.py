@@ -6,7 +6,7 @@ from setuptools.extension import Extension
 CURR_DIR = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_DIR = os.path.join(CURR_DIR, 'cython', 'cexprtk')
 
-VERSION="0.3.2"
+VERSION="0.3.3"
 
 COMPILER_OPTIONS = dict(
     # bigobj is needed because the PE/COFF binary format

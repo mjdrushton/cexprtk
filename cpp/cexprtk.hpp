@@ -58,8 +58,16 @@ void parser_compile_and_process_errors(const std::string& expression_string, Par
 void check(const std::string& expression_string, std::vector<std::string>& error_list)
 {
 	Parser parser;
+	SymbolTable st;
 	Expression expression;
-	parser.enable_unknown_symbol_resolver();
+
+	expression.register_symbol_table(st);
+
+	Parser::unknown_symbol_resolver usr;
+	// usr.mode = exprtk::parser<double>::unknown_symbol_resolver::e_usrmode_default;
+
+	parser.enable_unknown_symbol_resolver(&usr);
+	// parser.enable_unknown_symbol_resolver();
 	parser_compile_and_process_errors(expression_string, parser, expression, error_list);
 }
 
