@@ -1,5 +1,12 @@
 #Change Log
 
+##0.3.3 (2018-07-04)
+## Bug-Fixes
+
+  * Added missing file to MANIFEST.in (`cython/cexprtk_custom_vararg_function.pxd`) this had been causing an error under python 3.7 when trying to register custom functions.
+  * Fixed bug with cexprtk.check_expression() so that it works more like that in version 0.2.0. This function isn't particularly useful in this form with the introduction of custom functions and should be deprecated in version 0.4.0.
+  * Rebuilt `.cpp` files in distribution using cython 0.28.3.
+
 ##0.3.2 (2017-12-10)
 ## Bug-Fixes
 

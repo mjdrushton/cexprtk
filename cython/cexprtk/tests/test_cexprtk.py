@@ -641,7 +641,6 @@ class PickleTestCase(unittest.TestCase):
   def testExpressionPickleWithUnknownSymbolResolver(self):
     """Pickling of an expression that has an unknown symbol resolver associated with it"""
     import pickle
-
     
     constants = {"d" : 4, "e" : 5, "f" : 6}
     symbolTable = cexprtk.Symbol_Table({}, constants, False)
