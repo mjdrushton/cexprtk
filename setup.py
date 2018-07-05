@@ -122,7 +122,6 @@ try:
           print(errormsg)
         raise Exception("Error in README restructured text")
       else:
-        import pdb; pdb.set_trace()
         with open("README.rst", "w") as rstfile:
           rstfile.write(readme)
 
