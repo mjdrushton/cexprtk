@@ -120,8 +120,12 @@ try:
         for e in errors:
           errormsg = "Error in readme: {0}: {1}".format(e.line, e.full_message)
           print(errormsg)
-
         raise Exception("Error in README restructured text")
+      else:
+        import pdb; pdb.set_trace()
+        with open("README.rst", "w") as rstfile:
+          rstfile.write(readme)
+
 
     except ImportError:
       pass
