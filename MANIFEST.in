@@ -1,5 +1,7 @@
 include  3rdparty/exprtk/exprtk.hpp
 
+include README.md
+
 include cpp/cexprtk.hpp
 include cpp/cexprtk_common.hpp
 include cpp/cexprtk_custom_functions.hpp
@@ -19,5 +21,6 @@ include cython/cexprtk/_exceptions.py
 include cython/cexprtk/_functionargs.py
 include cython/cexprtk/_symbol_table.pxd
 include cython/cexprtk/_symbol_table.pyx
-recursive-include cython/cexprtk/tests *.py
+
+graft tests
 graft benchmark

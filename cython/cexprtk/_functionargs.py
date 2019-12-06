@@ -1,19 +1,50 @@
 import inspect
-import collections
+# import collections
 import functools
+
+if hasattr(inspect, 'getfullargspec'):
+  # Python 3
+
+  def _argspec(callable_):
+    return inspect.getfullargspec(callable_)
+
+  def _partialArgs(callable_):
+    argspec = _argspec(callable_)
+    if argspec.varargs:
+      return -1
+    numargs = len(argspec.args)
+    return numargs
+
+  from collections.abc import Callable
+
+else:
+  # Python 2.7
+
+  def _argspec(callable_):
+    return inspect.getargspec(callable_)
+
+  def _partialArgs(callable_):
+    argspec = _argspec(callable_.func)
+    if argspec.varargs:
+      return -1
+    numargs = len(argspec.args)
+    numargs -= len(callable_.args)
+    return numargs
+
+  from collections import Callable
 
 def _isPartial(callable_):
   return isinstance(callable_, functools.partial)
 
 def _isFunction(callable_):
-  return isinstance(callable_, collections.Callable)
+  return isinstance(callable_, Callable)
 
 def _isCallable(callable_):
   return hasattr(callable_, '__call__') and not inspect.isfunction(callable_)
 
 def _callableArgs(callable_):
   callable_ = getattr(callable_, '__call__')
-  argspec = inspect.getargspec(callable_)
+  argspec = _argspec(callable_)
   if argspec.varargs:
     return -1
   numargs = len(argspec.args)
@@ -21,19 +52,13 @@ def _callableArgs(callable_):
   return numargs
 
 def _genericArgs(callable_):
-  argspec = inspect.getargspec(callable_)
+  argspec = _argspec(callable_)
   if argspec.varargs:
     return -1
   numargs = len(argspec.args)
   return numargs
 
-def _partialArgs(callable_):
-  argspec = inspect.getargspec(callable_.func)
-  if argspec.varargs:
-    return -1
-  numargs = len(argspec.args)
-  numargs -= len(callable_.args)
-  return numargs
+
 
 def functionargs(callable_):
   """Return the number of arguments taken by callable or -1 if callable 

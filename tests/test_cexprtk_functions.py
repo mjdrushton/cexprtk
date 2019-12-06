@@ -1,4 +1,5 @@
 import unittest
+import pytest
 
 import cexprtk
 from cexprtk import VariableNameShadowException, ReservedFunctionShadowException
@@ -16,21 +17,21 @@ class FunctionsTestCase(unittest.TestCase):
     symbol_table.functions["foo"] = foo
 
     e1 = cexprtk.Expression("foo() + 1", symbol_table)
-    self.assertEqual(2.0, e1())
+    assert 2.0 ==  e1()
 
     e2 = cexprtk.Expression("foo + 1", symbol_table)
-    self.assertEqual(2.0, e2())
+    assert 2.0 ==  e2()
 
   def testUnaryFunction(self):
     """Test function that takes single argument"""
     symbol_table = cexprtk.Symbol_Table({})
     symbol_table.functions["plustwo"] = lambda x: x+2
     expression = cexprtk.Expression("plustwo(2)", symbol_table)
-    self.assertEqual(4, expression())
+    assert 4 ==  expression()
 
     symbol_table.variables["A"] = 3.0
     expression = cexprtk.Expression("plustwo(A) + 4", symbol_table)
-    self.assertEqual(3+2+4, expression())
+    assert 3+2+4 ==  expression()
 
   def testNoNameShadowing_variableExists(self):
     """Test that functions and variables don't share names (variable is set before function)"""
@@ -78,10 +79,10 @@ class FunctionsTestCase(unittest.TestCase):
       return 2
 
     symbol_table = cexprtk.Symbol_Table({}, functions = {"f" : f, "g" : g})
-    self.assertEquals(['f', 'g'], sorted(symbol_table.functions.keys()))
+    assert ['f' ==  'g'], sorted(symbol_table.functions.keys())
 
-    self.assertEquals(1, symbol_table.functions['f'](3))
-    self.assertEquals(2, symbol_table.functions['g'](3))
+    assert 1 ==  symbol_table.functions['f'](3)
+    assert 2 ==  symbol_table.functions['g'](3)
 
   def testShadowingOfReservedFunction(self):
     """Test that reserved function names cannot be overwritten"""
@@ -112,7 +113,7 @@ class FunctionsTestCase(unittest.TestCase):
     symbol_table = cexprtk.Symbol_Table({})
     symbol_table.functions['f'] = c
     expression = cexprtk.Expression("f(1)", symbol_table)
-    self.assertAlmostEquals(5.1, expression.value())
+    assert pytest.approx(5.1) == expression.value()
 
   def testFunctoolsPartial(self):
     import functools
@@ -128,7 +129,7 @@ class FunctionsTestCase(unittest.TestCase):
 
     e1 = cexprtk.Expression("f(1,2,3)", st)
     e2 = cexprtk.Expression("p(3)", st)
-    self.assertEqual(e1(), e2())
+    assert e1() ==  e2()
 
   def testFunctionThatThrows(self):
     """Test a function that throws an exception"""
@@ -155,7 +156,7 @@ class FunctionsTestCase(unittest.TestCase):
       return 1
 
     st.functions["f"] = f1
-    self.assertEqual(1, st.functions["f"](100))
+    assert 1 ==  st.functions["f"](100)
 
     # Function isn't registered with expression changing should work at this point.
     with self.assertRaises(KeyError):
@@ -175,9 +176,9 @@ class VarArgsFunctionTestCase(unittest.TestCase):
     st = cexprtk.Symbol_Table({})
     st.functions["va"] = va
 
-    self.assertEqual(va, st.functions["va"])
+    assert va ==  st.functions["va"]
     e = cexprtk.Expression("va(1,2,3,4)", st)
-    self.assertEqual(10, e())
+    assert 10 ==  e()
 
   def testCallable(self):
     """Test use of a varargs functions with Expression objects"""
@@ -193,11 +194,11 @@ class VarArgsFunctionTestCase(unittest.TestCase):
     va = Callable()
     st = cexprtk.Symbol_Table({})
     st.functions["va"] = va
-    self.assertEqual(va, st.functions["va"])
+    assert va ==  st.functions["va"]
     e = cexprtk.Expression("va(1,2,3,4)", st)
-    self.assertEqual(10, e())
+    assert 10 ==  e()
     e = cexprtk.Expression("va(1,2,3,4,1)", st)
-    self.assertEqual(11, e())
+    assert 11 ==  e()
 
   # def testVarArgsWithKwargs(self):
   #   def va(*args, **kwargs):
@@ -239,7 +240,7 @@ class VarArgsFunctionTestCase(unittest.TestCase):
     # Add va to symbol_table first
     st = cexprtk.Symbol_Table({})
     st.functions["f"] = va
-    self.assertEqual([("f", va)], st.functions.items())
+    assert [("f",  va)] == list(st.functions.items())
 
     # Try adding f on top of va
     with self.assertRaises(KeyError):
@@ -260,7 +261,7 @@ class VarArgsFunctionTestCase(unittest.TestCase):
       ("f",va)])
     
     actual = sorted(st.functions.items())
-    self.assertEqual(expect, actual)
+    assert expect ==  actual
 
 
 class FunctionSignatureTestCase(unittest.TestCase):
@@ -294,8 +295,8 @@ class FunctionSignatureTestCase(unittest.TestCase):
     def f(*args):
       pass
 
-    self.assertEquals(-1, functionargs(cb))
-    self.assertEquals(-1, functionargs(f))
+    assert -1 ==  functionargs(cb)
+    assert -1 ==  functionargs(f)
 
   def testManyArguments(self):
     class Many(object):
@@ -307,8 +308,8 @@ class FunctionSignatureTestCase(unittest.TestCase):
     def f(a,b,c,d,e,f,g):
       pass
 
-    self.assertEquals(7, functionargs(cb))
-    self.assertEquals(7, functionargs(f))
+    assert 7 ==  functionargs(cb)
+    assert 7 ==  functionargs(f)
 
   def testBinaryFunction(self):
     class Binary(object):
@@ -320,8 +321,8 @@ class FunctionSignatureTestCase(unittest.TestCase):
     def f(a,b):
       pass
 
-    self.assertEquals(2, functionargs(cb))
-    self.assertEquals(2, functionargs(f))
+    assert 2 ==  functionargs(cb)
+    assert 2 ==  functionargs(f)
 
   def testUnaryFunction(self):
     class Unary(object):
@@ -333,8 +334,8 @@ class FunctionSignatureTestCase(unittest.TestCase):
     def f(a):
       pass
 
-    self.assertEquals(1, functionargs(cb))
-    self.assertEquals(1, functionargs(f))
+    assert 1 ==  functionargs(cb)
+    assert 1 ==  functionargs(f)
 
   def testNullary(self):
     class Unary(object):
@@ -346,14 +347,13 @@ class FunctionSignatureTestCase(unittest.TestCase):
     def f():
       pass  
 
-    self.assertEquals(0, functionargs(cb))
-    self.assertEquals(0, functionargs(f))
+    assert 0 ==  functionargs(cb)
+    assert 0 ==  functionargs(f)
 
   def testFunctoolsPartial(self):
     import functools
-
     def f(a,b,c):
       return 2*a + 3*b + c
 
     p = functools.partial(f, 1,2)
-    self.assertEqual(1, functionargs(p))
+    assert 1 ==  functionargs(p)

@@ -6,7 +6,7 @@ from setuptools.extension import Extension
 CURR_DIR = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_DIR = os.path.join(CURR_DIR, 'cython', 'cexprtk')
 
-VERSION="0.3.3"
+VERSION="0.3.4"
 
 COMPILER_OPTIONS = dict(
     # bigobj is needed because the PE/COFF binary format
@@ -90,7 +90,6 @@ class BuildExtCustom(build_ext):
   ''' A customised class, for handling special compiler
   defines and options required for building on Windows. '''
   def build_extensions(self):
-    # import pdb; pdb.set_trace()
     compiler_type = self.compiler.compiler_type
     if compiler_type == 'msvc':
       pass
@@ -135,7 +134,7 @@ except ImportError:
         readme = f.read()
 
 setup(name="cexprtk",
-      packages = ['cexprtk', 'cexprtk.tests'],
+      packages = ['cexprtk'],
       package_dir = {'' : 'cython' },
       ext_modules= extensions(),
       cmdclass=CMDCLASS,
@@ -146,8 +145,8 @@ setup(name="cexprtk",
       author_email="m.j.d.rushton@gmail.com",
       version=VERSION,
       license="CPL",
-      url="https://bitbucket.org/mjdr/cexprtk",
-      download_url="https://bitbucket.org/mjdr/cexprtk/get/{0}.tar.gz".format(VERSION),
+      url="https://github.com/mjdrushton/cexprtk",
+      #download_url="https://bitbucket.org/mjdr/cexprtk/get/{0}.tar.gz".format(VERSION),
       keywords=["math", "formula", "parser", "arithmetic", "evaluate"],
       classifiers=[
           "License :: OSI Approved :: Common Public License",
@@ -156,5 +155,7 @@ setup(name="cexprtk",
           "Programming Language :: Python :: 3.5",
           "Programming Language :: Python :: 3.6",
           "Programming Language :: Python :: 3.7",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
           "Programming Language :: Cython",
           "Topic :: Scientific/Engineering :: Mathematics"])
