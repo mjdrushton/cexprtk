@@ -1,6 +1,7 @@
 #ifndef CEXPRTK_COMMON_HPP
 #define CEXPRTK_COMMON_HPP
 
+#include <cstdlib>
 #include "exprtk.hpp"
 
 #include <string>

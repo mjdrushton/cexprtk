@@ -3,7 +3,7 @@
  *         C++ Mathematical Expression Toolkit Library        *
  *                                                            *
  * Simple Example 9                                           *
- * Author: Arash Partow (1999-2017)                           *
+ * Author: Arash Partow (1999-2019)                           *
  * URL: http://www.partow.net/programming/exprtk/index.html   *
  *                                                            *
  * Copyright notice:                                          *
@@ -18,6 +18,7 @@
 
 #include <cstdio>
 #include <string>
+
 #include "exprtk.hpp"
 
 
@@ -130,11 +131,11 @@ void primes()
 
    for (std::size_t i = 0; i < 100; ++i)
    {
-      x = i;
+      x = static_cast<T>(i);
 
-      T result1 = expression1.value();
-      T result2 = expression2.value();
-      T result3 = expression3.value();
+      const T result1 = expression1.value();
+      const T result2 = expression2.value();
+      const T result3 = expression3.value();
 
       printf("%03d  Result1: %c  Result2: %c  Result3: %c\n",
              static_cast<unsigned int>(i),

@@ -3,7 +3,7 @@
  *         C++ Mathematical Expression Toolkit Library        *
  *                                                            *
  * Simple Example 19                                          *
- * Author: Arash Partow (1999-2017)                           *
+ * Author: Arash Partow (1999-2019)                           *
  * URL: http://www.partow.net/programming/exprtk/index.html   *
  *                                                            *
  * Copyright notice:                                          *
@@ -84,7 +84,7 @@ void vector_randu()
    typedef exprtk::expression<T>     expression_t;
    typedef exprtk::parser<T>             parser_t;
 
-   std::string vecrandu_program =
+   const std::string vecrandu_program =
                 " var noise[6] := [0];                     "
                 "                                          "
                 " if (randu(noise,0,5) == false)           "

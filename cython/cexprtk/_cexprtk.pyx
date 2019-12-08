@@ -17,7 +17,6 @@ from ._symbol_table cimport Symbol_Table, _Symbol_Table_Functions
 
 from ._exceptions import ParseException, UnknownSymbolResolverException
 
-
 def check_expression(expression):
   """Check that expression can be parsed. If successful do nothing, if unsuccessful raise ParseException
 

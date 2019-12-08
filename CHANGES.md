@@ -1,9 +1,12 @@
 #Change Log
 
-##0.3.4 (2019-12-5)
+##0.3.4 (2019-12-8)
 ### Changed
 
+  * Updated exprtk version current on 2019-12-7.
+  * Rebuilt `.cpp` files in distribution using cython 0.29.14
   * Changed to pytest rather than nosetests for testing.
+  * Updated tox to run tests for cases when cython is and isn't present.
 
 ### Bug-Fixes
 
