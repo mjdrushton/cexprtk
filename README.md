@@ -1,4 +1,4 @@
-#cexprtk: Mathematical Expression Parsing and Evaluation in Python
+# cexprtk: Mathematical Expression Parsing and Evaluation in Python
 
 `cexprtk` is a cython wrapper around the "[ExprTK: C++ Mathematical Expression  Toolkit Library ](http://www.partow.net/programming/exprtk/index.html)"  by Arash Partow. Using `cexprtk` a powerful mathematical expression engine can be incorporated into your python project.
 
