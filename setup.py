@@ -146,7 +146,7 @@ setup(name="cexprtk",
       version=VERSION,
       license="CPL",
       url="https://github.com/mjdrushton/cexprtk",
-      #download_url="https://bitbucket.org/mjdr/cexprtk/get/{0}.tar.gz".format(VERSION),
+      download_url="https://github.com/mjdrushton/cexprtk/archive/{0}.tar.gz".format(VERSION),
       keywords=["math", "formula", "parser", "arithmetic", "evaluate"],
       classifiers=[
           "License :: OSI Approved :: Common Public License",
