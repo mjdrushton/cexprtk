@@ -13,6 +13,7 @@ for PE in 2.7.17 3.5.8 3.6.9 3.7.5 3.8.0;do
   pyenv local $PE
   PIP="$(pyenv which pip)"
   "$PIP" install --upgrade pip
-  "$PIP" install wheel m2r
+  "$PIP" install wheel
+  "$PIP" install --upgrade 'setuptools>=38.6.0'
   "$PIP" wheel . -w wheelhouse/
 done

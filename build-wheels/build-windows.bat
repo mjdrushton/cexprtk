@@ -6,6 +6,7 @@ IF NOT exist venv-27 (
 )
 
 call venv-27\Scripts\activate
+pip install --upgrade setuptools>=38.6.0
 pip install wheel
 pip wheel . -w wheelhouse
 call venv-27\Scripts\deactivate
@@ -19,6 +20,7 @@ IF NOT exist venv-27-32 (
 )
 
 call venv-27-32\Scripts\activate
+pip install --upgrade setuptools>=38.6.0
 pip install wheel
 pip wheel . -w wheelhouse
 call venv-27-32\Scripts\deactivate
@@ -30,6 +32,7 @@ IF NOT exist venv-35 (
 )
 
 call venv-35\Scripts\activate
+pip install --upgrade setuptools>=38.6.0
 pip install wheel
 pip wheel . -w wheelhouse
 call venv-35\Scripts\deactivate
@@ -41,6 +44,7 @@ IF NOT exist venv-36 (
 )
 
 call venv-36\Scripts\activate
+pip install --upgrade setuptools>=38.6.0
 pip install wheel
 pip wheel . -w wheelhouse
 call venv-36\Scripts\deactivate
@@ -52,6 +56,7 @@ IF NOT exist venv-36-32 (
 )
 
 call venv-36-32\Scripts\activate
+pip install --upgrade setuptools>=38.6.0
 pip install wheel
 pip wheel . -w wheelhouse
 call venv-36-32\Scripts\deactivate
@@ -63,6 +68,7 @@ IF NOT exist venv-37 (
 )
 
 call venv-37\Scripts\activate
+pip install --upgrade setuptools>=38.6.0
 pip install wheel
 pip wheel . -w wheelhouse
 call venv-37\Scripts\deactivate
@@ -73,6 +79,7 @@ IF NOT exist venv-37-32 (
 )
 
 call venv-37-32\Scripts\activate
+pip install --upgrade setuptools>=38.6.0
 pip install wheel
 pip wheel . -w wheelhouse
 call venv-37-32\Scripts\deactivate
@@ -84,6 +91,7 @@ IF NOT exist venv-38 (
 )
 
 call venv-38\Scripts\activate
+pip install --upgrade setuptools>=38.6.0
 pip install wheel
 pip wheel . -w wheelhouse
 call venv-38\Scripts\deactivate
@@ -95,6 +103,7 @@ IF NOT exist venv-38-32 (
 )
 
 call venv-38-32\Scripts\activate
+pip install --upgrade setuptools>=38.6.0
 pip install wheel
 pip wheel . -w wheelhouse
 call venv-38-32\Scripts\deactivate

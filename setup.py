@@ -109,38 +109,17 @@ class BuildExtCustom(build_ext):
 CMDCLASS = {'build_ext': BuildExtCustom}
 
 readme_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'README.md')
-try:
-    from m2r import parse_from_file
-    readme = parse_from_file(readme_file)
-    try:
-      import restructuredtext_lint
-      errors = restructuredtext_lint.lint(readme)
-      if errors:
-        for e in errors:
-          errormsg = "Error in readme: {0}: {1}".format(e.line, e.full_message)
-          print(errormsg)
-        raise Exception("Error in README restructured text")
-      else:
-        with open("README.rst", "w") as rstfile:
-          rstfile.write(readme)
-
-
-    except ImportError:
-      pass
-except ImportError:
-    # m2r may not be installed in user environment
-    print("WARNING: m2r not installed - package long description will not have been converted from Markdown to RST")
-    with open(readme_file) as f:
-        readme = f.read()
+with open(readme_file) as infile:
+  readme = infile.read()
 
 setup(name="cexprtk",
       packages = ['cexprtk'],
       package_dir = {'' : 'cython' },
       ext_modules= extensions(),
       cmdclass=CMDCLASS,
-      #test_suite="cexprtk.tests",
       description="Mathematical expression parser: cython wrapper around the 'C++ Mathematical Expression Toolkit Library' ",
       long_description=readme,
+        long_description_content_type="text/markdown",
       author="M.J.D. Rushton",
       author_email="m.j.d.rushton@gmail.com",
       version=VERSION,
