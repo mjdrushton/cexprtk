@@ -46,6 +46,39 @@ class ExpressionTestCase(unittest.TestCase):
     v = expression()
     self.assertAlmostEqual(18.0, v)
 
+  def testReturnResults(self):
+    """Test that basic return calls in expressions work."""
+    st = cexprtk.Symbol_Table({}, {})
+    exp = "var x[2] := {1, 2}; return [4, 'abc', x];"
+    expression = cexprtk.Expression(exp, st)
+    v = expression.value()
+
+    results_list = expression.results()
+
+    self.assertEqual(3, len(results_list))
+
+    scalar_val = results_list[0]
+    self.assertAlmostEqual(4.0, scalar_val)
+
+    string_val = results_list[1]
+    self.assertEqual('abc', string_val)
+
+    vector_val = results_list[2]
+    self.assertEqual(2, len(vector_val))
+    self.assertAlmostEqual(1.0, vector_val[0])
+    self.assertAlmostEqual(2.0, vector_val[1])
+
+  def testResultsEmptyWithNoReturn(self):
+    """Test that an expression has no results
+    when it doesn't include a return statement"""
+    st = cexprtk.Symbol_Table({},{})
+    expression = cexprtk.Expression("2+2", st)
+    v = expression.value()
+    self.assertAlmostEqual(4.0, v)
+
+    results_list = expression.results()
+    self.assertEqual(0, len(results_list))
+
 
 class Symbol_TableVariablesTestCase(unittest.TestCase):
   """Tests for cexprtk._Symbol_Table_Variables"""

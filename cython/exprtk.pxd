@@ -41,11 +41,33 @@ cdef extern from "exprtk.hpp" namespace "exprtk":
     ivararg_function[T]* get_vararg_function(string& vararg_function_name)
     variable_ptr get_variable(string& variable_name)
 
+  cdef cppclass type_store[T]:
+    type_store() except +
+    int size
+    int type
+    cppclass scalar_view:
+      scalar_view(type_store[T]& ts) except +
+      T& v_
+    cppclass type_view[ViewType]:
+      type_view(type_store[T]& ts) except +
+      int size()
+      ViewType& operator[](int& i)
+      ViewType* data_
+    ctypedef type_view[T] vector_view
+    ctypedef type_view[char] string_view
+
+  cdef string to_str(type_store[double].string_view& view)
+
+  cdef cppclass results_context[T]:
+    results_context() except +
+    int count()
+    type_store[T] operator[](int& index)
 
   cdef cppclass expression[T]:
     expression() except +
     void register_symbol_table(symbol_table[T])
     T value()
+    results_context[T] results()
 
   cdef cppclass parser[T]:
     parser() except +
@@ -62,3 +84,5 @@ cdef extern from "exprtk.hpp" namespace "exprtk":
 ctypedef symbol_table[double] symbol_table_type
 ctypedef expression[double] expression_type
 ctypedef parser[double] parser_type
+ctypedef results_context[double] results_context_type
+ctypedef type_store[double] type_store_type
