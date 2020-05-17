@@ -9,7 +9,8 @@ PACKAGE_DIR = os.path.join(CURR_DIR, 'cython', 'cexprtk')
 
 VERSION="0.3.4"
 
-PYTHON_MAJOR_VERSION = sys.version_info[0]
+# PYTHON_MAJOR_VERSION = sys.version_info[0]
+PYTHON_MAJOR_VERSION = 2
 
 COMPILER_OPTIONS = dict(
     # bigobj is needed because the PE/COFF binary format
