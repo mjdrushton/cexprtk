@@ -7,6 +7,7 @@ cimport cexprtk_unknown_symbol_resolver
 cimport cexprtk_util
 
 from cpython.ref cimport Py_INCREF
+from cython.operator cimport dereference
 
 from libcpp.cast cimport dynamic_cast
 from libcpp.vector cimport vector
@@ -219,6 +220,45 @@ cdef class Expression:
     if exception:
       raise exception[0], exception[1], exception[2]
     return v
+
+  def results(self):
+    """Gets the results of evaluating the expression.
+
+    :return: A list of the results from evaluating the expression, if any.
+    :rtype: list"""
+    cdef exprtk.type_store_type ts
+    cdef exprtk.type_store[double].scalar_view * sv
+    cdef exprtk.type_store[double].string_view * string_view
+    cdef exprtk.type_store[double].vector_view * vector_view
+    cdef double x
+    cdef exprtk.results_context_type resultscontext = self._cexpressionptr.results()
+    ret_list = []
+    for i in range(resultscontext.count()):
+      ts = resultscontext[i]
+      if ts.type == 1:
+        sv = new exprtk.type_store[double].scalar_view(ts)
+        ret_list.append(sv.v_)
+        del sv
+      elif ts.type == 2:
+        # Get the vector and append it here
+        # ret_list.append(f'Type: {ts.type}')
+        vector_view = new exprtk.type_store[double].vector_view(ts)
+        sub_list = []
+        for i in range(vector_view.size()):
+          x = dereference(vector_view)[i]
+          sub_list.append(x)
+        ret_list.append(sub_list)
+        del vector_view
+      elif ts.type == 3:
+        # Get string and append it here
+        string_view = new exprtk.type_store[double].string_view(ts)
+        ret_list.append(exprtk.to_str(dereference(string_view)).decode('ascii'))
+        del string_view
+        # pass
+      else:
+        # No idea what type it is, ignore it
+        continue
+    return ret_list
 
   def __call__(self):
     """Equivalent to calling value() method."""

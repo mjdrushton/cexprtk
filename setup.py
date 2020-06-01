@@ -1,4 +1,5 @@
 import os
+import sys
 
 from setuptools import setup
 from setuptools.extension import Extension
@@ -7,6 +8,9 @@ CURR_DIR = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_DIR = os.path.join(CURR_DIR, 'cython', 'cexprtk')
 
 VERSION="0.3.4"
+
+# PYTHON_MAJOR_VERSION = sys.version_info[0]
+PYTHON_MAJOR_VERSION = 2
 
 COMPILER_OPTIONS = dict(
     # bigobj is needed because the PE/COFF binary format
@@ -82,7 +86,7 @@ def extensions():
   exts = [cexprtkExtension(ext), custom_function_callbacksExtension(ext), symbol_tableExtension(ext)]
 
   if USE_CYTHON:
-    return cythonize(exts,include_path = ['cython', 'cython/cexprtk'])
+    return cythonize(exts,include_path = ['cython', 'cython/cexprtk'], compiler_directives={'language_level' : PYTHON_MAJOR_VERSION})
   return exts
 
 
