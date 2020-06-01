@@ -1,37 +1,39 @@
 # cexprtk: Mathematical Expression Parsing and Evaluation in Python
 
-`cexprtk` is a cython wrapper around the "[ExprTK: C++ Mathematical Expression  Toolkit Library ](http://www.partow.net/programming/exprtk/index.html)"  by Arash Partow. Using `cexprtk` a powerful mathematical expression engine can be incorporated into your python project.
+`cexprtk` is a cython wrapper around the "[ExprTK: C++ Mathematical Expression  Toolkit Library ][ExprTK]"  by Arash Partow. Using `cexprtk` a powerful mathematical expression engine can be incorporated into your python project.
 
 ## Table of Contents
 
-* [Installation](#installation)
-* [Usage](#usage)
-	* [Example: Evaluate a simple equation](#example-evaluate-a-simple-equation)
-	* [Example: Using Variables](#example-using-variables)
-	* [Example: Re-using expressions](#example-re-using-expressions)
-	* [Example: Defining custom functions](#example-defining-custom-functions)
-	* [Example: Defining an unknown symbol resolver](#example-defining-an-unknown-symbol-resolver)
-* [API Reference](#api-reference)
-	* [Class Reference](#class-reference)
-	* [class Expression:](#class-expression)
-		* [Defining unknown symbol-resolver:](#defining-unknown-symbol-resolver)
-		* [def <strong>init</strong>(self, <em>expression</em>, <em>symbol_table</em>, <em>unknown_symbol_resolver_callback</em> = None):](#def-initself-expression-symbol_table-unknown_symbol_resolver_callback--none)
-		* [def value(self):](#def-valueself)
-		* [def <strong>call</strong>(self):](#def-callself)
-		* [symbol_table](#symbol_table)
-	* [class Symbol_Table:](#class-symbol_table)
-		* [def <strong>init</strong>(self, <em>variables</em>, <em>constants</em> = {}, <em>add_constants</em> = False, functions = {}):](#def-initself-variables-constants---add_constants--false-functions--)
-		* [variables](#variables)
-		* [constants](#constants)
-		* [functions](#functions)
-	* [class USRSymbolType:](#class-usrsymboltype)
-		* [VARIABLE](#variable)
-		* [CONSTANT](#constant)
-	* [Utility Functions](#utility-functions)
-	* [def check_expression (<em>expression</em>)](#def-check_expression-expression)
-	* [def evaluate_expression (<em>expression</em>, <em>variables</em>)](#def-evaluate_expression-expression-variables)
-* [Authors](#authors)
-* [License](#license)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Example: Evaluate a simple equation](#example-evaluate-a-simple-equation)
+  - [Example: Using Variables](#example-using-variables)
+  - [Example: Re-using expressions](#example-re-using-expressions)
+  - [Example: Defining custom functions](#example-defining-custom-functions)
+  - [Example: Defining an unknown symbol resolver](#example-defining-an-unknown-symbol-resolver)
+  - [Example: expressions that contain return statements to produce multiple values](#example-expressions-that-contain-return-statements-to-produce-multiple-values)
+- [API Reference](#api-reference)
+  - [Class Reference](#class-reference)
+    - [class Expression:](#class-expression)
+      - [Defining unknown symbol-resolver:](#defining-unknown-symbol-resolver)
+      - [def __init__(self, *expression*, *symbol_table*, *unknown_symbol_resolver_callback* = None):](#def-__init__self-expression-symbol_table-unknown_symbol_resolver_callback--none)
+      - [def results(self):](#def-resultsself)
+      - [def value(self):](#def-valueself)
+      - [def __call__(self):](#def-__call__self)
+      - [symbol_table](#symbol_table)
+    - [class Symbol_Table:](#class-symbol_table)
+      - [def __init__(self, *variables*, *constants* = {}, *add_constants* = False, functions = {}):](#def-__init__self-variables-constants---add_constants--false-functions--)
+      - [variables](#variables)
+      - [constants](#constants)
+      - [functions](#functions)
+    - [class USRSymbolType:](#class-usrsymboltype)
+      - [VARIABLE](#variable)
+      - [CONSTANT](#constant)
+  - [Utility Functions](#utility-functions)
+    - [def check_expression (*expression*)](#def-check_expression-expression)
+    - [def evaluate_expression (*expression*, *variables*)](#def-evaluate_expression-expression-variables)
+- [Authors](#authors)
+- [License](#license)
 
 ## Installation
 
@@ -192,6 +194,38 @@ __The Solution:__
 		-18.0
 	```
 
+### Example: expressions that contain return statements to produce multiple values
+
+Exprtk expressions can return multiple values the results these expressions can be accessed through the `results()` method.
+
+The following example shows the result of adding a constant value to a vector containing numbers:
+
+```python
+	>>> st = cexprtk.Symbol_Table({})
+	>>> e = cexprtk.Expression("var v[3] := {1,2,3}; return [v+1];", st)
+	>>> e.value()
+	nan
+	>>> e.results()
+	[[2.0, 3.0, 4.0]]
+```
+Note that expression has to be evaluated before calling the `results()` method.
+
+The value accessed through `results()` can contain a mixture of strings, vectors and real values:
+
+```python
+	>>> st = cexprtk.Symbol_Table({'c' : 3})
+	>>> e = cexprtk.Expression("if(c>1){return ['bigger than one', c];} else { return ['not bigger than one',c];};",st)
+	>>> e.value()
+	nan
+	>>> e.results()
+	['bigger than one', 3.0]
+	>>> st.variables['c']=0.5
+	>>> e.value()
+	nan
+	>>> e.results()
+	['not bigger than one', 0.5]
+```
+
 ---
 
 ## API Reference
@@ -249,6 +283,17 @@ __Parameters:__
 * __expression__ (*str*) String giving expression to be calculated.
 * __symbol_table__ (*Symbol_Table*) Object defining variables and constants.
 * __unknown_symbol_resolver_callback__ (*callable*)  See description above.
+
+##### def results(self):
+If an expression contains a `return []` statement, the returned values are accessed using this method. 
+
+A python list is returned which may contain real values, strings or vectors.
+
+**Note:** the expression should be evaluated by calling `value()` before trying to access results.
+
+__Returns:__
+
+* (*list*) List of values produced by expression's `return` statement.
 
 ##### def value(self):
 Evaluate expression using variable values currently set within associated `Symbol_Table`
@@ -388,12 +433,20 @@ __Raises:__
 
 ## Authors
 
-Cython wrapper by Michael Rushton (m.j.d.rushton@gmail.com), although most credit should go to Arash Partow for creating the underlying [ExprTK](http://www.partow.net/programming/exprtk/index.html) library.
+Cython wrapper by Michael Rushton (m.j.d.rushton@gmail.com), although most credit should go to Arash Partow for creating the underlying [ExprTK][ExprTK] library.
+
+Thanks to:
+
+* [jciskey][jciskey] for adding the `Expression.results()` support.
+* [Caleb Hattingh][cjrh] for getting cexprtk to build using MSVC on Windows.
 
 
 ## License
 
-`cexprtk` is released under the same terms as the [ExprTK][] library the [Common Public License Version 1.0][] (CPL).
+`cexprtk` is released under the same terms as the [ExprTK][ExprTK] library the [Common Public License Version 1.0][] (CPL).
 
 [pip]: http://www.pip-installer.org/en/latest/index.html
 [Common Public License Version 1.0]: http://opensource.org/licenses/cpl1.0.php
+[ExprTK]: http://www.partow.net/programming/exprtk/index.html
+[jciskey]: https://github.com/jciskey
+[cjrh]: https://github.com/cjrh

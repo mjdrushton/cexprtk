@@ -7,7 +7,7 @@ from setuptools.extension import Extension
 CURR_DIR = os.path.abspath(os.path.dirname(__file__))
 PACKAGE_DIR = os.path.join(CURR_DIR, 'cython', 'cexprtk')
 
-VERSION="0.3.4"
+VERSION="0.3.5-dev"
 
 # PYTHON_MAJOR_VERSION = sys.version_info[0]
 PYTHON_MAJOR_VERSION = 2
