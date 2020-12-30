@@ -1,6 +1,7 @@
 include  3rdparty/exprtk/exprtk.hpp
 
 include README.md
+include LICENSE
 
 graft cpp
 graft cython
