@@ -3219,12 +3219,14 @@ namespace exprtk
 
                   i+=2;
 
-                  if (static_cast<std::size_t>(i) >= g.token_list_.size())
+                  if (static_cast<std::size_t>(i) >= g.token_list_.size() - 1)
                      break;
                }
             }
 
             token_list.push_back(g.token_list_.back());
+
+            assert(token_list.size() <= g.token_list_.size());
 
             std::swap(token_list, g.token_list_);
 
@@ -3259,13 +3261,15 @@ namespace exprtk
 
                   i+=3;
 
-                  if (static_cast<std::size_t>(i) >= g.token_list_.size())
+                  if (static_cast<std::size_t>(i) >= g.token_list_.size() - 2)
                      break;
                }
             }
 
             token_list.push_back(*(g.token_list_.begin() + g.token_list_.size() - 2));
             token_list.push_back(*(g.token_list_.begin() + g.token_list_.size() - 1));
+
+            assert(token_list.size() <= g.token_list_.size());
 
             std::swap(token_list, g.token_list_);
 
