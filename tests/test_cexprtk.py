@@ -447,6 +447,12 @@ class EvaluateExpressionTestCase(unittest.TestCase):
       cexprtk.evaluate_expression("-A", {"A" : 1.0}))
 
     self.assertAlmostEqual(2.0,
+      cexprtk.evaluate_expression("1 - -1", {}))
+
+    self.assertAlmostEqual(2.0,
+      cexprtk.evaluate_expression("1--1", {}))
+
+    self.assertAlmostEqual(2.0,
       cexprtk.evaluate_expression("A--1", {"A" : 1.0}))
 
 
