@@ -5,5 +5,3 @@ from ._cexprtk import Expression
 from ._symbol_table import Symbol_Table
 
 from . import _custom_function_callbacks
-
-# from . import tests

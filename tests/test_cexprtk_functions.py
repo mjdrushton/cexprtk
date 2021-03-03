@@ -41,10 +41,10 @@ class FunctionsTestCase(unittest.TestCase):
       return a
 
     symbol_table.variables["f"] = 2.0
-    with self.assertRaises(VariableNameShadowException):
+    with self.assertRaises(KeyError):
       symbol_table.functions["f"] = func
 
-    with self.assertRaises(VariableNameShadowException):
+    with self.assertRaises(KeyError):
       symbol_table.functions["b"] = func
 
   def testNoNameShadowing_functionExists(self):
@@ -55,7 +55,7 @@ class FunctionsTestCase(unittest.TestCase):
       return a
 
     symbol_table.functions["f"] = func
-    with self.assertRaises(VariableNameShadowException):
+    with self.assertRaises(KeyError):
       symbol_table.variables["f"] = 2.0
 
   def testNoNameShadowing_constantExists(self):
@@ -66,7 +66,7 @@ class FunctionsTestCase(unittest.TestCase):
     def func(a):
       return a
 
-    with self.assertRaises(VariableNameShadowException):
+    with self.assertRaises(KeyError):
       symbol_table.functions["f"] = func
 
   def testPopulateFunctionsViaConstructor(self):
@@ -216,7 +216,7 @@ class VarArgsFunctionTestCase(unittest.TestCase):
     def va(*args):
       pass
 
-    with self.assertRaises(VariableNameShadowException):
+    with self.assertRaises(KeyError):
       st.functions["f"] = va
 
     st2 = cexprtk.Symbol_Table({})
@@ -224,7 +224,7 @@ class VarArgsFunctionTestCase(unittest.TestCase):
     self.assertTrue(st2.functions.has_key("f"))
     self.assertFalse(st2.functions.has_key("g"))
 
-    with self.assertRaises(VariableNameShadowException):
+    with self.assertRaises(KeyError):
       st2.variables["f"] = 1.0
 
 

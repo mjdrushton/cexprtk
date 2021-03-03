@@ -80,6 +80,18 @@ class ExpressionTestCase(unittest.TestCase):
     self.assertEqual(0, len(results_list))
 
 
+  def testStringResults(self):
+    """Test an expression that uses string functions and returns string result"""
+
+    st = cexprtk.Symbol_Table({}, {}, string_variables = {"b" : "bee"})
+    expression = cexprtk.Expression("return [b + 'n']", st)
+    expression.value()
+
+    results = expression.results()
+    assert len(results) == 1
+    assert results[0] == "been"
+
+
 class Symbol_TableVariablesTestCase(unittest.TestCase):
   """Tests for cexprtk._Symbol_Table_Variables"""
 
@@ -113,6 +125,44 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
 
     with self.assertRaises(cexprtk.VariableNameShadowException):
       cexprtk.Symbol_Table({"a" : 1.0, "b" : 2.0}, {"e" : 1.0, "f" : 3.0, "b" : 2.0})
+
+    with self.assertRaises(cexprtk.VariableNameShadowException):
+      cexprtk.Symbol_Table({"a" : 1.0, "b" : 2.0}, functions={'b': lambda x: x})
+
+    with self.assertRaises(cexprtk.VariableNameShadowException):
+      cexprtk.Symbol_Table({"a" : 1.0, "b" : 2.0}, string_variables={'b': 'bee'})
+
+    with self.assertRaises(cexprtk.VariableNameShadowException):
+      cexprtk.Symbol_Table({}, constants= {"a" : 1, "b" : 2}, functions= {"b" : lambda x: x} )
+
+    with self.assertRaises(cexprtk.VariableNameShadowException):
+      cexprtk.Symbol_Table({}, constants= {"a" : 1, "b" : 2}, string_variables = {"b" : "bee"} )
+
+    with self.assertRaises(cexprtk.VariableNameShadowException):
+      cexprtk.Symbol_Table({}, functions= {"b" : lambda x: x}, string_variables = {"b" : "bee"} )
+
+
+    st = cexprtk.Symbol_Table({}, {'constant' : 2})
+    with self.assertRaises(KeyError):
+      st.variables["constant"] = 3
+
+    st.variables["v"] = 3
+    with self.assertRaises(KeyError):
+      st.functions["v"] = lambda x: x
+
+    with self.assertRaises(KeyError):
+      st.string_variables["v"] = "vee"
+
+    with self.assertRaises(KeyError):
+      st.functions["constant"] = lambda x: x
+
+    with self.assertRaises(KeyError):
+      st.string_variables["constant"] = "vee"
+
+    st.functions["f"] = lambda x: x
+    with self.assertRaises(KeyError):
+      st.string_variables["f"] = "vee"
+
 
 
   def testGetItem(self):
@@ -182,6 +232,27 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
     symTable.variables['x'] = 20.0
     assert 20.0 ==  symTable.variables['x']
 
+    symTable.string_variables['b'] = "bee"
+    assert "bee" == symTable.string_variables['b']
+
+    symTable.functions['f'] = lambda x: x
+    assert 'f' in symTable.functions
+
+    st2 = cexprtk.Symbol_Table(d,{'a' : 1},  functions= {'f' : lambda x: x}, string_variables = {'s' : 'ess'}) 
+
+    assert st2.variables['x'] == 10.0
+    assert st2.constants['a'] == 1.0
+    assert st2.functions['f'](1) == 1.0
+    assert st2.string_variables['s'] == 'ess'
+
+    st2.variables['x'] = 3.0
+    # st2.functions['f'] = lambda x: 2*x
+    st2.string_variables['s'] = 'blibble'
+
+    assert st2.variables['x'] == 3.0
+    assert st2.constants['a'] == 1.0
+    assert st2.functions['f'](1) == 1.0
+    assert st2.string_variables['s'] == 'blibble'
 
   def testVariableCreationThroughAssignment(self):
     """Test assignment to non-existent variable"""
@@ -190,19 +261,29 @@ class Symbol_TableVariablesTestCase(unittest.TestCase):
     assert ['x'] ==  symTable.variables.keys()
     assert ['a'] ==  symTable.constants.keys()
     assert [] ==  symTable.functions.keys()
+    assert [] == symTable.string_variables.keys()
     with self.assertRaises(KeyError):
       y = symTable.variables['y']
 
     symTable.variables['y'] = 2.0
-    assert ['x' ==  'y'], sorted(symTable.variables.keys())
+    assert ['x' ,  'y'] == sorted(symTable.variables.keys())
     assert ['a'] ==  symTable.constants.keys()
     assert [] ==  symTable.functions.keys()
+    assert [] == symTable.string_variables.keys()
     assert 2.0 ==  symTable.variables['y']
 
     symTable.variables['y'] = 4.0
-    assert ['x' ==  'y'], sorted(symTable.variables.keys())
+    assert ['x', 'y'] == sorted(symTable.variables.keys())
     assert ['a'] ==  symTable.constants.keys()
     assert [] ==  symTable.functions.keys()
+    assert [] == symTable.string_variables.keys()
+    assert 4.0 ==  symTable.variables['y']
+
+    symTable.string_variables['b'] = 'bee'
+    assert ['x', 'y'] == sorted(symTable.variables.keys())
+    assert ['a'] ==  symTable.constants.keys()
+    assert [] ==  symTable.functions.keys()
+    assert ['b'] == symTable.string_variables.keys()
     assert 4.0 ==  symTable.variables['y']
 
   def testVariableAssignmentToConstant(self):
@@ -302,9 +383,9 @@ class Symbol_TableConstantsTestCase(unittest.TestCase):
     d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
     symTable = cexprtk.Symbol_Table({'a' : 1}, d)
 
-    assert ['x' == 'y','z'], sorted(symTable.constants.keys())
-    assert ['x' == 'y','z'], sorted(symTable.constants.keys())
-    assert ['x' == 'y','z'], sorted(symTable.constants)
+    assert ['x' , 'y','z'] == sorted(symTable.constants.keys())
+    assert ['x' , 'y','z'] == sorted(symTable.constants.keys())
+    assert ['x' , 'y','z'] == sorted(symTable.constants)
 
 
   def testConstantsItems(self):
@@ -382,6 +463,59 @@ class Symbol_TableConstantsTestCase(unittest.TestCase):
     with self.assertRaises(ReferenceError):
       iter(con)
 
+class Symbol_Table_String_VariablesTestCase(unittest.TestCase):
+  """Tests for cexprtk._Symbol_Table_String_Variables"""
+
+
+  def testGetItem(self):
+    """Test item access for Symbol_Table"""
+    symTable = cexprtk.Symbol_Table({'a' : 1}, string_variables = {'b' : 'bee'})
+
+    with self.assertRaises(KeyError):
+      v = symTable.string_variables['a']
+
+    with self.assertRaises(KeyError):
+      v = symTable.string_variables['z']
+
+    assert 'bee' ==  symTable.string_variables['b']
+
+
+  def testVariablesHasKey(self):
+    """Test 'in' and 'has_key' for _Symbol_Table_String_Variables"""
+    d = {'x' : 'ex', 'y' : 'why' }
+    symTable = cexprtk.Symbol_Table({}, {'a' : 1}, string_variables=d)
+
+    self.assertTrue('x' in symTable.string_variables)
+    self.assertFalse('blah' in symTable.string_variables)
+    self.assertFalse(1 in symTable.string_variables)
+
+    self.assertTrue('x' in symTable.string_variables)
+    self.assertFalse('z' in symTable.string_variables)
+
+
+  def testVariablesKeys(self):
+    """Test keys() method _Symbol_Table_Variables"""
+    d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
+    symTable = cexprtk.Symbol_Table(d,{'a' : 1})
+
+    assert ['x', 'y','z'] == sorted(symTable.variables.keys())
+    assert ['x', 'y','z'] == sorted(symTable.variables.keys())
+    assert ['x', 'y','z'] == sorted(symTable.variables)
+
+
+  def testVariablesItems(self):
+    """Test items() method _Symbol_Table_Variables"""
+    d = {'x' : 10.0, 'y' : 20.0, 'z'  : 30.0 }
+    symTable = cexprtk.Symbol_Table(d,{'a' : 1})
+
+    assert sorted(d.items()) ==  sorted(symTable.variables.items())
+
+
+  def testVariablesLen(self):
+    """Test len() for _Symbol_Table_Variables"""
+    d = {'x' : 'ex', 'y' : 'why', 'z'  : 'zed' }
+    symTable = cexprtk.Symbol_Table({},{'a' : 1}, string_variables = d)
+    assert 3 ==  len(symTable.string_variables)
 
 
 class CheckExpressionTestCase(unittest.TestCase):
@@ -642,10 +776,12 @@ class PickleTestCase(unittest.TestCase):
     import pickle
     variables = {"A" : 1, "B" : 2, "C" : 3}
     constants = {"d" : 4, "e" : 5, "f" : 6}
-    symbolTable = cexprtk.Symbol_Table(variables, constants, False)
+    string_vars = {"g" : "aay", "h" : "aitch", "i" : "eiy"}
+    symbolTable = cexprtk.Symbol_Table(variables, constants, False, {}, string_vars)
 
     assert constants ==  dict(symbolTable.constants)
     assert variables ==  dict(symbolTable.variables)
+    assert string_vars == dict(symbolTable.string_variables)
 
     dumped = pickle.dumps(symbolTable)
     unpickled = pickle.loads(dumped)
@@ -654,6 +790,7 @@ class PickleTestCase(unittest.TestCase):
 
     assert constants ==  dict(unpickled.constants)
     assert variables ==  dict(unpickled.variables)
+    assert string_vars == dict(unpickled.string_variables)
 
   def testExpressionPickle(self):
     """Pickling of an expression"""

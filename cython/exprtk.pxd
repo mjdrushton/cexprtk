@@ -6,13 +6,23 @@ from libcpp cimport bool
 ctypedef pair[string,double] LabelFloatPair
 ctypedef vector[LabelFloatPair] LabelFloatPairVector
 
+ctypedef pair[string,string] LabelStringPair
+ctypedef vector[LabelStringPair] LabelStringPairVector
+
 cdef extern from "exprtk.hpp" namespace "exprtk::details":
   cdef cppclass variable_node[T]:
     T& ref()
     T value()
 
+  cdef cppclass stringvar_node[T]:
+    string& ref()
+    T value()
+
 ctypedef variable_node[double] variable_t
 ctypedef variable_t * variable_ptr
+
+ctypedef stringvar_node[double] stringvar_t
+ctypedef stringvar_t* stringvar_ptr
 
 cdef extern from "exprtk.hpp" namespace "exprtk":
   cdef cppclass function_traits:
@@ -33,13 +43,18 @@ cdef extern from "exprtk.hpp" namespace "exprtk":
     bool is_constant_node(string& symbol_name)
     bool is_vararg_function(string& vararg_function_name)
     bool is_variable(string& variable_name)
+    bool is_stringvar(string& variable_name)
     bool remove_function(string& function_name)
     ifunction[T]* get_function(string& function_name)
-    int create_variable(string& variable_name, T& value)
-    int get_variable_list(LabelFloatPairVector& vlist)
+    bool create_variable(string& variable_name, T& value)
+    bool create_stringvar(string& variable_name, string& value)
+    bool get_variable_list(LabelFloatPairVector& vlist)
+    bool get_stringvar_list(LabelStringPairVector& vlist)
+
     int variable_count()
     ivararg_function[T]* get_vararg_function(string& vararg_function_name)
     variable_ptr get_variable(string& variable_name)
+    stringvar_ptr get_stringvar(string& variable_name)
 
   cdef cppclass type_store[T]:
     type_store() except +

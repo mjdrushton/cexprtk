@@ -89,6 +89,18 @@ inline bool variableAssign(SymbolTable& symtable, const std::string& name, doubl
 	return true;
 };	
 
+inline bool stringVariableAssign(SymbolTable& symtable, const std::string& name, const std::string& value)
+{
+	exprtk::details::stringvar_node<double> * vp;
+	vp = symtable.get_stringvar(name);
+	if (!vp)
+	{
+		return false;
+	}
+	vp->ref() = value;
+	return true;
+};	
+
 // For some reason cython doesn't like the overloading of the symbol_table.add_function
 // hence this helper function and add_varargfunction
 bool add_function(SymbolTable& st_, 

@@ -895,11 +895,29 @@ typedef std::pair<std::string,double>  __pyx_t_6exprtk_LabelFloatPair;
  * ctypedef pair[string,double] LabelFloatPair
  * ctypedef vector[LabelFloatPair] LabelFloatPairVector             # <<<<<<<<<<<<<<
  * 
- * cdef extern from "exprtk.hpp" namespace "exprtk::details":
+ * ctypedef pair[string,string] LabelStringPair
  */
 typedef std::vector<__pyx_t_6exprtk_LabelFloatPair>  __pyx_t_6exprtk_LabelFloatPairVector;
 
-/* "exprtk.pxd":14
+/* "exprtk.pxd":9
+ * ctypedef vector[LabelFloatPair] LabelFloatPairVector
+ * 
+ * ctypedef pair[string,string] LabelStringPair             # <<<<<<<<<<<<<<
+ * ctypedef vector[LabelStringPair] LabelStringPairVector
+ * 
+ */
+typedef std::pair<std::string,std::string>  __pyx_t_6exprtk_LabelStringPair;
+
+/* "exprtk.pxd":10
+ * 
+ * ctypedef pair[string,string] LabelStringPair
+ * ctypedef vector[LabelStringPair] LabelStringPairVector             # <<<<<<<<<<<<<<
+ * 
+ * cdef extern from "exprtk.hpp" namespace "exprtk::details":
+ */
+typedef std::vector<__pyx_t_6exprtk_LabelStringPair>  __pyx_t_6exprtk_LabelStringPairVector;
+
+/* "exprtk.pxd":21
  *     T value()
  * 
  * ctypedef variable_node[double] variable_t             # <<<<<<<<<<<<<<
@@ -908,16 +926,34 @@ typedef std::vector<__pyx_t_6exprtk_LabelFloatPair>  __pyx_t_6exprtk_LabelFloatP
  */
 typedef exprtk::details::variable_node<double>  __pyx_t_6exprtk_variable_t;
 
-/* "exprtk.pxd":15
+/* "exprtk.pxd":22
  * 
  * ctypedef variable_node[double] variable_t
  * ctypedef variable_t * variable_ptr             # <<<<<<<<<<<<<<
  * 
- * cdef extern from "exprtk.hpp" namespace "exprtk":
+ * ctypedef stringvar_node[double] stringvar_t
  */
 typedef __pyx_t_6exprtk_variable_t *__pyx_t_6exprtk_variable_ptr;
 
-/* "exprtk.pxd":84
+/* "exprtk.pxd":24
+ * ctypedef variable_t * variable_ptr
+ * 
+ * ctypedef stringvar_node[double] stringvar_t             # <<<<<<<<<<<<<<
+ * ctypedef stringvar_t* stringvar_ptr
+ * 
+ */
+typedef exprtk::details::stringvar_node<double>  __pyx_t_6exprtk_stringvar_t;
+
+/* "exprtk.pxd":25
+ * 
+ * ctypedef stringvar_node[double] stringvar_t
+ * ctypedef stringvar_t* stringvar_ptr             # <<<<<<<<<<<<<<
+ * 
+ * cdef extern from "exprtk.hpp" namespace "exprtk":
+ */
+typedef __pyx_t_6exprtk_stringvar_t *__pyx_t_6exprtk_stringvar_ptr;
+
+/* "exprtk.pxd":99
  *     e_constant_type "exprtk::parser<double>::unknown_symbol_resolver::e_usr_constant_type"
  * 
  * ctypedef symbol_table[double] symbol_table_type             # <<<<<<<<<<<<<<
@@ -926,7 +962,7 @@ typedef __pyx_t_6exprtk_variable_t *__pyx_t_6exprtk_variable_ptr;
  */
 typedef exprtk::symbol_table<double>  __pyx_t_6exprtk_symbol_table_type;
 
-/* "exprtk.pxd":85
+/* "exprtk.pxd":100
  * 
  * ctypedef symbol_table[double] symbol_table_type
  * ctypedef expression[double] expression_type             # <<<<<<<<<<<<<<
@@ -935,7 +971,7 @@ typedef exprtk::symbol_table<double>  __pyx_t_6exprtk_symbol_table_type;
  */
 typedef exprtk::expression<double>  __pyx_t_6exprtk_expression_type;
 
-/* "exprtk.pxd":86
+/* "exprtk.pxd":101
  * ctypedef symbol_table[double] symbol_table_type
  * ctypedef expression[double] expression_type
  * ctypedef parser[double] parser_type             # <<<<<<<<<<<<<<
@@ -944,7 +980,7 @@ typedef exprtk::expression<double>  __pyx_t_6exprtk_expression_type;
  */
 typedef exprtk::parser<double>  __pyx_t_6exprtk_parser_type;
 
-/* "exprtk.pxd":87
+/* "exprtk.pxd":102
  * ctypedef expression[double] expression_type
  * ctypedef parser[double] parser_type
  * ctypedef results_context[double] results_context_type             # <<<<<<<<<<<<<<
@@ -952,7 +988,7 @@ typedef exprtk::parser<double>  __pyx_t_6exprtk_parser_type;
  */
 typedef exprtk::results_context<double>  __pyx_t_6exprtk_results_context_type;
 
-/* "exprtk.pxd":88
+/* "exprtk.pxd":103
  * ctypedef parser[double] parser_type
  * ctypedef results_context[double] results_context_type
  * ctypedef type_store[double] type_store_type             # <<<<<<<<<<<<<<

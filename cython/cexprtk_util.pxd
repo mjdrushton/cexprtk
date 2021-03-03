@@ -7,6 +7,7 @@ cimport exprtk
 
 cdef extern from "cexprtk.hpp":
   int variableAssign(exprtk.symbol_table_type & symtable, string& name, double value)
+  bool stringVariableAssign(exprtk.symbol_table_type& symtable,  string& name, string& value)
   void parser_compile_and_process_errors(string& expression_string, 
                                          exprtk.parser_type& parser, 
                                          exprtk.expression_type& expression, 

@@ -884,6 +884,7 @@ static const char *__pyx_f[] = {
 struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Variables;
 struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Constants;
 struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions;
+struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables;
 struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table;
 
 /* "exprtk.pxd":6
@@ -900,11 +901,29 @@ typedef std::pair<std::string,double>  __pyx_t_6exprtk_LabelFloatPair;
  * ctypedef pair[string,double] LabelFloatPair
  * ctypedef vector[LabelFloatPair] LabelFloatPairVector             # <<<<<<<<<<<<<<
  * 
- * cdef extern from "exprtk.hpp" namespace "exprtk::details":
+ * ctypedef pair[string,string] LabelStringPair
  */
 typedef std::vector<__pyx_t_6exprtk_LabelFloatPair>  __pyx_t_6exprtk_LabelFloatPairVector;
 
-/* "exprtk.pxd":14
+/* "exprtk.pxd":9
+ * ctypedef vector[LabelFloatPair] LabelFloatPairVector
+ * 
+ * ctypedef pair[string,string] LabelStringPair             # <<<<<<<<<<<<<<
+ * ctypedef vector[LabelStringPair] LabelStringPairVector
+ * 
+ */
+typedef std::pair<std::string,std::string>  __pyx_t_6exprtk_LabelStringPair;
+
+/* "exprtk.pxd":10
+ * 
+ * ctypedef pair[string,string] LabelStringPair
+ * ctypedef vector[LabelStringPair] LabelStringPairVector             # <<<<<<<<<<<<<<
+ * 
+ * cdef extern from "exprtk.hpp" namespace "exprtk::details":
+ */
+typedef std::vector<__pyx_t_6exprtk_LabelStringPair>  __pyx_t_6exprtk_LabelStringPairVector;
+
+/* "exprtk.pxd":21
  *     T value()
  * 
  * ctypedef variable_node[double] variable_t             # <<<<<<<<<<<<<<
@@ -913,16 +932,34 @@ typedef std::vector<__pyx_t_6exprtk_LabelFloatPair>  __pyx_t_6exprtk_LabelFloatP
  */
 typedef exprtk::details::variable_node<double>  __pyx_t_6exprtk_variable_t;
 
-/* "exprtk.pxd":15
+/* "exprtk.pxd":22
  * 
  * ctypedef variable_node[double] variable_t
  * ctypedef variable_t * variable_ptr             # <<<<<<<<<<<<<<
  * 
- * cdef extern from "exprtk.hpp" namespace "exprtk":
+ * ctypedef stringvar_node[double] stringvar_t
  */
 typedef __pyx_t_6exprtk_variable_t *__pyx_t_6exprtk_variable_ptr;
 
-/* "exprtk.pxd":84
+/* "exprtk.pxd":24
+ * ctypedef variable_t * variable_ptr
+ * 
+ * ctypedef stringvar_node[double] stringvar_t             # <<<<<<<<<<<<<<
+ * ctypedef stringvar_t* stringvar_ptr
+ * 
+ */
+typedef exprtk::details::stringvar_node<double>  __pyx_t_6exprtk_stringvar_t;
+
+/* "exprtk.pxd":25
+ * 
+ * ctypedef stringvar_node[double] stringvar_t
+ * ctypedef stringvar_t* stringvar_ptr             # <<<<<<<<<<<<<<
+ * 
+ * cdef extern from "exprtk.hpp" namespace "exprtk":
+ */
+typedef __pyx_t_6exprtk_stringvar_t *__pyx_t_6exprtk_stringvar_ptr;
+
+/* "exprtk.pxd":99
  *     e_constant_type "exprtk::parser<double>::unknown_symbol_resolver::e_usr_constant_type"
  * 
  * ctypedef symbol_table[double] symbol_table_type             # <<<<<<<<<<<<<<
@@ -931,7 +968,7 @@ typedef __pyx_t_6exprtk_variable_t *__pyx_t_6exprtk_variable_ptr;
  */
 typedef exprtk::symbol_table<double>  __pyx_t_6exprtk_symbol_table_type;
 
-/* "exprtk.pxd":85
+/* "exprtk.pxd":100
  * 
  * ctypedef symbol_table[double] symbol_table_type
  * ctypedef expression[double] expression_type             # <<<<<<<<<<<<<<
@@ -940,7 +977,7 @@ typedef exprtk::symbol_table<double>  __pyx_t_6exprtk_symbol_table_type;
  */
 typedef exprtk::expression<double>  __pyx_t_6exprtk_expression_type;
 
-/* "exprtk.pxd":86
+/* "exprtk.pxd":101
  * ctypedef symbol_table[double] symbol_table_type
  * ctypedef expression[double] expression_type
  * ctypedef parser[double] parser_type             # <<<<<<<<<<<<<<
@@ -949,7 +986,7 @@ typedef exprtk::expression<double>  __pyx_t_6exprtk_expression_type;
  */
 typedef exprtk::parser<double>  __pyx_t_6exprtk_parser_type;
 
-/* "exprtk.pxd":87
+/* "exprtk.pxd":102
  * ctypedef expression[double] expression_type
  * ctypedef parser[double] parser_type
  * ctypedef results_context[double] results_context_type             # <<<<<<<<<<<<<<
@@ -957,7 +994,7 @@ typedef exprtk::parser<double>  __pyx_t_6exprtk_parser_type;
  */
 typedef exprtk::results_context<double>  __pyx_t_6exprtk_results_context_type;
 
-/* "exprtk.pxd":88
+/* "exprtk.pxd":103
  * ctypedef parser[double] parser_type
  * ctypedef results_context[double] results_context_type
  * ctypedef type_store[double] type_store_type             # <<<<<<<<<<<<<<
@@ -1040,7 +1077,7 @@ struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Variables {
 };
 
 
-/* "cexprtk/_symbol_table.pxd":19
+/* "cexprtk/_symbol_table.pxd":18
  *   cpdef has_key(self, object key)
  * 
  * cdef class _Symbol_Table_Constants:             # <<<<<<<<<<<<<<
@@ -1055,7 +1092,7 @@ struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Constants {
 };
 
 
-/* "cexprtk/_symbol_table.pxd":26
+/* "cexprtk/_symbol_table.pxd":25
  *   cpdef has_key(self, object key)
  * 
  * cdef class _Symbol_Table_Functions:             # <<<<<<<<<<<<<<
@@ -1072,8 +1109,24 @@ struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions {
 };
 
 
-/* "cexprtk/_symbol_table.pxd":46
+/* "cexprtk/_symbol_table.pxd":45
  *   cpdef has_key(self, object key)
+ * 
+ * cdef class _Symbol_Table_String_Variables:             # <<<<<<<<<<<<<<
+ *   cdef object __weakref__
+ * 
+ */
+struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables {
+  PyObject_HEAD
+  struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_vtab;
+  PyObject *__weakref__;
+  PyObject *_functions;
+  __pyx_t_6exprtk_symbol_table_type *_csymtableptr;
+};
+
+
+/* "cexprtk/_symbol_table.pxd":56
+ * 
  * 
  * cdef class Symbol_Table:             # <<<<<<<<<<<<<<
  *   cdef exprtk.symbol_table_type* _csymtableptr
@@ -1085,11 +1138,12 @@ struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table {
   struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Variables *_variables;
   struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Constants *_constants;
   struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *_functions;
+  struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *_string_variables;
 };
 
 
 
-/* "cexprtk/_symbol_table.pyx":132
+/* "cexprtk/_symbol_table.pyx":178
  * 
  * 
  * cdef class _Symbol_Table_Variables:             # <<<<<<<<<<<<<<
@@ -1105,7 +1159,7 @@ struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables {
 static struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *__pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_Variables;
 
 
-/* "cexprtk/_symbol_table.pyx":218
+/* "cexprtk/_symbol_table.pyx":267
  * 
  * 
  * cdef class _Symbol_Table_Constants:             # <<<<<<<<<<<<<<
@@ -1121,7 +1175,7 @@ struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants {
 static struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *__pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_Constants;
 
 
-/* "cexprtk/_symbol_table.pyx":282
+/* "cexprtk/_symbol_table.pyx":331
  * 
  * 
  * cdef class _Symbol_Table_Functions:             # <<<<<<<<<<<<<<
@@ -1140,6 +1194,22 @@ struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions {
   PyObject *(*has_key)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *, PyObject *, int __pyx_skip_dispatch);
 };
 static struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *__pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_Functions;
+
+
+/* "cexprtk/_symbol_table.pyx":519
+ * 
+ * 
+ * cdef class _Symbol_Table_String_Variables:             # <<<<<<<<<<<<<<
+ *   """Class providing the .string_variables property for Symbol_Table.
+ * 
+ */
+
+struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_String_Variables {
+  PyObject *(*items)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *, int __pyx_skip_dispatch);
+  PyObject *(*_get_variable_list)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *);
+  PyObject *(*has_key)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *, PyObject *, int __pyx_skip_dispatch);
+};
+static struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_String_Variables;
 
 /* --- Runtime support code (head) --- */
 /* Refnanny.proto */
@@ -1696,6 +1766,9 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__res
 static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__checkForException(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *__pyx_v_self); /* proto*/
 static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_items(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
 static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_has_key(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *__pyx_v_self, PyObject *__pyx_v_key, int __pyx_skip_dispatch); /* proto*/
+static PyObject *__pyx_f_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_items(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
+static PyObject *__pyx_f_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables__get_variable_list(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self); /* proto*/
+static PyObject *__pyx_f_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_has_key(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, PyObject *__pyx_v_key, int __pyx_skip_dispatch); /* proto*/
 
 /* Module declarations from 'libcpp.utility' */
 
@@ -1745,7 +1818,11 @@ static PyTypeObject *__pyx_ptype_7cpython_4type_type = 0;
 static PyTypeObject *__pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_Variables = 0;
 static PyTypeObject *__pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_Constants = 0;
 static PyTypeObject *__pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_Functions = 0;
+static PyTypeObject *__pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_String_Variables = 0;
 static PyTypeObject *__pyx_ptype_7cexprtk_13_symbol_table_Symbol_Table = 0;
+static bool __pyx_f_7cexprtk_13_symbol_table_is_constant(std::string &, __pyx_t_6exprtk_symbol_table_type *); /*proto*/
+static bool __pyx_f_7cexprtk_13_symbol_table_is_variable(std::string &, __pyx_t_6exprtk_symbol_table_type *); /*proto*/
+static bool __pyx_f_7cexprtk_13_symbol_table_is_string_variable(std::string &, __pyx_t_6exprtk_symbol_table_type *); /*proto*/
 static std::string __pyx_convert_string_from_py_std__in_string(PyObject *); /*proto*/
 static CYTHON_INLINE PyObject *__pyx_convert_PyObject_string_to_py_std__in_string(std::string const &); /*proto*/
 static CYTHON_INLINE PyObject *__pyx_convert_PyUnicode_string_to_py_std__in_string(std::string const &); /*proto*/
@@ -1754,6 +1831,8 @@ static CYTHON_INLINE PyObject *__pyx_convert_PyBytes_string_to_py_std__in_string
 static CYTHON_INLINE PyObject *__pyx_convert_PyByteArray_string_to_py_std__in_string(std::string const &); /*proto*/
 static PyObject *__pyx_convert_pair_to_py_std_3a__3a_string____double(std::pair<std::string,double>  const &); /*proto*/
 static PyObject *__pyx_convert_vector_to_py___pyx_t_6exprtk_LabelFloatPair(const std::vector<__pyx_t_6exprtk_LabelFloatPair>  &); /*proto*/
+static PyObject *__pyx_convert_pair_to_py_std_3a__3a_string____std_3a__3a_string(std::pair<std::string,std::string>  const &); /*proto*/
+static PyObject *__pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair(const std::vector<__pyx_t_6exprtk_LabelStringPair>  &); /*proto*/
 #define __Pyx_MODULE_NAME "cexprtk._symbol_table"
 extern int __pyx_module_is_main_cexprtk___symbol_table;
 int __pyx_module_is_main_cexprtk___symbol_table = 0;
@@ -1764,8 +1843,8 @@ static PyObject *__pyx_builtin_ReferenceError;
 static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_TypeError;
 static PyObject *__pyx_builtin_range;
-static const char __pyx_k__3[] = ",";
-static const char __pyx_k__9[] = "'";
+static const char __pyx_k__4[] = ",";
+static const char __pyx_k__10[] = "'";
 static const char __pyx_k_abs[] = "abs";
 static const char __pyx_k_avg[] = "avg";
 static const char __pyx_k_cos[] = "cos";
@@ -1857,6 +1936,7 @@ static const char __pyx_k_functionargs_2[] = "_functionargs";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_Unknown_function[] = "Unknown function: ";
 static const char __pyx_k_Unknown_variable[] = "Unknown variable: ";
+static const char __pyx_k_string_variables[] = "string_variables";
 static const char __pyx_k_populateConstants[] = "_populateConstants";
 static const char __pyx_k_populateFunctions[] = "_populateFunctions";
 static const char __pyx_k_populateVariables[] = "_populateVariables";
@@ -1866,28 +1946,45 @@ static const char __pyx_k_BadVariableException[] = "BadVariableException";
 static const char __pyx_k_Symbol_Table_Constants[] = "_Symbol_Table_Constants";
 static const char __pyx_k_Symbol_Table_Functions[] = "_Symbol_Table_Functions";
 static const char __pyx_k_Symbol_Table_Variables[] = "_Symbol_Table_Variables";
+static const char __pyx_k_Unknown_string_variable[] = "Unknown string_variable: ";
+static const char __pyx_k_populateStringVariables[] = "_populateStringVariables";
 static const char __pyx_k_VariableNameShadowException[] = "VariableNameShadowException";
 static const char __pyx_k_was_already_in_symbol_table[] = "' was already in symbol table.";
+static const char __pyx_k_Symbol_Table_String_Variables[] = "_Symbol_Table_String_Variables";
 static const char __pyx_k_Error_creating_constant_named_s[] = "Error creating constant named: %s with value: %s";
 static const char __pyx_k_Error_creating_variable_named_s[] = "Error creating variable named: %s with value: %s";
 static const char __pyx_k_Only_functions_with_20_or_fewer[] = "Only functions with 20 or fewer arguments are supported at present. Whilst setting function for '";
 static const char __pyx_k_ReservedFunctionShadowException[] = "ReservedFunctionShadowException";
-static const char __pyx_k_The_following_names_are_in_both[] = "The following names are in both variables and constants: %s";
-static const char __pyx_k_Cannot_set_variable_as_a_functio[] = "Cannot set variable as a function already exists with the same name: ";
-static const char __pyx_k_Cannot_set_variable_constant_alr[] = "Cannot set variable constant already exists with the same name: ";
-static const char __pyx_k_Function_cannot_be_set_as_a_vari[] = "Function cannot be set as a variable or constant shares the same name:";
+static const char __pyx_k_Cannot_set_string_variable_becau[] = "Cannot set string variable because a function already exists with the same name: ";
+static const char __pyx_k_Cannot_set_variable_because_a_co[] = "Cannot set variable because a constant already exists with the same name: ";
+static const char __pyx_k_Cannot_set_variable_because_a_fu[] = "Cannot set variable because a function already exists with the same name: ";
+static const char __pyx_k_Cannot_set_variable_because_a_st[] = "Cannot set variable because a string variable already exists with the same name: ";
+static const char __pyx_k_Function_cannot_be_set_because_a[] = "Function cannot be set because a constant shares the same name:";
 static const char __pyx_k_Function_has_same_name_as_a_buil[] = "Function has same name as a built-in exprtk function: ";
 static const char __pyx_k_Parent_Symbol_Table_no_longer_ex[] = "Parent Symbol_Table no longer exists";
-static const char __pyx_k_The_following_function_names_are[] = "The following function names are also in variables or constants: %s";
+static const char __pyx_k_The_following_constant_names_are[] = "The following constant names are also found in variables, functions or string_variables: %s";
+static const char __pyx_k_The_following_function_names_are[] = "The following function names are also found in variables, constants or string_variables: %s";
+static const char __pyx_k_The_following_string_variable_na[] = "The following string_variable names are also found in variables, constants or functions: %s";
+static const char __pyx_k_The_following_variable_names_are[] = "The following variable names are also found in constants functions or string_variables: %s";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
 static const char __pyx_k_self__csymtableptr_cannot_be_con[] = "self._csymtableptr cannot be converted to a Python object for pickling";
+static const char __pyx_k_Cannot_set_string_variable_becau_2[] = "Cannot set string variable because a constant already exists with the same name: ";
+static const char __pyx_k_Cannot_set_string_variable_becau_3[] = "Cannot set string variable because a variable already exists with the same name: ";
+static const char __pyx_k_Function_cannot_be_set_because_a_2[] = "Function cannot be set because a variable shares the same name:";
+static const char __pyx_k_Function_cannot_be_set_because_a_3[] = "Function cannot be set because a string variable shares the same name:";
 static PyObject *__pyx_n_s_BadVariableException;
-static PyObject *__pyx_kp_s_Cannot_set_variable_as_a_functio;
-static PyObject *__pyx_kp_s_Cannot_set_variable_constant_alr;
+static PyObject *__pyx_kp_s_Cannot_set_string_variable_becau;
+static PyObject *__pyx_kp_s_Cannot_set_string_variable_becau_2;
+static PyObject *__pyx_kp_s_Cannot_set_string_variable_becau_3;
+static PyObject *__pyx_kp_s_Cannot_set_variable_because_a_co;
+static PyObject *__pyx_kp_s_Cannot_set_variable_because_a_fu;
+static PyObject *__pyx_kp_s_Cannot_set_variable_because_a_st;
 static PyObject *__pyx_kp_s_Error_creating_constant_named_s;
 static PyObject *__pyx_kp_s_Error_creating_variable_named_s;
 static PyObject *__pyx_kp_s_Function;
-static PyObject *__pyx_kp_s_Function_cannot_be_set_as_a_vari;
+static PyObject *__pyx_kp_s_Function_cannot_be_set_because_a;
+static PyObject *__pyx_kp_s_Function_cannot_be_set_because_a_2;
+static PyObject *__pyx_kp_s_Function_cannot_be_set_because_a_3;
 static PyObject *__pyx_kp_s_Function_has_same_name_as_a_buil;
 static PyObject *__pyx_n_s_KeyError;
 static PyObject *__pyx_n_s_NameShadowException;
@@ -1898,16 +1995,20 @@ static PyObject *__pyx_n_s_ReservedFunctionShadowException;
 static PyObject *__pyx_n_s_Symbol_Table;
 static PyObject *__pyx_n_s_Symbol_Table_Constants;
 static PyObject *__pyx_n_s_Symbol_Table_Functions;
+static PyObject *__pyx_n_s_Symbol_Table_String_Variables;
 static PyObject *__pyx_n_s_Symbol_Table_Variables;
+static PyObject *__pyx_kp_s_The_following_constant_names_are;
 static PyObject *__pyx_kp_s_The_following_function_names_are;
-static PyObject *__pyx_kp_s_The_following_names_are_in_both;
+static PyObject *__pyx_kp_s_The_following_string_variable_na;
+static PyObject *__pyx_kp_s_The_following_variable_names_are;
 static PyObject *__pyx_n_s_TypeError;
 static PyObject *__pyx_kp_s_Unknown_function;
+static PyObject *__pyx_kp_s_Unknown_string_variable;
 static PyObject *__pyx_kp_s_Unknown_variable;
 static PyObject *__pyx_n_s_ValueError;
 static PyObject *__pyx_n_s_VariableNameShadowException;
-static PyObject *__pyx_kp_s__3;
-static PyObject *__pyx_kp_s__9;
+static PyObject *__pyx_kp_s__10;
+static PyObject *__pyx_kp_s__4;
 static PyObject *__pyx_n_s_abs;
 static PyObject *__pyx_n_s_acos;
 static PyObject *__pyx_n_s_acosh;
@@ -1970,6 +2071,7 @@ static PyObject *__pyx_n_s_nequal;
 static PyObject *__pyx_kp_s_no_default___reduce___due_to_non;
 static PyObject *__pyx_n_s_populateConstants;
 static PyObject *__pyx_n_s_populateFunctions;
+static PyObject *__pyx_n_s_populateStringVariables;
 static PyObject *__pyx_n_s_populateVariables;
 static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_rad2deg;
@@ -1989,6 +2091,7 @@ static PyObject *__pyx_n_s_sin;
 static PyObject *__pyx_n_s_sinc;
 static PyObject *__pyx_n_s_sinh;
 static PyObject *__pyx_n_s_sqrt;
+static PyObject *__pyx_n_s_string_variables;
 static PyObject *__pyx_n_s_sum;
 static PyObject *__pyx_n_s_swap;
 static PyObject *__pyx_n_s_tan;
@@ -2001,13 +2104,15 @@ static PyObject *__pyx_kp_s_was_already_in_symbol_table;
 static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table___reduce__(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self); /* proto */
 static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_2__cinit__(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self); /* proto */
 static void __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_4__dealloc__(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self); /* proto */
-static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self, PyObject *__pyx_v_variables, PyObject *__pyx_v_constants, PyObject *__pyx_v_add_constants, PyObject *__pyx_v_functions); /* proto */
+static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self, PyObject *__pyx_v_variables, PyObject *__pyx_v_constants, PyObject *__pyx_v_add_constants, PyObject *__pyx_v_functions, PyObject *__pyx_v_string_variables); /* proto */
 static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_8_populateVariables(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self, PyObject *__pyx_v_variables); /* proto */
 static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateConstants(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self, PyObject *__pyx_v_constants, bool __pyx_v_add_constants); /* proto */
 static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_12_populateFunctions(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self, PyObject *__pyx_v_functions); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_14_populateStringVariables(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self, PyObject *__pyx_v_string_variables); /* proto */
 static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_9functions___get__(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_9variables___get__(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_9constants___get__(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_16string_variables___get__(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables___getitem__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Variables *__pyx_v_self, PyObject *__pyx_v_key); /* proto */
 static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setitem__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Variables *__pyx_v_self, PyObject *__pyx_v_key, double __pyx_v_value); /* proto */
 static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_4__iter__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Variables *__pyx_v_self); /* proto */
@@ -2053,23 +2158,195 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_28h
 static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_30__contains__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *__pyx_v_self, PyObject *__pyx_v_key); /* proto */
 static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_32__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_34__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables___getitem__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, PyObject *__pyx_v_key); /* proto */
+static int __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_2__setitem__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_4__iter__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self); /* proto */
+static Py_ssize_t __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_6__len__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_8items(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_10iteritems(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_12iterkeys(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_14itervalues(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_16keys(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_18values(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_20has_key(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, PyObject *__pyx_v_key); /* proto */
+static int __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_22__contains__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, PyObject *__pyx_v_key); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_24__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_26__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_7cexprtk_13_symbol_table__Symbol_Table_Variables(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_7cexprtk_13_symbol_table__Symbol_Table_Constants(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_7cexprtk_13_symbol_table__Symbol_Table_Functions(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_7cexprtk_13_symbol_table__Symbol_Table_String_Variables(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_7cexprtk_13_symbol_table_Symbol_Table(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_int_20;
 static PyObject *__pyx_k_;
 static PyObject *__pyx_k__2;
-static PyObject *__pyx_tuple__4;
+static PyObject *__pyx_k__3;
 static PyObject *__pyx_tuple__5;
 static PyObject *__pyx_tuple__6;
 static PyObject *__pyx_tuple__7;
 static PyObject *__pyx_tuple__8;
-static PyObject *__pyx_tuple__10;
+static PyObject *__pyx_tuple__9;
 static PyObject *__pyx_tuple__11;
+static PyObject *__pyx_tuple__12;
+static PyObject *__pyx_tuple__13;
+static PyObject *__pyx_tuple__14;
 /* Late includes */
 
-/* "cexprtk/_symbol_table.pyx":31
+/* "cexprtk/_symbol_table.pyx":29
+ * 
+ * 
+ * cdef bool is_constant(string& strkey, exprtk.symbol_table_type* csymtableptr):             # <<<<<<<<<<<<<<
+ *   cdef exprtk.variable_ptr vptr = csymtableptr[0].get_variable(strkey)
+ *   return vptr != NULL and csymtableptr[0].is_constant_node(strkey)
+ */
+
+static bool __pyx_f_7cexprtk_13_symbol_table_is_constant(std::string &__pyx_v_strkey, __pyx_t_6exprtk_symbol_table_type *__pyx_v_csymtableptr) {
+  __pyx_t_6exprtk_variable_ptr __pyx_v_vptr;
+  bool __pyx_r;
+  __Pyx_RefNannyDeclarations
+  bool __pyx_t_1;
+  int __pyx_t_2;
+  bool __pyx_t_3;
+  __Pyx_RefNannySetupContext("is_constant", 0);
+
+  /* "cexprtk/_symbol_table.pyx":30
+ * 
+ * cdef bool is_constant(string& strkey, exprtk.symbol_table_type* csymtableptr):
+ *   cdef exprtk.variable_ptr vptr = csymtableptr[0].get_variable(strkey)             # <<<<<<<<<<<<<<
+ *   return vptr != NULL and csymtableptr[0].is_constant_node(strkey)
+ * 
+ */
+  __pyx_v_vptr = (__pyx_v_csymtableptr[0]).get_variable(__pyx_v_strkey);
+
+  /* "cexprtk/_symbol_table.pyx":31
+ * cdef bool is_constant(string& strkey, exprtk.symbol_table_type* csymtableptr):
+ *   cdef exprtk.variable_ptr vptr = csymtableptr[0].get_variable(strkey)
+ *   return vptr != NULL and csymtableptr[0].is_constant_node(strkey)             # <<<<<<<<<<<<<<
+ * 
+ * cdef bool is_variable(string& strkey, exprtk.symbol_table_type* csymtableptr):
+ */
+  __pyx_t_2 = (__pyx_v_vptr != NULL);
+  if (__pyx_t_2) {
+  } else {
+    __pyx_t_1 = __pyx_t_2;
+    goto __pyx_L3_bool_binop_done;
+  }
+  __pyx_t_3 = (__pyx_v_csymtableptr[0]).is_constant_node(__pyx_v_strkey);
+  __pyx_t_1 = __pyx_t_3;
+  __pyx_L3_bool_binop_done:;
+  __pyx_r = __pyx_t_1;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":29
+ * 
+ * 
+ * cdef bool is_constant(string& strkey, exprtk.symbol_table_type* csymtableptr):             # <<<<<<<<<<<<<<
+ *   cdef exprtk.variable_ptr vptr = csymtableptr[0].get_variable(strkey)
+ *   return vptr != NULL and csymtableptr[0].is_constant_node(strkey)
+ */
+
+  /* function exit code */
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":33
+ *   return vptr != NULL and csymtableptr[0].is_constant_node(strkey)
+ * 
+ * cdef bool is_variable(string& strkey, exprtk.symbol_table_type* csymtableptr):             # <<<<<<<<<<<<<<
+ *   cdef exprtk.variable_ptr vptr = csymtableptr[0].get_variable(strkey)
+ *   return vptr != NULL and not is_constant(strkey, csymtableptr)
+ */
+
+static bool __pyx_f_7cexprtk_13_symbol_table_is_variable(std::string &__pyx_v_strkey, __pyx_t_6exprtk_symbol_table_type *__pyx_v_csymtableptr) {
+  __pyx_t_6exprtk_variable_ptr __pyx_v_vptr;
+  bool __pyx_r;
+  __Pyx_RefNannyDeclarations
+  bool __pyx_t_1;
+  int __pyx_t_2;
+  __Pyx_RefNannySetupContext("is_variable", 0);
+
+  /* "cexprtk/_symbol_table.pyx":34
+ * 
+ * cdef bool is_variable(string& strkey, exprtk.symbol_table_type* csymtableptr):
+ *   cdef exprtk.variable_ptr vptr = csymtableptr[0].get_variable(strkey)             # <<<<<<<<<<<<<<
+ *   return vptr != NULL and not is_constant(strkey, csymtableptr)
+ * 
+ */
+  __pyx_v_vptr = (__pyx_v_csymtableptr[0]).get_variable(__pyx_v_strkey);
+
+  /* "cexprtk/_symbol_table.pyx":35
+ * cdef bool is_variable(string& strkey, exprtk.symbol_table_type* csymtableptr):
+ *   cdef exprtk.variable_ptr vptr = csymtableptr[0].get_variable(strkey)
+ *   return vptr != NULL and not is_constant(strkey, csymtableptr)             # <<<<<<<<<<<<<<
+ * 
+ * cdef bool is_string_variable(string& key, exprtk.symbol_table_type* csymtableptr):
+ */
+  __pyx_t_2 = (__pyx_v_vptr != NULL);
+  if (__pyx_t_2) {
+  } else {
+    __pyx_t_1 = __pyx_t_2;
+    goto __pyx_L3_bool_binop_done;
+  }
+  __pyx_t_2 = (!(__pyx_f_7cexprtk_13_symbol_table_is_constant(__pyx_v_strkey, __pyx_v_csymtableptr) != 0));
+  __pyx_t_1 = __pyx_t_2;
+  __pyx_L3_bool_binop_done:;
+  __pyx_r = __pyx_t_1;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":33
+ *   return vptr != NULL and csymtableptr[0].is_constant_node(strkey)
+ * 
+ * cdef bool is_variable(string& strkey, exprtk.symbol_table_type* csymtableptr):             # <<<<<<<<<<<<<<
+ *   cdef exprtk.variable_ptr vptr = csymtableptr[0].get_variable(strkey)
+ *   return vptr != NULL and not is_constant(strkey, csymtableptr)
+ */
+
+  /* function exit code */
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":37
+ *   return vptr != NULL and not is_constant(strkey, csymtableptr)
+ * 
+ * cdef bool is_string_variable(string& key, exprtk.symbol_table_type* csymtableptr):             # <<<<<<<<<<<<<<
+ *   return csymtableptr[0].is_stringvar(key)
+ * 
+ */
+
+static bool __pyx_f_7cexprtk_13_symbol_table_is_string_variable(std::string &__pyx_v_key, __pyx_t_6exprtk_symbol_table_type *__pyx_v_csymtableptr) {
+  bool __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("is_string_variable", 0);
+
+  /* "cexprtk/_symbol_table.pyx":38
+ * 
+ * cdef bool is_string_variable(string& key, exprtk.symbol_table_type* csymtableptr):
+ *   return csymtableptr[0].is_stringvar(key)             # <<<<<<<<<<<<<<
+ * 
+ * cdef class Symbol_Table:
+ */
+  __pyx_r = (__pyx_v_csymtableptr[0]).is_stringvar(__pyx_v_key);
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":37
+ *   return vptr != NULL and not is_constant(strkey, csymtableptr)
+ * 
+ * cdef bool is_string_variable(string& key, exprtk.symbol_table_type* csymtableptr):             # <<<<<<<<<<<<<<
+ *   return csymtableptr[0].is_stringvar(key)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":43
  *   """Class for providing variable and constant values to Expression instances."""
  * 
  *   def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -2094,6 +2371,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table___reduce__(str
   PyObject *__pyx_v_constants = NULL;
   PyObject *__pyx_v_variables = NULL;
   PyObject *__pyx_v_functions = NULL;
+  PyObject *__pyx_v_string_variables = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2103,86 +2381,104 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table___reduce__(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__reduce__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":32
+  /* "cexprtk/_symbol_table.pyx":44
  * 
  *   def __reduce__(self):
  *     constants = dict(self.constants)             # <<<<<<<<<<<<<<
  *     variables = dict(self.variables)
  *     functions = dict(self.functions)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_constants); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_constants); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_constants = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":33
+  /* "cexprtk/_symbol_table.pyx":45
  *   def __reduce__(self):
  *     constants = dict(self.constants)
  *     variables = dict(self.variables)             # <<<<<<<<<<<<<<
  *     functions = dict(self.functions)
- *     return (Symbol_Table, (variables, constants, False, functions))
+ *     string_variables = dict(self.string_variables)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_variables); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_variables); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_variables = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":34
+  /* "cexprtk/_symbol_table.pyx":46
  *     constants = dict(self.constants)
  *     variables = dict(self.variables)
  *     functions = dict(self.functions)             # <<<<<<<<<<<<<<
- *     return (Symbol_Table, (variables, constants, False, functions))
- * 
+ *     string_variables = dict(self.string_variables)
+ *     return (Symbol_Table, (variables, constants, False, functions, string_variables))
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_functions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_functions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_functions = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":35
+  /* "cexprtk/_symbol_table.pyx":47
  *     variables = dict(self.variables)
  *     functions = dict(self.functions)
- *     return (Symbol_Table, (variables, constants, False, functions))             # <<<<<<<<<<<<<<
+ *     string_variables = dict(self.string_variables)             # <<<<<<<<<<<<<<
+ *     return (Symbol_Table, (variables, constants, False, functions, string_variables))
+ * 
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_string_variables); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyDict_Type)), __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_string_variables = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "cexprtk/_symbol_table.pyx":48
+ *     functions = dict(self.functions)
+ *     string_variables = dict(self.string_variables)
+ *     return (Symbol_Table, (variables, constants, False, functions, string_variables))             # <<<<<<<<<<<<<<
  * 
  *   def __cinit__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyTuple_New(4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_variables);
   __Pyx_GIVEREF(__pyx_v_variables);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_variables);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_variables);
   __Pyx_INCREF(__pyx_v_constants);
   __Pyx_GIVEREF(__pyx_v_constants);
-  PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_v_constants);
+  PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_constants);
   __Pyx_INCREF(Py_False);
   __Pyx_GIVEREF(Py_False);
-  PyTuple_SET_ITEM(__pyx_t_2, 2, Py_False);
+  PyTuple_SET_ITEM(__pyx_t_1, 2, Py_False);
   __Pyx_INCREF(__pyx_v_functions);
   __Pyx_GIVEREF(__pyx_v_functions);
-  PyTuple_SET_ITEM(__pyx_t_2, 3, __pyx_v_functions);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_1, 3, __pyx_v_functions);
+  __Pyx_INCREF(__pyx_v_string_variables);
+  __Pyx_GIVEREF(__pyx_v_string_variables);
+  PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_v_string_variables);
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(((PyObject *)__pyx_ptype_7cexprtk_13_symbol_table_Symbol_Table));
   __Pyx_GIVEREF(((PyObject *)__pyx_ptype_7cexprtk_13_symbol_table_Symbol_Table));
-  PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_ptype_7cexprtk_13_symbol_table_Symbol_Table));
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_r = __pyx_t_1;
+  PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_ptype_7cexprtk_13_symbol_table_Symbol_Table));
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_1);
   __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":31
+  /* "cexprtk/_symbol_table.pyx":43
  *   """Class for providing variable and constant values to Expression instances."""
  * 
  *   def __reduce__(self):             # <<<<<<<<<<<<<<
@@ -2200,13 +2496,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table___reduce__(str
   __Pyx_XDECREF(__pyx_v_constants);
   __Pyx_XDECREF(__pyx_v_variables);
   __Pyx_XDECREF(__pyx_v_functions);
+  __Pyx_XDECREF(__pyx_v_string_variables);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":37
- *     return (Symbol_Table, (variables, constants, False, functions))
+/* "cexprtk/_symbol_table.pyx":50
+ *     return (Symbol_Table, (variables, constants, False, functions, string_variables))
  * 
  *   def __cinit__(self):             # <<<<<<<<<<<<<<
  *     self._csymtableptr = new exprtk.symbol_table_type()
@@ -2240,7 +2537,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_2__cinit__(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":38
+  /* "cexprtk/_symbol_table.pyx":51
  * 
  *   def __cinit__(self):
  *     self._csymtableptr = new exprtk.symbol_table_type()             # <<<<<<<<<<<<<<
@@ -2251,18 +2548,18 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_2__cinit__(struct __
     __pyx_t_1 = new __pyx_t_6exprtk_symbol_table_type();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 38, __pyx_L1_error)
+    __PYX_ERR(0, 51, __pyx_L1_error)
   }
   __pyx_v_self->_csymtableptr = __pyx_t_1;
 
-  /* "cexprtk/_symbol_table.pyx":41
+  /* "cexprtk/_symbol_table.pyx":54
  * 
  *     # Set up the functions dictionary
  *     self._functions = _Symbol_Table_Functions()             # <<<<<<<<<<<<<<
  *     self._functions._csymtableptr = self._csymtableptr
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_Functions)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_Functions)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __Pyx_GOTREF(__pyx_v_self->_functions);
@@ -2270,7 +2567,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_2__cinit__(struct __
   __pyx_v_self->_functions = ((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":42
+  /* "cexprtk/_symbol_table.pyx":55
  *     # Set up the functions dictionary
  *     self._functions = _Symbol_Table_Functions()
  *     self._functions._csymtableptr = self._csymtableptr             # <<<<<<<<<<<<<<
@@ -2280,14 +2577,14 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_2__cinit__(struct __
   __pyx_t_1 = __pyx_v_self->_csymtableptr;
   __pyx_v_self->_functions->_csymtableptr = __pyx_t_1;
 
-  /* "cexprtk/_symbol_table.pyx":45
+  /* "cexprtk/_symbol_table.pyx":58
  * 
  *     # Set up the variables dictionary
  *     self._variables = _Symbol_Table_Variables()             # <<<<<<<<<<<<<<
  *     # ... set the internal pointer held by _variables
  *     self._variables._csymtableptr = self._csymtableptr
  */
-  __pyx_t_2 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_Variables)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_Variables)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __Pyx_GOTREF(__pyx_v_self->_variables);
@@ -2295,7 +2592,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_2__cinit__(struct __
   __pyx_v_self->_variables = ((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":47
+  /* "cexprtk/_symbol_table.pyx":60
  *     self._variables = _Symbol_Table_Variables()
  *     # ... set the internal pointer held by _variables
  *     self._variables._csymtableptr = self._csymtableptr             # <<<<<<<<<<<<<<
@@ -2305,7 +2602,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_2__cinit__(struct __
   __pyx_t_1 = __pyx_v_self->_csymtableptr;
   __pyx_v_self->_variables->_csymtableptr = __pyx_t_1;
 
-  /* "cexprtk/_symbol_table.pyx":48
+  /* "cexprtk/_symbol_table.pyx":61
  *     # ... set the internal pointer held by _variables
  *     self._variables._csymtableptr = self._csymtableptr
  *     self._variables._functions = PyWeakref_NewProxy(self._functions, None)             # <<<<<<<<<<<<<<
@@ -2314,7 +2611,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_2__cinit__(struct __
  */
   __pyx_t_2 = ((PyObject *)__pyx_v_self->_functions);
   __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_3 = PyWeakref_NewProxy(__pyx_t_2, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_3 = PyWeakref_NewProxy(__pyx_t_2, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_GIVEREF(__pyx_t_3);
@@ -2323,14 +2620,14 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_2__cinit__(struct __
   __pyx_v_self->_variables->_functions = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":52
+  /* "cexprtk/_symbol_table.pyx":65
  * 
  *     # Set up the constants dictionary
  *     self._constants = _Symbol_Table_Constants()             # <<<<<<<<<<<<<<
  *     # ... set the internal pointer held by _constants
  *     self._constants._csymtableptr = self._csymtableptr
  */
-  __pyx_t_3 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_Constants)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_Constants)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_3);
   __Pyx_GOTREF(__pyx_v_self->_constants);
@@ -2338,18 +2635,61 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_2__cinit__(struct __
   __pyx_v_self->_constants = ((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":54
+  /* "cexprtk/_symbol_table.pyx":67
  *     self._constants = _Symbol_Table_Constants()
  *     # ... set the internal pointer held by _constants
  *     self._constants._csymtableptr = self._csymtableptr             # <<<<<<<<<<<<<<
  * 
- * 
+ *     # Set up the string_variables dictionary
  */
   __pyx_t_1 = __pyx_v_self->_csymtableptr;
   __pyx_v_self->_constants->_csymtableptr = __pyx_t_1;
 
-  /* "cexprtk/_symbol_table.pyx":37
- *     return (Symbol_Table, (variables, constants, False, functions))
+  /* "cexprtk/_symbol_table.pyx":70
+ * 
+ *     # Set up the string_variables dictionary
+ *     self._string_variables = _Symbol_Table_String_Variables()             # <<<<<<<<<<<<<<
+ *     self._string_variables._csymtableptr = self._csymtableptr
+ *     self._string_variables._functions = PyWeakref_NewProxy(self._functions, None)
+ */
+  __pyx_t_3 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_String_Variables)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
+  __Pyx_GOTREF(__pyx_v_self->_string_variables);
+  __Pyx_DECREF(((PyObject *)__pyx_v_self->_string_variables));
+  __pyx_v_self->_string_variables = ((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_t_3);
+  __pyx_t_3 = 0;
+
+  /* "cexprtk/_symbol_table.pyx":71
+ *     # Set up the string_variables dictionary
+ *     self._string_variables = _Symbol_Table_String_Variables()
+ *     self._string_variables._csymtableptr = self._csymtableptr             # <<<<<<<<<<<<<<
+ *     self._string_variables._functions = PyWeakref_NewProxy(self._functions, None)
+ * 
+ */
+  __pyx_t_1 = __pyx_v_self->_csymtableptr;
+  __pyx_v_self->_string_variables->_csymtableptr = __pyx_t_1;
+
+  /* "cexprtk/_symbol_table.pyx":72
+ *     self._string_variables = _Symbol_Table_String_Variables()
+ *     self._string_variables._csymtableptr = self._csymtableptr
+ *     self._string_variables._functions = PyWeakref_NewProxy(self._functions, None)             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_t_3 = ((PyObject *)__pyx_v_self->_functions);
+  __Pyx_INCREF(__pyx_t_3);
+  __pyx_t_2 = PyWeakref_NewProxy(__pyx_t_3, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_GIVEREF(__pyx_t_2);
+  __Pyx_GOTREF(__pyx_v_self->_string_variables->_functions);
+  __Pyx_DECREF(__pyx_v_self->_string_variables->_functions);
+  __pyx_v_self->_string_variables->_functions = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "cexprtk/_symbol_table.pyx":50
+ *     return (Symbol_Table, (variables, constants, False, functions, string_variables))
  * 
  *   def __cinit__(self):             # <<<<<<<<<<<<<<
  *     self._csymtableptr = new exprtk.symbol_table_type()
@@ -2369,7 +2709,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_2__cinit__(struct __
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":57
+/* "cexprtk/_symbol_table.pyx":76
  * 
  * 
  *   def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -2392,7 +2732,7 @@ static void __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_4__dealloc__(struct
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":58
+  /* "cexprtk/_symbol_table.pyx":77
  * 
  *   def __dealloc__(self):
  *     del self._csymtableptr             # <<<<<<<<<<<<<<
@@ -2401,7 +2741,7 @@ static void __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_4__dealloc__(struct
  */
   delete __pyx_v_self->_csymtableptr;
 
-  /* "cexprtk/_symbol_table.pyx":59
+  /* "cexprtk/_symbol_table.pyx":78
  *   def __dealloc__(self):
  *     del self._csymtableptr
  *     self._variables._csymtableptr = NULL             # <<<<<<<<<<<<<<
@@ -2410,25 +2750,34 @@ static void __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_4__dealloc__(struct
  */
   __pyx_v_self->_variables->_csymtableptr = NULL;
 
-  /* "cexprtk/_symbol_table.pyx":60
+  /* "cexprtk/_symbol_table.pyx":79
  *     del self._csymtableptr
  *     self._variables._csymtableptr = NULL
  *     self._constants._csymtableptr = NULL             # <<<<<<<<<<<<<<
  *     self._functions._csymtableptr = NULL
- * 
+ *     self._string_variables._csymtableptr = NULL
  */
   __pyx_v_self->_constants->_csymtableptr = NULL;
 
-  /* "cexprtk/_symbol_table.pyx":61
+  /* "cexprtk/_symbol_table.pyx":80
  *     self._variables._csymtableptr = NULL
  *     self._constants._csymtableptr = NULL
  *     self._functions._csymtableptr = NULL             # <<<<<<<<<<<<<<
+ *     self._string_variables._csymtableptr = NULL
  * 
- *   def __init__(self, variables, constants = {}, add_constants = False, functions = {},):
  */
   __pyx_v_self->_functions->_csymtableptr = NULL;
 
-  /* "cexprtk/_symbol_table.pyx":57
+  /* "cexprtk/_symbol_table.pyx":81
+ *     self._constants._csymtableptr = NULL
+ *     self._functions._csymtableptr = NULL
+ *     self._string_variables._csymtableptr = NULL             # <<<<<<<<<<<<<<
+ * 
+ *   def __init__(self, variables, constants = {}, add_constants = False, functions = {}, string_variables = {}):
+ */
+  __pyx_v_self->_string_variables->_csymtableptr = NULL;
+
+  /* "cexprtk/_symbol_table.pyx":76
  * 
  * 
  *   def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -2440,17 +2789,17 @@ static void __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_4__dealloc__(struct
   __Pyx_RefNannyFinishContext();
 }
 
-/* "cexprtk/_symbol_table.pyx":63
- *     self._functions._csymtableptr = NULL
+/* "cexprtk/_symbol_table.pyx":83
+ *     self._string_variables._csymtableptr = NULL
  * 
- *   def __init__(self, variables, constants = {}, add_constants = False, functions = {},):             # <<<<<<<<<<<<<<
+ *   def __init__(self, variables, constants = {}, add_constants = False, functions = {}, string_variables = {}):             # <<<<<<<<<<<<<<
  *     """Instantiate Symbol_Table defining variables and constants for Expression class.
  * 
  */
 
 /* Python wrapper */
 static int __pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_7__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_7cexprtk_13_symbol_table_12Symbol_Table_6__init__[] = "Instantiate Symbol_Table defining variables and constants for Expression class.\n\n    :param variables: Mapping between variable name and initial variable value.\n    :type variables: dict\n\n    :param constants: Constant name to value dictionary.\n    :type constants: dict\n    \n    :param add_constants: If True, add the standard constants ``pi``, ``inf``, ``epsilon``\n      to the 'constants' dictionary before populating the ``Symbol_Table``\n    :type add_constants: bool\n\n    :param functions: Dictionary containing custom functions to be made available to expressions. \n      Dictionary keys specify function names and values should be functions.\n    :type functions: dict\n\n    ";
+static char __pyx_doc_7cexprtk_13_symbol_table_12Symbol_Table_6__init__[] = "Instantiate Symbol_Table defining variables and constants for Expression class.\n\n    :param variables: Mapping between variable name and initial variable value.\n    :type variables: dict\n\n    :param constants: Constant name to value dictionary.\n    :type constants: dict\n    \n    :param add_constants: If True, add the standard constants ``pi``, ``inf``, ``epsilon``\n      to the 'constants' dictionary before populating the ``Symbol_Table``\n    :type add_constants: bool\n\n    :param functions: Dictionary containing custom functions to be made available to expressions. \n      Dictionary keys specify function names and values should be functions.\n    :type functions: dict\n\n    :param string_variables: Dictionary of string variables to be made available in expressions.\n    :type string_variables: dict\n\n    ";
 #if CYTHON_COMPILING_IN_CPYTHON
 struct wrapperbase __pyx_wrapperbase_7cexprtk_13_symbol_table_12Symbol_Table_6__init__;
 #endif
@@ -2459,6 +2808,7 @@ static int __pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_7__init__(PyObject *
   PyObject *__pyx_v_constants = 0;
   PyObject *__pyx_v_add_constants = 0;
   PyObject *__pyx_v_functions = 0;
+  PyObject *__pyx_v_string_variables = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -2466,15 +2816,18 @@ static int __pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_7__init__(PyObject *
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__init__ (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_variables,&__pyx_n_s_constants,&__pyx_n_s_add_constants,&__pyx_n_s_functions,0};
-    PyObject* values[4] = {0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_variables,&__pyx_n_s_constants,&__pyx_n_s_add_constants,&__pyx_n_s_functions,&__pyx_n_s_string_variables,0};
+    PyObject* values[5] = {0,0,0,0,0};
     values[1] = __pyx_k_;
     values[2] = ((PyObject *)Py_False);
     values[3] = __pyx_k__2;
+    values[4] = __pyx_k__3;
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        CYTHON_FALLTHROUGH;
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         CYTHON_FALLTHROUGH;
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
@@ -2509,12 +2862,20 @@ static int __pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_7__init__(PyObject *
           PyObject* value = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_functions);
           if (value) { values[3] = value; kw_args--; }
         }
+        CYTHON_FALLTHROUGH;
+        case  4:
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_string_variables);
+          if (value) { values[4] = value; kw_args--; }
+        }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 63, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) __PYX_ERR(0, 83, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        CYTHON_FALLTHROUGH;
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         CYTHON_FALLTHROUGH;
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
@@ -2530,23 +2891,24 @@ static int __pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_7__init__(PyObject *
     __pyx_v_constants = values[1];
     __pyx_v_add_constants = values[2];
     __pyx_v_functions = values[3];
+    __pyx_v_string_variables = values[4];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 63, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 0, 1, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 83, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cexprtk._symbol_table.Symbol_Table.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(((struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *)__pyx_v_self), __pyx_v_variables, __pyx_v_constants, __pyx_v_add_constants, __pyx_v_functions);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(((struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *)__pyx_v_self), __pyx_v_variables, __pyx_v_constants, __pyx_v_add_constants, __pyx_v_functions, __pyx_v_string_variables);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self, PyObject *__pyx_v_variables, PyObject *__pyx_v_constants, PyObject *__pyx_v_add_constants, PyObject *__pyx_v_functions) {
+static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self, PyObject *__pyx_v_variables, PyObject *__pyx_v_constants, PyObject *__pyx_v_add_constants, PyObject *__pyx_v_functions, PyObject *__pyx_v_string_variables) {
   PyObject *__pyx_v_shadowed = NULL;
   PyObject *__pyx_v_msg = NULL;
   PyObject *__pyx_v_s = NULL;
@@ -2565,14 +2927,14 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":82
+  /* "cexprtk/_symbol_table.pyx":105
  *     """
  * 
- *     shadowed = set(variables.keys()) & set(constants.keys())             # <<<<<<<<<<<<<<
+ *     shadowed = (set(functions.keys()) | set(constants.keys()) | set(string_variables.keys())) & set(variables.keys())             # <<<<<<<<<<<<<<
  *     if shadowed:
  *       msg = [s for s in sorted(shadowed)]
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_variables, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_functions, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -2586,13 +2948,13 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __p
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PySet_New(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_2 = PySet_New(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_constants, __pyx_n_s_keys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_constants, __pyx_n_s_keys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -2606,88 +2968,536 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __p
   }
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PySet_New(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_3 = PySet_New(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_And(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Or(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_shadowed = ((PyObject*)__pyx_t_1);
-  __pyx_t_1 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_string_variables, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_3 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PySet_New(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyNumber_Or(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_variables, __pyx_n_s_keys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PySet_New(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyNumber_And(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_shadowed = ((PyObject*)__pyx_t_2);
+  __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":83
+  /* "cexprtk/_symbol_table.pyx":106
  * 
- *     shadowed = set(variables.keys()) & set(constants.keys())
+ *     shadowed = (set(functions.keys()) | set(constants.keys()) | set(string_variables.keys())) & set(variables.keys())
  *     if shadowed:             # <<<<<<<<<<<<<<
  *       msg = [s for s in sorted(shadowed)]
- *       msg = "The following names are in both variables and constants: %s" % ",".join(msg)
+ *       msg = "The following variable names are also found in constants functions or string_variables: %s" % ",".join(msg)
  */
   __pyx_t_5 = (PySet_GET_SIZE(__pyx_v_shadowed) != 0);
   if (unlikely(__pyx_t_5)) {
 
-    /* "cexprtk/_symbol_table.pyx":84
- *     shadowed = set(variables.keys()) & set(constants.keys())
+    /* "cexprtk/_symbol_table.pyx":107
+ *     shadowed = (set(functions.keys()) | set(constants.keys()) | set(string_variables.keys())) & set(variables.keys())
  *     if shadowed:
  *       msg = [s for s in sorted(shadowed)]             # <<<<<<<<<<<<<<
- *       msg = "The following names are in both variables and constants: %s" % ",".join(msg)
+ *       msg = "The following variable names are also found in constants functions or string_variables: %s" % ",".join(msg)
  *       raise VariableNameShadowException(msg)
  */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = PySequence_List(__pyx_v_shadowed); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_1 = ((PyObject*)__pyx_t_3);
+    __pyx_t_3 = 0;
+    __pyx_t_6 = PyList_Sort(__pyx_t_1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 107, __pyx_L1_error)
+    if (unlikely(__pyx_t_1 == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
+      __PYX_ERR(0, 107, __pyx_L1_error)
+    }
+    __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    for (;;) {
+      if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_3)) break;
+      #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+      __pyx_t_1 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 107, __pyx_L1_error)
+      #else
+      __pyx_t_1 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      #endif
+      __Pyx_XDECREF_SET(__pyx_v_s, __pyx_t_1);
+      __pyx_t_1 = 0;
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_v_s))) __PYX_ERR(0, 107, __pyx_L1_error)
+    }
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_v_msg = __pyx_t_2;
+    __pyx_t_2 = 0;
+
+    /* "cexprtk/_symbol_table.pyx":108
+ *     if shadowed:
+ *       msg = [s for s in sorted(shadowed)]
+ *       msg = "The following variable names are also found in constants functions or string_variables: %s" % ",".join(msg)             # <<<<<<<<<<<<<<
+ *       raise VariableNameShadowException(msg)
+ * 
+ */
+    __pyx_t_2 = __Pyx_PyString_Join(__pyx_kp_s__4, __pyx_v_msg); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_The_following_variable_names_are, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF_SET(__pyx_v_msg, __pyx_t_3);
+    __pyx_t_3 = 0;
+
+    /* "cexprtk/_symbol_table.pyx":109
+ *       msg = [s for s in sorted(shadowed)]
+ *       msg = "The following variable names are also found in constants functions or string_variables: %s" % ",".join(msg)
+ *       raise VariableNameShadowException(msg)             # <<<<<<<<<<<<<<
+ * 
+ *     shadowed = (set(variables.keys() | set(functions.keys()) | set(string_variables.keys())) & set(constants.keys()))
+ */
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_VariableNameShadowException); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = NULL;
+    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
+      __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
+      if (likely(__pyx_t_1)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+        __Pyx_INCREF(__pyx_t_1);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_2, function);
+      }
+    }
+    __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_v_msg) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_msg);
+    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_Raise(__pyx_t_3, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __PYX_ERR(0, 109, __pyx_L1_error)
+
+    /* "cexprtk/_symbol_table.pyx":106
+ * 
+ *     shadowed = (set(functions.keys()) | set(constants.keys()) | set(string_variables.keys())) & set(variables.keys())
+ *     if shadowed:             # <<<<<<<<<<<<<<
+ *       msg = [s for s in sorted(shadowed)]
+ *       msg = "The following variable names are also found in constants functions or string_variables: %s" % ",".join(msg)
+ */
+  }
+
+  /* "cexprtk/_symbol_table.pyx":111
+ *       raise VariableNameShadowException(msg)
+ * 
+ *     shadowed = (set(variables.keys() | set(functions.keys()) | set(string_variables.keys())) & set(constants.keys()))             # <<<<<<<<<<<<<<
+ *     if shadowed:
+ *       msg = [s for s in sorted(shadowed)]
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_variables, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_1)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_functions, __pyx_n_s_keys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PySet_New(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyNumber_Or(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_string_variables, __pyx_n_s_keys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PySet_New(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyNumber_Or(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PySet_New(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_constants, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PySet_New(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyNumber_And(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF_SET(__pyx_v_shadowed, ((PyObject*)__pyx_t_1));
+  __pyx_t_1 = 0;
+
+  /* "cexprtk/_symbol_table.pyx":112
+ * 
+ *     shadowed = (set(variables.keys() | set(functions.keys()) | set(string_variables.keys())) & set(constants.keys()))
+ *     if shadowed:             # <<<<<<<<<<<<<<
+ *       msg = [s for s in sorted(shadowed)]
+ *       msg = "The following constant names are also found in variables, functions or string_variables: %s" % ",".join(msg)
+ */
+  __pyx_t_5 = (PySet_GET_SIZE(__pyx_v_shadowed) != 0);
+  if (unlikely(__pyx_t_5)) {
+
+    /* "cexprtk/_symbol_table.pyx":113
+ *     shadowed = (set(variables.keys() | set(functions.keys()) | set(string_variables.keys())) & set(constants.keys()))
+ *     if shadowed:
+ *       msg = [s for s in sorted(shadowed)]             # <<<<<<<<<<<<<<
+ *       msg = "The following constant names are also found in variables, functions or string_variables: %s" % ",".join(msg)
+ *       raise VariableNameShadowException(msg)
+ */
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PySequence_List(__pyx_v_shadowed); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
+    __pyx_t_3 = PySequence_List(__pyx_v_shadowed); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 113, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_2 = ((PyObject*)__pyx_t_3);
+    __pyx_t_3 = 0;
+    __pyx_t_6 = PyList_Sort(__pyx_t_2); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 113, __pyx_L1_error)
+    if (unlikely(__pyx_t_2 == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
+      __PYX_ERR(0, 113, __pyx_L1_error)
+    }
+    __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    for (;;) {
+      if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_3)) break;
+      #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 113, __pyx_L1_error)
+      #else
+      __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      #endif
+      __Pyx_XDECREF_SET(__pyx_v_s, __pyx_t_2);
+      __pyx_t_2 = 0;
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_s))) __PYX_ERR(0, 113, __pyx_L1_error)
+    }
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_v_msg = __pyx_t_1;
+    __pyx_t_1 = 0;
+
+    /* "cexprtk/_symbol_table.pyx":114
+ *     if shadowed:
+ *       msg = [s for s in sorted(shadowed)]
+ *       msg = "The following constant names are also found in variables, functions or string_variables: %s" % ",".join(msg)             # <<<<<<<<<<<<<<
+ *       raise VariableNameShadowException(msg)
+ * 
+ */
+    __pyx_t_1 = __Pyx_PyString_Join(__pyx_kp_s__4, __pyx_v_msg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_The_following_constant_names_are, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF_SET(__pyx_v_msg, __pyx_t_3);
+    __pyx_t_3 = 0;
+
+    /* "cexprtk/_symbol_table.pyx":115
+ *       msg = [s for s in sorted(shadowed)]
+ *       msg = "The following constant names are also found in variables, functions or string_variables: %s" % ",".join(msg)
+ *       raise VariableNameShadowException(msg)             # <<<<<<<<<<<<<<
+ * 
+ *     shadowed = (set(variables.keys()) | set(constants.keys()) | set(string_variables.keys())) & set(functions.keys())
+ */
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_VariableNameShadowException); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = NULL;
+    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+      if (likely(__pyx_t_2)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+        __Pyx_INCREF(__pyx_t_2);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_1, function);
+      }
+    }
+    __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_v_msg) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_msg);
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 115, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_Raise(__pyx_t_3, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __PYX_ERR(0, 115, __pyx_L1_error)
+
+    /* "cexprtk/_symbol_table.pyx":112
+ * 
+ *     shadowed = (set(variables.keys() | set(functions.keys()) | set(string_variables.keys())) & set(constants.keys()))
+ *     if shadowed:             # <<<<<<<<<<<<<<
+ *       msg = [s for s in sorted(shadowed)]
+ *       msg = "The following constant names are also found in variables, functions or string_variables: %s" % ",".join(msg)
+ */
+  }
+
+  /* "cexprtk/_symbol_table.pyx":117
+ *       raise VariableNameShadowException(msg)
+ * 
+ *     shadowed = (set(variables.keys()) | set(constants.keys()) | set(string_variables.keys())) & set(functions.keys())             # <<<<<<<<<<<<<<
+ *     if shadowed:
+ *       msg = [s for s in sorted(shadowed)]
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_variables, __pyx_n_s_keys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PySet_New(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_constants, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_3 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PySet_New(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyNumber_Or(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_string_variables, __pyx_n_s_keys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PySet_New(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyNumber_Or(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_functions, __pyx_n_s_keys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PySet_New(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyNumber_And(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF_SET(__pyx_v_shadowed, ((PyObject*)__pyx_t_1));
+  __pyx_t_1 = 0;
+
+  /* "cexprtk/_symbol_table.pyx":118
+ * 
+ *     shadowed = (set(variables.keys()) | set(constants.keys()) | set(string_variables.keys())) & set(functions.keys())
+ *     if shadowed:             # <<<<<<<<<<<<<<
+ *       msg = [s for s in sorted(shadowed)]
+ *       msg = "The following function names are also found in variables, constants or string_variables: %s" % ",".join(msg)
+ */
+  __pyx_t_5 = (PySet_GET_SIZE(__pyx_v_shadowed) != 0);
+  if (unlikely(__pyx_t_5)) {
+
+    /* "cexprtk/_symbol_table.pyx":119
+ *     shadowed = (set(variables.keys()) | set(constants.keys()) | set(string_variables.keys())) & set(functions.keys())
+ *     if shadowed:
+ *       msg = [s for s in sorted(shadowed)]             # <<<<<<<<<<<<<<
+ *       msg = "The following function names are also found in variables, constants or string_variables: %s" % ",".join(msg)
+ *       raise VariableNameShadowException(msg)
+ */
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = PySequence_List(__pyx_v_shadowed); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_3 = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_6 = PyList_Sort(__pyx_t_3); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 84, __pyx_L1_error)
+    __pyx_t_6 = PyList_Sort(__pyx_t_3); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 119, __pyx_L1_error)
     if (unlikely(__pyx_t_3 == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 84, __pyx_L1_error)
+      __PYX_ERR(0, 119, __pyx_L1_error)
     }
     __pyx_t_2 = __pyx_t_3; __Pyx_INCREF(__pyx_t_2); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     for (;;) {
       if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_2)) break;
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_3); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 84, __pyx_L1_error)
+      __pyx_t_3 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_3); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 119, __pyx_L1_error)
       #else
-      __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 84, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 119, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       #endif
       __Pyx_XDECREF_SET(__pyx_v_s, __pyx_t_3);
       __pyx_t_3 = 0;
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_s))) __PYX_ERR(0, 84, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_s))) __PYX_ERR(0, 119, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_v_msg = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":85
+    /* "cexprtk/_symbol_table.pyx":120
  *     if shadowed:
  *       msg = [s for s in sorted(shadowed)]
- *       msg = "The following names are in both variables and constants: %s" % ",".join(msg)             # <<<<<<<<<<<<<<
+ *       msg = "The following function names are also found in variables, constants or string_variables: %s" % ",".join(msg)             # <<<<<<<<<<<<<<
  *       raise VariableNameShadowException(msg)
  * 
  */
-    __pyx_t_1 = __Pyx_PyString_Join(__pyx_kp_s__3, __pyx_v_msg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyString_Join(__pyx_kp_s__4, __pyx_v_msg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_The_following_names_are_in_both, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 85, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_The_following_function_names_are, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF_SET(__pyx_v_msg, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":86
+    /* "cexprtk/_symbol_table.pyx":121
  *       msg = [s for s in sorted(shadowed)]
- *       msg = "The following names are in both variables and constants: %s" % ",".join(msg)
+ *       msg = "The following function names are also found in variables, constants or string_variables: %s" % ",".join(msg)
  *       raise VariableNameShadowException(msg)             # <<<<<<<<<<<<<<
  * 
- *     shadowed = (set(variables.keys()) | set(constants.keys())) & set(functions.keys())
+ *     shadowed = (set(variables.keys()) | set(constants.keys()) | set(functions.keys())) & set(string_variables.keys())
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_VariableNameShadowException); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_VariableNameShadowException); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_3 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
@@ -2701,30 +3511,30 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __p
     }
     __pyx_t_2 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_3, __pyx_v_msg) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_msg);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 86, __pyx_L1_error)
+    __PYX_ERR(0, 121, __pyx_L1_error)
 
-    /* "cexprtk/_symbol_table.pyx":83
+    /* "cexprtk/_symbol_table.pyx":118
  * 
- *     shadowed = set(variables.keys()) & set(constants.keys())
+ *     shadowed = (set(variables.keys()) | set(constants.keys()) | set(string_variables.keys())) & set(functions.keys())
  *     if shadowed:             # <<<<<<<<<<<<<<
  *       msg = [s for s in sorted(shadowed)]
- *       msg = "The following names are in both variables and constants: %s" % ",".join(msg)
+ *       msg = "The following function names are also found in variables, constants or string_variables: %s" % ",".join(msg)
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":88
+  /* "cexprtk/_symbol_table.pyx":123
  *       raise VariableNameShadowException(msg)
  * 
- *     shadowed = (set(variables.keys()) | set(constants.keys())) & set(functions.keys())             # <<<<<<<<<<<<<<
+ *     shadowed = (set(variables.keys()) | set(constants.keys()) | set(functions.keys())) & set(string_variables.keys())             # <<<<<<<<<<<<<<
  *     if shadowed:
  *       msg = [s for s in sorted(shadowed)]
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_variables, __pyx_n_s_keys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_variables, __pyx_n_s_keys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -2738,13 +3548,13 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __p
   }
   __pyx_t_2 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PySet_New(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_constants, __pyx_n_s_keys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_constants, __pyx_n_s_keys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -2758,17 +3568,17 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __p
   }
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PySet_New(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_3 = PySet_New(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Or(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Or(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_functions, __pyx_n_s_keys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_functions, __pyx_n_s_keys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -2782,185 +3592,209 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __p
   }
   __pyx_t_3 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PySet_New(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_And(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Or(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF_SET(__pyx_v_shadowed, ((PyObject*)__pyx_t_3));
-  __pyx_t_3 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_string_variables, __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PySet_New(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyNumber_And(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF_SET(__pyx_v_shadowed, ((PyObject*)__pyx_t_1));
+  __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":89
+  /* "cexprtk/_symbol_table.pyx":124
  * 
- *     shadowed = (set(variables.keys()) | set(constants.keys())) & set(functions.keys())
+ *     shadowed = (set(variables.keys()) | set(constants.keys()) | set(functions.keys())) & set(string_variables.keys())
  *     if shadowed:             # <<<<<<<<<<<<<<
  *       msg = [s for s in sorted(shadowed)]
- *       msg = "The following function names are also in variables or constants: %s" % ",".join(msg)
+ *       msg = "The following string_variable names are also found in variables, constants or functions: %s" % ",".join(msg)
  */
   __pyx_t_5 = (PySet_GET_SIZE(__pyx_v_shadowed) != 0);
   if (unlikely(__pyx_t_5)) {
 
-    /* "cexprtk/_symbol_table.pyx":90
- *     shadowed = (set(variables.keys()) | set(constants.keys())) & set(functions.keys())
+    /* "cexprtk/_symbol_table.pyx":125
+ *     shadowed = (set(variables.keys()) | set(constants.keys()) | set(functions.keys())) & set(string_variables.keys())
  *     if shadowed:
  *       msg = [s for s in sorted(shadowed)]             # <<<<<<<<<<<<<<
- *       msg = "The following function names are also in variables or constants: %s" % ",".join(msg)
+ *       msg = "The following string_variable names are also found in variables, constants or functions: %s" % ",".join(msg)
  *       raise VariableNameShadowException(msg)
  */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = PySequence_List(__pyx_v_shadowed); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PySequence_List(__pyx_v_shadowed); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = ((PyObject*)__pyx_t_2);
-    __pyx_t_2 = 0;
-    __pyx_t_6 = PyList_Sort(__pyx_t_1); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 90, __pyx_L1_error)
-    if (unlikely(__pyx_t_1 == Py_None)) {
-      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 90, __pyx_L1_error)
-    }
-    __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_7 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    for (;;) {
-      if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_2)) break;
-      #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_7); __Pyx_INCREF(__pyx_t_1); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 90, __pyx_L1_error)
-      #else
-      __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      #endif
-      __Pyx_XDECREF_SET(__pyx_v_s, __pyx_t_1);
-      __pyx_t_1 = 0;
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_v_s))) __PYX_ERR(0, 90, __pyx_L1_error)
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_v_msg = __pyx_t_3;
+    __pyx_t_2 = ((PyObject*)__pyx_t_3);
     __pyx_t_3 = 0;
+    __pyx_t_6 = PyList_Sort(__pyx_t_2); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 125, __pyx_L1_error)
+    if (unlikely(__pyx_t_2 == Py_None)) {
+      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
+      __PYX_ERR(0, 125, __pyx_L1_error)
+    }
+    __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    for (;;) {
+      if (__pyx_t_7 >= PyList_GET_SIZE(__pyx_t_3)) break;
+      #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_7); __Pyx_INCREF(__pyx_t_2); __pyx_t_7++; if (unlikely(0 < 0)) __PYX_ERR(0, 125, __pyx_L1_error)
+      #else
+      __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_7); __pyx_t_7++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      #endif
+      __Pyx_XDECREF_SET(__pyx_v_s, __pyx_t_2);
+      __pyx_t_2 = 0;
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_s))) __PYX_ERR(0, 125, __pyx_L1_error)
+    }
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_v_msg = __pyx_t_1;
+    __pyx_t_1 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":91
+    /* "cexprtk/_symbol_table.pyx":126
  *     if shadowed:
  *       msg = [s for s in sorted(shadowed)]
- *       msg = "The following function names are also in variables or constants: %s" % ",".join(msg)             # <<<<<<<<<<<<<<
+ *       msg = "The following string_variable names are also found in variables, constants or functions: %s" % ",".join(msg)             # <<<<<<<<<<<<<<
  *       raise VariableNameShadowException(msg)
  * 
  */
-    __pyx_t_3 = __Pyx_PyString_Join(__pyx_kp_s__3, __pyx_v_msg); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 91, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyString_Join(__pyx_kp_s__4, __pyx_v_msg); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_The_following_string_variable_na, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_The_following_function_names_are, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 91, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF_SET(__pyx_v_msg, __pyx_t_2);
-    __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF_SET(__pyx_v_msg, __pyx_t_3);
+    __pyx_t_3 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":92
+    /* "cexprtk/_symbol_table.pyx":127
  *       msg = [s for s in sorted(shadowed)]
- *       msg = "The following function names are also in variables or constants: %s" % ",".join(msg)
+ *       msg = "The following string_variable names are also found in variables, constants or functions: %s" % ",".join(msg)
  *       raise VariableNameShadowException(msg)             # <<<<<<<<<<<<<<
  * 
  *     self._populateVariables(variables)
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_VariableNameShadowException); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 92, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = NULL;
-    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-      __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
-      if (likely(__pyx_t_1)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-        __Pyx_INCREF(__pyx_t_1);
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_VariableNameShadowException); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = NULL;
+    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+      if (likely(__pyx_t_2)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+        __Pyx_INCREF(__pyx_t_2);
         __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_3, function);
+        __Pyx_DECREF_SET(__pyx_t_1, function);
       }
     }
-    __pyx_t_2 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_1, __pyx_v_msg) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_msg);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_v_msg) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_msg);
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 92, __pyx_L1_error)
+    __PYX_ERR(0, 127, __pyx_L1_error)
 
-    /* "cexprtk/_symbol_table.pyx":89
+    /* "cexprtk/_symbol_table.pyx":124
  * 
- *     shadowed = (set(variables.keys()) | set(constants.keys())) & set(functions.keys())
+ *     shadowed = (set(variables.keys()) | set(constants.keys()) | set(functions.keys())) & set(string_variables.keys())
  *     if shadowed:             # <<<<<<<<<<<<<<
  *       msg = [s for s in sorted(shadowed)]
- *       msg = "The following function names are also in variables or constants: %s" % ",".join(msg)
+ *       msg = "The following string_variable names are also found in variables, constants or functions: %s" % ",".join(msg)
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":94
+  /* "cexprtk/_symbol_table.pyx":129
  *       raise VariableNameShadowException(msg)
  * 
  *     self._populateVariables(variables)             # <<<<<<<<<<<<<<
  *     self._populateConstants(constants, add_constants)
  *     self._populateFunctions(functions)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_populateVariables); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_1);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_populateVariables); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
     }
   }
-  __pyx_t_2 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_1, __pyx_v_variables) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_variables);
-  __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_2, __pyx_v_variables) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_variables);
+  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":95
+  /* "cexprtk/_symbol_table.pyx":130
  * 
  *     self._populateVariables(variables)
  *     self._populateConstants(constants, add_constants)             # <<<<<<<<<<<<<<
  *     self._populateFunctions(functions)
- * 
+ *     self._populateStringVariables(string_variables)
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_populateConstants); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = NULL;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_populateConstants); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = NULL;
   __pyx_t_8 = 0;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_1);
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
       __pyx_t_8 = 1;
     }
   }
   #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_3)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_1, __pyx_v_constants, __pyx_v_add_constants};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_GOTREF(__pyx_t_2);
+  if (PyFunction_Check(__pyx_t_1)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_constants, __pyx_v_add_constants};
+    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_3);
   } else
   #endif
   #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-    PyObject *__pyx_temp[3] = {__pyx_t_1, __pyx_v_constants, __pyx_v_add_constants};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_GOTREF(__pyx_t_2);
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_constants, __pyx_v_add_constants};
+    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_3);
   } else
   #endif
   {
-    __pyx_t_4 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 130, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (__pyx_t_1) {
-      __Pyx_GIVEREF(__pyx_t_1); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1); __pyx_t_1 = NULL;
+    if (__pyx_t_2) {
+      __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
     }
     __Pyx_INCREF(__pyx_v_constants);
     __Pyx_GIVEREF(__pyx_v_constants);
@@ -2968,43 +3802,69 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __p
     __Pyx_INCREF(__pyx_v_add_constants);
     __Pyx_GIVEREF(__pyx_v_add_constants);
     PyTuple_SET_ITEM(__pyx_t_4, 1+__pyx_t_8, __pyx_v_add_constants);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":96
+  /* "cexprtk/_symbol_table.pyx":131
  *     self._populateVariables(variables)
  *     self._populateConstants(constants, add_constants)
  *     self._populateFunctions(functions)             # <<<<<<<<<<<<<<
+ *     self._populateStringVariables(string_variables)
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_populateFunctions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  __pyx_t_3 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_4, __pyx_v_functions) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_functions);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "cexprtk/_symbol_table.pyx":132
+ *     self._populateConstants(constants, add_constants)
+ *     self._populateFunctions(functions)
+ *     self._populateStringVariables(string_variables)             # <<<<<<<<<<<<<<
  * 
  *   def _populateVariables(self,object variables):
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_populateFunctions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_populateStringVariables); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_4 = NULL;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
     if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_4);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
     }
   }
-  __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_functions) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_functions);
+  __pyx_t_3 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_4, __pyx_v_string_variables) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_string_variables);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":63
- *     self._functions._csymtableptr = NULL
+  /* "cexprtk/_symbol_table.pyx":83
+ *     self._string_variables._csymtableptr = NULL
  * 
- *   def __init__(self, variables, constants = {}, add_constants = False, functions = {},):             # <<<<<<<<<<<<<<
+ *   def __init__(self, variables, constants = {}, add_constants = False, functions = {}, string_variables = {}):             # <<<<<<<<<<<<<<
  *     """Instantiate Symbol_Table defining variables and constants for Expression class.
  * 
  */
@@ -3027,8 +3887,8 @@ static int __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_6__init__(struct __p
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":98
- *     self._populateFunctions(functions)
+/* "cexprtk/_symbol_table.pyx":134
+ *     self._populateStringVariables(string_variables)
  * 
  *   def _populateVariables(self,object variables):             # <<<<<<<<<<<<<<
  *     cdef bytes cstr
@@ -3071,7 +3931,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_8_populateVari
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_populateVariables", 0);
 
-  /* "cexprtk/_symbol_table.pyx":100
+  /* "cexprtk/_symbol_table.pyx":136
  *   def _populateVariables(self,object variables):
  *     cdef bytes cstr
  *     for s, v in variables.iteritems():             # <<<<<<<<<<<<<<
@@ -3081,9 +3941,9 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_8_populateVari
   __pyx_t_2 = 0;
   if (unlikely(__pyx_v_variables == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "iteritems");
-    __PYX_ERR(0, 100, __pyx_L1_error)
+    __PYX_ERR(0, 136, __pyx_L1_error)
   }
-  __pyx_t_5 = __Pyx_dict_iterator(__pyx_v_variables, 0, __pyx_n_s_iteritems, (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_dict_iterator(__pyx_v_variables, 0, __pyx_n_s_iteritems, (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_1);
   __pyx_t_1 = __pyx_t_5;
@@ -3091,7 +3951,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_8_populateVari
   while (1) {
     __pyx_t_7 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_3, &__pyx_t_2, &__pyx_t_5, &__pyx_t_6, NULL, __pyx_t_4);
     if (unlikely(__pyx_t_7 == 0)) break;
-    if (unlikely(__pyx_t_7 == -1)) __PYX_ERR(0, 100, __pyx_L1_error)
+    if (unlikely(__pyx_t_7 == -1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_XDECREF_SET(__pyx_v_s, __pyx_t_5);
@@ -3099,14 +3959,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_8_populateVari
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":101
+    /* "cexprtk/_symbol_table.pyx":137
  *     cdef bytes cstr
  *     for s, v in variables.iteritems():
  *       cstr = s.encode("ascii")             # <<<<<<<<<<<<<<
  *       if not self._csymtableptr[0].create_variable(cstr,v):
  *         raise BadVariableException("Error creating variable named: %s with value: %s" % (s,v))
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_s, __pyx_n_s_encode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 101, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_s, __pyx_n_s_encode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 137, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_8 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -3120,35 +3980,35 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_8_populateVari
     }
     __pyx_t_6 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_8, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_n_s_ascii);
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 101, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 137, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (!(likely(PyBytes_CheckExact(__pyx_t_6))||((__pyx_t_6) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_6)->tp_name), 0))) __PYX_ERR(0, 101, __pyx_L1_error)
+    if (!(likely(PyBytes_CheckExact(__pyx_t_6))||((__pyx_t_6) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_6)->tp_name), 0))) __PYX_ERR(0, 137, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_cstr, ((PyObject*)__pyx_t_6));
     __pyx_t_6 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":102
+    /* "cexprtk/_symbol_table.pyx":138
  *     for s, v in variables.iteritems():
  *       cstr = s.encode("ascii")
  *       if not self._csymtableptr[0].create_variable(cstr,v):             # <<<<<<<<<<<<<<
  *         raise BadVariableException("Error creating variable named: %s with value: %s" % (s,v))
  * 
  */
-    __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 102, __pyx_L1_error)
-    __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_v_v); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 102, __pyx_L1_error)
+    __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 138, __pyx_L1_error)
+    __pyx_t_10 = __pyx_PyFloat_AsDouble(__pyx_v_v); if (unlikely((__pyx_t_10 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 138, __pyx_L1_error)
     __pyx_t_11 = ((!((__pyx_v_self->_csymtableptr[0]).create_variable(__pyx_t_9, __pyx_t_10) != 0)) != 0);
     if (unlikely(__pyx_t_11)) {
 
-      /* "cexprtk/_symbol_table.pyx":103
+      /* "cexprtk/_symbol_table.pyx":139
  *       cstr = s.encode("ascii")
  *       if not self._csymtableptr[0].create_variable(cstr,v):
  *         raise BadVariableException("Error creating variable named: %s with value: %s" % (s,v))             # <<<<<<<<<<<<<<
  * 
  *   def _populateConstants(self, object constants, bool add_constants):
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_BadVariableException); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 103, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_BadVariableException); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 139, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 103, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 139, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_INCREF(__pyx_v_s);
       __Pyx_GIVEREF(__pyx_v_s);
@@ -3156,7 +4016,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_8_populateVari
       __Pyx_INCREF(__pyx_v_v);
       __Pyx_GIVEREF(__pyx_v_v);
       PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_v_v);
-      __pyx_t_12 = __Pyx_PyString_Format(__pyx_kp_s_Error_creating_variable_named_s, __pyx_t_8); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 103, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyString_Format(__pyx_kp_s_Error_creating_variable_named_s, __pyx_t_8); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 139, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_t_8 = NULL;
@@ -3172,14 +4032,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_8_populateVari
       __pyx_t_6 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_8, __pyx_t_12) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_12);
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 103, __pyx_L1_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 139, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_Raise(__pyx_t_6, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __PYX_ERR(0, 103, __pyx_L1_error)
+      __PYX_ERR(0, 139, __pyx_L1_error)
 
-      /* "cexprtk/_symbol_table.pyx":102
+      /* "cexprtk/_symbol_table.pyx":138
  *     for s, v in variables.iteritems():
  *       cstr = s.encode("ascii")
  *       if not self._csymtableptr[0].create_variable(cstr,v):             # <<<<<<<<<<<<<<
@@ -3190,8 +4050,8 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_8_populateVari
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":98
- *     self._populateFunctions(functions)
+  /* "cexprtk/_symbol_table.pyx":134
+ *     self._populateStringVariables(string_variables)
  * 
  *   def _populateVariables(self,object variables):             # <<<<<<<<<<<<<<
  *     cdef bytes cstr
@@ -3218,7 +4078,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_8_populateVari
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":105
+/* "cexprtk/_symbol_table.pyx":141
  *         raise BadVariableException("Error creating variable named: %s with value: %s" % (s,v))
  * 
  *   def _populateConstants(self, object constants, bool add_constants):             # <<<<<<<<<<<<<<
@@ -3260,11 +4120,11 @@ static PyObject *__pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_11_populateCon
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_add_constants)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_populateConstants", 1, 2, 2, 1); __PYX_ERR(0, 105, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_populateConstants", 1, 2, 2, 1); __PYX_ERR(0, 141, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_populateConstants") < 0)) __PYX_ERR(0, 105, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_populateConstants") < 0)) __PYX_ERR(0, 141, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3273,11 +4133,11 @@ static PyObject *__pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_11_populateCon
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
     __pyx_v_constants = values[0];
-    __pyx_v_add_constants = __Pyx_PyObject_IsTrue(values[1]); if (unlikely((__pyx_v_add_constants == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(0, 105, __pyx_L3_error)
+    __pyx_v_add_constants = __Pyx_PyObject_IsTrue(values[1]); if (unlikely((__pyx_v_add_constants == ((bool)-1)) && PyErr_Occurred())) __PYX_ERR(0, 141, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_populateConstants", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 105, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_populateConstants", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 141, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cexprtk._symbol_table.Symbol_Table._populateConstants", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3313,7 +4173,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateCon
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_populateConstants", 0);
 
-  /* "cexprtk/_symbol_table.pyx":107
+  /* "cexprtk/_symbol_table.pyx":143
  *   def _populateConstants(self, object constants, bool add_constants):
  *     cdef bytes cstr
  *     if add_constants:             # <<<<<<<<<<<<<<
@@ -3323,7 +4183,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateCon
   __pyx_t_1 = (__pyx_v_add_constants != 0);
   if (__pyx_t_1) {
 
-    /* "cexprtk/_symbol_table.pyx":108
+    /* "cexprtk/_symbol_table.pyx":144
  *     cdef bytes cstr
  *     if add_constants:
  *       self._csymtableptr[0].add_constants()             # <<<<<<<<<<<<<<
@@ -3332,7 +4192,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateCon
  */
     (void)((__pyx_v_self->_csymtableptr[0]).add_constants());
 
-    /* "cexprtk/_symbol_table.pyx":107
+    /* "cexprtk/_symbol_table.pyx":143
  *   def _populateConstants(self, object constants, bool add_constants):
  *     cdef bytes cstr
  *     if add_constants:             # <<<<<<<<<<<<<<
@@ -3341,7 +4201,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateCon
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":110
+  /* "cexprtk/_symbol_table.pyx":146
  *       self._csymtableptr[0].add_constants()
  * 
  *     for s,v in constants.iteritems():             # <<<<<<<<<<<<<<
@@ -3351,9 +4211,9 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateCon
   __pyx_t_3 = 0;
   if (unlikely(__pyx_v_constants == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "iteritems");
-    __PYX_ERR(0, 110, __pyx_L1_error)
+    __PYX_ERR(0, 146, __pyx_L1_error)
   }
-  __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_constants, 0, __pyx_n_s_iteritems, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_constants, 0, __pyx_n_s_iteritems, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_2);
   __pyx_t_2 = __pyx_t_6;
@@ -3361,7 +4221,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateCon
   while (1) {
     __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_2, __pyx_t_4, &__pyx_t_3, &__pyx_t_6, &__pyx_t_7, NULL, __pyx_t_5);
     if (unlikely(__pyx_t_8 == 0)) break;
-    if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 110, __pyx_L1_error)
+    if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 146, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_XDECREF_SET(__pyx_v_s, __pyx_t_6);
@@ -3369,14 +4229,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateCon
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":111
+    /* "cexprtk/_symbol_table.pyx":147
  * 
  *     for s,v in constants.iteritems():
  *       cstr = s.encode("ascii")             # <<<<<<<<<<<<<<
  *       if not self._csymtableptr[0].add_constant(cstr,v):
  *         raise BadVariableException("Error creating constant named: %s with value: %s" % (s,v))
  */
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_s, __pyx_n_s_encode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 111, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_s, __pyx_n_s_encode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 147, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_9 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
@@ -3390,35 +4250,35 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateCon
     }
     __pyx_t_7 = (__pyx_t_9) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_9, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_n_s_ascii);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 111, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 147, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (!(likely(PyBytes_CheckExact(__pyx_t_7))||((__pyx_t_7) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_7)->tp_name), 0))) __PYX_ERR(0, 111, __pyx_L1_error)
+    if (!(likely(PyBytes_CheckExact(__pyx_t_7))||((__pyx_t_7) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_7)->tp_name), 0))) __PYX_ERR(0, 147, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_cstr, ((PyObject*)__pyx_t_7));
     __pyx_t_7 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":112
+    /* "cexprtk/_symbol_table.pyx":148
  *     for s,v in constants.iteritems():
  *       cstr = s.encode("ascii")
  *       if not self._csymtableptr[0].add_constant(cstr,v):             # <<<<<<<<<<<<<<
  *         raise BadVariableException("Error creating constant named: %s with value: %s" % (s,v))
  * 
  */
-    __pyx_t_10 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 112, __pyx_L1_error)
-    __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_v); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 112, __pyx_L1_error)
+    __pyx_t_10 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 148, __pyx_L1_error)
+    __pyx_t_11 = __pyx_PyFloat_AsDouble(__pyx_v_v); if (unlikely((__pyx_t_11 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 148, __pyx_L1_error)
     __pyx_t_1 = ((!((__pyx_v_self->_csymtableptr[0]).add_constant(__pyx_t_10, __pyx_t_11) != 0)) != 0);
     if (unlikely(__pyx_t_1)) {
 
-      /* "cexprtk/_symbol_table.pyx":113
+      /* "cexprtk/_symbol_table.pyx":149
  *       cstr = s.encode("ascii")
  *       if not self._csymtableptr[0].add_constant(cstr,v):
  *         raise BadVariableException("Error creating constant named: %s with value: %s" % (s,v))             # <<<<<<<<<<<<<<
  * 
  *   def _populateFunctions(self, object functions):
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_BadVariableException); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 113, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_BadVariableException); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 149, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_9 = PyTuple_New(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 113, __pyx_L1_error)
+      __pyx_t_9 = PyTuple_New(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 149, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_INCREF(__pyx_v_s);
       __Pyx_GIVEREF(__pyx_v_s);
@@ -3426,7 +4286,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateCon
       __Pyx_INCREF(__pyx_v_v);
       __Pyx_GIVEREF(__pyx_v_v);
       PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_v_v);
-      __pyx_t_12 = __Pyx_PyString_Format(__pyx_kp_s_Error_creating_constant_named_s, __pyx_t_9); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 113, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyString_Format(__pyx_kp_s_Error_creating_constant_named_s, __pyx_t_9); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 149, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __pyx_t_9 = NULL;
@@ -3442,14 +4302,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateCon
       __pyx_t_7 = (__pyx_t_9) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_9, __pyx_t_12) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_12);
       __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 113, __pyx_L1_error)
+      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 149, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_Raise(__pyx_t_7, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __PYX_ERR(0, 113, __pyx_L1_error)
+      __PYX_ERR(0, 149, __pyx_L1_error)
 
-      /* "cexprtk/_symbol_table.pyx":112
+      /* "cexprtk/_symbol_table.pyx":148
  *     for s,v in constants.iteritems():
  *       cstr = s.encode("ascii")
  *       if not self._csymtableptr[0].add_constant(cstr,v):             # <<<<<<<<<<<<<<
@@ -3460,7 +4320,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateCon
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":105
+  /* "cexprtk/_symbol_table.pyx":141
  *         raise BadVariableException("Error creating variable named: %s with value: %s" % (s,v))
  * 
  *   def _populateConstants(self, object constants, bool add_constants):             # <<<<<<<<<<<<<<
@@ -3488,7 +4348,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_10_populateCon
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":115
+/* "cexprtk/_symbol_table.pyx":151
  *         raise BadVariableException("Error creating constant named: %s with value: %s" % (s,v))
  * 
  *   def _populateFunctions(self, object functions):             # <<<<<<<<<<<<<<
@@ -3527,14 +4387,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_12_populateFun
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_populateFunctions", 0);
 
-  /* "cexprtk/_symbol_table.pyx":116
+  /* "cexprtk/_symbol_table.pyx":152
  * 
  *   def _populateFunctions(self, object functions):
  *     for k,v in functions.items():             # <<<<<<<<<<<<<<
  *       self.functions[k] = v
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_functions, __pyx_n_s_items); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_functions, __pyx_n_s_items); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3548,16 +4408,16 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_12_populateFun
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
     __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 116, __pyx_L1_error)
+    __pyx_t_5 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 152, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -3565,17 +4425,17 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_12_populateFun
       if (likely(PyList_CheckExact(__pyx_t_2))) {
         if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 152, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       } else {
         if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 116, __pyx_L1_error)
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 152, __pyx_L1_error)
         #else
-        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
       }
@@ -3585,7 +4445,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_12_populateFun
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 116, __pyx_L1_error)
+          else __PYX_ERR(0, 152, __pyx_L1_error)
         }
         break;
       }
@@ -3597,7 +4457,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_12_populateFun
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 116, __pyx_L1_error)
+        __PYX_ERR(0, 152, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -3610,15 +4470,15 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_12_populateFun
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 152, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 152, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 116, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 152, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -3626,7 +4486,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_12_populateFun
       __Pyx_GOTREF(__pyx_t_3);
       index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 152, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
@@ -3634,7 +4494,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_12_populateFun
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 116, __pyx_L1_error)
+      __PYX_ERR(0, 152, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_3);
@@ -3642,19 +4502,19 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_12_populateFun
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":117
+    /* "cexprtk/_symbol_table.pyx":153
  *   def _populateFunctions(self, object functions):
  *     for k,v in functions.items():
  *       self.functions[k] = v             # <<<<<<<<<<<<<<
  * 
- *   property functions:
+ *   def _populateStringVariables(self, object string_variables):
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_functions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_functions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (unlikely(PyObject_SetItem(__pyx_t_1, __pyx_v_k, __pyx_v_v) < 0)) __PYX_ERR(0, 117, __pyx_L1_error)
+    if (unlikely(PyObject_SetItem(__pyx_t_1, __pyx_v_k, __pyx_v_v) < 0)) __PYX_ERR(0, 153, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":116
+    /* "cexprtk/_symbol_table.pyx":152
  * 
  *   def _populateFunctions(self, object functions):
  *     for k,v in functions.items():             # <<<<<<<<<<<<<<
@@ -3664,7 +4524,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_12_populateFun
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":115
+  /* "cexprtk/_symbol_table.pyx":151
  *         raise BadVariableException("Error creating constant named: %s with value: %s" % (s,v))
  * 
  *   def _populateFunctions(self, object functions):             # <<<<<<<<<<<<<<
@@ -3691,7 +4551,210 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_12_populateFun
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":120
+/* "cexprtk/_symbol_table.pyx":155
+ *       self.functions[k] = v
+ * 
+ *   def _populateStringVariables(self, object string_variables):             # <<<<<<<<<<<<<<
+ *     for k,v in string_variables.items():
+ *       self.string_variables[k] = v
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_15_populateStringVariables(PyObject *__pyx_v_self, PyObject *__pyx_v_string_variables); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_15_populateStringVariables(PyObject *__pyx_v_self, PyObject *__pyx_v_string_variables) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("_populateStringVariables (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_14_populateStringVariables(((struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *)__pyx_v_self), ((PyObject *)__pyx_v_string_variables));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_14_populateStringVariables(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self, PyObject *__pyx_v_string_variables) {
+  PyObject *__pyx_v_k = NULL;
+  PyObject *__pyx_v_v = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  Py_ssize_t __pyx_t_4;
+  PyObject *(*__pyx_t_5)(PyObject *);
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *(*__pyx_t_8)(PyObject *);
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("_populateStringVariables", 0);
+
+  /* "cexprtk/_symbol_table.pyx":156
+ * 
+ *   def _populateStringVariables(self, object string_variables):
+ *     for k,v in string_variables.items():             # <<<<<<<<<<<<<<
+ *       self.string_variables[k] = v
+ * 
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_string_variables, __pyx_n_s_items); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
+    __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_4 = 0;
+    __pyx_t_5 = NULL;
+  } else {
+    __pyx_t_4 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_5 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 156, __pyx_L1_error)
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  for (;;) {
+    if (likely(!__pyx_t_5)) {
+      if (likely(PyList_CheckExact(__pyx_t_2))) {
+        if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
+        #else
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        #endif
+      } else {
+        if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
+        #else
+        __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        #endif
+      }
+    } else {
+      __pyx_t_1 = __pyx_t_5(__pyx_t_2);
+      if (unlikely(!__pyx_t_1)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else __PYX_ERR(0, 156, __pyx_L1_error)
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
+      PyObject* sequence = __pyx_t_1;
+      Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
+      if (unlikely(size != 2)) {
+        if (size > 2) __Pyx_RaiseTooManyValuesError(2);
+        else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+        __PYX_ERR(0, 156, __pyx_L1_error)
+      }
+      #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+      if (likely(PyTuple_CheckExact(sequence))) {
+        __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0); 
+        __pyx_t_6 = PyTuple_GET_ITEM(sequence, 1); 
+      } else {
+        __pyx_t_3 = PyList_GET_ITEM(sequence, 0); 
+        __pyx_t_6 = PyList_GET_ITEM(sequence, 1); 
+      }
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_6);
+      #else
+      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 156, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 156, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      #endif
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    } else {
+      Py_ssize_t index = -1;
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 156, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
+      index = 0; __pyx_t_3 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_3)) goto __pyx_L5_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_3);
+      index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_6);
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 156, __pyx_L1_error)
+      __pyx_t_8 = NULL;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      goto __pyx_L6_unpacking_done;
+      __pyx_L5_unpacking_failed:;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __pyx_t_8 = NULL;
+      if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
+      __PYX_ERR(0, 156, __pyx_L1_error)
+      __pyx_L6_unpacking_done:;
+    }
+    __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_3);
+    __pyx_t_3 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_6);
+    __pyx_t_6 = 0;
+
+    /* "cexprtk/_symbol_table.pyx":157
+ *   def _populateStringVariables(self, object string_variables):
+ *     for k,v in string_variables.items():
+ *       self.string_variables[k] = v             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_string_variables); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 157, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (unlikely(PyObject_SetItem(__pyx_t_1, __pyx_v_k, __pyx_v_v) < 0)) __PYX_ERR(0, 157, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "cexprtk/_symbol_table.pyx":156
+ * 
+ *   def _populateStringVariables(self, object string_variables):
+ *     for k,v in string_variables.items():             # <<<<<<<<<<<<<<
+ *       self.string_variables[k] = v
+ * 
+ */
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "cexprtk/_symbol_table.pyx":155
+ *       self.functions[k] = v
+ * 
+ *   def _populateStringVariables(self, object string_variables):             # <<<<<<<<<<<<<<
+ *     for k,v in string_variables.items():
+ *       self.string_variables[k] = v
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("cexprtk._symbol_table.Symbol_Table._populateStringVariables", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_k);
+  __Pyx_XDECREF(__pyx_v_v);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":161
  * 
  *   property functions:
  *     def __get__(self):             # <<<<<<<<<<<<<<
@@ -3722,7 +4785,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_9functions___g
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":121
+  /* "cexprtk/_symbol_table.pyx":162
  *   property functions:
  *     def __get__(self):
  *       return PyWeakref_NewProxy(self._functions, None)             # <<<<<<<<<<<<<<
@@ -3732,14 +4795,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_9functions___g
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = ((PyObject *)__pyx_v_self->_functions);
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_2 = PyWeakref_NewProxy(__pyx_t_1, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_t_2 = PyWeakref_NewProxy(__pyx_t_1, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":120
+  /* "cexprtk/_symbol_table.pyx":161
  * 
  *   property functions:
  *     def __get__(self):             # <<<<<<<<<<<<<<
@@ -3759,7 +4822,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_9functions___g
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":124
+/* "cexprtk/_symbol_table.pyx":165
  * 
  *   property variables:
  *     def __get__(self):             # <<<<<<<<<<<<<<
@@ -3790,7 +4853,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_9variables___g
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":125
+  /* "cexprtk/_symbol_table.pyx":166
  *   property variables:
  *     def __get__(self):
  *       return PyWeakref_NewProxy(self._variables, None)             # <<<<<<<<<<<<<<
@@ -3800,14 +4863,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_9variables___g
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = ((PyObject *)__pyx_v_self->_variables);
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_2 = PyWeakref_NewProxy(__pyx_t_1, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_2 = PyWeakref_NewProxy(__pyx_t_1, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":124
+  /* "cexprtk/_symbol_table.pyx":165
  * 
  *   property variables:
  *     def __get__(self):             # <<<<<<<<<<<<<<
@@ -3827,7 +4890,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_9variables___g
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":128
+/* "cexprtk/_symbol_table.pyx":169
  * 
  *   property constants:
  *     def __get__(self):             # <<<<<<<<<<<<<<
@@ -3858,24 +4921,24 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_9constants___g
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":129
+  /* "cexprtk/_symbol_table.pyx":170
  *   property constants:
  *     def __get__(self):
  *       return PyWeakref_NewProxy(self._constants, None)             # <<<<<<<<<<<<<<
  * 
- * 
+ *   property string_variables:
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = ((PyObject *)__pyx_v_self->_constants);
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_2 = PyWeakref_NewProxy(__pyx_t_1, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_2 = PyWeakref_NewProxy(__pyx_t_1, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":128
+  /* "cexprtk/_symbol_table.pyx":169
  * 
  *   property constants:
  *     def __get__(self):             # <<<<<<<<<<<<<<
@@ -3895,7 +4958,75 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_9constants___g
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":138
+/* "cexprtk/_symbol_table.pyx":173
+ * 
+ *   property string_variables:
+ *     def __get__(self):             # <<<<<<<<<<<<<<
+ *       return PyWeakref_NewProxy(self._string_variables, None)
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_16string_variables_1__get__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_16string_variables_1__get__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__get__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_16string_variables___get__(((struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_12Symbol_Table_16string_variables___get__(struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__get__", 0);
+
+  /* "cexprtk/_symbol_table.pyx":174
+ *   property string_variables:
+ *     def __get__(self):
+ *       return PyWeakref_NewProxy(self._string_variables, None)             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = ((PyObject *)__pyx_v_self->_string_variables);
+  __Pyx_INCREF(__pyx_t_1);
+  __pyx_t_2 = PyWeakref_NewProxy(__pyx_t_1, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 174, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":173
+ * 
+ *   property string_variables:
+ *     def __get__(self):             # <<<<<<<<<<<<<<
+ *       return PyWeakref_NewProxy(self._string_variables, None)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("cexprtk._symbol_table.Symbol_Table.string_variables.__get__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":184
  *   C++ symbol_table object owned by parent Symbol_Table."""
  * 
  *   def __getitem__(self, object key):             # <<<<<<<<<<<<<<
@@ -3934,14 +5065,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables___g
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":139
+  /* "cexprtk/_symbol_table.pyx":185
  * 
  *   def __getitem__(self, object key):
  *     cdef bytes cstr_key = key.encode("ascii")             # <<<<<<<<<<<<<<
  *     cdef exprtk.symbol_table_type* st = self._csymtableptr
  *     cdef exprtk.variable_ptr vptr = st[0].get_variable(cstr_key)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3955,14 +5086,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables___g
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_n_s_ascii);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 139, __pyx_L1_error)
+  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 185, __pyx_L1_error)
   __pyx_v_cstr_key = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":140
+  /* "cexprtk/_symbol_table.pyx":186
  *   def __getitem__(self, object key):
  *     cdef bytes cstr_key = key.encode("ascii")
  *     cdef exprtk.symbol_table_type* st = self._csymtableptr             # <<<<<<<<<<<<<<
@@ -3972,17 +5103,17 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables___g
   __pyx_t_4 = __pyx_v_self->_csymtableptr;
   __pyx_v_st = __pyx_t_4;
 
-  /* "cexprtk/_symbol_table.pyx":141
+  /* "cexprtk/_symbol_table.pyx":187
  *     cdef bytes cstr_key = key.encode("ascii")
  *     cdef exprtk.symbol_table_type* st = self._csymtableptr
  *     cdef exprtk.variable_ptr vptr = st[0].get_variable(cstr_key)             # <<<<<<<<<<<<<<
  *     if vptr != NULL and not st[0].is_constant_node(cstr_key):
  *       return vptr[0].value()
  */
-  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 187, __pyx_L1_error)
   __pyx_v_vptr = (__pyx_v_st[0]).get_variable(__pyx_t_5);
 
-  /* "cexprtk/_symbol_table.pyx":142
+  /* "cexprtk/_symbol_table.pyx":188
  *     cdef exprtk.symbol_table_type* st = self._csymtableptr
  *     cdef exprtk.variable_ptr vptr = st[0].get_variable(cstr_key)
  *     if vptr != NULL and not st[0].is_constant_node(cstr_key):             # <<<<<<<<<<<<<<
@@ -3995,13 +5126,13 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables___g
     __pyx_t_6 = __pyx_t_7;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 188, __pyx_L1_error)
   __pyx_t_7 = ((!((__pyx_v_st[0]).is_constant_node(__pyx_t_5) != 0)) != 0);
   __pyx_t_6 = __pyx_t_7;
   __pyx_L4_bool_binop_done:;
   if (likely(__pyx_t_6)) {
 
-    /* "cexprtk/_symbol_table.pyx":143
+    /* "cexprtk/_symbol_table.pyx":189
  *     cdef exprtk.variable_ptr vptr = st[0].get_variable(cstr_key)
  *     if vptr != NULL and not st[0].is_constant_node(cstr_key):
  *       return vptr[0].value()             # <<<<<<<<<<<<<<
@@ -4009,13 +5140,13 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables___g
  *       raise KeyError("Unknown variable: "+key)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = PyFloat_FromDouble((__pyx_v_vptr[0]).value()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble((__pyx_v_vptr[0]).value()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
     goto __pyx_L0;
 
-    /* "cexprtk/_symbol_table.pyx":142
+    /* "cexprtk/_symbol_table.pyx":188
  *     cdef exprtk.symbol_table_type* st = self._csymtableptr
  *     cdef exprtk.variable_ptr vptr = st[0].get_variable(cstr_key)
  *     if vptr != NULL and not st[0].is_constant_node(cstr_key):             # <<<<<<<<<<<<<<
@@ -4024,7 +5155,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables___g
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":145
+  /* "cexprtk/_symbol_table.pyx":191
  *       return vptr[0].value()
  *     else:
  *       raise KeyError("Unknown variable: "+key)             # <<<<<<<<<<<<<<
@@ -4032,17 +5163,17 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables___g
  *   def __setitem__(self, object key, double value):
  */
   /*else*/ {
-    __pyx_t_1 = PyNumber_Add(__pyx_kp_s_Unknown_variable, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_kp_s_Unknown_variable, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 191, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 191, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 145, __pyx_L1_error)
+    __PYX_ERR(0, 191, __pyx_L1_error)
   }
 
-  /* "cexprtk/_symbol_table.pyx":138
+  /* "cexprtk/_symbol_table.pyx":184
  *   C++ symbol_table object owned by parent Symbol_Table."""
  * 
  *   def __getitem__(self, object key):             # <<<<<<<<<<<<<<
@@ -4064,7 +5195,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables___g
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":147
+/* "cexprtk/_symbol_table.pyx":193
  *       raise KeyError("Unknown variable: "+key)
  * 
  *   def __setitem__(self, object key, double value):             # <<<<<<<<<<<<<<
@@ -4083,7 +5214,7 @@ static int __pyx_pw_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_3__setite
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setitem__ (wrapper)", 0);
   assert(__pyx_arg_value); {
-    __pyx_v_value = __pyx_PyFloat_AsDouble(__pyx_arg_value); if (unlikely((__pyx_v_value == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 147, __pyx_L3_error)
+    __pyx_v_value = __pyx_PyFloat_AsDouble(__pyx_arg_value); if (unlikely((__pyx_v_value == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 193, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4109,14 +5240,12 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setite
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   std::string __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
-  int __pyx_t_7;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setitem__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":150
+  /* "cexprtk/_symbol_table.pyx":196
  *     cdef int rv
  *     cdef string strkey
  *     if not self._csymtableptr:             # <<<<<<<<<<<<<<
@@ -4126,20 +5255,20 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setite
   __pyx_t_1 = ((!(__pyx_v_self->_csymtableptr != 0)) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cexprtk/_symbol_table.pyx":151
+    /* "cexprtk/_symbol_table.pyx":197
  *     cdef string strkey
  *     if not self._csymtableptr:
  *       raise ReferenceError("Parent Symbol_Table no longer exists")             # <<<<<<<<<<<<<<
  *     strkey = key.encode("ascii")
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ReferenceError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 151, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ReferenceError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 151, __pyx_L1_error)
+    __PYX_ERR(0, 197, __pyx_L1_error)
 
-    /* "cexprtk/_symbol_table.pyx":150
+    /* "cexprtk/_symbol_table.pyx":196
  *     cdef int rv
  *     cdef string strkey
  *     if not self._csymtableptr:             # <<<<<<<<<<<<<<
@@ -4148,14 +5277,14 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setite
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":152
+  /* "cexprtk/_symbol_table.pyx":198
  *     if not self._csymtableptr:
  *       raise ReferenceError("Parent Symbol_Table no longer exists")
  *     strkey = key.encode("ascii")             # <<<<<<<<<<<<<<
  * 
  *     if self._functions.has_key(key):
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -4169,21 +5298,21 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setite
   }
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_n_s_ascii);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_2); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_2); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_strkey = __pyx_t_5;
 
-  /* "cexprtk/_symbol_table.pyx":154
+  /* "cexprtk/_symbol_table.pyx":200
  *     strkey = key.encode("ascii")
  * 
  *     if self._functions.has_key(key):             # <<<<<<<<<<<<<<
- *       raise VariableNameShadowException("Cannot set variable as a function already exists with the same name: "+key)
+ *       raise KeyError("Cannot set variable because a function already exists with the same name: "+key)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_functions, __pyx_n_s_has_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_functions, __pyx_n_s_has_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -4197,108 +5326,120 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setite
   }
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_key) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_key);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (unlikely(__pyx_t_1)) {
 
-    /* "cexprtk/_symbol_table.pyx":155
+    /* "cexprtk/_symbol_table.pyx":201
  * 
  *     if self._functions.has_key(key):
- *       raise VariableNameShadowException("Cannot set variable as a function already exists with the same name: "+key)             # <<<<<<<<<<<<<<
+ *       raise KeyError("Cannot set variable because a function already exists with the same name: "+key)             # <<<<<<<<<<<<<<
  * 
- *     cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)
+ *     if is_constant(strkey, self._csymtableptr):
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_VariableNameShadowException); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyNumber_Add(__pyx_kp_s_Cannot_set_variable_as_a_functio, __pyx_v_key); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 155, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = NULL;
-    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-      __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_3);
-      if (likely(__pyx_t_6)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-        __Pyx_INCREF(__pyx_t_6);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_3, function);
-      }
-    }
-    __pyx_t_2 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_6, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 155, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_kp_s_Cannot_set_variable_because_a_fu, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 201, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 155, __pyx_L1_error)
-
-    /* "cexprtk/_symbol_table.pyx":154
- *     strkey = key.encode("ascii")
- * 
- *     if self._functions.has_key(key):             # <<<<<<<<<<<<<<
- *       raise VariableNameShadowException("Cannot set variable as a function already exists with the same name: "+key)
- * 
- */
-  }
-
-  /* "cexprtk/_symbol_table.pyx":157
- *       raise VariableNameShadowException("Cannot set variable as a function already exists with the same name: "+key)
- * 
- *     cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)             # <<<<<<<<<<<<<<
- *     if vptr != NULL and self._csymtableptr[0].is_constant_node(strkey):
- *       raise KeyError("Cannot set variable constant already exists with the same name: "+key)
- */
-  __pyx_v_vptr = (__pyx_v_self->_csymtableptr[0]).get_variable(__pyx_v_strkey);
-
-  /* "cexprtk/_symbol_table.pyx":158
- * 
- *     cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)
- *     if vptr != NULL and self._csymtableptr[0].is_constant_node(strkey):             # <<<<<<<<<<<<<<
- *       raise KeyError("Cannot set variable constant already exists with the same name: "+key)
- * 
- */
-  __pyx_t_7 = ((__pyx_v_vptr != NULL) != 0);
-  if (__pyx_t_7) {
-  } else {
-    __pyx_t_1 = __pyx_t_7;
-    goto __pyx_L6_bool_binop_done;
-  }
-  __pyx_t_7 = ((__pyx_v_self->_csymtableptr[0]).is_constant_node(__pyx_v_strkey) != 0);
-  __pyx_t_1 = __pyx_t_7;
-  __pyx_L6_bool_binop_done:;
-  if (unlikely(__pyx_t_1)) {
-
-    /* "cexprtk/_symbol_table.pyx":159
- *     cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)
- *     if vptr != NULL and self._csymtableptr[0].is_constant_node(strkey):
- *       raise KeyError("Cannot set variable constant already exists with the same name: "+key)             # <<<<<<<<<<<<<<
- * 
- *     if vptr == NULL:
- */
-    __pyx_t_2 = PyNumber_Add(__pyx_kp_s_Cannot_set_variable_constant_alr, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 159, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 201, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 159, __pyx_L1_error)
+    __PYX_ERR(0, 201, __pyx_L1_error)
 
-    /* "cexprtk/_symbol_table.pyx":158
+    /* "cexprtk/_symbol_table.pyx":200
+ *     strkey = key.encode("ascii")
  * 
- *     cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)
- *     if vptr != NULL and self._csymtableptr[0].is_constant_node(strkey):             # <<<<<<<<<<<<<<
- *       raise KeyError("Cannot set variable constant already exists with the same name: "+key)
+ *     if self._functions.has_key(key):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Cannot set variable because a function already exists with the same name: "+key)
  * 
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":161
- *       raise KeyError("Cannot set variable constant already exists with the same name: "+key)
+  /* "cexprtk/_symbol_table.pyx":203
+ *       raise KeyError("Cannot set variable because a function already exists with the same name: "+key)
  * 
+ *     if is_constant(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Cannot set variable because a constant already exists with the same name: "+key)
+ * 
+ */
+  __pyx_t_1 = (__pyx_f_7cexprtk_13_symbol_table_is_constant(__pyx_v_strkey, __pyx_v_self->_csymtableptr) != 0);
+  if (unlikely(__pyx_t_1)) {
+
+    /* "cexprtk/_symbol_table.pyx":204
+ * 
+ *     if is_constant(strkey, self._csymtableptr):
+ *       raise KeyError("Cannot set variable because a constant already exists with the same name: "+key)             # <<<<<<<<<<<<<<
+ * 
+ *     if is_string_variable(strkey, self._csymtableptr):
+ */
+    __pyx_t_3 = PyNumber_Add(__pyx_kp_s_Cannot_set_variable_because_a_co, __pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 204, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 204, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __PYX_ERR(0, 204, __pyx_L1_error)
+
+    /* "cexprtk/_symbol_table.pyx":203
+ *       raise KeyError("Cannot set variable because a function already exists with the same name: "+key)
+ * 
+ *     if is_constant(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Cannot set variable because a constant already exists with the same name: "+key)
+ * 
+ */
+  }
+
+  /* "cexprtk/_symbol_table.pyx":206
+ *       raise KeyError("Cannot set variable because a constant already exists with the same name: "+key)
+ * 
+ *     if is_string_variable(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Cannot set variable because a string variable already exists with the same name: "+key)
+ * 
+ */
+  __pyx_t_1 = (__pyx_f_7cexprtk_13_symbol_table_is_string_variable(__pyx_v_strkey, __pyx_v_self->_csymtableptr) != 0);
+  if (unlikely(__pyx_t_1)) {
+
+    /* "cexprtk/_symbol_table.pyx":207
+ * 
+ *     if is_string_variable(strkey, self._csymtableptr):
+ *       raise KeyError("Cannot set variable because a string variable already exists with the same name: "+key)             # <<<<<<<<<<<<<<
+ * 
+ *     cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)
+ */
+    __pyx_t_2 = PyNumber_Add(__pyx_kp_s_Cannot_set_variable_because_a_st, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_Raise(__pyx_t_3, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __PYX_ERR(0, 207, __pyx_L1_error)
+
+    /* "cexprtk/_symbol_table.pyx":206
+ *       raise KeyError("Cannot set variable because a constant already exists with the same name: "+key)
+ * 
+ *     if is_string_variable(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Cannot set variable because a string variable already exists with the same name: "+key)
+ * 
+ */
+  }
+
+  /* "cexprtk/_symbol_table.pyx":209
+ *       raise KeyError("Cannot set variable because a string variable already exists with the same name: "+key)
+ * 
+ *     cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)             # <<<<<<<<<<<<<<
+ *     if vptr == NULL:
+ *       rv = self._csymtableptr[0].create_variable(strkey, value)
+ */
+  __pyx_v_vptr = (__pyx_v_self->_csymtableptr[0]).get_variable(__pyx_v_strkey);
+
+  /* "cexprtk/_symbol_table.pyx":210
+ * 
+ *     cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)
  *     if vptr == NULL:             # <<<<<<<<<<<<<<
  *       rv = self._csymtableptr[0].create_variable(strkey, value)
  *     else:
@@ -4306,8 +5447,8 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setite
   __pyx_t_1 = ((__pyx_v_vptr == NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "cexprtk/_symbol_table.pyx":162
- * 
+    /* "cexprtk/_symbol_table.pyx":211
+ *     cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)
  *     if vptr == NULL:
  *       rv = self._csymtableptr[0].create_variable(strkey, value)             # <<<<<<<<<<<<<<
  *     else:
@@ -4315,17 +5456,17 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setite
  */
     __pyx_v_rv = (__pyx_v_self->_csymtableptr[0]).create_variable(__pyx_v_strkey, __pyx_v_value);
 
-    /* "cexprtk/_symbol_table.pyx":161
- *       raise KeyError("Cannot set variable constant already exists with the same name: "+key)
+    /* "cexprtk/_symbol_table.pyx":210
  * 
+ *     cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)
  *     if vptr == NULL:             # <<<<<<<<<<<<<<
  *       rv = self._csymtableptr[0].create_variable(strkey, value)
  *     else:
  */
-    goto __pyx_L8;
+    goto __pyx_L7;
   }
 
-  /* "cexprtk/_symbol_table.pyx":164
+  /* "cexprtk/_symbol_table.pyx":213
  *       rv = self._csymtableptr[0].create_variable(strkey, value)
  *     else:
  *       rv = cexprtk_util.variableAssign(self._csymtableptr[0], strkey, value)             # <<<<<<<<<<<<<<
@@ -4335,9 +5476,9 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setite
   /*else*/ {
     __pyx_v_rv = variableAssign((__pyx_v_self->_csymtableptr[0]), __pyx_v_strkey, __pyx_v_value);
   }
-  __pyx_L8:;
+  __pyx_L7:;
 
-  /* "cexprtk/_symbol_table.pyx":166
+  /* "cexprtk/_symbol_table.pyx":215
  *       rv = cexprtk_util.variableAssign(self._csymtableptr[0], strkey, value)
  * 
  *     if not rv:             # <<<<<<<<<<<<<<
@@ -4347,23 +5488,23 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setite
   __pyx_t_1 = ((!(__pyx_v_rv != 0)) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cexprtk/_symbol_table.pyx":167
+    /* "cexprtk/_symbol_table.pyx":216
  * 
  *     if not rv:
  *       raise KeyError("Unknown variable: "+key)             # <<<<<<<<<<<<<<
  * 
  *   def __iter__(self):
  */
-    __pyx_t_3 = PyNumber_Add(__pyx_kp_s_Unknown_variable, __pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 167, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Add(__pyx_kp_s_Unknown_variable, __pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 216, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 216, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 167, __pyx_L1_error)
+    __PYX_ERR(0, 216, __pyx_L1_error)
 
-    /* "cexprtk/_symbol_table.pyx":166
+    /* "cexprtk/_symbol_table.pyx":215
  *       rv = cexprtk_util.variableAssign(self._csymtableptr[0], strkey, value)
  * 
  *     if not rv:             # <<<<<<<<<<<<<<
@@ -4372,7 +5513,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setite
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":147
+  /* "cexprtk/_symbol_table.pyx":193
  *       raise KeyError("Unknown variable: "+key)
  * 
  *   def __setitem__(self, object key, double value):             # <<<<<<<<<<<<<<
@@ -4387,7 +5528,6 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setite
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_Variables.__setitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
@@ -4395,7 +5535,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_2__setite
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":169
+/* "cexprtk/_symbol_table.pyx":218
  *       raise KeyError("Unknown variable: "+key)
  * 
  *   def __iter__(self):             # <<<<<<<<<<<<<<
@@ -4427,7 +5567,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_4__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__iter__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":170
+  /* "cexprtk/_symbol_table.pyx":219
  * 
  *   def __iter__(self):
  *     return self.iterkeys()             # <<<<<<<<<<<<<<
@@ -4435,7 +5575,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_4__
  *   def __len__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_iterkeys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_iterkeys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -4449,14 +5589,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_4__
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":169
+  /* "cexprtk/_symbol_table.pyx":218
  *       raise KeyError("Unknown variable: "+key)
  * 
  *   def __iter__(self):             # <<<<<<<<<<<<<<
@@ -4477,7 +5617,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_4__
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":172
+/* "cexprtk/_symbol_table.pyx":221
  *     return self.iterkeys()
  * 
  *   def __len__(self):             # <<<<<<<<<<<<<<
@@ -4508,25 +5648,25 @@ static Py_ssize_t __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_6_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__len__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":173
+  /* "cexprtk/_symbol_table.pyx":222
  * 
  *   def __len__(self):
  *     return len(self.items())             # <<<<<<<<<<<<<<
  * 
  *   cpdef list items(self):
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (unlikely(__pyx_t_1 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 173, __pyx_L1_error)
+    __PYX_ERR(0, 222, __pyx_L1_error)
   }
-  __pyx_t_2 = PyList_GET_SIZE(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 173, __pyx_L1_error)
+  __pyx_t_2 = PyList_GET_SIZE(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":172
+  /* "cexprtk/_symbol_table.pyx":221
  *     return self.iterkeys()
  * 
  *   def __len__(self):             # <<<<<<<<<<<<<<
@@ -4544,7 +5684,7 @@ static Py_ssize_t __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_6_
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":175
+/* "cexprtk/_symbol_table.pyx":224
  *     return len(self.items())
  * 
  *   cpdef list items(self):             # <<<<<<<<<<<<<<
@@ -4583,7 +5723,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 224, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_9items)) {
         __Pyx_XDECREF(__pyx_r);
@@ -4600,10 +5740,10 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 175, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 224, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 175, __pyx_L1_error)
+        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 224, __pyx_L1_error)
         __pyx_r = ((PyObject*)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4622,39 +5762,39 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
     #endif
   }
 
-  /* "cexprtk/_symbol_table.pyx":177
+  /* "cexprtk/_symbol_table.pyx":226
  *   cpdef list items(self):
  *     cdef object strk
  *     cdef list retlist = []             # <<<<<<<<<<<<<<
  * 
  *     for (k,v) in self._get_variable_list():
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_retlist = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":179
+  /* "cexprtk/_symbol_table.pyx":228
  *     cdef list retlist = []
  * 
  *     for (k,v) in self._get_variable_list():             # <<<<<<<<<<<<<<
  *       if not self._csymtableptr.is_constant_node(k):
  *         strk = k.decode("ascii")
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_v_self->__pyx_vtab)->_get_variable_list(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_v_self->__pyx_vtab)->_get_variable_list(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (unlikely(__pyx_t_1 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 179, __pyx_L1_error)
+    __PYX_ERR(0, 228, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
     if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_2)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 228, __pyx_L1_error)
     #else
-    __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
@@ -4663,7 +5803,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 179, __pyx_L1_error)
+        __PYX_ERR(0, 228, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -4676,15 +5816,15 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_4);
       #else
-      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 179, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 179, __pyx_L1_error)
+      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 228, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 179, __pyx_L1_error)
+      __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 228, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_7 = Py_TYPE(__pyx_t_6)->tp_iternext;
@@ -4692,7 +5832,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
       __Pyx_GOTREF(__pyx_t_3);
       index = 1; __pyx_t_4 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_4)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_4);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 2) < 0) __PYX_ERR(0, 179, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 2) < 0) __PYX_ERR(0, 228, __pyx_L1_error)
       __pyx_t_7 = NULL;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       goto __pyx_L6_unpacking_done;
@@ -4700,7 +5840,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_t_7 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 179, __pyx_L1_error)
+      __PYX_ERR(0, 228, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_3);
@@ -4708,25 +5848,25 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":180
+    /* "cexprtk/_symbol_table.pyx":229
  * 
  *     for (k,v) in self._get_variable_list():
  *       if not self._csymtableptr.is_constant_node(k):             # <<<<<<<<<<<<<<
  *         strk = k.decode("ascii")
  *         retlist.append((strk, v))
  */
-    __pyx_t_8 = __pyx_convert_string_from_py_std__in_string(__pyx_v_k); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 180, __pyx_L1_error)
+    __pyx_t_8 = __pyx_convert_string_from_py_std__in_string(__pyx_v_k); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 229, __pyx_L1_error)
     __pyx_t_9 = ((!(__pyx_v_self->_csymtableptr->is_constant_node(__pyx_t_8) != 0)) != 0);
     if (__pyx_t_9) {
 
-      /* "cexprtk/_symbol_table.pyx":181
+      /* "cexprtk/_symbol_table.pyx":230
  *     for (k,v) in self._get_variable_list():
  *       if not self._csymtableptr.is_constant_node(k):
  *         strk = k.decode("ascii")             # <<<<<<<<<<<<<<
  *         retlist.append((strk, v))
  *     return retlist
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_k, __pyx_n_s_decode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 181, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_k, __pyx_n_s_decode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 230, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_3 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -4740,20 +5880,20 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
       }
       __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_3, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_n_s_ascii);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 181, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_XDECREF_SET(__pyx_v_strk, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "cexprtk/_symbol_table.pyx":182
+      /* "cexprtk/_symbol_table.pyx":231
  *       if not self._csymtableptr.is_constant_node(k):
  *         strk = k.decode("ascii")
  *         retlist.append((strk, v))             # <<<<<<<<<<<<<<
  *     return retlist
  * 
  */
-      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
+      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_INCREF(__pyx_v_strk);
       __Pyx_GIVEREF(__pyx_v_strk);
@@ -4761,10 +5901,10 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
       __Pyx_INCREF(__pyx_v_v);
       __Pyx_GIVEREF(__pyx_v_v);
       PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_v);
-      __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_retlist, __pyx_t_1); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 182, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_retlist, __pyx_t_1); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 231, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "cexprtk/_symbol_table.pyx":180
+      /* "cexprtk/_symbol_table.pyx":229
  * 
  *     for (k,v) in self._get_variable_list():
  *       if not self._csymtableptr.is_constant_node(k):             # <<<<<<<<<<<<<<
@@ -4773,7 +5913,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
  */
     }
 
-    /* "cexprtk/_symbol_table.pyx":179
+    /* "cexprtk/_symbol_table.pyx":228
  *     cdef list retlist = []
  * 
  *     for (k,v) in self._get_variable_list():             # <<<<<<<<<<<<<<
@@ -4783,7 +5923,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":183
+  /* "cexprtk/_symbol_table.pyx":232
  *         strk = k.decode("ascii")
  *         retlist.append((strk, v))
  *     return retlist             # <<<<<<<<<<<<<<
@@ -4795,7 +5935,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_item
   __pyx_r = __pyx_v_retlist;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":175
+  /* "cexprtk/_symbol_table.pyx":224
  *     return len(self.items())
  * 
  *   cpdef list items(self):             # <<<<<<<<<<<<<<
@@ -4844,7 +5984,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_8it
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("items", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_items(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_items(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 224, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4861,7 +6001,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_8it
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":185
+/* "cexprtk/_symbol_table.pyx":234
  *     return retlist
  * 
  *   def iteritems(self):             # <<<<<<<<<<<<<<
@@ -4892,7 +6032,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_10i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("iteritems", 0);
 
-  /* "cexprtk/_symbol_table.pyx":186
+  /* "cexprtk/_symbol_table.pyx":235
  * 
  *   def iteritems(self):
  *     return iter(self.items())             # <<<<<<<<<<<<<<
@@ -4900,16 +6040,16 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_10i
  *   def iterkeys(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":185
+  /* "cexprtk/_symbol_table.pyx":234
  *     return retlist
  * 
  *   def iteritems(self):             # <<<<<<<<<<<<<<
@@ -4929,7 +6069,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_10i
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":188
+/* "cexprtk/_symbol_table.pyx":237
  *     return iter(self.items())
  * 
  *   def iterkeys(self):             # <<<<<<<<<<<<<<
@@ -4961,7 +6101,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_12i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("iterkeys", 0);
 
-  /* "cexprtk/_symbol_table.pyx":189
+  /* "cexprtk/_symbol_table.pyx":238
  * 
  *   def iterkeys(self):
  *     return iter(self.keys())             # <<<<<<<<<<<<<<
@@ -4969,7 +6109,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_12i
  *   def itervalues(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -4983,17 +6123,17 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_12i
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":188
+  /* "cexprtk/_symbol_table.pyx":237
  *     return iter(self.items())
  * 
  *   def iterkeys(self):             # <<<<<<<<<<<<<<
@@ -5014,7 +6154,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_12i
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":191
+/* "cexprtk/_symbol_table.pyx":240
  *     return iter(self.keys())
  * 
  *   def itervalues(self):             # <<<<<<<<<<<<<<
@@ -5046,7 +6186,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_14i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("itervalues", 0);
 
-  /* "cexprtk/_symbol_table.pyx":192
+  /* "cexprtk/_symbol_table.pyx":241
  * 
  *   def itervalues(self):
  *     return iter(self.values())             # <<<<<<<<<<<<<<
@@ -5054,7 +6194,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_14i
  *   def keys(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 241, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -5068,17 +6208,17 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_14i
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 192, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 241, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":191
+  /* "cexprtk/_symbol_table.pyx":240
  *     return iter(self.keys())
  * 
  *   def itervalues(self):             # <<<<<<<<<<<<<<
@@ -5099,7 +6239,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_14i
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":194
+/* "cexprtk/_symbol_table.pyx":243
  *     return iter(self.values())
  * 
  *   def keys(self):             # <<<<<<<<<<<<<<
@@ -5138,7 +6278,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_16k
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("keys", 0);
 
-  /* "cexprtk/_symbol_table.pyx":195
+  /* "cexprtk/_symbol_table.pyx":244
  * 
  *   def keys(self):
  *     return [ k for (k,v) in self.items()]             # <<<<<<<<<<<<<<
@@ -5146,22 +6286,22 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_16k
  *   def values(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 195, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 195, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (unlikely(__pyx_t_2 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 195, __pyx_L1_error)
+    __PYX_ERR(0, 244, __pyx_L1_error)
   }
   __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 195, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 244, __pyx_L1_error)
     #else
-    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 195, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_2))) || (PyList_CheckExact(__pyx_t_2))) {
@@ -5170,7 +6310,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_16k
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 195, __pyx_L1_error)
+        __PYX_ERR(0, 244, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -5183,15 +6323,15 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_16k
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 195, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 244, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 195, __pyx_L1_error)
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 244, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 195, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 244, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -5199,7 +6339,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_16k
       __Pyx_GOTREF(__pyx_t_5);
       index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 195, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 244, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
@@ -5207,21 +6347,21 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_16k
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 195, __pyx_L1_error)
+      __PYX_ERR(0, 244, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_5);
     __pyx_t_5 = 0;
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_6);
     __pyx_t_6 = 0;
-    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_k))) __PYX_ERR(0, 195, __pyx_L1_error)
+    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_k))) __PYX_ERR(0, 244, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":194
+  /* "cexprtk/_symbol_table.pyx":243
  *     return iter(self.values())
  * 
  *   def keys(self):             # <<<<<<<<<<<<<<
@@ -5247,7 +6387,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_16k
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":197
+/* "cexprtk/_symbol_table.pyx":246
  *     return [ k for (k,v) in self.items()]
  * 
  *   def values(self):             # <<<<<<<<<<<<<<
@@ -5286,7 +6426,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_18v
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("values", 0);
 
-  /* "cexprtk/_symbol_table.pyx":198
+  /* "cexprtk/_symbol_table.pyx":247
  * 
  *   def values(self):
  *     return [ v for (k,v) in self.items() ]             # <<<<<<<<<<<<<<
@@ -5294,22 +6434,22 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_18v
  *   cdef list _get_variable_list(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 247, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (unlikely(__pyx_t_2 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 198, __pyx_L1_error)
+    __PYX_ERR(0, 247, __pyx_L1_error)
   }
   __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 198, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 247, __pyx_L1_error)
     #else
-    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 247, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_2))) || (PyList_CheckExact(__pyx_t_2))) {
@@ -5318,7 +6458,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_18v
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 198, __pyx_L1_error)
+        __PYX_ERR(0, 247, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -5331,15 +6471,15 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_18v
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 198, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 247, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 198, __pyx_L1_error)
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 247, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 198, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 247, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -5347,7 +6487,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_18v
       __Pyx_GOTREF(__pyx_t_5);
       index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 198, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 247, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
@@ -5355,21 +6495,21 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_18v
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 198, __pyx_L1_error)
+      __PYX_ERR(0, 247, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_5);
     __pyx_t_5 = 0;
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_6);
     __pyx_t_6 = 0;
-    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_v))) __PYX_ERR(0, 198, __pyx_L1_error)
+    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_v))) __PYX_ERR(0, 247, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":197
+  /* "cexprtk/_symbol_table.pyx":246
  *     return [ k for (k,v) in self.items()]
  * 
  *   def values(self):             # <<<<<<<<<<<<<<
@@ -5395,7 +6535,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_18v
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":200
+/* "cexprtk/_symbol_table.pyx":249
  *     return [ v for (k,v) in self.items() ]
  * 
  *   cdef list _get_variable_list(self):             # <<<<<<<<<<<<<<
@@ -5414,7 +6554,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables__get
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_get_variable_list", 0);
 
-  /* "cexprtk/_symbol_table.pyx":201
+  /* "cexprtk/_symbol_table.pyx":250
  * 
  *   cdef list _get_variable_list(self):
  *     cdef exprtk.LabelFloatPairVector itemvector = exprtk.LabelFloatPairVector()             # <<<<<<<<<<<<<<
@@ -5425,11 +6565,11 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables__get
     __pyx_t_1 = __pyx_t_6exprtk_LabelFloatPairVector();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 201, __pyx_L1_error)
+    __PYX_ERR(0, 250, __pyx_L1_error)
   }
   __pyx_v_itemvector = __pyx_t_1;
 
-  /* "cexprtk/_symbol_table.pyx":202
+  /* "cexprtk/_symbol_table.pyx":251
  *   cdef list _get_variable_list(self):
  *     cdef exprtk.LabelFloatPairVector itemvector = exprtk.LabelFloatPairVector()
  *     self._csymtableptr.get_variable_list(itemvector)             # <<<<<<<<<<<<<<
@@ -5438,7 +6578,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables__get
  */
   (void)(__pyx_v_self->_csymtableptr->get_variable_list(__pyx_v_itemvector));
 
-  /* "cexprtk/_symbol_table.pyx":203
+  /* "cexprtk/_symbol_table.pyx":252
  *     cdef exprtk.LabelFloatPairVector itemvector = exprtk.LabelFloatPairVector()
  *     self._csymtableptr.get_variable_list(itemvector)
  *     return itemvector             # <<<<<<<<<<<<<<
@@ -5446,14 +6586,14 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables__get
  *   cpdef has_key(self, object key):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __pyx_convert_vector_to_py___pyx_t_6exprtk_LabelFloatPair(__pyx_v_itemvector); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_2 = __pyx_convert_vector_to_py___pyx_t_6exprtk_LabelFloatPair(__pyx_v_itemvector); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(PyList_CheckExact(__pyx_t_2))||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 203, __pyx_L1_error)
+  if (!(likely(PyList_CheckExact(__pyx_t_2))||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 252, __pyx_L1_error)
   __pyx_r = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":200
+  /* "cexprtk/_symbol_table.pyx":249
  *     return [ v for (k,v) in self.items() ]
  * 
  *   cdef list _get_variable_list(self):             # <<<<<<<<<<<<<<
@@ -5472,7 +6612,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables__get
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":205
+/* "cexprtk/_symbol_table.pyx":254
  *     return itemvector
  * 
  *   cpdef has_key(self, object key):             # <<<<<<<<<<<<<<
@@ -5510,7 +6650,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_has_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_has_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_21has_key)) {
         __Pyx_XDECREF(__pyx_r);
@@ -5527,7 +6667,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_key) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_key);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 254, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_r = __pyx_t_2;
@@ -5548,7 +6688,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_
     #endif
   }
 
-  /* "cexprtk/_symbol_table.pyx":206
+  /* "cexprtk/_symbol_table.pyx":255
  * 
  *   cpdef has_key(self, object key):
  *     try:             # <<<<<<<<<<<<<<
@@ -5564,19 +6704,19 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_
     __Pyx_XGOTREF(__pyx_t_7);
     /*try:*/ {
 
-      /* "cexprtk/_symbol_table.pyx":207
+      /* "cexprtk/_symbol_table.pyx":256
  *   cpdef has_key(self, object key):
  *     try:
  *       key = str(key)             # <<<<<<<<<<<<<<
  *     except ValueError:
  *       return False
  */
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L3_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 256, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF_SET(__pyx_v_key, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "cexprtk/_symbol_table.pyx":206
+      /* "cexprtk/_symbol_table.pyx":255
  * 
  *   cpdef has_key(self, object key):
  *     try:             # <<<<<<<<<<<<<<
@@ -5594,7 +6734,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":208
+    /* "cexprtk/_symbol_table.pyx":257
  *     try:
  *       key = str(key)
  *     except ValueError:             # <<<<<<<<<<<<<<
@@ -5604,12 +6744,12 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_
     __pyx_t_8 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
     if (__pyx_t_8) {
       __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_Variables.has_key", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_2, &__pyx_t_3) < 0) __PYX_ERR(0, 208, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_2, &__pyx_t_3) < 0) __PYX_ERR(0, 257, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_GOTREF(__pyx_t_3);
 
-      /* "cexprtk/_symbol_table.pyx":209
+      /* "cexprtk/_symbol_table.pyx":258
  *       key = str(key)
  *     except ValueError:
  *       return False             # <<<<<<<<<<<<<<
@@ -5627,7 +6767,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "cexprtk/_symbol_table.pyx":206
+    /* "cexprtk/_symbol_table.pyx":255
  * 
  *   cpdef has_key(self, object key):
  *     try:             # <<<<<<<<<<<<<<
@@ -5648,14 +6788,14 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_
     __pyx_L8_try_end:;
   }
 
-  /* "cexprtk/_symbol_table.pyx":211
+  /* "cexprtk/_symbol_table.pyx":260
  *       return False
  * 
  *     cdef bytes cstr_key = key.encode("ascii")             # <<<<<<<<<<<<<<
  *     return self._csymtableptr[0].is_variable(cstr_key) and not self._csymtableptr[0].is_constant_node(cstr_key)
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -5669,14 +6809,14 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_
   }
   __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_n_s_ascii);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyBytes_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 211, __pyx_L1_error)
+  if (!(likely(PyBytes_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 260, __pyx_L1_error)
   __pyx_v_cstr_key = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":212
+  /* "cexprtk/_symbol_table.pyx":261
  * 
  *     cdef bytes cstr_key = key.encode("ascii")
  *     return self._csymtableptr[0].is_variable(cstr_key) and not self._csymtableptr[0].is_constant_node(cstr_key)             # <<<<<<<<<<<<<<
@@ -5684,19 +6824,19 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_
  *   def __contains__(self, object key):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 261, __pyx_L1_error)
   __pyx_t_10 = (__pyx_v_self->_csymtableptr[0]).is_variable(__pyx_t_9);
   if (__pyx_t_10) {
   } else {
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_3 = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L11_bool_binop_done;
   }
-  __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 261, __pyx_L1_error)
   __pyx_t_11 = (!((__pyx_v_self->_csymtableptr[0]).is_constant_node(__pyx_t_9) != 0));
-  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_11); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -5705,7 +6845,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":205
+  /* "cexprtk/_symbol_table.pyx":254
  *     return itemvector
  * 
  *   cpdef has_key(self, object key):             # <<<<<<<<<<<<<<
@@ -5751,7 +6891,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_20h
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("has_key", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_key(__pyx_v_self, __pyx_v_key, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_key(__pyx_v_self, __pyx_v_key, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5768,7 +6908,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_20h
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":214
+/* "cexprtk/_symbol_table.pyx":263
  *     return self._csymtableptr[0].is_variable(cstr_key) and not self._csymtableptr[0].is_constant_node(cstr_key)
  * 
  *   def __contains__(self, object key):             # <<<<<<<<<<<<<<
@@ -5799,21 +6939,21 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_22__conta
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__contains__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":215
+  /* "cexprtk/_symbol_table.pyx":264
  * 
  *   def __contains__(self, object key):
  *     return self.has_key(key)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_v_self->__pyx_vtab)->has_key(__pyx_v_self, __pyx_v_key, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Variables *)__pyx_v_self->__pyx_vtab)->has_key(__pyx_v_self, __pyx_v_key, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":214
+  /* "cexprtk/_symbol_table.pyx":263
  *     return self._csymtableptr[0].is_variable(cstr_key) and not self._csymtableptr[0].is_constant_node(cstr_key)
  * 
  *   def __contains__(self, object key):             # <<<<<<<<<<<<<<
@@ -5865,7 +7005,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_24_
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5921,7 +7061,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_26_
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5944,7 +7084,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_26_
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":224
+/* "cexprtk/_symbol_table.pyx":273
  *   C++ symbol_table object owned by parent Symbol_Table."""
  * 
  *   def  __getitem__(self, object key):             # <<<<<<<<<<<<<<
@@ -5983,14 +7123,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants___g
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":225
+  /* "cexprtk/_symbol_table.pyx":274
  * 
  *   def  __getitem__(self, object key):
  *     cdef bytes c_key = key.encode("ascii")             # <<<<<<<<<<<<<<
  *     cdef exprtk.symbol_table_type* st = self._csymtableptr
  *     cdef exprtk.variable_ptr vptr = st[0].get_variable(c_key)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 225, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -6004,14 +7144,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants___g
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_n_s_ascii);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 225, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 225, __pyx_L1_error)
+  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 274, __pyx_L1_error)
   __pyx_v_c_key = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":226
+  /* "cexprtk/_symbol_table.pyx":275
  *   def  __getitem__(self, object key):
  *     cdef bytes c_key = key.encode("ascii")
  *     cdef exprtk.symbol_table_type* st = self._csymtableptr             # <<<<<<<<<<<<<<
@@ -6021,17 +7161,17 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants___g
   __pyx_t_4 = __pyx_v_self->_csymtableptr;
   __pyx_v_st = __pyx_t_4;
 
-  /* "cexprtk/_symbol_table.pyx":227
+  /* "cexprtk/_symbol_table.pyx":276
  *     cdef bytes c_key = key.encode("ascii")
  *     cdef exprtk.symbol_table_type* st = self._csymtableptr
  *     cdef exprtk.variable_ptr vptr = st[0].get_variable(c_key)             # <<<<<<<<<<<<<<
  *     if vptr != NULL and st[0].is_constant_node(c_key):
  *       return vptr[0].value()
  */
-  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 276, __pyx_L1_error)
   __pyx_v_vptr = (__pyx_v_st[0]).get_variable(__pyx_t_5);
 
-  /* "cexprtk/_symbol_table.pyx":228
+  /* "cexprtk/_symbol_table.pyx":277
  *     cdef exprtk.symbol_table_type* st = self._csymtableptr
  *     cdef exprtk.variable_ptr vptr = st[0].get_variable(c_key)
  *     if vptr != NULL and st[0].is_constant_node(c_key):             # <<<<<<<<<<<<<<
@@ -6044,13 +7184,13 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants___g
     __pyx_t_6 = __pyx_t_7;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 228, __pyx_L1_error)
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 277, __pyx_L1_error)
   __pyx_t_7 = ((__pyx_v_st[0]).is_constant_node(__pyx_t_5) != 0);
   __pyx_t_6 = __pyx_t_7;
   __pyx_L4_bool_binop_done:;
   if (likely(__pyx_t_6)) {
 
-    /* "cexprtk/_symbol_table.pyx":229
+    /* "cexprtk/_symbol_table.pyx":278
  *     cdef exprtk.variable_ptr vptr = st[0].get_variable(c_key)
  *     if vptr != NULL and st[0].is_constant_node(c_key):
  *       return vptr[0].value()             # <<<<<<<<<<<<<<
@@ -6058,13 +7198,13 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants___g
  *       raise KeyError("Unknown variable: "+key)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = PyFloat_FromDouble((__pyx_v_vptr[0]).value()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 229, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble((__pyx_v_vptr[0]).value()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
     goto __pyx_L0;
 
-    /* "cexprtk/_symbol_table.pyx":228
+    /* "cexprtk/_symbol_table.pyx":277
  *     cdef exprtk.symbol_table_type* st = self._csymtableptr
  *     cdef exprtk.variable_ptr vptr = st[0].get_variable(c_key)
  *     if vptr != NULL and st[0].is_constant_node(c_key):             # <<<<<<<<<<<<<<
@@ -6073,7 +7213,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants___g
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":231
+  /* "cexprtk/_symbol_table.pyx":280
  *       return vptr[0].value()
  *     else:
  *       raise KeyError("Unknown variable: "+key)             # <<<<<<<<<<<<<<
@@ -6081,17 +7221,17 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants___g
  *   def __iter__(self):
  */
   /*else*/ {
-    __pyx_t_1 = PyNumber_Add(__pyx_kp_s_Unknown_variable, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_kp_s_Unknown_variable, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 280, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 231, __pyx_L1_error)
+    __PYX_ERR(0, 280, __pyx_L1_error)
   }
 
-  /* "cexprtk/_symbol_table.pyx":224
+  /* "cexprtk/_symbol_table.pyx":273
  *   C++ symbol_table object owned by parent Symbol_Table."""
  * 
  *   def  __getitem__(self, object key):             # <<<<<<<<<<<<<<
@@ -6113,7 +7253,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants___g
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":233
+/* "cexprtk/_symbol_table.pyx":282
  *       raise KeyError("Unknown variable: "+key)
  * 
  *   def __iter__(self):             # <<<<<<<<<<<<<<
@@ -6145,7 +7285,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_2__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__iter__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":234
+  /* "cexprtk/_symbol_table.pyx":283
  * 
  *   def __iter__(self):
  *     return self.iterkeys()             # <<<<<<<<<<<<<<
@@ -6153,7 +7293,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_2__
  *   def __len__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_iterkeys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_iterkeys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -6167,14 +7307,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_2__
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":233
+  /* "cexprtk/_symbol_table.pyx":282
  *       raise KeyError("Unknown variable: "+key)
  * 
  *   def __iter__(self):             # <<<<<<<<<<<<<<
@@ -6195,7 +7335,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_2__
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":236
+/* "cexprtk/_symbol_table.pyx":285
  *     return self.iterkeys()
  * 
  *   def __len__(self):             # <<<<<<<<<<<<<<
@@ -6226,25 +7366,25 @@ static Py_ssize_t __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_4_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__len__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":237
+  /* "cexprtk/_symbol_table.pyx":286
  * 
  *   def __len__(self):
  *     return len(self.items())             # <<<<<<<<<<<<<<
  * 
  *   cpdef list items(self):
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (unlikely(__pyx_t_1 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 237, __pyx_L1_error)
+    __PYX_ERR(0, 286, __pyx_L1_error)
   }
-  __pyx_t_2 = PyList_GET_SIZE(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 237, __pyx_L1_error)
+  __pyx_t_2 = PyList_GET_SIZE(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":236
+  /* "cexprtk/_symbol_table.pyx":285
  *     return self.iterkeys()
  * 
  *   def __len__(self):             # <<<<<<<<<<<<<<
@@ -6262,7 +7402,7 @@ static Py_ssize_t __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_4_
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":239
+/* "cexprtk/_symbol_table.pyx":288
  *     return len(self.items())
  * 
  *   cpdef list items(self):             # <<<<<<<<<<<<<<
@@ -6301,7 +7441,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_7items)) {
         __Pyx_XDECREF(__pyx_r);
@@ -6318,10 +7458,10 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 239, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 288, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 239, __pyx_L1_error)
+        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 288, __pyx_L1_error)
         __pyx_r = ((PyObject*)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6340,39 +7480,39 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
     #endif
   }
 
-  /* "cexprtk/_symbol_table.pyx":241
+  /* "cexprtk/_symbol_table.pyx":290
  *   cpdef list items(self):
  *     cdef object strk
  *     cdef list retlist = []             # <<<<<<<<<<<<<<
  * 
  *     for (k,v) in self._get_variable_list():
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_retlist = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":243
+  /* "cexprtk/_symbol_table.pyx":292
  *     cdef list retlist = []
  * 
  *     for (k,v) in self._get_variable_list():             # <<<<<<<<<<<<<<
  *       if self._csymtableptr.is_constant_node(k):
  *         strk = k.decode("ascii")
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_v_self->__pyx_vtab)->_get_variable_list(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_v_self->__pyx_vtab)->_get_variable_list(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (unlikely(__pyx_t_1 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 243, __pyx_L1_error)
+    __PYX_ERR(0, 292, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
     if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_2)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 243, __pyx_L1_error)
+    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 292, __pyx_L1_error)
     #else
-    __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
+    __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
@@ -6381,7 +7521,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 243, __pyx_L1_error)
+        __PYX_ERR(0, 292, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -6394,15 +7534,15 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_4);
       #else
-      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 292, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 243, __pyx_L1_error)
+      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 292, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       #endif
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 243, __pyx_L1_error)
+      __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 292, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_7 = Py_TYPE(__pyx_t_6)->tp_iternext;
@@ -6410,7 +7550,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
       __Pyx_GOTREF(__pyx_t_3);
       index = 1; __pyx_t_4 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_4)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_4);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 2) < 0) __PYX_ERR(0, 243, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 2) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
       __pyx_t_7 = NULL;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       goto __pyx_L6_unpacking_done;
@@ -6418,7 +7558,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_t_7 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 243, __pyx_L1_error)
+      __PYX_ERR(0, 292, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_3);
@@ -6426,25 +7566,25 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":244
+    /* "cexprtk/_symbol_table.pyx":293
  * 
  *     for (k,v) in self._get_variable_list():
  *       if self._csymtableptr.is_constant_node(k):             # <<<<<<<<<<<<<<
  *         strk = k.decode("ascii")
  *         retlist.append((strk, v))
  */
-    __pyx_t_8 = __pyx_convert_string_from_py_std__in_string(__pyx_v_k); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 244, __pyx_L1_error)
+    __pyx_t_8 = __pyx_convert_string_from_py_std__in_string(__pyx_v_k); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 293, __pyx_L1_error)
     __pyx_t_9 = (__pyx_v_self->_csymtableptr->is_constant_node(__pyx_t_8) != 0);
     if (__pyx_t_9) {
 
-      /* "cexprtk/_symbol_table.pyx":245
+      /* "cexprtk/_symbol_table.pyx":294
  *     for (k,v) in self._get_variable_list():
  *       if self._csymtableptr.is_constant_node(k):
  *         strk = k.decode("ascii")             # <<<<<<<<<<<<<<
  *         retlist.append((strk, v))
  *     return retlist
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_k, __pyx_n_s_decode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_k, __pyx_n_s_decode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 294, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_t_3 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -6458,20 +7598,20 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
       }
       __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_3, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_n_s_ascii);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_XDECREF_SET(__pyx_v_strk, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "cexprtk/_symbol_table.pyx":246
+      /* "cexprtk/_symbol_table.pyx":295
  *       if self._csymtableptr.is_constant_node(k):
  *         strk = k.decode("ascii")
  *         retlist.append((strk, v))             # <<<<<<<<<<<<<<
  *     return retlist
  * 
  */
-      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
+      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_INCREF(__pyx_v_strk);
       __Pyx_GIVEREF(__pyx_v_strk);
@@ -6479,10 +7619,10 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
       __Pyx_INCREF(__pyx_v_v);
       __Pyx_GIVEREF(__pyx_v_v);
       PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_v);
-      __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_retlist, __pyx_t_1); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 246, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_retlist, __pyx_t_1); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 295, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "cexprtk/_symbol_table.pyx":244
+      /* "cexprtk/_symbol_table.pyx":293
  * 
  *     for (k,v) in self._get_variable_list():
  *       if self._csymtableptr.is_constant_node(k):             # <<<<<<<<<<<<<<
@@ -6491,7 +7631,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
  */
     }
 
-    /* "cexprtk/_symbol_table.pyx":243
+    /* "cexprtk/_symbol_table.pyx":292
  *     cdef list retlist = []
  * 
  *     for (k,v) in self._get_variable_list():             # <<<<<<<<<<<<<<
@@ -6501,7 +7641,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":247
+  /* "cexprtk/_symbol_table.pyx":296
  *         strk = k.decode("ascii")
  *         retlist.append((strk, v))
  *     return retlist             # <<<<<<<<<<<<<<
@@ -6513,7 +7653,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_item
   __pyx_r = __pyx_v_retlist;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":239
+  /* "cexprtk/_symbol_table.pyx":288
  *     return len(self.items())
  * 
  *   cpdef list items(self):             # <<<<<<<<<<<<<<
@@ -6562,7 +7702,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_6it
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("items", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_items(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_items(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6579,7 +7719,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_6it
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":249
+/* "cexprtk/_symbol_table.pyx":298
  *     return retlist
  * 
  *   def iteritems(self):             # <<<<<<<<<<<<<<
@@ -6610,7 +7750,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_8it
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("iteritems", 0);
 
-  /* "cexprtk/_symbol_table.pyx":250
+  /* "cexprtk/_symbol_table.pyx":299
  * 
  *   def iteritems(self):
  *     return iter(self.items())             # <<<<<<<<<<<<<<
@@ -6618,16 +7758,16 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_8it
  *   def iterkeys(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 250, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":249
+  /* "cexprtk/_symbol_table.pyx":298
  *     return retlist
  * 
  *   def iteritems(self):             # <<<<<<<<<<<<<<
@@ -6647,7 +7787,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_8it
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":252
+/* "cexprtk/_symbol_table.pyx":301
  *     return iter(self.items())
  * 
  *   def iterkeys(self):             # <<<<<<<<<<<<<<
@@ -6679,7 +7819,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_10i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("iterkeys", 0);
 
-  /* "cexprtk/_symbol_table.pyx":253
+  /* "cexprtk/_symbol_table.pyx":302
  * 
  *   def iterkeys(self):
  *     return iter(self.keys())             # <<<<<<<<<<<<<<
@@ -6687,7 +7827,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_10i
  *   def itervalues(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 253, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -6701,17 +7841,17 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_10i
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 253, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 253, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":252
+  /* "cexprtk/_symbol_table.pyx":301
  *     return iter(self.items())
  * 
  *   def iterkeys(self):             # <<<<<<<<<<<<<<
@@ -6732,7 +7872,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_10i
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":255
+/* "cexprtk/_symbol_table.pyx":304
  *     return iter(self.keys())
  * 
  *   def itervalues(self):             # <<<<<<<<<<<<<<
@@ -6764,7 +7904,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_12i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("itervalues", 0);
 
-  /* "cexprtk/_symbol_table.pyx":256
+  /* "cexprtk/_symbol_table.pyx":305
  * 
  *   def itervalues(self):
  *     return iter(self.values())             # <<<<<<<<<<<<<<
@@ -6772,7 +7912,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_12i
  *   def keys(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 256, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 305, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -6786,17 +7926,17 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_12i
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 256, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 256, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 305, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":255
+  /* "cexprtk/_symbol_table.pyx":304
  *     return iter(self.keys())
  * 
  *   def itervalues(self):             # <<<<<<<<<<<<<<
@@ -6817,7 +7957,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_12i
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":258
+/* "cexprtk/_symbol_table.pyx":307
  *     return iter(self.values())
  * 
  *   def keys(self):             # <<<<<<<<<<<<<<
@@ -6856,7 +7996,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_14k
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("keys", 0);
 
-  /* "cexprtk/_symbol_table.pyx":259
+  /* "cexprtk/_symbol_table.pyx":308
  * 
  *   def keys(self):
  *     return [ k for (k,v) in self.items() ]             # <<<<<<<<<<<<<<
@@ -6864,22 +8004,22 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_14k
  *   def values(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (unlikely(__pyx_t_2 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 259, __pyx_L1_error)
+    __PYX_ERR(0, 308, __pyx_L1_error)
   }
   __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 259, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 308, __pyx_L1_error)
     #else
-    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 308, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_2))) || (PyList_CheckExact(__pyx_t_2))) {
@@ -6888,7 +8028,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_14k
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 259, __pyx_L1_error)
+        __PYX_ERR(0, 308, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -6901,15 +8041,15 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_14k
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 259, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 308, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 259, __pyx_L1_error)
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 308, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 259, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 308, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -6917,7 +8057,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_14k
       __Pyx_GOTREF(__pyx_t_5);
       index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 259, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 308, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
@@ -6925,21 +8065,21 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_14k
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 259, __pyx_L1_error)
+      __PYX_ERR(0, 308, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_5);
     __pyx_t_5 = 0;
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_6);
     __pyx_t_6 = 0;
-    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_k))) __PYX_ERR(0, 259, __pyx_L1_error)
+    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_k))) __PYX_ERR(0, 308, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":258
+  /* "cexprtk/_symbol_table.pyx":307
  *     return iter(self.values())
  * 
  *   def keys(self):             # <<<<<<<<<<<<<<
@@ -6965,7 +8105,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_14k
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":261
+/* "cexprtk/_symbol_table.pyx":310
  *     return [ k for (k,v) in self.items() ]
  * 
  *   def values(self):             # <<<<<<<<<<<<<<
@@ -7004,7 +8144,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_16v
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("values", 0);
 
-  /* "cexprtk/_symbol_table.pyx":262
+  /* "cexprtk/_symbol_table.pyx":311
  * 
  *   def values(self):
  *     return [ v for (k,v) in self.items() ]             # <<<<<<<<<<<<<<
@@ -7012,22 +8152,22 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_16v
  *   cdef list _get_variable_list(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (unlikely(__pyx_t_2 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 262, __pyx_L1_error)
+    __PYX_ERR(0, 311, __pyx_L1_error)
   }
   __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 311, __pyx_L1_error)
     #else
-    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 311, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_2))) || (PyList_CheckExact(__pyx_t_2))) {
@@ -7036,7 +8176,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_16v
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 262, __pyx_L1_error)
+        __PYX_ERR(0, 311, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -7049,15 +8189,15 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_16v
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 262, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 311, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 262, __pyx_L1_error)
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 311, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 262, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 311, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -7065,7 +8205,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_16v
       __Pyx_GOTREF(__pyx_t_5);
       index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 262, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 311, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
@@ -7073,21 +8213,21 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_16v
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 262, __pyx_L1_error)
+      __PYX_ERR(0, 311, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_5);
     __pyx_t_5 = 0;
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_6);
     __pyx_t_6 = 0;
-    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_v))) __PYX_ERR(0, 262, __pyx_L1_error)
+    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_v))) __PYX_ERR(0, 311, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":261
+  /* "cexprtk/_symbol_table.pyx":310
  *     return [ k for (k,v) in self.items() ]
  * 
  *   def values(self):             # <<<<<<<<<<<<<<
@@ -7113,7 +8253,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_16v
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":264
+/* "cexprtk/_symbol_table.pyx":313
  *     return [ v for (k,v) in self.items() ]
  * 
  *   cdef list _get_variable_list(self):             # <<<<<<<<<<<<<<
@@ -7132,7 +8272,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants__get
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_get_variable_list", 0);
 
-  /* "cexprtk/_symbol_table.pyx":265
+  /* "cexprtk/_symbol_table.pyx":314
  * 
  *   cdef list _get_variable_list(self):
  *     cdef exprtk.LabelFloatPairVector itemvector = exprtk.LabelFloatPairVector()             # <<<<<<<<<<<<<<
@@ -7143,11 +8283,11 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants__get
     __pyx_t_1 = __pyx_t_6exprtk_LabelFloatPairVector();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 265, __pyx_L1_error)
+    __PYX_ERR(0, 314, __pyx_L1_error)
   }
   __pyx_v_itemvector = __pyx_t_1;
 
-  /* "cexprtk/_symbol_table.pyx":266
+  /* "cexprtk/_symbol_table.pyx":315
  *   cdef list _get_variable_list(self):
  *     cdef exprtk.LabelFloatPairVector itemvector = exprtk.LabelFloatPairVector()
  *     self._csymtableptr.get_variable_list(itemvector)             # <<<<<<<<<<<<<<
@@ -7156,7 +8296,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants__get
  */
   (void)(__pyx_v_self->_csymtableptr->get_variable_list(__pyx_v_itemvector));
 
-  /* "cexprtk/_symbol_table.pyx":267
+  /* "cexprtk/_symbol_table.pyx":316
  *     cdef exprtk.LabelFloatPairVector itemvector = exprtk.LabelFloatPairVector()
  *     self._csymtableptr.get_variable_list(itemvector)
  *     return itemvector             # <<<<<<<<<<<<<<
@@ -7164,14 +8304,14 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants__get
  *   cpdef has_key(self, object key):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __pyx_convert_vector_to_py___pyx_t_6exprtk_LabelFloatPair(__pyx_v_itemvector); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_2 = __pyx_convert_vector_to_py___pyx_t_6exprtk_LabelFloatPair(__pyx_v_itemvector); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 316, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(PyList_CheckExact(__pyx_t_2))||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 267, __pyx_L1_error)
+  if (!(likely(PyList_CheckExact(__pyx_t_2))||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 316, __pyx_L1_error)
   __pyx_r = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":264
+  /* "cexprtk/_symbol_table.pyx":313
  *     return [ v for (k,v) in self.items() ]
  * 
  *   cdef list _get_variable_list(self):             # <<<<<<<<<<<<<<
@@ -7190,7 +8330,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants__get
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":269
+/* "cexprtk/_symbol_table.pyx":318
  *     return itemvector
  * 
  *   cpdef has_key(self, object key):             # <<<<<<<<<<<<<<
@@ -7227,7 +8367,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_has_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 269, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_has_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 318, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_19has_key)) {
         __Pyx_XDECREF(__pyx_r);
@@ -7244,7 +8384,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_key) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_key);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 318, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_r = __pyx_t_2;
@@ -7265,7 +8405,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_
     #endif
   }
 
-  /* "cexprtk/_symbol_table.pyx":270
+  /* "cexprtk/_symbol_table.pyx":319
  * 
  *   cpdef has_key(self, object key):
  *     try:             # <<<<<<<<<<<<<<
@@ -7281,19 +8421,19 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_
     __Pyx_XGOTREF(__pyx_t_7);
     /*try:*/ {
 
-      /* "cexprtk/_symbol_table.pyx":271
+      /* "cexprtk/_symbol_table.pyx":320
  *   cpdef has_key(self, object key):
  *     try:
  *       key = str(key)             # <<<<<<<<<<<<<<
  *     except ValueError:
  *       return False
  */
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L3_error)
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF_SET(__pyx_v_key, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "cexprtk/_symbol_table.pyx":270
+      /* "cexprtk/_symbol_table.pyx":319
  * 
  *   cpdef has_key(self, object key):
  *     try:             # <<<<<<<<<<<<<<
@@ -7311,7 +8451,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":272
+    /* "cexprtk/_symbol_table.pyx":321
  *     try:
  *       key = str(key)
  *     except ValueError:             # <<<<<<<<<<<<<<
@@ -7321,12 +8461,12 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_
     __pyx_t_8 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
     if (__pyx_t_8) {
       __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_Constants.has_key", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_2, &__pyx_t_3) < 0) __PYX_ERR(0, 272, __pyx_L5_except_error)
+      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_2, &__pyx_t_3) < 0) __PYX_ERR(0, 321, __pyx_L5_except_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_GOTREF(__pyx_t_3);
 
-      /* "cexprtk/_symbol_table.pyx":273
+      /* "cexprtk/_symbol_table.pyx":322
  *       key = str(key)
  *     except ValueError:
  *       return False             # <<<<<<<<<<<<<<
@@ -7344,7 +8484,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_
     goto __pyx_L5_except_error;
     __pyx_L5_except_error:;
 
-    /* "cexprtk/_symbol_table.pyx":270
+    /* "cexprtk/_symbol_table.pyx":319
  * 
  *   cpdef has_key(self, object key):
  *     try:             # <<<<<<<<<<<<<<
@@ -7365,14 +8505,14 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_
     __pyx_L8_try_end:;
   }
 
-  /* "cexprtk/_symbol_table.pyx":274
+  /* "cexprtk/_symbol_table.pyx":323
  *     except ValueError:
  *       return False
  *     cdef bytes c_key = key.encode("ascii")             # <<<<<<<<<<<<<<
  *     return self._csymtableptr[0].is_variable(c_key) and self._csymtableptr[0].is_constant_node(c_key)
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -7386,14 +8526,14 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_
   }
   __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_n_s_ascii);
   __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyBytes_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 274, __pyx_L1_error)
+  if (!(likely(PyBytes_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 323, __pyx_L1_error)
   __pyx_v_c_key = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":275
+  /* "cexprtk/_symbol_table.pyx":324
  *       return False
  *     cdef bytes c_key = key.encode("ascii")
  *     return self._csymtableptr[0].is_variable(c_key) and self._csymtableptr[0].is_constant_node(c_key)             # <<<<<<<<<<<<<<
@@ -7401,19 +8541,19 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_
  *   def __contains__(self, key):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 275, __pyx_L1_error)
+  __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 324, __pyx_L1_error)
   __pyx_t_10 = (__pyx_v_self->_csymtableptr[0]).is_variable(__pyx_t_9);
   if (__pyx_t_10) {
   } else {
-    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 275, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 324, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_3 = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L11_bool_binop_done;
   }
-  __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 275, __pyx_L1_error)
+  __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_c_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 324, __pyx_L1_error)
   __pyx_t_10 = (__pyx_v_self->_csymtableptr[0]).is_constant_node(__pyx_t_9);
-  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 275, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBool_FromLong(__pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 324, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -7422,7 +8562,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":269
+  /* "cexprtk/_symbol_table.pyx":318
  *     return itemvector
  * 
  *   cpdef has_key(self, object key):             # <<<<<<<<<<<<<<
@@ -7468,7 +8608,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_18h
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("has_key", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_key(__pyx_v_self, __pyx_v_key, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_key(__pyx_v_self, __pyx_v_key, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 318, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7485,7 +8625,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_18h
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":277
+/* "cexprtk/_symbol_table.pyx":326
  *     return self._csymtableptr[0].is_variable(c_key) and self._csymtableptr[0].is_constant_node(c_key)
  * 
  *   def __contains__(self, key):             # <<<<<<<<<<<<<<
@@ -7516,21 +8656,21 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_20__conta
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__contains__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":278
+  /* "cexprtk/_symbol_table.pyx":327
  * 
  *   def __contains__(self, key):
  *     return self.has_key(key)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_v_self->__pyx_vtab)->has_key(__pyx_v_self, __pyx_v_key, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Constants *)__pyx_v_self->__pyx_vtab)->has_key(__pyx_v_self, __pyx_v_key, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 327, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 278, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 327, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":277
+  /* "cexprtk/_symbol_table.pyx":326
  *     return self._csymtableptr[0].is_variable(c_key) and self._csymtableptr[0].is_constant_node(c_key)
  * 
  *   def __contains__(self, key):             # <<<<<<<<<<<<<<
@@ -7582,7 +8722,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_22_
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7638,7 +8778,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_24_
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7661,7 +8801,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_24_
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":288
+/* "cexprtk/_symbol_table.pyx":337
  *   C++ symbol_table object owned by parent Symbol_Table."""
  * 
  *   def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -7694,7 +8834,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions___cinit__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":289
+  /* "cexprtk/_symbol_table.pyx":338
  * 
  *   def __cinit__(self):
  *     self._cfunction_set_ptr = new cset[cfunction_ptr]()             # <<<<<<<<<<<<<<
@@ -7705,11 +8845,11 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions___cinit__
     __pyx_t_1 = new std::set<__pyx_t_24cexprtk_custom_functions_cfunction_ptr> ();
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 289, __pyx_L1_error)
+    __PYX_ERR(0, 338, __pyx_L1_error)
   }
   __pyx_v_self->_cfunction_set_ptr = __pyx_t_1;
 
-  /* "cexprtk/_symbol_table.pyx":288
+  /* "cexprtk/_symbol_table.pyx":337
  *   C++ symbol_table object owned by parent Symbol_Table."""
  * 
  *   def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -7728,7 +8868,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions___cinit__
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":291
+/* "cexprtk/_symbol_table.pyx":340
  *     self._cfunction_set_ptr = new cset[cfunction_ptr]()
  * 
  *   def __init__(self):             # <<<<<<<<<<<<<<
@@ -7761,73 +8901,73 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_2__init__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":292
+  /* "cexprtk/_symbol_table.pyx":341
  * 
  *   def __init__(self):
  *     self._reservedFunctions = set([             # <<<<<<<<<<<<<<
  *       'abs', 'avg', 'ceil', 'clamp', 'equal', 'erf', 'erfc', 'exp',
  *       'expm1', 'floor', 'frac',  'log', 'log10', 'log1p',  'log2',
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 341, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_abs) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_avg) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_ceil) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_clamp) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_equal) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_erf) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_erfc) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_exp) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_expm1) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_floor) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_frac) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_log) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_log10) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_log1p) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_log2) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_logn) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_max) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_min) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_mul) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_ncdf) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_nequal) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_root) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_round) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_roundn) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_sgn) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_sqrt) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_sum) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_swap) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_trunc) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_acos) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_acosh) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_asin) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_asinh) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_atan) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_atanh) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_atan2) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_cos) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_cosh) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_cot) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_csc) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_sec) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_sin) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_sinc) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_sinh) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_tan) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_tanh) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_hypot) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_rad2deg) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_deg2grad) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_deg2rad) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
-  if (PySet_Add(__pyx_t_1, __pyx_n_s_grad2deg) < 0) __PYX_ERR(0, 292, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_abs) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_avg) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_ceil) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_clamp) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_equal) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_erf) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_erfc) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_exp) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_expm1) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_floor) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_frac) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_log) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_log10) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_log1p) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_log2) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_logn) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_max) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_min) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_mul) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_ncdf) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_nequal) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_root) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_round) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_roundn) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_sgn) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_sqrt) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_sum) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_swap) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_trunc) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_acos) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_acosh) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_asin) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_asinh) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_atan) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_atanh) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_atan2) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_cos) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_cosh) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_cot) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_csc) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_sec) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_sin) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_sinc) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_sinh) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_tan) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_tanh) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_hypot) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_rad2deg) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_deg2grad) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_deg2rad) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_n_s_grad2deg) < 0) __PYX_ERR(0, 341, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->_reservedFunctions);
   __Pyx_DECREF(__pyx_v_self->_reservedFunctions);
   __pyx_v_self->_reservedFunctions = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":291
+  /* "cexprtk/_symbol_table.pyx":340
  *     self._cfunction_set_ptr = new cset[cfunction_ptr]()
  * 
  *   def __init__(self):             # <<<<<<<<<<<<<<
@@ -7847,7 +8987,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_2__init__
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":302
+/* "cexprtk/_symbol_table.pyx":351
  *       'grad2deg' ])
  * 
  *   cdef cfunction_ptr _getitem(self, bytes key):             # <<<<<<<<<<<<<<
@@ -7867,7 +9007,7 @@ static __pyx_t_24cexprtk_custom_functions_cfunction_ptr __pyx_f_7cexprtk_13_symb
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_getitem", 0);
 
-  /* "cexprtk/_symbol_table.pyx":304
+  /* "cexprtk/_symbol_table.pyx":353
  *   cdef cfunction_ptr _getitem(self, bytes key):
  *     cdef cfunction_ptr fptr
  *     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()             # <<<<<<<<<<<<<<
@@ -7876,7 +9016,7 @@ static __pyx_t_24cexprtk_custom_functions_cfunction_ptr __pyx_f_7cexprtk_13_symb
  */
   __pyx_v_it = (__pyx_v_self->_cfunction_set_ptr[0]).begin();
 
-  /* "cexprtk/_symbol_table.pyx":305
+  /* "cexprtk/_symbol_table.pyx":354
  *     cdef cfunction_ptr fptr
  *     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()
  *     while it != self._cfunction_set_ptr[0].end():             # <<<<<<<<<<<<<<
@@ -7887,7 +9027,7 @@ static __pyx_t_24cexprtk_custom_functions_cfunction_ptr __pyx_f_7cexprtk_13_symb
     __pyx_t_1 = ((__pyx_v_it != (__pyx_v_self->_cfunction_set_ptr[0]).end()) != 0);
     if (!__pyx_t_1) break;
 
-    /* "cexprtk/_symbol_table.pyx":306
+    /* "cexprtk/_symbol_table.pyx":355
  *     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()
  *     while it != self._cfunction_set_ptr[0].end():
  *       fptr = deref(it)             # <<<<<<<<<<<<<<
@@ -7896,7 +9036,7 @@ static __pyx_t_24cexprtk_custom_functions_cfunction_ptr __pyx_f_7cexprtk_13_symb
  */
     __pyx_v_fptr = (*__pyx_v_it);
 
-    /* "cexprtk/_symbol_table.pyx":307
+    /* "cexprtk/_symbol_table.pyx":356
  *     while it != self._cfunction_set_ptr[0].end():
  *       fptr = deref(it)
  *       if fptr[0].get_key() == key:             # <<<<<<<<<<<<<<
@@ -7905,13 +9045,13 @@ static __pyx_t_24cexprtk_custom_functions_cfunction_ptr __pyx_f_7cexprtk_13_symb
  */
     if (unlikely(__pyx_v_key == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
-      __PYX_ERR(0, 307, __pyx_L1_error)
+      __PYX_ERR(0, 356, __pyx_L1_error)
     }
-    __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_key); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 307, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_key); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 356, __pyx_L1_error)
     __pyx_t_1 = (((__pyx_v_fptr[0]).get_key() == __pyx_t_2) != 0);
     if (__pyx_t_1) {
 
-      /* "cexprtk/_symbol_table.pyx":308
+      /* "cexprtk/_symbol_table.pyx":357
  *       fptr = deref(it)
  *       if fptr[0].get_key() == key:
  *         return fptr             # <<<<<<<<<<<<<<
@@ -7921,7 +9061,7 @@ static __pyx_t_24cexprtk_custom_functions_cfunction_ptr __pyx_f_7cexprtk_13_symb
       __pyx_r = __pyx_v_fptr;
       goto __pyx_L0;
 
-      /* "cexprtk/_symbol_table.pyx":307
+      /* "cexprtk/_symbol_table.pyx":356
  *     while it != self._cfunction_set_ptr[0].end():
  *       fptr = deref(it)
  *       if fptr[0].get_key() == key:             # <<<<<<<<<<<<<<
@@ -7930,7 +9070,7 @@ static __pyx_t_24cexprtk_custom_functions_cfunction_ptr __pyx_f_7cexprtk_13_symb
  */
     }
 
-    /* "cexprtk/_symbol_table.pyx":309
+    /* "cexprtk/_symbol_table.pyx":358
  *       if fptr[0].get_key() == key:
  *         return fptr
  *       inc(it)             # <<<<<<<<<<<<<<
@@ -7940,7 +9080,7 @@ static __pyx_t_24cexprtk_custom_functions_cfunction_ptr __pyx_f_7cexprtk_13_symb
     (void)((++__pyx_v_it));
   }
 
-  /* "cexprtk/_symbol_table.pyx":310
+  /* "cexprtk/_symbol_table.pyx":359
  *         return fptr
  *       inc(it)
  *     return NULL             # <<<<<<<<<<<<<<
@@ -7950,7 +9090,7 @@ static __pyx_t_24cexprtk_custom_functions_cfunction_ptr __pyx_f_7cexprtk_13_symb
   __pyx_r = NULL;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":302
+  /* "cexprtk/_symbol_table.pyx":351
  *       'grad2deg' ])
  * 
  *   cdef cfunction_ptr _getitem(self, bytes key):             # <<<<<<<<<<<<<<
@@ -7967,7 +9107,7 @@ static __pyx_t_24cexprtk_custom_functions_cfunction_ptr __pyx_f_7cexprtk_13_symb
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":312
+/* "cexprtk/_symbol_table.pyx":361
  *     return NULL
  * 
  *   cdef void _remove_function_from_set(self, cfunction_ptr fptr):             # <<<<<<<<<<<<<<
@@ -7979,7 +9119,7 @@ static void __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__remove_f
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_remove_function_from_set", 0);
 
-  /* "cexprtk/_symbol_table.pyx":313
+  /* "cexprtk/_symbol_table.pyx":362
  * 
  *   cdef void _remove_function_from_set(self, cfunction_ptr fptr):
  *     self._cfunction_set_ptr[0].erase(fptr)             # <<<<<<<<<<<<<<
@@ -7988,7 +9128,7 @@ static void __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__remove_f
  */
   (void)((__pyx_v_self->_cfunction_set_ptr[0]).erase(__pyx_v_fptr));
 
-  /* "cexprtk/_symbol_table.pyx":314
+  /* "cexprtk/_symbol_table.pyx":363
  *   cdef void _remove_function_from_set(self, cfunction_ptr fptr):
  *     self._cfunction_set_ptr[0].erase(fptr)
  *     del fptr             # <<<<<<<<<<<<<<
@@ -7997,7 +9137,7 @@ static void __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__remove_f
  */
   delete __pyx_v_fptr;
 
-  /* "cexprtk/_symbol_table.pyx":312
+  /* "cexprtk/_symbol_table.pyx":361
  *     return NULL
  * 
  *   cdef void _remove_function_from_set(self, cfunction_ptr fptr):             # <<<<<<<<<<<<<<
@@ -8009,7 +9149,7 @@ static void __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__remove_f
   __Pyx_RefNannyFinishContext();
 }
 
-/* "cexprtk/_symbol_table.pyx":316
+/* "cexprtk/_symbol_table.pyx":365
  *     del fptr
  * 
  *   cdef void _add_function_to_set(self, cfunction_ptr fptr):             # <<<<<<<<<<<<<<
@@ -8024,7 +9164,7 @@ static void __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__add_func
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_add_function_to_set", 0);
 
-  /* "cexprtk/_symbol_table.pyx":317
+  /* "cexprtk/_symbol_table.pyx":366
  * 
  *   cdef void _add_function_to_set(self, cfunction_ptr fptr):
  *     self._cfunction_set_ptr[0].insert(fptr)             # <<<<<<<<<<<<<<
@@ -8035,10 +9175,10 @@ static void __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__add_func
     (__pyx_v_self->_cfunction_set_ptr[0]).insert(__pyx_v_fptr);
   } catch(...) {
     __Pyx_CppExn2PyErr();
-    __PYX_ERR(0, 317, __pyx_L1_error)
+    __PYX_ERR(0, 366, __pyx_L1_error)
   }
 
-  /* "cexprtk/_symbol_table.pyx":316
+  /* "cexprtk/_symbol_table.pyx":365
  *     del fptr
  * 
  *   cdef void _add_function_to_set(self, cfunction_ptr fptr):             # <<<<<<<<<<<<<<
@@ -8054,7 +9194,7 @@ static void __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__add_func
   __Pyx_RefNannyFinishContext();
 }
 
-/* "cexprtk/_symbol_table.pyx":319
+/* "cexprtk/_symbol_table.pyx":368
  *     self._cfunction_set_ptr[0].insert(fptr)
  * 
  *   def _checkFunction(self, key, object function):             # <<<<<<<<<<<<<<
@@ -8096,11 +9236,11 @@ static PyObject *__pyx_pw_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_5_c
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_function)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_checkFunction", 1, 2, 2, 1); __PYX_ERR(0, 319, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_checkFunction", 1, 2, 2, 1); __PYX_ERR(0, 368, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_checkFunction") < 0)) __PYX_ERR(0, 319, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_checkFunction") < 0)) __PYX_ERR(0, 368, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -8113,7 +9253,7 @@ static PyObject *__pyx_pw_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_5_c
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_checkFunction", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 319, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_checkFunction", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 368, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_Functions._checkFunction", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -8139,14 +9279,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_4_c
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_checkFunction", 0);
 
-  /* "cexprtk/_symbol_table.pyx":320
+  /* "cexprtk/_symbol_table.pyx":369
  * 
  *   def _checkFunction(self, key, object function):
  *     args = functionargs(function)             # <<<<<<<<<<<<<<
  *     #if args == -1:
  *     #  raise TypeError("Functions with varargs are not supported. Whilst setting function for '"+key+"'")
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_functionargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 320, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_functionargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 369, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
@@ -8160,44 +9300,44 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_4_c
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_function) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_function);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 369, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_args = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":323
+  /* "cexprtk/_symbol_table.pyx":372
  *     #if args == -1:
  *     #  raise TypeError("Functions with varargs are not supported. Whilst setting function for '"+key+"'")
  *     if args > 20:             # <<<<<<<<<<<<<<
  *       raise TypeError("Only functions with 20 or fewer arguments are supported at present. Whilst setting function for '"+key+"'")
  *     return args
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_args, __pyx_int_20, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_args, __pyx_int_20, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 372, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 372, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (unlikely(__pyx_t_4)) {
 
-    /* "cexprtk/_symbol_table.pyx":324
+    /* "cexprtk/_symbol_table.pyx":373
  *     #  raise TypeError("Functions with varargs are not supported. Whilst setting function for '"+key+"'")
  *     if args > 20:
  *       raise TypeError("Only functions with 20 or fewer arguments are supported at present. Whilst setting function for '"+key+"'")             # <<<<<<<<<<<<<<
  *     return args
  * 
  */
-    __pyx_t_1 = PyNumber_Add(__pyx_kp_s_Only_functions_with_20_or_fewer, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_kp_s_Only_functions_with_20_or_fewer, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 373, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_kp_s__9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_kp_s__10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 373, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 373, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 324, __pyx_L1_error)
+    __PYX_ERR(0, 373, __pyx_L1_error)
 
-    /* "cexprtk/_symbol_table.pyx":323
+    /* "cexprtk/_symbol_table.pyx":372
  *     #if args == -1:
  *     #  raise TypeError("Functions with varargs are not supported. Whilst setting function for '"+key+"'")
  *     if args > 20:             # <<<<<<<<<<<<<<
@@ -8206,7 +9346,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_4_c
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":325
+  /* "cexprtk/_symbol_table.pyx":374
  *     if args > 20:
  *       raise TypeError("Only functions with 20 or fewer arguments are supported at present. Whilst setting function for '"+key+"'")
  *     return args             # <<<<<<<<<<<<<<
@@ -8218,7 +9358,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_4_c
   __pyx_r = __pyx_v_args;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":319
+  /* "cexprtk/_symbol_table.pyx":368
  *     self._cfunction_set_ptr[0].insert(fptr)
  * 
  *   def _checkFunction(self, key, object function):             # <<<<<<<<<<<<<<
@@ -8240,7 +9380,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_4_c
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":327
+/* "cexprtk/_symbol_table.pyx":376
  *     return args
  * 
  *   cdef _wrapFunction(self, key, bytes strkey, object function, int numArgs_):             # <<<<<<<<<<<<<<
@@ -8264,7 +9404,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__wra
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_wrapFunction", 0);
 
-  /* "cexprtk/_symbol_table.pyx":333
+  /* "cexprtk/_symbol_table.pyx":382
  * 
  *     cdef void* pyptr
  *     pyptr = <void *>function             # <<<<<<<<<<<<<<
@@ -8273,17 +9413,17 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__wra
  */
   __pyx_v_pyptr = ((void *)__pyx_v_function);
 
-  /* "cexprtk/_symbol_table.pyx":334
+  /* "cexprtk/_symbol_table.pyx":383
  *     cdef void* pyptr
  *     pyptr = <void *>function
  *     cfptr = wrapFunction(numArgs_, strkey, function)             # <<<<<<<<<<<<<<
  *     self._add_function_to_set(cfptr)
  * 
  */
-  __pyx_t_1 = __pyx_convert_string_from_py_std__in_string(__pyx_v_strkey); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 334, __pyx_L1_error)
+  __pyx_t_1 = __pyx_convert_string_from_py_std__in_string(__pyx_v_strkey); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 383, __pyx_L1_error)
   __pyx_v_cfptr = __pyx_f_7cexprtk_26_custom_function_callbacks_wrapFunction(__pyx_v_numArgs_, __pyx_t_1, __pyx_v_function);
 
-  /* "cexprtk/_symbol_table.pyx":335
+  /* "cexprtk/_symbol_table.pyx":384
  *     pyptr = <void *>function
  *     cfptr = wrapFunction(numArgs_, strkey, function)
  *     self._add_function_to_set(cfptr)             # <<<<<<<<<<<<<<
@@ -8292,7 +9432,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__wra
  */
   ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->_add_function_to_set(__pyx_v_self, __pyx_v_cfptr);
 
-  /* "cexprtk/_symbol_table.pyx":337
+  /* "cexprtk/_symbol_table.pyx":386
  *     self._add_function_to_set(cfptr)
  * 
  *     if numArgs_ != -1:             # <<<<<<<<<<<<<<
@@ -8302,7 +9442,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__wra
   __pyx_t_2 = ((__pyx_v_numArgs_ != -1L) != 0);
   if (__pyx_t_2) {
 
-    /* "cexprtk/_symbol_table.pyx":338
+    /* "cexprtk/_symbol_table.pyx":387
  * 
  *     if numArgs_ != -1:
  *       fptr = dynamic_cast[ifunction_ptr](cfptr)             # <<<<<<<<<<<<<<
@@ -8313,21 +9453,21 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__wra
       __pyx_t_3 = dynamic_cast<__pyx_t_24cexprtk_custom_functions_ifunction_ptr>(__pyx_v_cfptr);
     } catch(...) {
       __Pyx_CppExn2PyErr();
-      __PYX_ERR(0, 338, __pyx_L1_error)
+      __PYX_ERR(0, 387, __pyx_L1_error)
     }
     __pyx_v_fptr = __pyx_t_3;
 
-    /* "cexprtk/_symbol_table.pyx":340
+    /* "cexprtk/_symbol_table.pyx":389
  *       fptr = dynamic_cast[ifunction_ptr](cfptr)
  *       # Add the function to the symboltable
  *       cexprtk_util.add_function(self._csymtableptr[0], strkey, fptr[0])             # <<<<<<<<<<<<<<
  *     else:
  *       # Add var arg function
  */
-    __pyx_t_1 = __pyx_convert_string_from_py_std__in_string(__pyx_v_strkey); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 340, __pyx_L1_error)
+    __pyx_t_1 = __pyx_convert_string_from_py_std__in_string(__pyx_v_strkey); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 389, __pyx_L1_error)
     (void)(add_function((__pyx_v_self->_csymtableptr[0]), __pyx_t_1, (__pyx_v_fptr[0])));
 
-    /* "cexprtk/_symbol_table.pyx":337
+    /* "cexprtk/_symbol_table.pyx":386
  *     self._add_function_to_set(cfptr)
  * 
  *     if numArgs_ != -1:             # <<<<<<<<<<<<<<
@@ -8337,7 +9477,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__wra
     goto __pyx_L3;
   }
 
-  /* "cexprtk/_symbol_table.pyx":343
+  /* "cexprtk/_symbol_table.pyx":392
  *     else:
  *       # Add var arg function
  *       vaptr = dynamic_cast[ivararg_function_ptr](cfptr)             # <<<<<<<<<<<<<<
@@ -8349,23 +9489,23 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__wra
       __pyx_t_4 = dynamic_cast<__pyx_t_24cexprtk_custom_functions_ivararg_function_ptr>(__pyx_v_cfptr);
     } catch(...) {
       __Pyx_CppExn2PyErr();
-      __PYX_ERR(0, 343, __pyx_L1_error)
+      __PYX_ERR(0, 392, __pyx_L1_error)
     }
     __pyx_v_vaptr = __pyx_t_4;
 
-    /* "cexprtk/_symbol_table.pyx":344
+    /* "cexprtk/_symbol_table.pyx":393
  *       # Add var arg function
  *       vaptr = dynamic_cast[ivararg_function_ptr](cfptr)
  *       cexprtk_util.add_varargfunction(self._csymtableptr[0], strkey, vaptr[0])             # <<<<<<<<<<<<<<
  * 
  *   cdef _resetFunctionExceptions(self):
  */
-    __pyx_t_1 = __pyx_convert_string_from_py_std__in_string(__pyx_v_strkey); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 344, __pyx_L1_error)
+    __pyx_t_1 = __pyx_convert_string_from_py_std__in_string(__pyx_v_strkey); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 393, __pyx_L1_error)
     (void)(add_varargfunction((__pyx_v_self->_csymtableptr[0]), __pyx_t_1, (__pyx_v_vaptr[0])));
   }
   __pyx_L3:;
 
-  /* "cexprtk/_symbol_table.pyx":327
+  /* "cexprtk/_symbol_table.pyx":376
  *     return args
  * 
  *   cdef _wrapFunction(self, key, bytes strkey, object function, int numArgs_):             # <<<<<<<<<<<<<<
@@ -8385,7 +9525,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__wra
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":346
+/* "cexprtk/_symbol_table.pyx":395
  *       cexprtk_util.add_varargfunction(self._csymtableptr[0], strkey, vaptr[0])
  * 
  *   cdef _resetFunctionExceptions(self):             # <<<<<<<<<<<<<<
@@ -8401,7 +9541,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__res
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("_resetFunctionExceptions", 0);
 
-  /* "cexprtk/_symbol_table.pyx":347
+  /* "cexprtk/_symbol_table.pyx":396
  * 
  *   cdef _resetFunctionExceptions(self):
  *     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()             # <<<<<<<<<<<<<<
@@ -8410,7 +9550,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__res
  */
   __pyx_v_it = (__pyx_v_self->_cfunction_set_ptr[0]).begin();
 
-  /* "cexprtk/_symbol_table.pyx":349
+  /* "cexprtk/_symbol_table.pyx":398
  *     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()
  *     cdef cfunction_ptr func_ptr
  *     while it != self._cfunction_set_ptr[0].end():             # <<<<<<<<<<<<<<
@@ -8421,7 +9561,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__res
     __pyx_t_1 = ((__pyx_v_it != (__pyx_v_self->_cfunction_set_ptr[0]).end()) != 0);
     if (!__pyx_t_1) break;
 
-    /* "cexprtk/_symbol_table.pyx":350
+    /* "cexprtk/_symbol_table.pyx":399
  *     cdef cfunction_ptr func_ptr
  *     while it != self._cfunction_set_ptr[0].end():
  *       func_ptr = deref(it)             # <<<<<<<<<<<<<<
@@ -8430,7 +9570,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__res
  */
     __pyx_v_func_ptr = (*__pyx_v_it);
 
-    /* "cexprtk/_symbol_table.pyx":351
+    /* "cexprtk/_symbol_table.pyx":400
  *     while it != self._cfunction_set_ptr[0].end():
  *       func_ptr = deref(it)
  *       func_ptr[0].resetException()             # <<<<<<<<<<<<<<
@@ -8439,7 +9579,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__res
  */
     (__pyx_v_func_ptr[0]).resetException();
 
-    /* "cexprtk/_symbol_table.pyx":352
+    /* "cexprtk/_symbol_table.pyx":401
  *       func_ptr = deref(it)
  *       func_ptr[0].resetException()
  *       inc(it)             # <<<<<<<<<<<<<<
@@ -8449,7 +9589,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__res
     (void)((++__pyx_v_it));
   }
 
-  /* "cexprtk/_symbol_table.pyx":346
+  /* "cexprtk/_symbol_table.pyx":395
  *       cexprtk_util.add_varargfunction(self._csymtableptr[0], strkey, vaptr[0])
  * 
  *   cdef _resetFunctionExceptions(self):             # <<<<<<<<<<<<<<
@@ -8464,7 +9604,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__res
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":354
+/* "cexprtk/_symbol_table.pyx":403
  *       inc(it)
  * 
  *   cdef object _checkForException(self):             # <<<<<<<<<<<<<<
@@ -8483,7 +9623,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
   PyObject *__pyx_t_2 = NULL;
   __Pyx_RefNannySetupContext("_checkForException", 0);
 
-  /* "cexprtk/_symbol_table.pyx":355
+  /* "cexprtk/_symbol_table.pyx":404
  * 
  *   cdef object _checkForException(self):
  *     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()             # <<<<<<<<<<<<<<
@@ -8492,7 +9632,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
  */
   __pyx_v_it = (__pyx_v_self->_cfunction_set_ptr[0]).begin();
 
-  /* "cexprtk/_symbol_table.pyx":357
+  /* "cexprtk/_symbol_table.pyx":406
  *     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()
  *     cdef cfunction_ptr func_ptr
  *     cdef object exception = None             # <<<<<<<<<<<<<<
@@ -8502,7 +9642,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
   __Pyx_INCREF(Py_None);
   __pyx_v_exception = Py_None;
 
-  /* "cexprtk/_symbol_table.pyx":359
+  /* "cexprtk/_symbol_table.pyx":408
  *     cdef object exception = None
  *     cdef void * exception_ptr
  *     while it != self._cfunction_set_ptr[0].end():             # <<<<<<<<<<<<<<
@@ -8513,7 +9653,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
     __pyx_t_1 = ((__pyx_v_it != (__pyx_v_self->_cfunction_set_ptr[0]).end()) != 0);
     if (!__pyx_t_1) break;
 
-    /* "cexprtk/_symbol_table.pyx":360
+    /* "cexprtk/_symbol_table.pyx":409
  *     cdef void * exception_ptr
  *     while it != self._cfunction_set_ptr[0].end():
  *       func_ptr = deref(it)             # <<<<<<<<<<<<<<
@@ -8522,7 +9662,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
  */
     __pyx_v_func_ptr = (*__pyx_v_it);
 
-    /* "cexprtk/_symbol_table.pyx":361
+    /* "cexprtk/_symbol_table.pyx":410
  *     while it != self._cfunction_set_ptr[0].end():
  *       func_ptr = deref(it)
  *       exception_ptr = func_ptr[0].exception()             # <<<<<<<<<<<<<<
@@ -8531,7 +9671,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
  */
     __pyx_v_exception_ptr = (__pyx_v_func_ptr[0]).exception();
 
-    /* "cexprtk/_symbol_table.pyx":362
+    /* "cexprtk/_symbol_table.pyx":411
  *       func_ptr = deref(it)
  *       exception_ptr = func_ptr[0].exception()
  *       if exception_ptr:             # <<<<<<<<<<<<<<
@@ -8541,7 +9681,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
     __pyx_t_1 = (__pyx_v_exception_ptr != 0);
     if (__pyx_t_1) {
 
-      /* "cexprtk/_symbol_table.pyx":363
+      /* "cexprtk/_symbol_table.pyx":412
  *       exception_ptr = func_ptr[0].exception()
  *       if exception_ptr:
  *         exception = <object> exception_ptr             # <<<<<<<<<<<<<<
@@ -8553,7 +9693,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
       __Pyx_DECREF_SET(__pyx_v_exception, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "cexprtk/_symbol_table.pyx":364
+      /* "cexprtk/_symbol_table.pyx":413
  *       if exception_ptr:
  *         exception = <object> exception_ptr
  *         return exception             # <<<<<<<<<<<<<<
@@ -8565,7 +9705,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
       __pyx_r = __pyx_v_exception;
       goto __pyx_L0;
 
-      /* "cexprtk/_symbol_table.pyx":362
+      /* "cexprtk/_symbol_table.pyx":411
  *       func_ptr = deref(it)
  *       exception_ptr = func_ptr[0].exception()
  *       if exception_ptr:             # <<<<<<<<<<<<<<
@@ -8574,7 +9714,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
  */
     }
 
-    /* "cexprtk/_symbol_table.pyx":365
+    /* "cexprtk/_symbol_table.pyx":414
  *         exception = <object> exception_ptr
  *         return exception
  *       inc(it)             # <<<<<<<<<<<<<<
@@ -8584,7 +9724,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
     (void)((++__pyx_v_it));
   }
 
-  /* "cexprtk/_symbol_table.pyx":366
+  /* "cexprtk/_symbol_table.pyx":415
  *         return exception
  *       inc(it)
  *     return None             # <<<<<<<<<<<<<<
@@ -8595,7 +9735,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":354
+  /* "cexprtk/_symbol_table.pyx":403
  *       inc(it)
  * 
  *   cdef object _checkForException(self):             # <<<<<<<<<<<<<<
@@ -8611,7 +9751,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__che
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":368
+/* "cexprtk/_symbol_table.pyx":417
  *     return None
  * 
  *   def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -8637,7 +9777,7 @@ static void __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_6__deall
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":369
+  /* "cexprtk/_symbol_table.pyx":418
  * 
  *   def __dealloc__(self):
  *     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()             # <<<<<<<<<<<<<<
@@ -8646,7 +9786,7 @@ static void __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_6__deall
  */
   __pyx_v_it = (__pyx_v_self->_cfunction_set_ptr[0]).begin();
 
-  /* "cexprtk/_symbol_table.pyx":371
+  /* "cexprtk/_symbol_table.pyx":420
  *     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()
  *     cdef cfunction_ptr func_ptr
  *     while it != self._cfunction_set_ptr[0].end():             # <<<<<<<<<<<<<<
@@ -8657,7 +9797,7 @@ static void __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_6__deall
     __pyx_t_1 = ((__pyx_v_it != (__pyx_v_self->_cfunction_set_ptr[0]).end()) != 0);
     if (!__pyx_t_1) break;
 
-    /* "cexprtk/_symbol_table.pyx":372
+    /* "cexprtk/_symbol_table.pyx":421
  *     cdef cfunction_ptr func_ptr
  *     while it != self._cfunction_set_ptr[0].end():
  *       func_ptr = deref(it)             # <<<<<<<<<<<<<<
@@ -8666,7 +9806,7 @@ static void __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_6__deall
  */
     __pyx_v_func_ptr = (*__pyx_v_it);
 
-    /* "cexprtk/_symbol_table.pyx":373
+    /* "cexprtk/_symbol_table.pyx":422
  *     while it != self._cfunction_set_ptr[0].end():
  *       func_ptr = deref(it)
  *       inc(it)             # <<<<<<<<<<<<<<
@@ -8675,7 +9815,7 @@ static void __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_6__deall
  */
     (void)((++__pyx_v_it));
 
-    /* "cexprtk/_symbol_table.pyx":374
+    /* "cexprtk/_symbol_table.pyx":423
  *       func_ptr = deref(it)
  *       inc(it)
  *       del func_ptr             # <<<<<<<<<<<<<<
@@ -8685,7 +9825,7 @@ static void __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_6__deall
     delete __pyx_v_func_ptr;
   }
 
-  /* "cexprtk/_symbol_table.pyx":375
+  /* "cexprtk/_symbol_table.pyx":424
  *       inc(it)
  *       del func_ptr
  *     del self._cfunction_set_ptr             # <<<<<<<<<<<<<<
@@ -8694,7 +9834,7 @@ static void __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_6__deall
  */
   delete __pyx_v_self->_cfunction_set_ptr;
 
-  /* "cexprtk/_symbol_table.pyx":368
+  /* "cexprtk/_symbol_table.pyx":417
  *     return None
  * 
  *   def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -8706,7 +9846,7 @@ static void __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_6__deall
   __Pyx_RefNannyFinishContext();
 }
 
-/* "cexprtk/_symbol_table.pyx":377
+/* "cexprtk/_symbol_table.pyx":426
  *     del self._cfunction_set_ptr
  * 
  *   def __getitem__(self, object key):             # <<<<<<<<<<<<<<
@@ -8743,14 +9883,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_8__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":380
+  /* "cexprtk/_symbol_table.pyx":429
  *     cdef void * pyptr
  *     cdef cfunction_ptr fptr
  *     cdef bytes cstr_key = key.encode("ascii")             # <<<<<<<<<<<<<<
  *     if not self._csymtableptr:
  *       raise ReferenceError("Parent Symbol_Table no longer exists")
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 380, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 429, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -8764,14 +9904,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_8__
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_n_s_ascii);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 380, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 429, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 380, __pyx_L1_error)
+  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 429, __pyx_L1_error)
   __pyx_v_cstr_key = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":381
+  /* "cexprtk/_symbol_table.pyx":430
  *     cdef cfunction_ptr fptr
  *     cdef bytes cstr_key = key.encode("ascii")
  *     if not self._csymtableptr:             # <<<<<<<<<<<<<<
@@ -8781,20 +9921,20 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_8__
   __pyx_t_4 = ((!(__pyx_v_self->_csymtableptr != 0)) != 0);
   if (unlikely(__pyx_t_4)) {
 
-    /* "cexprtk/_symbol_table.pyx":382
+    /* "cexprtk/_symbol_table.pyx":431
  *     cdef bytes cstr_key = key.encode("ascii")
  *     if not self._csymtableptr:
  *       raise ReferenceError("Parent Symbol_Table no longer exists")             # <<<<<<<<<<<<<<
  *     fptr = self._getitem(cstr_key)
  *     if fptr:
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ReferenceError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 382, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ReferenceError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 431, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 382, __pyx_L1_error)
+    __PYX_ERR(0, 431, __pyx_L1_error)
 
-    /* "cexprtk/_symbol_table.pyx":381
+    /* "cexprtk/_symbol_table.pyx":430
  *     cdef cfunction_ptr fptr
  *     cdef bytes cstr_key = key.encode("ascii")
  *     if not self._csymtableptr:             # <<<<<<<<<<<<<<
@@ -8803,7 +9943,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_8__
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":383
+  /* "cexprtk/_symbol_table.pyx":432
  *     if not self._csymtableptr:
  *       raise ReferenceError("Parent Symbol_Table no longer exists")
  *     fptr = self._getitem(cstr_key)             # <<<<<<<<<<<<<<
@@ -8812,7 +9952,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_8__
  */
   __pyx_v_fptr = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->_getitem(__pyx_v_self, __pyx_v_cstr_key);
 
-  /* "cexprtk/_symbol_table.pyx":384
+  /* "cexprtk/_symbol_table.pyx":433
  *       raise ReferenceError("Parent Symbol_Table no longer exists")
  *     fptr = self._getitem(cstr_key)
  *     if fptr:             # <<<<<<<<<<<<<<
@@ -8822,7 +9962,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_8__
   __pyx_t_4 = (__pyx_v_fptr != 0);
   if (likely(__pyx_t_4)) {
 
-    /* "cexprtk/_symbol_table.pyx":385
+    /* "cexprtk/_symbol_table.pyx":434
  *     fptr = self._getitem(cstr_key)
  *     if fptr:
  *       pyptr = fptr[0].get_pycallable()             # <<<<<<<<<<<<<<
@@ -8831,7 +9971,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_8__
  */
     __pyx_v_pyptr = (__pyx_v_fptr[0]).get_pycallable();
 
-    /* "cexprtk/_symbol_table.pyx":386
+    /* "cexprtk/_symbol_table.pyx":435
  *     if fptr:
  *       pyptr = fptr[0].get_pycallable()
  *       pyfunction = <object>pyptr             # <<<<<<<<<<<<<<
@@ -8843,7 +9983,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_8__
     __pyx_v_pyfunction = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":387
+    /* "cexprtk/_symbol_table.pyx":436
  *       pyptr = fptr[0].get_pycallable()
  *       pyfunction = <object>pyptr
  *       return pyfunction             # <<<<<<<<<<<<<<
@@ -8855,7 +9995,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_8__
     __pyx_r = __pyx_v_pyfunction;
     goto __pyx_L0;
 
-    /* "cexprtk/_symbol_table.pyx":384
+    /* "cexprtk/_symbol_table.pyx":433
  *       raise ReferenceError("Parent Symbol_Table no longer exists")
  *     fptr = self._getitem(cstr_key)
  *     if fptr:             # <<<<<<<<<<<<<<
@@ -8864,7 +10004,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_8__
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":389
+  /* "cexprtk/_symbol_table.pyx":438
  *       return pyfunction
  *     else:
  *       raise KeyError("Unknown function: "+key)             # <<<<<<<<<<<<<<
@@ -8872,17 +10012,17 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_8__
  *   def __setitem__(self, object key, object f):
  */
   /*else*/ {
-    __pyx_t_1 = PyNumber_Add(__pyx_kp_s_Unknown_function, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 389, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_kp_s_Unknown_function, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 438, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 389, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 438, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 389, __pyx_L1_error)
+    __PYX_ERR(0, 438, __pyx_L1_error)
   }
 
-  /* "cexprtk/_symbol_table.pyx":377
+  /* "cexprtk/_symbol_table.pyx":426
  *     del self._cfunction_set_ptr
  * 
  *   def __getitem__(self, object key):             # <<<<<<<<<<<<<<
@@ -8905,7 +10045,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_8__
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":391
+/* "cexprtk/_symbol_table.pyx":440
  *       raise KeyError("Unknown function: "+key)
  * 
  *   def __setitem__(self, object key, object f):             # <<<<<<<<<<<<<<
@@ -8945,7 +10085,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_10__setit
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setitem__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":395
+  /* "cexprtk/_symbol_table.pyx":444
  *     cdef string strkey
  *     cdef cfunction_ptr cfuncptr
  *     if not self._csymtableptr:             # <<<<<<<<<<<<<<
@@ -8955,20 +10095,20 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_10__setit
   __pyx_t_1 = ((!(__pyx_v_self->_csymtableptr != 0)) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cexprtk/_symbol_table.pyx":396
+    /* "cexprtk/_symbol_table.pyx":445
  *     cdef cfunction_ptr cfuncptr
  *     if not self._csymtableptr:
  *       raise ReferenceError("Parent Symbol_Table no longer exists")             # <<<<<<<<<<<<<<
  *     strkey = key.encode("ascii")
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ReferenceError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 396, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ReferenceError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 445, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 396, __pyx_L1_error)
+    __PYX_ERR(0, 445, __pyx_L1_error)
 
-    /* "cexprtk/_symbol_table.pyx":395
+    /* "cexprtk/_symbol_table.pyx":444
  *     cdef string strkey
  *     cdef cfunction_ptr cfuncptr
  *     if not self._csymtableptr:             # <<<<<<<<<<<<<<
@@ -8977,14 +10117,14 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_10__setit
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":397
+  /* "cexprtk/_symbol_table.pyx":446
  *     if not self._csymtableptr:
  *       raise ReferenceError("Parent Symbol_Table no longer exists")
  *     strkey = key.encode("ascii")             # <<<<<<<<<<<<<<
  * 
  *     if key in self._reservedFunctions:
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -8998,36 +10138,36 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_10__setit
   }
   __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_n_s_ascii);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 397, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_2); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 397, __pyx_L1_error)
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_2); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_strkey = __pyx_t_5;
 
-  /* "cexprtk/_symbol_table.pyx":399
+  /* "cexprtk/_symbol_table.pyx":448
  *     strkey = key.encode("ascii")
  * 
  *     if key in self._reservedFunctions:             # <<<<<<<<<<<<<<
  *       raise ReservedFunctionShadowException("Function has same name as a built-in exprtk function: "+str(key))
  * 
  */
-  __pyx_t_1 = (__Pyx_PySequence_ContainsTF(__pyx_v_key, __pyx_v_self->_reservedFunctions, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 399, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PySequence_ContainsTF(__pyx_v_key, __pyx_v_self->_reservedFunctions, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 448, __pyx_L1_error)
   __pyx_t_6 = (__pyx_t_1 != 0);
   if (unlikely(__pyx_t_6)) {
 
-    /* "cexprtk/_symbol_table.pyx":400
+    /* "cexprtk/_symbol_table.pyx":449
  * 
  *     if key in self._reservedFunctions:
  *       raise ReservedFunctionShadowException("Function has same name as a built-in exprtk function: "+str(key))             # <<<<<<<<<<<<<<
  * 
  *     # Check if there is already a variable or constant assigned to this key.
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_ReservedFunctionShadowException); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 400, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_ReservedFunctionShadowException); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 449, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_v_key); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 400, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_v_key); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 449, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_7 = PyNumber_Add(__pyx_kp_s_Function_has_same_name_as_a_buil, __pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 400, __pyx_L1_error)
+    __pyx_t_7 = PyNumber_Add(__pyx_kp_s_Function_has_same_name_as_a_buil, __pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 449, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -9043,14 +10183,14 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_10__setit
     __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_7);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 400, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 449, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 400, __pyx_L1_error)
+    __PYX_ERR(0, 449, __pyx_L1_error)
 
-    /* "cexprtk/_symbol_table.pyx":399
+    /* "cexprtk/_symbol_table.pyx":448
  *     strkey = key.encode("ascii")
  * 
  *     if key in self._reservedFunctions:             # <<<<<<<<<<<<<<
@@ -9059,69 +10199,124 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_10__setit
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":404
+  /* "cexprtk/_symbol_table.pyx":453
  *     # Check if there is already a variable or constant assigned to this key.
  *     # If there is, then raise VariableShadow exception.
- *     if self._csymtableptr[0].get_variable(strkey) != NULL:             # <<<<<<<<<<<<<<
- *       raise VariableNameShadowException("Function cannot be set as a variable or constant shares the same name:" + key)
+ *     if is_constant(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Function cannot be set because a constant shares the same name:" + key)
  * 
  */
-  __pyx_t_6 = (((__pyx_v_self->_csymtableptr[0]).get_variable(__pyx_v_strkey) != NULL) != 0);
+  __pyx_t_6 = (__pyx_f_7cexprtk_13_symbol_table_is_constant(__pyx_v_strkey, __pyx_v_self->_csymtableptr) != 0);
   if (unlikely(__pyx_t_6)) {
 
-    /* "cexprtk/_symbol_table.pyx":405
+    /* "cexprtk/_symbol_table.pyx":454
  *     # If there is, then raise VariableShadow exception.
- *     if self._csymtableptr[0].get_variable(strkey) != NULL:
- *       raise VariableNameShadowException("Function cannot be set as a variable or constant shares the same name:" + key)             # <<<<<<<<<<<<<<
+ *     if is_constant(strkey, self._csymtableptr):
+ *       raise KeyError("Function cannot be set because a constant shares the same name:" + key)             # <<<<<<<<<<<<<<
  * 
- *     cfuncptr = self._getitem(strkey)
+ *     if is_variable(strkey, self._csymtableptr):
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_VariableNameShadowException); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 405, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = PyNumber_Add(__pyx_kp_s_Function_cannot_be_set_as_a_vari, __pyx_v_key); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 405, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_4 = NULL;
-    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-      if (likely(__pyx_t_4)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-        __Pyx_INCREF(__pyx_t_4);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_3, function);
-      }
-    }
-    __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_7);
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 405, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_kp_s_Function_cannot_be_set_because_a, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 454, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 454, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 405, __pyx_L1_error)
+    __Pyx_Raise(__pyx_t_3, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __PYX_ERR(0, 454, __pyx_L1_error)
 
-    /* "cexprtk/_symbol_table.pyx":404
+    /* "cexprtk/_symbol_table.pyx":453
  *     # Check if there is already a variable or constant assigned to this key.
  *     # If there is, then raise VariableShadow exception.
- *     if self._csymtableptr[0].get_variable(strkey) != NULL:             # <<<<<<<<<<<<<<
- *       raise VariableNameShadowException("Function cannot be set as a variable or constant shares the same name:" + key)
+ *     if is_constant(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Function cannot be set because a constant shares the same name:" + key)
  * 
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":407
- *       raise VariableNameShadowException("Function cannot be set as a variable or constant shares the same name:" + key)
+  /* "cexprtk/_symbol_table.pyx":456
+ *       raise KeyError("Function cannot be set because a constant shares the same name:" + key)
+ * 
+ *     if is_variable(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Function cannot be set because a variable shares the same name:" + key)
+ * 
+ */
+  __pyx_t_6 = (__pyx_f_7cexprtk_13_symbol_table_is_variable(__pyx_v_strkey, __pyx_v_self->_csymtableptr) != 0);
+  if (unlikely(__pyx_t_6)) {
+
+    /* "cexprtk/_symbol_table.pyx":457
+ * 
+ *     if is_variable(strkey, self._csymtableptr):
+ *       raise KeyError("Function cannot be set because a variable shares the same name:" + key)             # <<<<<<<<<<<<<<
+ * 
+ *     if is_string_variable(strkey, self._csymtableptr):
+ */
+    __pyx_t_3 = PyNumber_Add(__pyx_kp_s_Function_cannot_be_set_because_a_2, __pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 457, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 457, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __PYX_ERR(0, 457, __pyx_L1_error)
+
+    /* "cexprtk/_symbol_table.pyx":456
+ *       raise KeyError("Function cannot be set because a constant shares the same name:" + key)
+ * 
+ *     if is_variable(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Function cannot be set because a variable shares the same name:" + key)
+ * 
+ */
+  }
+
+  /* "cexprtk/_symbol_table.pyx":459
+ *       raise KeyError("Function cannot be set because a variable shares the same name:" + key)
+ * 
+ *     if is_string_variable(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Function cannot be set because a string variable shares the same name:" + key)
+ * 
+ */
+  __pyx_t_6 = (__pyx_f_7cexprtk_13_symbol_table_is_string_variable(__pyx_v_strkey, __pyx_v_self->_csymtableptr) != 0);
+  if (unlikely(__pyx_t_6)) {
+
+    /* "cexprtk/_symbol_table.pyx":460
+ * 
+ *     if is_string_variable(strkey, self._csymtableptr):
+ *       raise KeyError("Function cannot be set because a string variable shares the same name:" + key)             # <<<<<<<<<<<<<<
+ * 
+ *     cfuncptr = self._getitem(strkey)
+ */
+    __pyx_t_2 = PyNumber_Add(__pyx_kp_s_Function_cannot_be_set_because_a_3, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 460, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 460, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_Raise(__pyx_t_3, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __PYX_ERR(0, 460, __pyx_L1_error)
+
+    /* "cexprtk/_symbol_table.pyx":459
+ *       raise KeyError("Function cannot be set because a variable shares the same name:" + key)
+ * 
+ *     if is_string_variable(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Function cannot be set because a string variable shares the same name:" + key)
+ * 
+ */
+  }
+
+  /* "cexprtk/_symbol_table.pyx":462
+ *       raise KeyError("Function cannot be set because a string variable shares the same name:" + key)
  * 
  *     cfuncptr = self._getitem(strkey)             # <<<<<<<<<<<<<<
  *     if cfuncptr != NULL:
  *       raise KeyError("Function '"+key+"' was already in symbol table.")
  */
-  __pyx_t_2 = __pyx_convert_PyBytes_string_to_py_std__in_string(__pyx_v_strkey); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 407, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_cfuncptr = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->_getitem(__pyx_v_self, ((PyObject*)__pyx_t_2));
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __pyx_convert_PyBytes_string_to_py_std__in_string(__pyx_v_strkey); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 462, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_cfuncptr = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->_getitem(__pyx_v_self, ((PyObject*)__pyx_t_3));
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":408
+  /* "cexprtk/_symbol_table.pyx":463
  * 
  *     cfuncptr = self._getitem(strkey)
  *     if cfuncptr != NULL:             # <<<<<<<<<<<<<<
@@ -9131,26 +10326,26 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_10__setit
   __pyx_t_6 = ((__pyx_v_cfuncptr != NULL) != 0);
   if (unlikely(__pyx_t_6)) {
 
-    /* "cexprtk/_symbol_table.pyx":409
+    /* "cexprtk/_symbol_table.pyx":464
  *     cfuncptr = self._getitem(strkey)
  *     if cfuncptr != NULL:
  *       raise KeyError("Function '"+key+"' was already in symbol table.")             # <<<<<<<<<<<<<<
  * 
  *     # Wrap the new function
  */
-    __pyx_t_2 = PyNumber_Add(__pyx_kp_s_Function, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyNumber_Add(__pyx_t_2, __pyx_kp_s_was_already_in_symbol_table); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 409, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Add(__pyx_kp_s_Function, __pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 464, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_3, __pyx_kp_s_was_already_in_symbol_table); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 464, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 464, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 409, __pyx_L1_error)
+    __Pyx_Raise(__pyx_t_3, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __PYX_ERR(0, 464, __pyx_L1_error)
 
-    /* "cexprtk/_symbol_table.pyx":408
+    /* "cexprtk/_symbol_table.pyx":463
  * 
  *     cfuncptr = self._getitem(strkey)
  *     if cfuncptr != NULL:             # <<<<<<<<<<<<<<
@@ -9159,45 +10354,45 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_10__setit
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":412
+  /* "cexprtk/_symbol_table.pyx":467
  * 
  *     # Wrap the new function
  *     numArgs = self._checkFunction(key,f)             # <<<<<<<<<<<<<<
  *     self._wrapFunction(key, strkey, f, numArgs)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_checkFunction); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 412, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_checkFunction); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 467, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_7 = NULL;
   __pyx_t_8 = 0;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_3);
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_2);
     if (likely(__pyx_t_7)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
       __Pyx_INCREF(__pyx_t_7);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
       __pyx_t_8 = 1;
     }
   }
   #if CYTHON_FAST_PYCALL
-  if (PyFunction_Check(__pyx_t_3)) {
+  if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_key, __pyx_v_f};
-    __pyx_t_2 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 412, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 467, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_GOTREF(__pyx_t_3);
   } else
   #endif
   #if CYTHON_FAST_PYCCALL
-  if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_7, __pyx_v_key, __pyx_v_f};
-    __pyx_t_2 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 412, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_8, 2+__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 467, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_GOTREF(__pyx_t_3);
   } else
   #endif
   {
-    __pyx_t_4 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 412, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(2+__pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 467, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     if (__pyx_t_7) {
       __Pyx_GIVEREF(__pyx_t_7); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_7); __pyx_t_7 = NULL;
@@ -9208,30 +10403,30 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_10__setit
     __Pyx_INCREF(__pyx_v_f);
     __Pyx_GIVEREF(__pyx_v_f);
     PyTuple_SET_ITEM(__pyx_t_4, 1+__pyx_t_8, __pyx_v_f);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 412, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 467, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_numArgs = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_numArgs = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":413
+  /* "cexprtk/_symbol_table.pyx":468
  *     # Wrap the new function
  *     numArgs = self._checkFunction(key,f)
  *     self._wrapFunction(key, strkey, f, numArgs)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = __pyx_convert_PyBytes_string_to_py_std__in_string(__pyx_v_strkey); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 413, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_v_numArgs); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 413, __pyx_L1_error)
-  __pyx_t_3 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->_wrapFunction(__pyx_v_self, __pyx_v_key, ((PyObject*)__pyx_t_2), __pyx_v_f, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_t_3 = __pyx_convert_PyBytes_string_to_py_std__in_string(__pyx_v_strkey); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 468, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_v_numArgs); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 468, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->_wrapFunction(__pyx_v_self, __pyx_v_key, ((PyObject*)__pyx_t_3), __pyx_v_f, __pyx_t_8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 468, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":391
+  /* "cexprtk/_symbol_table.pyx":440
  *       raise KeyError("Unknown function: "+key)
  * 
  *   def __setitem__(self, object key, object f):             # <<<<<<<<<<<<<<
@@ -9255,7 +10450,7 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_10__setit
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":416
+/* "cexprtk/_symbol_table.pyx":471
  * 
  * 
  *   def __iter__(self):             # <<<<<<<<<<<<<<
@@ -9287,7 +10482,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_12_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__iter__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":417
+  /* "cexprtk/_symbol_table.pyx":472
  * 
  *   def __iter__(self):
  *     return self.iterkeys()             # <<<<<<<<<<<<<<
@@ -9295,7 +10490,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_12_
  *   def __len__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_iterkeys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 417, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_iterkeys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -9309,14 +10504,14 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_12_
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 417, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":416
+  /* "cexprtk/_symbol_table.pyx":471
  * 
  * 
  *   def __iter__(self):             # <<<<<<<<<<<<<<
@@ -9337,7 +10532,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_12_
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":419
+/* "cexprtk/_symbol_table.pyx":474
  *     return self.iterkeys()
  * 
  *   def __len__(self):             # <<<<<<<<<<<<<<
@@ -9363,7 +10558,7 @@ static Py_ssize_t __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_14
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__len__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":420
+  /* "cexprtk/_symbol_table.pyx":475
  * 
  *   def __len__(self):
  *     return self._cfunction_set_ptr[0].size()             # <<<<<<<<<<<<<<
@@ -9373,7 +10568,7 @@ static Py_ssize_t __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_14
   __pyx_r = (__pyx_v_self->_cfunction_set_ptr[0]).size();
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":419
+  /* "cexprtk/_symbol_table.pyx":474
  *     return self.iterkeys()
  * 
  *   def __len__(self):             # <<<<<<<<<<<<<<
@@ -9387,7 +10582,7 @@ static Py_ssize_t __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_14
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":422
+/* "cexprtk/_symbol_table.pyx":477
  *     return self._cfunction_set_ptr[0].size()
  * 
  *   cpdef list items(self):             # <<<<<<<<<<<<<<
@@ -9425,7 +10620,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 422, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 477, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_17items)) {
         __Pyx_XDECREF(__pyx_r);
@@ -9442,10 +10637,10 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 422, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 477, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 422, __pyx_L1_error)
+        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 477, __pyx_L1_error)
         __pyx_r = ((PyObject*)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -9464,7 +10659,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
     #endif
   }
 
-  /* "cexprtk/_symbol_table.pyx":423
+  /* "cexprtk/_symbol_table.pyx":478
  * 
  *   cpdef list items(self):
  *     if not self._csymtableptr:             # <<<<<<<<<<<<<<
@@ -9474,20 +10669,20 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
   __pyx_t_5 = ((!(__pyx_v_self->_csymtableptr != 0)) != 0);
   if (unlikely(__pyx_t_5)) {
 
-    /* "cexprtk/_symbol_table.pyx":424
+    /* "cexprtk/_symbol_table.pyx":479
  *   cpdef list items(self):
  *     if not self._csymtableptr:
  *       raise ReferenceError("Parent Symbol_Table no longer exists")             # <<<<<<<<<<<<<<
  *     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()
  *     cdef cfunction_ptr func_ptr
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ReferenceError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 424, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ReferenceError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 479, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 424, __pyx_L1_error)
+    __PYX_ERR(0, 479, __pyx_L1_error)
 
-    /* "cexprtk/_symbol_table.pyx":423
+    /* "cexprtk/_symbol_table.pyx":478
  * 
  *   cpdef list items(self):
  *     if not self._csymtableptr:             # <<<<<<<<<<<<<<
@@ -9496,7 +10691,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
  */
   }
 
-  /* "cexprtk/_symbol_table.pyx":425
+  /* "cexprtk/_symbol_table.pyx":480
  *     if not self._csymtableptr:
  *       raise ReferenceError("Parent Symbol_Table no longer exists")
  *     cdef cset[cfunction_ptr].iterator it = self._cfunction_set_ptr[0].begin()             # <<<<<<<<<<<<<<
@@ -9505,19 +10700,19 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
  */
   __pyx_v_it = (__pyx_v_self->_cfunction_set_ptr[0]).begin();
 
-  /* "cexprtk/_symbol_table.pyx":430
+  /* "cexprtk/_symbol_table.pyx":485
  *     cdef string cstr
  *     cdef object strk
  *     cdef list retlist = []             # <<<<<<<<<<<<<<
  *     while it != self._cfunction_set_ptr[0].end():
  *       func_ptr = deref(it)
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 430, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 485, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_retlist = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":431
+  /* "cexprtk/_symbol_table.pyx":486
  *     cdef object strk
  *     cdef list retlist = []
  *     while it != self._cfunction_set_ptr[0].end():             # <<<<<<<<<<<<<<
@@ -9528,7 +10723,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
     __pyx_t_5 = ((__pyx_v_it != (__pyx_v_self->_cfunction_set_ptr[0]).end()) != 0);
     if (!__pyx_t_5) break;
 
-    /* "cexprtk/_symbol_table.pyx":432
+    /* "cexprtk/_symbol_table.pyx":487
  *     cdef list retlist = []
  *     while it != self._cfunction_set_ptr[0].end():
  *       func_ptr = deref(it)             # <<<<<<<<<<<<<<
@@ -9537,7 +10732,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
  */
     __pyx_v_func_ptr = (*__pyx_v_it);
 
-    /* "cexprtk/_symbol_table.pyx":433
+    /* "cexprtk/_symbol_table.pyx":488
  *     while it != self._cfunction_set_ptr[0].end():
  *       func_ptr = deref(it)
  *       cstr = func_ptr[0].get_key()             # <<<<<<<<<<<<<<
@@ -9546,19 +10741,19 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
  */
     __pyx_v_cstr = (__pyx_v_func_ptr[0]).get_key();
 
-    /* "cexprtk/_symbol_table.pyx":434
+    /* "cexprtk/_symbol_table.pyx":489
  *       func_ptr = deref(it)
  *       cstr = func_ptr[0].get_key()
  *       strk = cstr.decode("ascii")             # <<<<<<<<<<<<<<
  *       pyfunc = <object> func_ptr[0].get_pycallable()
  *       retlist.append((strk, pyfunc))
  */
-    __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_cstr, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 434, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_decode_cpp_string(__pyx_v_cstr, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 489, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_strk, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":435
+    /* "cexprtk/_symbol_table.pyx":490
  *       cstr = func_ptr[0].get_key()
  *       strk = cstr.decode("ascii")
  *       pyfunc = <object> func_ptr[0].get_pycallable()             # <<<<<<<<<<<<<<
@@ -9571,14 +10766,14 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
     __Pyx_XDECREF_SET(__pyx_v_pyfunc, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":436
+    /* "cexprtk/_symbol_table.pyx":491
  *       strk = cstr.decode("ascii")
  *       pyfunc = <object> func_ptr[0].get_pycallable()
  *       retlist.append((strk, pyfunc))             # <<<<<<<<<<<<<<
  *       inc(it)
  *     return retlist
  */
-    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L1_error)
+    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 491, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_INCREF(__pyx_v_strk);
     __Pyx_GIVEREF(__pyx_v_strk);
@@ -9586,10 +10781,10 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
     __Pyx_INCREF(__pyx_v_pyfunc);
     __Pyx_GIVEREF(__pyx_v_pyfunc);
     PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_pyfunc);
-    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_retlist, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 436, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_retlist, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 491, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "cexprtk/_symbol_table.pyx":437
+    /* "cexprtk/_symbol_table.pyx":492
  *       pyfunc = <object> func_ptr[0].get_pycallable()
  *       retlist.append((strk, pyfunc))
  *       inc(it)             # <<<<<<<<<<<<<<
@@ -9599,7 +10794,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
     (void)((++__pyx_v_it));
   }
 
-  /* "cexprtk/_symbol_table.pyx":438
+  /* "cexprtk/_symbol_table.pyx":493
  *       retlist.append((strk, pyfunc))
  *       inc(it)
  *     return retlist             # <<<<<<<<<<<<<<
@@ -9611,7 +10806,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_item
   __pyx_r = __pyx_v_retlist;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":422
+  /* "cexprtk/_symbol_table.pyx":477
  *     return self._cfunction_set_ptr[0].size()
  * 
  *   cpdef list items(self):             # <<<<<<<<<<<<<<
@@ -9658,7 +10853,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_16i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("items", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_items(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 422, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_items(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 477, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9675,7 +10870,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_16i
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":440
+/* "cexprtk/_symbol_table.pyx":495
  *     return retlist
  * 
  *   def iteritems(self):             # <<<<<<<<<<<<<<
@@ -9706,7 +10901,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_18i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("iteritems", 0);
 
-  /* "cexprtk/_symbol_table.pyx":441
+  /* "cexprtk/_symbol_table.pyx":496
  * 
  *   def iteritems(self):
  *     return iter(self.items())             # <<<<<<<<<<<<<<
@@ -9714,16 +10909,16 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_18i
  *   def iterkeys(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 496, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":440
+  /* "cexprtk/_symbol_table.pyx":495
  *     return retlist
  * 
  *   def iteritems(self):             # <<<<<<<<<<<<<<
@@ -9743,7 +10938,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_18i
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":443
+/* "cexprtk/_symbol_table.pyx":498
  *     return iter(self.items())
  * 
  *   def iterkeys(self):             # <<<<<<<<<<<<<<
@@ -9775,7 +10970,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_20i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("iterkeys", 0);
 
-  /* "cexprtk/_symbol_table.pyx":444
+  /* "cexprtk/_symbol_table.pyx":499
  * 
  *   def iterkeys(self):
  *     return iter(self.keys())             # <<<<<<<<<<<<<<
@@ -9783,7 +10978,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_20i
  *   def itervalues(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 444, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -9797,17 +10992,17 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_20i
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 444, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 444, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":443
+  /* "cexprtk/_symbol_table.pyx":498
  *     return iter(self.items())
  * 
  *   def iterkeys(self):             # <<<<<<<<<<<<<<
@@ -9828,7 +11023,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_20i
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":446
+/* "cexprtk/_symbol_table.pyx":501
  *     return iter(self.keys())
  * 
  *   def itervalues(self):             # <<<<<<<<<<<<<<
@@ -9860,7 +11055,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_22i
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("itervalues", 0);
 
-  /* "cexprtk/_symbol_table.pyx":447
+  /* "cexprtk/_symbol_table.pyx":502
  * 
  *   def itervalues(self):
  *     return iter(self.values())             # <<<<<<<<<<<<<<
@@ -9868,7 +11063,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_22i
  *   def keys(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 447, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 502, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -9882,17 +11077,17 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_22i
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 447, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 502, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 447, __pyx_L1_error)
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 502, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":446
+  /* "cexprtk/_symbol_table.pyx":501
  *     return iter(self.keys())
  * 
  *   def itervalues(self):             # <<<<<<<<<<<<<<
@@ -9913,7 +11108,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_22i
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":449
+/* "cexprtk/_symbol_table.pyx":504
  *     return iter(self.values())
  * 
  *   def keys(self):             # <<<<<<<<<<<<<<
@@ -9952,7 +11147,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_24k
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("keys", 0);
 
-  /* "cexprtk/_symbol_table.pyx":450
+  /* "cexprtk/_symbol_table.pyx":505
  * 
  *   def keys(self):
  *     return [ k for (k,v) in self.items()]             # <<<<<<<<<<<<<<
@@ -9960,22 +11155,22 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_24k
  *   def values(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 450, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 505, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 450, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 505, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (unlikely(__pyx_t_2 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 450, __pyx_L1_error)
+    __PYX_ERR(0, 505, __pyx_L1_error)
   }
   __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 450, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 505, __pyx_L1_error)
     #else
-    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 450, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 505, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_2))) || (PyList_CheckExact(__pyx_t_2))) {
@@ -9984,7 +11179,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_24k
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 450, __pyx_L1_error)
+        __PYX_ERR(0, 505, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -9997,15 +11192,15 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_24k
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 450, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 505, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 450, __pyx_L1_error)
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 505, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 450, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 505, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -10013,7 +11208,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_24k
       __Pyx_GOTREF(__pyx_t_5);
       index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 450, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 505, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
@@ -10021,21 +11216,21 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_24k
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 450, __pyx_L1_error)
+      __PYX_ERR(0, 505, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_5);
     __pyx_t_5 = 0;
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_6);
     __pyx_t_6 = 0;
-    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_k))) __PYX_ERR(0, 450, __pyx_L1_error)
+    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_k))) __PYX_ERR(0, 505, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":449
+  /* "cexprtk/_symbol_table.pyx":504
  *     return iter(self.values())
  * 
  *   def keys(self):             # <<<<<<<<<<<<<<
@@ -10061,7 +11256,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_24k
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":452
+/* "cexprtk/_symbol_table.pyx":507
  *     return [ k for (k,v) in self.items()]
  * 
  *   def values(self):             # <<<<<<<<<<<<<<
@@ -10100,7 +11295,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_26v
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("values", 0);
 
-  /* "cexprtk/_symbol_table.pyx":453
+  /* "cexprtk/_symbol_table.pyx":508
  * 
  *   def values(self):
  *     return [ v for (k,v) in self.items() ]             # <<<<<<<<<<<<<<
@@ -10108,22 +11303,22 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_26v
  *   cpdef has_key(self, object key):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 453, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 508, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 508, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (unlikely(__pyx_t_2 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 453, __pyx_L1_error)
+    __PYX_ERR(0, 508, __pyx_L1_error)
   }
   __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
     if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 453, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 508, __pyx_L1_error)
     #else
-    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 508, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
     if ((likely(PyTuple_CheckExact(__pyx_t_2))) || (PyList_CheckExact(__pyx_t_2))) {
@@ -10132,7 +11327,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_26v
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 453, __pyx_L1_error)
+        __PYX_ERR(0, 508, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -10145,15 +11340,15 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_26v
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_6);
       #else
-      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 453, __pyx_L1_error)
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 508, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 453, __pyx_L1_error)
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 508, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       #endif
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 453, __pyx_L1_error)
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 508, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -10161,7 +11356,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_26v
       __Pyx_GOTREF(__pyx_t_5);
       index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 453, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 508, __pyx_L1_error)
       __pyx_t_8 = NULL;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       goto __pyx_L6_unpacking_done;
@@ -10169,21 +11364,21 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_26v
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __pyx_t_8 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 453, __pyx_L1_error)
+      __PYX_ERR(0, 508, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_5);
     __pyx_t_5 = 0;
     __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_6);
     __pyx_t_6 = 0;
-    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_v))) __PYX_ERR(0, 453, __pyx_L1_error)
+    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_v))) __PYX_ERR(0, 508, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":452
+  /* "cexprtk/_symbol_table.pyx":507
  *     return [ k for (k,v) in self.items()]
  * 
  *   def values(self):             # <<<<<<<<<<<<<<
@@ -10209,7 +11404,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_26v
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":455
+/* "cexprtk/_symbol_table.pyx":510
  *     return [ v for (k,v) in self.items() ]
  * 
  *   cpdef has_key(self, object key):             # <<<<<<<<<<<<<<
@@ -10239,7 +11434,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_has_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_has_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 455, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_has_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 510, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_29has_key)) {
         __Pyx_XDECREF(__pyx_r);
@@ -10256,7 +11451,7 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_has_
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_key) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_key);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 455, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 510, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_r = __pyx_t_2;
@@ -10277,14 +11472,14 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_has_
     #endif
   }
 
-  /* "cexprtk/_symbol_table.pyx":456
+  /* "cexprtk/_symbol_table.pyx":511
  * 
  *   cpdef has_key(self, object key):
  *     cdef bytes cstr_key = key.encode("ascii")             # <<<<<<<<<<<<<<
  *     return self._getitem(cstr_key) != NULL
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 456, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 511, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -10298,14 +11493,14 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_has_
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_n_s_ascii);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 456, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 511, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 456, __pyx_L1_error)
+  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 511, __pyx_L1_error)
   __pyx_v_cstr_key = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":457
+  /* "cexprtk/_symbol_table.pyx":512
  *   cpdef has_key(self, object key):
  *     cdef bytes cstr_key = key.encode("ascii")
  *     return self._getitem(cstr_key) != NULL             # <<<<<<<<<<<<<<
@@ -10313,13 +11508,13 @@ static PyObject *__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_has_
  *   def __contains__(self, object key):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong((((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->_getitem(__pyx_v_self, __pyx_v_cstr_key) != NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 457, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong((((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->_getitem(__pyx_v_self, __pyx_v_cstr_key) != NULL)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 512, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":455
+  /* "cexprtk/_symbol_table.pyx":510
  *     return [ v for (k,v) in self.items() ]
  * 
  *   cpdef has_key(self, object key):             # <<<<<<<<<<<<<<
@@ -10364,7 +11559,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_28h
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("has_key", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_has_key(__pyx_v_self, __pyx_v_key, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 455, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_has_key(__pyx_v_self, __pyx_v_key, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10381,11 +11576,12 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_28h
   return __pyx_r;
 }
 
-/* "cexprtk/_symbol_table.pyx":459
+/* "cexprtk/_symbol_table.pyx":514
  *     return self._getitem(cstr_key) != NULL
  * 
  *   def __contains__(self, object key):             # <<<<<<<<<<<<<<
  *     return self.has_key(key)
+ * 
  */
 
 /* Python wrapper */
@@ -10411,23 +11607,26 @@ static int __pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_30__conta
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__contains__", 0);
 
-  /* "cexprtk/_symbol_table.pyx":460
+  /* "cexprtk/_symbol_table.pyx":515
  * 
  *   def __contains__(self, object key):
  *     return self.has_key(key)             # <<<<<<<<<<<<<<
+ * 
+ * 
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->has_key(__pyx_v_self, __pyx_v_key, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 460, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_Functions *)__pyx_v_self->__pyx_vtab)->has_key(__pyx_v_self, __pyx_v_key, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 515, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 460, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 515, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   goto __pyx_L0;
 
-  /* "cexprtk/_symbol_table.pyx":459
+  /* "cexprtk/_symbol_table.pyx":514
  *     return self._getitem(cstr_key) != NULL
  * 
  *   def __contains__(self, object key):             # <<<<<<<<<<<<<<
  *     return self.has_key(key)
+ * 
  */
 
   /* function exit code */
@@ -10474,7 +11673,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_32_
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -10530,7 +11729,7 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_34_
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -10547,6 +11746,2093 @@ static PyObject *__pyx_pf_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_34_
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_Functions.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":525
+ *   C++ symbol_table object owned by parent Symbol_Table."""
+ * 
+ *   def __getitem__(self, object key):             # <<<<<<<<<<<<<<
+ *     cdef bytes cstr_key = key.encode("ascii")
+ *     cdef object strv
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_1__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_key); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_1__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_key) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables___getitem__(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self), ((PyObject *)__pyx_v_key));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables___getitem__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, PyObject *__pyx_v_key) {
+  PyObject *__pyx_v_cstr_key = 0;
+  PyObject *__pyx_v_strv = 0;
+  __pyx_t_6exprtk_symbol_table_type *__pyx_v_st;
+  __pyx_t_6exprtk_stringvar_ptr __pyx_v_vptr;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  __pyx_t_6exprtk_symbol_table_type *__pyx_t_4;
+  std::string __pyx_t_5;
+  int __pyx_t_6;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__getitem__", 0);
+
+  /* "cexprtk/_symbol_table.pyx":526
+ * 
+ *   def __getitem__(self, object key):
+ *     cdef bytes cstr_key = key.encode("ascii")             # <<<<<<<<<<<<<<
+ *     cdef object strv
+ *     cdef exprtk.symbol_table_type* st = self._csymtableptr
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 526, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_n_s_ascii);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 526, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (!(likely(PyBytes_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 526, __pyx_L1_error)
+  __pyx_v_cstr_key = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "cexprtk/_symbol_table.pyx":528
+ *     cdef bytes cstr_key = key.encode("ascii")
+ *     cdef object strv
+ *     cdef exprtk.symbol_table_type* st = self._csymtableptr             # <<<<<<<<<<<<<<
+ *     cdef exprtk.stringvar_ptr vptr = st[0].get_stringvar(cstr_key)
+ *     if vptr != NULL:
+ */
+  __pyx_t_4 = __pyx_v_self->_csymtableptr;
+  __pyx_v_st = __pyx_t_4;
+
+  /* "cexprtk/_symbol_table.pyx":529
+ *     cdef object strv
+ *     cdef exprtk.symbol_table_type* st = self._csymtableptr
+ *     cdef exprtk.stringvar_ptr vptr = st[0].get_stringvar(cstr_key)             # <<<<<<<<<<<<<<
+ *     if vptr != NULL:
+ *       strv = vptr[0].ref().decode("ascii")
+ */
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 529, __pyx_L1_error)
+  __pyx_v_vptr = (__pyx_v_st[0]).get_stringvar(__pyx_t_5);
+
+  /* "cexprtk/_symbol_table.pyx":530
+ *     cdef exprtk.symbol_table_type* st = self._csymtableptr
+ *     cdef exprtk.stringvar_ptr vptr = st[0].get_stringvar(cstr_key)
+ *     if vptr != NULL:             # <<<<<<<<<<<<<<
+ *       strv = vptr[0].ref().decode("ascii")
+ *       return strv
+ */
+  __pyx_t_6 = ((__pyx_v_vptr != NULL) != 0);
+  if (likely(__pyx_t_6)) {
+
+    /* "cexprtk/_symbol_table.pyx":531
+ *     cdef exprtk.stringvar_ptr vptr = st[0].get_stringvar(cstr_key)
+ *     if vptr != NULL:
+ *       strv = vptr[0].ref().decode("ascii")             # <<<<<<<<<<<<<<
+ *       return strv
+ *     else:
+ */
+    __pyx_t_1 = __Pyx_decode_cpp_string((__pyx_v_vptr[0]).ref(), 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeASCII); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 531, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_v_strv = __pyx_t_1;
+    __pyx_t_1 = 0;
+
+    /* "cexprtk/_symbol_table.pyx":532
+ *     if vptr != NULL:
+ *       strv = vptr[0].ref().decode("ascii")
+ *       return strv             # <<<<<<<<<<<<<<
+ *     else:
+ *       raise KeyError("Unknown string_variable: "+key)
+ */
+    __Pyx_XDECREF(__pyx_r);
+    __Pyx_INCREF(__pyx_v_strv);
+    __pyx_r = __pyx_v_strv;
+    goto __pyx_L0;
+
+    /* "cexprtk/_symbol_table.pyx":530
+ *     cdef exprtk.symbol_table_type* st = self._csymtableptr
+ *     cdef exprtk.stringvar_ptr vptr = st[0].get_stringvar(cstr_key)
+ *     if vptr != NULL:             # <<<<<<<<<<<<<<
+ *       strv = vptr[0].ref().decode("ascii")
+ *       return strv
+ */
+  }
+
+  /* "cexprtk/_symbol_table.pyx":534
+ *       return strv
+ *     else:
+ *       raise KeyError("Unknown string_variable: "+key)             # <<<<<<<<<<<<<<
+ * 
+ *   def __setitem__(self, object key, object value):
+ */
+  /*else*/ {
+    __pyx_t_1 = PyNumber_Add(__pyx_kp_s_Unknown_string_variable, __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 534, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 534, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __PYX_ERR(0, 534, __pyx_L1_error)
+  }
+
+  /* "cexprtk/_symbol_table.pyx":525
+ *   C++ symbol_table object owned by parent Symbol_Table."""
+ * 
+ *   def __getitem__(self, object key):             # <<<<<<<<<<<<<<
+ *     cdef bytes cstr_key = key.encode("ascii")
+ *     cdef object strv
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.__getitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_cstr_key);
+  __Pyx_XDECREF(__pyx_v_strv);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":536
+ *       raise KeyError("Unknown string_variable: "+key)
+ * 
+ *   def __setitem__(self, object key, object value):             # <<<<<<<<<<<<<<
+ *     cdef int rv
+ *     cdef string strkey
+ */
+
+/* Python wrapper */
+static int __pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_3__setitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_3__setitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_value) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__setitem__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_2__setitem__(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self), ((PyObject *)__pyx_v_key), ((PyObject *)__pyx_v_value));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_2__setitem__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_value) {
+  int __pyx_v_rv;
+  std::string __pyx_v_strkey;
+  PyObject *__pyx_v_varkey = NULL;
+  __pyx_t_6exprtk_stringvar_ptr __pyx_v_vptr;
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  std::string __pyx_t_5;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__setitem__", 0);
+
+  /* "cexprtk/_symbol_table.pyx":540
+ *     cdef string strkey
+ *     cdef string var
+ *     if not self._csymtableptr:             # <<<<<<<<<<<<<<
+ *       raise ReferenceError("Parent Symbol_Table no longer exists")
+ *     strkey = key.encode("ascii")
+ */
+  __pyx_t_1 = ((!(__pyx_v_self->_csymtableptr != 0)) != 0);
+  if (unlikely(__pyx_t_1)) {
+
+    /* "cexprtk/_symbol_table.pyx":541
+ *     cdef string var
+ *     if not self._csymtableptr:
+ *       raise ReferenceError("Parent Symbol_Table no longer exists")             # <<<<<<<<<<<<<<
+ *     strkey = key.encode("ascii")
+ *     varkey = value.encode("ascii")
+ */
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ReferenceError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 541, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __PYX_ERR(0, 541, __pyx_L1_error)
+
+    /* "cexprtk/_symbol_table.pyx":540
+ *     cdef string strkey
+ *     cdef string var
+ *     if not self._csymtableptr:             # <<<<<<<<<<<<<<
+ *       raise ReferenceError("Parent Symbol_Table no longer exists")
+ *     strkey = key.encode("ascii")
+ */
+  }
+
+  /* "cexprtk/_symbol_table.pyx":542
+ *     if not self._csymtableptr:
+ *       raise ReferenceError("Parent Symbol_Table no longer exists")
+ *     strkey = key.encode("ascii")             # <<<<<<<<<<<<<<
+ *     varkey = value.encode("ascii")
+ * 
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 542, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_n_s_ascii);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 542, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_t_2); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 542, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_strkey = __pyx_t_5;
+
+  /* "cexprtk/_symbol_table.pyx":543
+ *       raise ReferenceError("Parent Symbol_Table no longer exists")
+ *     strkey = key.encode("ascii")
+ *     varkey = value.encode("ascii")             # <<<<<<<<<<<<<<
+ * 
+ *     if self._functions.has_key(key):
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_encode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 543, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_n_s_ascii);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 543, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_v_varkey = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "cexprtk/_symbol_table.pyx":545
+ *     varkey = value.encode("ascii")
+ * 
+ *     if self._functions.has_key(key):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Cannot set string variable because a function already exists with the same name: "+key)
+ * 
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self->_functions, __pyx_n_s_has_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 545, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_key) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_key);
+  __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 545, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 545, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (unlikely(__pyx_t_1)) {
+
+    /* "cexprtk/_symbol_table.pyx":546
+ * 
+ *     if self._functions.has_key(key):
+ *       raise KeyError("Cannot set string variable because a function already exists with the same name: "+key)             # <<<<<<<<<<<<<<
+ * 
+ *     if is_constant(strkey, self._csymtableptr):
+ */
+    __pyx_t_2 = PyNumber_Add(__pyx_kp_s_Cannot_set_string_variable_becau, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 546, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 546, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_Raise(__pyx_t_3, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __PYX_ERR(0, 546, __pyx_L1_error)
+
+    /* "cexprtk/_symbol_table.pyx":545
+ *     varkey = value.encode("ascii")
+ * 
+ *     if self._functions.has_key(key):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Cannot set string variable because a function already exists with the same name: "+key)
+ * 
+ */
+  }
+
+  /* "cexprtk/_symbol_table.pyx":548
+ *       raise KeyError("Cannot set string variable because a function already exists with the same name: "+key)
+ * 
+ *     if is_constant(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Cannot set string variable because a constant already exists with the same name: "+key)
+ * 
+ */
+  __pyx_t_1 = (__pyx_f_7cexprtk_13_symbol_table_is_constant(__pyx_v_strkey, __pyx_v_self->_csymtableptr) != 0);
+  if (unlikely(__pyx_t_1)) {
+
+    /* "cexprtk/_symbol_table.pyx":549
+ * 
+ *     if is_constant(strkey, self._csymtableptr):
+ *       raise KeyError("Cannot set string variable because a constant already exists with the same name: "+key)             # <<<<<<<<<<<<<<
+ * 
+ *     if is_variable(strkey, self._csymtableptr):
+ */
+    __pyx_t_3 = PyNumber_Add(__pyx_kp_s_Cannot_set_string_variable_becau_2, __pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 549, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 549, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __PYX_ERR(0, 549, __pyx_L1_error)
+
+    /* "cexprtk/_symbol_table.pyx":548
+ *       raise KeyError("Cannot set string variable because a function already exists with the same name: "+key)
+ * 
+ *     if is_constant(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Cannot set string variable because a constant already exists with the same name: "+key)
+ * 
+ */
+  }
+
+  /* "cexprtk/_symbol_table.pyx":551
+ *       raise KeyError("Cannot set string variable because a constant already exists with the same name: "+key)
+ * 
+ *     if is_variable(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Cannot set string variable because a variable already exists with the same name: "+key)
+ * 
+ */
+  __pyx_t_1 = (__pyx_f_7cexprtk_13_symbol_table_is_variable(__pyx_v_strkey, __pyx_v_self->_csymtableptr) != 0);
+  if (unlikely(__pyx_t_1)) {
+
+    /* "cexprtk/_symbol_table.pyx":552
+ * 
+ *     if is_variable(strkey, self._csymtableptr):
+ *       raise KeyError("Cannot set string variable because a variable already exists with the same name: "+key)             # <<<<<<<<<<<<<<
+ * 
+ *     cdef exprtk.stringvar_ptr vptr = self._csymtableptr[0].get_stringvar(strkey)
+ */
+    __pyx_t_2 = PyNumber_Add(__pyx_kp_s_Cannot_set_string_variable_becau_3, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 552, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 552, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_Raise(__pyx_t_3, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __PYX_ERR(0, 552, __pyx_L1_error)
+
+    /* "cexprtk/_symbol_table.pyx":551
+ *       raise KeyError("Cannot set string variable because a constant already exists with the same name: "+key)
+ * 
+ *     if is_variable(strkey, self._csymtableptr):             # <<<<<<<<<<<<<<
+ *       raise KeyError("Cannot set string variable because a variable already exists with the same name: "+key)
+ * 
+ */
+  }
+
+  /* "cexprtk/_symbol_table.pyx":554
+ *       raise KeyError("Cannot set string variable because a variable already exists with the same name: "+key)
+ * 
+ *     cdef exprtk.stringvar_ptr vptr = self._csymtableptr[0].get_stringvar(strkey)             # <<<<<<<<<<<<<<
+ *     if vptr == NULL:
+ *       rv = self._csymtableptr[0].create_stringvar(strkey, varkey)
+ */
+  __pyx_v_vptr = (__pyx_v_self->_csymtableptr[0]).get_stringvar(__pyx_v_strkey);
+
+  /* "cexprtk/_symbol_table.pyx":555
+ * 
+ *     cdef exprtk.stringvar_ptr vptr = self._csymtableptr[0].get_stringvar(strkey)
+ *     if vptr == NULL:             # <<<<<<<<<<<<<<
+ *       rv = self._csymtableptr[0].create_stringvar(strkey, varkey)
+ *     else:
+ */
+  __pyx_t_1 = ((__pyx_v_vptr == NULL) != 0);
+  if (__pyx_t_1) {
+
+    /* "cexprtk/_symbol_table.pyx":556
+ *     cdef exprtk.stringvar_ptr vptr = self._csymtableptr[0].get_stringvar(strkey)
+ *     if vptr == NULL:
+ *       rv = self._csymtableptr[0].create_stringvar(strkey, varkey)             # <<<<<<<<<<<<<<
+ *     else:
+ *       rv = cexprtk_util.stringVariableAssign(self._csymtableptr[0], strkey, varkey)
+ */
+    __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_v_varkey); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 556, __pyx_L1_error)
+    __pyx_v_rv = (__pyx_v_self->_csymtableptr[0]).create_stringvar(__pyx_v_strkey, __pyx_t_5);
+
+    /* "cexprtk/_symbol_table.pyx":555
+ * 
+ *     cdef exprtk.stringvar_ptr vptr = self._csymtableptr[0].get_stringvar(strkey)
+ *     if vptr == NULL:             # <<<<<<<<<<<<<<
+ *       rv = self._csymtableptr[0].create_stringvar(strkey, varkey)
+ *     else:
+ */
+    goto __pyx_L7;
+  }
+
+  /* "cexprtk/_symbol_table.pyx":558
+ *       rv = self._csymtableptr[0].create_stringvar(strkey, varkey)
+ *     else:
+ *       rv = cexprtk_util.stringVariableAssign(self._csymtableptr[0], strkey, varkey)             # <<<<<<<<<<<<<<
+ * 
+ *     if not rv:
+ */
+  /*else*/ {
+    __pyx_t_5 = __pyx_convert_string_from_py_std__in_string(__pyx_v_varkey); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 558, __pyx_L1_error)
+    __pyx_v_rv = stringVariableAssign((__pyx_v_self->_csymtableptr[0]), __pyx_v_strkey, __pyx_t_5);
+  }
+  __pyx_L7:;
+
+  /* "cexprtk/_symbol_table.pyx":560
+ *       rv = cexprtk_util.stringVariableAssign(self._csymtableptr[0], strkey, varkey)
+ * 
+ *     if not rv:             # <<<<<<<<<<<<<<
+ *       raise KeyError("Unknown variable: "+key)
+ * 
+ */
+  __pyx_t_1 = ((!(__pyx_v_rv != 0)) != 0);
+  if (unlikely(__pyx_t_1)) {
+
+    /* "cexprtk/_symbol_table.pyx":561
+ * 
+ *     if not rv:
+ *       raise KeyError("Unknown variable: "+key)             # <<<<<<<<<<<<<<
+ * 
+ *   def __iter__(self):
+ */
+    __pyx_t_3 = PyNumber_Add(__pyx_kp_s_Unknown_variable, __pyx_v_key); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 561, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 561, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_Raise(__pyx_t_2, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __PYX_ERR(0, 561, __pyx_L1_error)
+
+    /* "cexprtk/_symbol_table.pyx":560
+ *       rv = cexprtk_util.stringVariableAssign(self._csymtableptr[0], strkey, varkey)
+ * 
+ *     if not rv:             # <<<<<<<<<<<<<<
+ *       raise KeyError("Unknown variable: "+key)
+ * 
+ */
+  }
+
+  /* "cexprtk/_symbol_table.pyx":536
+ *       raise KeyError("Unknown string_variable: "+key)
+ * 
+ *   def __setitem__(self, object key, object value):             # <<<<<<<<<<<<<<
+ *     cdef int rv
+ *     cdef string strkey
+ */
+
+  /* function exit code */
+  __pyx_r = 0;
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.__setitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_varkey);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":563
+ *       raise KeyError("Unknown variable: "+key)
+ * 
+ *   def __iter__(self):             # <<<<<<<<<<<<<<
+ *     return self.iterkeys()
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_5__iter__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_5__iter__(PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__iter__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_4__iter__(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_4__iter__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__iter__", 0);
+
+  /* "cexprtk/_symbol_table.pyx":564
+ * 
+ *   def __iter__(self):
+ *     return self.iterkeys()             # <<<<<<<<<<<<<<
+ * 
+ *   def __len__(self):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_iterkeys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 564, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":563
+ *       raise KeyError("Unknown variable: "+key)
+ * 
+ *   def __iter__(self):             # <<<<<<<<<<<<<<
+ *     return self.iterkeys()
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.__iter__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":566
+ *     return self.iterkeys()
+ * 
+ *   def __len__(self):             # <<<<<<<<<<<<<<
+ *     return len(self.items())
+ * 
+ */
+
+/* Python wrapper */
+static Py_ssize_t __pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_7__len__(PyObject *__pyx_v_self); /*proto*/
+static Py_ssize_t __pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_7__len__(PyObject *__pyx_v_self) {
+  Py_ssize_t __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__len__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_6__len__(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static Py_ssize_t __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_6__len__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self) {
+  Py_ssize_t __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  Py_ssize_t __pyx_t_2;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__len__", 0);
+
+  /* "cexprtk/_symbol_table.pyx":567
+ * 
+ *   def __len__(self):
+ *     return len(self.items())             # <<<<<<<<<<<<<<
+ * 
+ *   cpdef list items(self):
+ */
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 567, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (unlikely(__pyx_t_1 == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
+    __PYX_ERR(0, 567, __pyx_L1_error)
+  }
+  __pyx_t_2 = PyList_GET_SIZE(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 567, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_2;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":566
+ *     return self.iterkeys()
+ * 
+ *   def __len__(self):             # <<<<<<<<<<<<<<
+ *     return len(self.items())
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.__len__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":569
+ *     return len(self.items())
+ * 
+ *   cpdef list items(self):             # <<<<<<<<<<<<<<
+ *     cdef object strk
+ *     cdef object strv
+ */
+
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_9items(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_f_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_items(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, int __pyx_skip_dispatch) {
+  PyObject *__pyx_v_strk = 0;
+  PyObject *__pyx_v_strv = 0;
+  PyObject *__pyx_v_retlist = 0;
+  PyObject *__pyx_v_k = NULL;
+  PyObject *__pyx_v_v = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  Py_ssize_t __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *(*__pyx_t_7)(PyObject *);
+  std::string __pyx_t_8;
+  int __pyx_t_9;
+  int __pyx_t_10;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("items", 0);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely((Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0) || (Py_TYPE(((PyObject *)__pyx_v_self))->tp_flags & (Py_TPFLAGS_IS_ABSTRACT | Py_TPFLAGS_HEAPTYPE)))) {
+    #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
+    static PY_UINT64_T __pyx_tp_dict_version = __PYX_DICT_VERSION_INIT, __pyx_obj_dict_version = __PYX_DICT_VERSION_INIT;
+    if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
+      PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
+      #endif
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 569, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_9items)) {
+        __Pyx_XDECREF(__pyx_r);
+        __Pyx_INCREF(__pyx_t_1);
+        __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
+        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+          __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+          if (likely(__pyx_t_4)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+            __Pyx_INCREF(__pyx_t_4);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_3, function);
+          }
+        }
+        __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
+        __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 569, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 569, __pyx_L1_error)
+        __pyx_r = ((PyObject*)__pyx_t_2);
+        __pyx_t_2 = 0;
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        goto __pyx_L0;
+      }
+      #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
+      __pyx_tp_dict_version = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
+      __pyx_obj_dict_version = __Pyx_get_object_dict_version(((PyObject *)__pyx_v_self));
+      if (unlikely(__pyx_type_dict_guard != __pyx_tp_dict_version)) {
+        __pyx_tp_dict_version = __pyx_obj_dict_version = __PYX_DICT_VERSION_INIT;
+      }
+      #endif
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
+    }
+    #endif
+  }
+
+  /* "cexprtk/_symbol_table.pyx":572
+ *     cdef object strk
+ *     cdef object strv
+ *     cdef list retlist = []             # <<<<<<<<<<<<<<
+ * 
+ *     for (k,v) in self._get_variable_list():
+ */
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 572, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_retlist = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "cexprtk/_symbol_table.pyx":574
+ *     cdef list retlist = []
+ * 
+ *     for (k,v) in self._get_variable_list():             # <<<<<<<<<<<<<<
+ *       if not self._csymtableptr.is_constant_node(k):
+ *         strk = k.decode("ascii")
+ */
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self->__pyx_vtab)->_get_variable_list(__pyx_v_self); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 574, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (unlikely(__pyx_t_1 == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
+    __PYX_ERR(0, 574, __pyx_L1_error)
+  }
+  __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  for (;;) {
+    if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_2)) break;
+    #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 574, __pyx_L1_error)
+    #else
+    __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 574, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    #endif
+    if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
+      PyObject* sequence = __pyx_t_1;
+      Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
+      if (unlikely(size != 2)) {
+        if (size > 2) __Pyx_RaiseTooManyValuesError(2);
+        else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+        __PYX_ERR(0, 574, __pyx_L1_error)
+      }
+      #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+      if (likely(PyTuple_CheckExact(sequence))) {
+        __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0); 
+        __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1); 
+      } else {
+        __pyx_t_3 = PyList_GET_ITEM(sequence, 0); 
+        __pyx_t_4 = PyList_GET_ITEM(sequence, 1); 
+      }
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_4);
+      #else
+      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 574, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 574, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      #endif
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    } else {
+      Py_ssize_t index = -1;
+      __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 574, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_t_7 = Py_TYPE(__pyx_t_6)->tp_iternext;
+      index = 0; __pyx_t_3 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_3)) goto __pyx_L5_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_3);
+      index = 1; __pyx_t_4 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_4)) goto __pyx_L5_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_4);
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 2) < 0) __PYX_ERR(0, 574, __pyx_L1_error)
+      __pyx_t_7 = NULL;
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      goto __pyx_L6_unpacking_done;
+      __pyx_L5_unpacking_failed:;
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __pyx_t_7 = NULL;
+      if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
+      __PYX_ERR(0, 574, __pyx_L1_error)
+      __pyx_L6_unpacking_done:;
+    }
+    __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_3);
+    __pyx_t_3 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_4);
+    __pyx_t_4 = 0;
+
+    /* "cexprtk/_symbol_table.pyx":575
+ * 
+ *     for (k,v) in self._get_variable_list():
+ *       if not self._csymtableptr.is_constant_node(k):             # <<<<<<<<<<<<<<
+ *         strk = k.decode("ascii")
+ *         strv = v.decode("ascii")
+ */
+    __pyx_t_8 = __pyx_convert_string_from_py_std__in_string(__pyx_v_k); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 575, __pyx_L1_error)
+    __pyx_t_9 = ((!(__pyx_v_self->_csymtableptr->is_constant_node(__pyx_t_8) != 0)) != 0);
+    if (__pyx_t_9) {
+
+      /* "cexprtk/_symbol_table.pyx":576
+ *     for (k,v) in self._get_variable_list():
+ *       if not self._csymtableptr.is_constant_node(k):
+ *         strk = k.decode("ascii")             # <<<<<<<<<<<<<<
+ *         strv = v.decode("ascii")
+ *         retlist.append((strk, strv))
+ */
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_k, __pyx_n_s_decode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 576, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_3 = NULL;
+      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
+        __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+        if (likely(__pyx_t_3)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+          __Pyx_INCREF(__pyx_t_3);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_4, function);
+        }
+      }
+      __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_3, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_n_s_ascii);
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 576, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_strk, __pyx_t_1);
+      __pyx_t_1 = 0;
+
+      /* "cexprtk/_symbol_table.pyx":577
+ *       if not self._csymtableptr.is_constant_node(k):
+ *         strk = k.decode("ascii")
+ *         strv = v.decode("ascii")             # <<<<<<<<<<<<<<
+ *         retlist.append((strk, strv))
+ *     return retlist
+ */
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_v, __pyx_n_s_decode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 577, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_3 = NULL;
+      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
+        __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+        if (likely(__pyx_t_3)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+          __Pyx_INCREF(__pyx_t_3);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_4, function);
+        }
+      }
+      __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_3, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_n_s_ascii);
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 577, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_strv, __pyx_t_1);
+      __pyx_t_1 = 0;
+
+      /* "cexprtk/_symbol_table.pyx":578
+ *         strk = k.decode("ascii")
+ *         strv = v.decode("ascii")
+ *         retlist.append((strk, strv))             # <<<<<<<<<<<<<<
+ *     return retlist
+ * 
+ */
+      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 578, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_INCREF(__pyx_v_strk);
+      __Pyx_GIVEREF(__pyx_v_strk);
+      PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_strk);
+      __Pyx_INCREF(__pyx_v_strv);
+      __Pyx_GIVEREF(__pyx_v_strv);
+      PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_strv);
+      __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_retlist, __pyx_t_1); if (unlikely(__pyx_t_10 == ((int)-1))) __PYX_ERR(0, 578, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+      /* "cexprtk/_symbol_table.pyx":575
+ * 
+ *     for (k,v) in self._get_variable_list():
+ *       if not self._csymtableptr.is_constant_node(k):             # <<<<<<<<<<<<<<
+ *         strk = k.decode("ascii")
+ *         strv = v.decode("ascii")
+ */
+    }
+
+    /* "cexprtk/_symbol_table.pyx":574
+ *     cdef list retlist = []
+ * 
+ *     for (k,v) in self._get_variable_list():             # <<<<<<<<<<<<<<
+ *       if not self._csymtableptr.is_constant_node(k):
+ *         strk = k.decode("ascii")
+ */
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "cexprtk/_symbol_table.pyx":579
+ *         strv = v.decode("ascii")
+ *         retlist.append((strk, strv))
+ *     return retlist             # <<<<<<<<<<<<<<
+ * 
+ *   def iteritems(self):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(__pyx_v_retlist);
+  __pyx_r = __pyx_v_retlist;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":569
+ *     return len(self.items())
+ * 
+ *   cpdef list items(self):             # <<<<<<<<<<<<<<
+ *     cdef object strk
+ *     cdef object strv
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.items", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_strk);
+  __Pyx_XDECREF(__pyx_v_strv);
+  __Pyx_XDECREF(__pyx_v_retlist);
+  __Pyx_XDECREF(__pyx_v_k);
+  __Pyx_XDECREF(__pyx_v_v);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_9items(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_9items(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("items (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_8items(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_8items(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("items", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_items(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 569, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.items", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":581
+ *     return retlist
+ * 
+ *   def iteritems(self):             # <<<<<<<<<<<<<<
+ *     return iter(self.items())
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_11iteritems(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_11iteritems(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("iteritems (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_10iteritems(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_10iteritems(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("iteritems", 0);
+
+  /* "cexprtk/_symbol_table.pyx":582
+ * 
+ *   def iteritems(self):
+ *     return iter(self.items())             # <<<<<<<<<<<<<<
+ * 
+ *   def iterkeys(self):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 582, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 582, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":581
+ *     return retlist
+ * 
+ *   def iteritems(self):             # <<<<<<<<<<<<<<
+ *     return iter(self.items())
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.iteritems", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":584
+ *     return iter(self.items())
+ * 
+ *   def iterkeys(self):             # <<<<<<<<<<<<<<
+ *     return iter(self.keys())
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_13iterkeys(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_13iterkeys(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("iterkeys (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_12iterkeys(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_12iterkeys(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("iterkeys", 0);
+
+  /* "cexprtk/_symbol_table.pyx":585
+ * 
+ *   def iterkeys(self):
+ *     return iter(self.keys())             # <<<<<<<<<<<<<<
+ * 
+ *   def itervalues(self):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_keys); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 585, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 585, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 585, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":584
+ *     return iter(self.items())
+ * 
+ *   def iterkeys(self):             # <<<<<<<<<<<<<<
+ *     return iter(self.keys())
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.iterkeys", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":587
+ *     return iter(self.keys())
+ * 
+ *   def itervalues(self):             # <<<<<<<<<<<<<<
+ *     return iter(self.values())
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_15itervalues(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_15itervalues(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("itervalues (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_14itervalues(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_14itervalues(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("itervalues", 0);
+
+  /* "cexprtk/_symbol_table.pyx":588
+ * 
+ *   def itervalues(self):
+ *     return iter(self.values())             # <<<<<<<<<<<<<<
+ * 
+ *   def keys(self):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 588, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 588, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 588, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":587
+ *     return iter(self.keys())
+ * 
+ *   def itervalues(self):             # <<<<<<<<<<<<<<
+ *     return iter(self.values())
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.itervalues", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":590
+ *     return iter(self.values())
+ * 
+ *   def keys(self):             # <<<<<<<<<<<<<<
+ *     return [ k for (k,v) in self.items()]
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_17keys(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_17keys(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("keys (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_16keys(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_16keys(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self) {
+  PyObject *__pyx_v_k = NULL;
+  CYTHON_UNUSED PyObject *__pyx_v_v = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  Py_ssize_t __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *(*__pyx_t_8)(PyObject *);
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("keys", 0);
+
+  /* "cexprtk/_symbol_table.pyx":591
+ * 
+ *   def keys(self):
+ *     return [ k for (k,v) in self.items()]             # <<<<<<<<<<<<<<
+ * 
+ *   def values(self):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 591, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 591, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (unlikely(__pyx_t_2 == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
+    __PYX_ERR(0, 591, __pyx_L1_error)
+  }
+  __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  for (;;) {
+    if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
+    #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 591, __pyx_L1_error)
+    #else
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 591, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    #endif
+    if ((likely(PyTuple_CheckExact(__pyx_t_2))) || (PyList_CheckExact(__pyx_t_2))) {
+      PyObject* sequence = __pyx_t_2;
+      Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
+      if (unlikely(size != 2)) {
+        if (size > 2) __Pyx_RaiseTooManyValuesError(2);
+        else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+        __PYX_ERR(0, 591, __pyx_L1_error)
+      }
+      #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+      if (likely(PyTuple_CheckExact(sequence))) {
+        __pyx_t_5 = PyTuple_GET_ITEM(sequence, 0); 
+        __pyx_t_6 = PyTuple_GET_ITEM(sequence, 1); 
+      } else {
+        __pyx_t_5 = PyList_GET_ITEM(sequence, 0); 
+        __pyx_t_6 = PyList_GET_ITEM(sequence, 1); 
+      }
+      __Pyx_INCREF(__pyx_t_5);
+      __Pyx_INCREF(__pyx_t_6);
+      #else
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 591, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 591, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      #endif
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    } else {
+      Py_ssize_t index = -1;
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 591, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
+      index = 0; __pyx_t_5 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_5)) goto __pyx_L5_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_5);
+      index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_6);
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 591, __pyx_L1_error)
+      __pyx_t_8 = NULL;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      goto __pyx_L6_unpacking_done;
+      __pyx_L5_unpacking_failed:;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __pyx_t_8 = NULL;
+      if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
+      __PYX_ERR(0, 591, __pyx_L1_error)
+      __pyx_L6_unpacking_done:;
+    }
+    __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_5);
+    __pyx_t_5 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_6);
+    __pyx_t_6 = 0;
+    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_k))) __PYX_ERR(0, 591, __pyx_L1_error)
+  }
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":590
+ *     return iter(self.values())
+ * 
+ *   def keys(self):             # <<<<<<<<<<<<<<
+ *     return [ k for (k,v) in self.items()]
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.keys", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_k);
+  __Pyx_XDECREF(__pyx_v_v);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":593
+ *     return [ k for (k,v) in self.items()]
+ * 
+ *   def values(self):             # <<<<<<<<<<<<<<
+ *     return [ v for (k,v) in self.items() ]
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_19values(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_19values(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("values (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_18values(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_18values(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self) {
+  CYTHON_UNUSED PyObject *__pyx_v_k = NULL;
+  PyObject *__pyx_v_v = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  Py_ssize_t __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *(*__pyx_t_8)(PyObject *);
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("values", 0);
+
+  /* "cexprtk/_symbol_table.pyx":594
+ * 
+ *   def values(self):
+ *     return [ v for (k,v) in self.items() ]             # <<<<<<<<<<<<<<
+ * 
+ *   cdef list _get_variable_list(self):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 594, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self->__pyx_vtab)->items(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 594, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (unlikely(__pyx_t_2 == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
+    __PYX_ERR(0, 594, __pyx_L1_error)
+  }
+  __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  for (;;) {
+    if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
+    #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 594, __pyx_L1_error)
+    #else
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 594, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    #endif
+    if ((likely(PyTuple_CheckExact(__pyx_t_2))) || (PyList_CheckExact(__pyx_t_2))) {
+      PyObject* sequence = __pyx_t_2;
+      Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
+      if (unlikely(size != 2)) {
+        if (size > 2) __Pyx_RaiseTooManyValuesError(2);
+        else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+        __PYX_ERR(0, 594, __pyx_L1_error)
+      }
+      #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+      if (likely(PyTuple_CheckExact(sequence))) {
+        __pyx_t_5 = PyTuple_GET_ITEM(sequence, 0); 
+        __pyx_t_6 = PyTuple_GET_ITEM(sequence, 1); 
+      } else {
+        __pyx_t_5 = PyList_GET_ITEM(sequence, 0); 
+        __pyx_t_6 = PyList_GET_ITEM(sequence, 1); 
+      }
+      __Pyx_INCREF(__pyx_t_5);
+      __Pyx_INCREF(__pyx_t_6);
+      #else
+      __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 594, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 594, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      #endif
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    } else {
+      Py_ssize_t index = -1;
+      __pyx_t_7 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 594, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
+      index = 0; __pyx_t_5 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_5)) goto __pyx_L5_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_5);
+      index = 1; __pyx_t_6 = __pyx_t_8(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
+      __Pyx_GOTREF(__pyx_t_6);
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 2) < 0) __PYX_ERR(0, 594, __pyx_L1_error)
+      __pyx_t_8 = NULL;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      goto __pyx_L6_unpacking_done;
+      __pyx_L5_unpacking_failed:;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __pyx_t_8 = NULL;
+      if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
+      __PYX_ERR(0, 594, __pyx_L1_error)
+      __pyx_L6_unpacking_done:;
+    }
+    __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_5);
+    __pyx_t_5 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_6);
+    __pyx_t_6 = 0;
+    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_v_v))) __PYX_ERR(0, 594, __pyx_L1_error)
+  }
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":593
+ *     return [ k for (k,v) in self.items()]
+ * 
+ *   def values(self):             # <<<<<<<<<<<<<<
+ *     return [ v for (k,v) in self.items() ]
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.values", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_k);
+  __Pyx_XDECREF(__pyx_v_v);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":596
+ *     return [ v for (k,v) in self.items() ]
+ * 
+ *   cdef list _get_variable_list(self):             # <<<<<<<<<<<<<<
+ *     cdef exprtk.LabelStringPairVector itemvector = exprtk.LabelStringPairVector()
+ *     self._csymtableptr.get_stringvar_list(itemvector)
+ */
+
+static PyObject *__pyx_f_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables__get_variable_list(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self) {
+  __pyx_t_6exprtk_LabelStringPairVector __pyx_v_itemvector;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __pyx_t_6exprtk_LabelStringPairVector __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("_get_variable_list", 0);
+
+  /* "cexprtk/_symbol_table.pyx":597
+ * 
+ *   cdef list _get_variable_list(self):
+ *     cdef exprtk.LabelStringPairVector itemvector = exprtk.LabelStringPairVector()             # <<<<<<<<<<<<<<
+ *     self._csymtableptr.get_stringvar_list(itemvector)
+ *     return itemvector
+ */
+  try {
+    __pyx_t_1 = __pyx_t_6exprtk_LabelStringPairVector();
+  } catch(...) {
+    __Pyx_CppExn2PyErr();
+    __PYX_ERR(0, 597, __pyx_L1_error)
+  }
+  __pyx_v_itemvector = __pyx_t_1;
+
+  /* "cexprtk/_symbol_table.pyx":598
+ *   cdef list _get_variable_list(self):
+ *     cdef exprtk.LabelStringPairVector itemvector = exprtk.LabelStringPairVector()
+ *     self._csymtableptr.get_stringvar_list(itemvector)             # <<<<<<<<<<<<<<
+ *     return itemvector
+ * 
+ */
+  (void)(__pyx_v_self->_csymtableptr->get_stringvar_list(__pyx_v_itemvector));
+
+  /* "cexprtk/_symbol_table.pyx":599
+ *     cdef exprtk.LabelStringPairVector itemvector = exprtk.LabelStringPairVector()
+ *     self._csymtableptr.get_stringvar_list(itemvector)
+ *     return itemvector             # <<<<<<<<<<<<<<
+ * 
+ *   cpdef has_key(self, object key):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = __pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair(__pyx_v_itemvector); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 599, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (!(likely(PyList_CheckExact(__pyx_t_2))||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 599, __pyx_L1_error)
+  __pyx_r = ((PyObject*)__pyx_t_2);
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":596
+ *     return [ v for (k,v) in self.items() ]
+ * 
+ *   cdef list _get_variable_list(self):             # <<<<<<<<<<<<<<
+ *     cdef exprtk.LabelStringPairVector itemvector = exprtk.LabelStringPairVector()
+ *     self._csymtableptr.get_stringvar_list(itemvector)
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables._get_variable_list", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":601
+ *     return itemvector
+ * 
+ *   cpdef has_key(self, object key):             # <<<<<<<<<<<<<<
+ *     try:
+ *       key = str(key)
+ */
+
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_21has_key(PyObject *__pyx_v_self, PyObject *__pyx_v_key); /*proto*/
+static PyObject *__pyx_f_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_has_key(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, PyObject *__pyx_v_key, int __pyx_skip_dispatch) {
+  PyObject *__pyx_v_cstr_key = 0;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  int __pyx_t_8;
+  std::string __pyx_t_9;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("has_key", 0);
+  __Pyx_INCREF(__pyx_v_key);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely((Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0) || (Py_TYPE(((PyObject *)__pyx_v_self))->tp_flags & (Py_TPFLAGS_IS_ABSTRACT | Py_TPFLAGS_HEAPTYPE)))) {
+    #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
+    static PY_UINT64_T __pyx_tp_dict_version = __PYX_DICT_VERSION_INIT, __pyx_obj_dict_version = __PYX_DICT_VERSION_INIT;
+    if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
+      PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
+      #endif
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_has_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 601, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_21has_key)) {
+        __Pyx_XDECREF(__pyx_r);
+        __Pyx_INCREF(__pyx_t_1);
+        __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
+        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+          __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+          if (likely(__pyx_t_4)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+            __Pyx_INCREF(__pyx_t_4);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_3, function);
+          }
+        }
+        __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_key) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_key);
+        __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 601, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __pyx_r = __pyx_t_2;
+        __pyx_t_2 = 0;
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        goto __pyx_L0;
+      }
+      #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
+      __pyx_tp_dict_version = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
+      __pyx_obj_dict_version = __Pyx_get_object_dict_version(((PyObject *)__pyx_v_self));
+      if (unlikely(__pyx_type_dict_guard != __pyx_tp_dict_version)) {
+        __pyx_tp_dict_version = __pyx_obj_dict_version = __PYX_DICT_VERSION_INIT;
+      }
+      #endif
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
+    }
+    #endif
+  }
+
+  /* "cexprtk/_symbol_table.pyx":602
+ * 
+ *   cpdef has_key(self, object key):
+ *     try:             # <<<<<<<<<<<<<<
+ *       key = str(key)
+ *     except ValueError:
+ */
+  {
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    __Pyx_ExceptionSave(&__pyx_t_5, &__pyx_t_6, &__pyx_t_7);
+    __Pyx_XGOTREF(__pyx_t_5);
+    __Pyx_XGOTREF(__pyx_t_6);
+    __Pyx_XGOTREF(__pyx_t_7);
+    /*try:*/ {
+
+      /* "cexprtk/_symbol_table.pyx":603
+ *   cpdef has_key(self, object key):
+ *     try:
+ *       key = str(key)             # <<<<<<<<<<<<<<
+ *     except ValueError:
+ *       return False
+ */
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyString_Type)), __pyx_v_key); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 603, __pyx_L3_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF_SET(__pyx_v_key, __pyx_t_1);
+      __pyx_t_1 = 0;
+
+      /* "cexprtk/_symbol_table.pyx":602
+ * 
+ *   cpdef has_key(self, object key):
+ *     try:             # <<<<<<<<<<<<<<
+ *       key = str(key)
+ *     except ValueError:
+ */
+    }
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    goto __pyx_L8_try_end;
+    __pyx_L3_error:;
+    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+    /* "cexprtk/_symbol_table.pyx":604
+ *     try:
+ *       key = str(key)
+ *     except ValueError:             # <<<<<<<<<<<<<<
+ *       return False
+ * 
+ */
+    __pyx_t_8 = __Pyx_PyErr_ExceptionMatches(__pyx_builtin_ValueError);
+    if (__pyx_t_8) {
+      __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.has_key", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_2, &__pyx_t_3) < 0) __PYX_ERR(0, 604, __pyx_L5_except_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_GOTREF(__pyx_t_3);
+
+      /* "cexprtk/_symbol_table.pyx":605
+ *       key = str(key)
+ *     except ValueError:
+ *       return False             # <<<<<<<<<<<<<<
+ * 
+ *     cdef bytes cstr_key = key.encode("ascii")
+ */
+      __Pyx_XDECREF(__pyx_r);
+      __Pyx_INCREF(Py_False);
+      __pyx_r = Py_False;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      goto __pyx_L6_except_return;
+    }
+    goto __pyx_L5_except_error;
+    __pyx_L5_except_error:;
+
+    /* "cexprtk/_symbol_table.pyx":602
+ * 
+ *   cpdef has_key(self, object key):
+ *     try:             # <<<<<<<<<<<<<<
+ *       key = str(key)
+ *     except ValueError:
+ */
+    __Pyx_XGIVEREF(__pyx_t_5);
+    __Pyx_XGIVEREF(__pyx_t_6);
+    __Pyx_XGIVEREF(__pyx_t_7);
+    __Pyx_ExceptionReset(__pyx_t_5, __pyx_t_6, __pyx_t_7);
+    goto __pyx_L1_error;
+    __pyx_L6_except_return:;
+    __Pyx_XGIVEREF(__pyx_t_5);
+    __Pyx_XGIVEREF(__pyx_t_6);
+    __Pyx_XGIVEREF(__pyx_t_7);
+    __Pyx_ExceptionReset(__pyx_t_5, __pyx_t_6, __pyx_t_7);
+    goto __pyx_L0;
+    __pyx_L8_try_end:;
+  }
+
+  /* "cexprtk/_symbol_table.pyx":607
+ *       return False
+ * 
+ *     cdef bytes cstr_key = key.encode("ascii")             # <<<<<<<<<<<<<<
+ *     return is_string_variable(cstr_key, self._csymtableptr)
+ * 
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 607, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_1)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_3 = (__pyx_t_1) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_1, __pyx_n_s_ascii) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_n_s_ascii);
+  __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 607, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (!(likely(PyBytes_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "bytes", Py_TYPE(__pyx_t_3)->tp_name), 0))) __PYX_ERR(0, 607, __pyx_L1_error)
+  __pyx_v_cstr_key = ((PyObject*)__pyx_t_3);
+  __pyx_t_3 = 0;
+
+  /* "cexprtk/_symbol_table.pyx":608
+ * 
+ *     cdef bytes cstr_key = key.encode("ascii")
+ *     return is_string_variable(cstr_key, self._csymtableptr)             # <<<<<<<<<<<<<<
+ * 
+ *   def __contains__(self, object key):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_9 = __pyx_convert_string_from_py_std__in_string(__pyx_v_cstr_key); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 608, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_f_7cexprtk_13_symbol_table_is_string_variable(__pyx_t_9, __pyx_v_self->_csymtableptr)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 608, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":601
+ *     return itemvector
+ * 
+ *   cpdef has_key(self, object key):             # <<<<<<<<<<<<<<
+ *     try:
+ *       key = str(key)
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.has_key", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_cstr_key);
+  __Pyx_XDECREF(__pyx_v_key);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_21has_key(PyObject *__pyx_v_self, PyObject *__pyx_v_key); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_21has_key(PyObject *__pyx_v_self, PyObject *__pyx_v_key) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("has_key (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_20has_key(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self), ((PyObject *)__pyx_v_key));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_20has_key(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, PyObject *__pyx_v_key) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("has_key", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_has_key(__pyx_v_self, __pyx_v_key, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 601, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.has_key", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "cexprtk/_symbol_table.pyx":610
+ *     return is_string_variable(cstr_key, self._csymtableptr)
+ * 
+ *   def __contains__(self, object key):             # <<<<<<<<<<<<<<
+ *     return self.has_key(key)
+ */
+
+/* Python wrapper */
+static int __pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_23__contains__(PyObject *__pyx_v_self, PyObject *__pyx_v_key); /*proto*/
+static int __pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_23__contains__(PyObject *__pyx_v_self, PyObject *__pyx_v_key) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__contains__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_22__contains__(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self), ((PyObject *)__pyx_v_key));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static int __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_22__contains__(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, PyObject *__pyx_v_key) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_t_2;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__contains__", 0);
+
+  /* "cexprtk/_symbol_table.pyx":611
+ * 
+ *   def __contains__(self, object key):
+ *     return self.has_key(key)             # <<<<<<<<<<<<<<
+ */
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self->__pyx_vtab)->has_key(__pyx_v_self, __pyx_v_key, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 611, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 611, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_2;
+  goto __pyx_L0;
+
+  /* "cexprtk/_symbol_table.pyx":610
+ *     return is_string_variable(cstr_key, self._csymtableptr)
+ * 
+ *   def __contains__(self, object key):             # <<<<<<<<<<<<<<
+ *     return self.has_key(key)
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.__contains__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "(tree fragment)":1
+ * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_25__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_25__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_24__reduce_cython__(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_24__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__reduce_cython__", 0);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
+ */
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_Raise(__pyx_t_1, 0, 0, 0);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __PYX_ERR(1, 2, __pyx_L1_error)
+
+  /* "(tree fragment)":1
+ * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "(tree fragment)":3
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_27__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_27__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_26__setstate_cython__(((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_26__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__setstate_cython__", 0);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_Raise(__pyx_t_1, 0, 0, 0);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __PYX_ERR(1, 4, __pyx_L1_error)
+
+  /* "(tree fragment)":3
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("cexprtk._symbol_table._Symbol_Table_String_Variables.__setstate_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -10989,6 +14275,135 @@ static PyObject *__pyx_convert_vector_to_py___pyx_t_6exprtk_LabelFloatPair(const
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_AddTraceback("vector.to_py.__pyx_convert_vector_to_py___pyx_t_6exprtk_LabelFloatPair", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pair.to_py":158
+ * 
+ * @cname("__pyx_convert_pair_to_py_std_3a__3a_string____std_3a__3a_string")
+ * cdef object __pyx_convert_pair_to_py_std_3a__3a_string____std_3a__3a_string(const pair[X,Y]& p):             # <<<<<<<<<<<<<<
+ *     return p.first, p.second
+ * 
+ */
+
+static PyObject *__pyx_convert_pair_to_py_std_3a__3a_string____std_3a__3a_string(std::pair<std::string,std::string>  const &__pyx_v_p) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__pyx_convert_pair_to_py_std_3a__3a_string____std_3a__3a_string", 0);
+
+  /* "pair.to_py":159
+ * @cname("__pyx_convert_pair_to_py_std_3a__3a_string____std_3a__3a_string")
+ * cdef object __pyx_convert_pair_to_py_std_3a__3a_string____std_3a__3a_string(const pair[X,Y]& p):
+ *     return p.first, p.second             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_convert_PyBytes_string_to_py_std__in_string(__pyx_v_p.first); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 159, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __pyx_convert_PyBytes_string_to_py_std__in_string(__pyx_v_p.second); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 159, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 159, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "pair.to_py":158
+ * 
+ * @cname("__pyx_convert_pair_to_py_std_3a__3a_string____std_3a__3a_string")
+ * cdef object __pyx_convert_pair_to_py_std_3a__3a_string____std_3a__3a_string(const pair[X,Y]& p):             # <<<<<<<<<<<<<<
+ *     return p.first, p.second
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("pair.to_py.__pyx_convert_pair_to_py_std_3a__3a_string____std_3a__3a_string", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "vector.to_py":60
+ * 
+ * @cname("__pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair")
+ * cdef object __pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair(vector[X]& v):             # <<<<<<<<<<<<<<
+ *     return [v[i] for i in range(v.size())]
+ * 
+ */
+
+static PyObject *__pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair(const std::vector<__pyx_t_6exprtk_LabelStringPair>  &__pyx_v_v) {
+  size_t __pyx_v_i;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  size_t __pyx_t_2;
+  size_t __pyx_t_3;
+  size_t __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair", 0);
+
+  /* "vector.to_py":61
+ * @cname("__pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair")
+ * cdef object __pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair(vector[X]& v):
+ *     return [v[i] for i in range(v.size())]             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 61, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __pyx_v_v.size();
+  __pyx_t_3 = __pyx_t_2;
+  for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
+    __pyx_v_i = __pyx_t_4;
+    __pyx_t_5 = __pyx_convert_pair_to_py_std_3a__3a_string____std_3a__3a_string((__pyx_v_v[__pyx_v_i])); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 61, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_5))) __PYX_ERR(1, 61, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "vector.to_py":60
+ * 
+ * @cname("__pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair")
+ * cdef object __pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair(vector[X]& v):             # <<<<<<<<<<<<<<
+ *     return [v[i] for i in range(v.size())]
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("vector.to_py.__pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -11474,6 +14889,172 @@ static PyTypeObject __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions 
   0, /*tp_print*/
   #endif
 };
+static struct __pyx_vtabstruct_7cexprtk_13_symbol_table__Symbol_Table_String_Variables __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_String_Variables;
+
+static PyObject *__pyx_tp_new_7cexprtk_13_symbol_table__Symbol_Table_String_Variables(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *p;
+  PyObject *o;
+  if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
+    o = (*t->tp_alloc)(t, 0);
+  } else {
+    o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
+  }
+  if (unlikely(!o)) return 0;
+  p = ((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)o);
+  p->__pyx_vtab = __pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_String_Variables;
+  p->_functions = Py_None; Py_INCREF(Py_None);
+  return o;
+}
+
+static void __pyx_tp_dealloc_7cexprtk_13_symbol_table__Symbol_Table_String_Variables(PyObject *o) {
+  struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *p = (struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)o;
+  #if CYTHON_USE_TP_FINALIZE
+  if (unlikely(PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE) && Py_TYPE(o)->tp_finalize) && !_PyGC_FINALIZED(o)) {
+    if (PyObject_CallFinalizerFromDealloc(o)) return;
+  }
+  #endif
+  PyObject_GC_UnTrack(o);
+  if (p->__weakref__) PyObject_ClearWeakRefs(o);
+  Py_CLEAR(p->_functions);
+  (*Py_TYPE(o)->tp_free)(o);
+}
+
+static int __pyx_tp_traverse_7cexprtk_13_symbol_table__Symbol_Table_String_Variables(PyObject *o, visitproc v, void *a) {
+  int e;
+  struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *p = (struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)o;
+  if (p->_functions) {
+    e = (*v)(p->_functions, a); if (e) return e;
+  }
+  return 0;
+}
+
+static int __pyx_tp_clear_7cexprtk_13_symbol_table__Symbol_Table_String_Variables(PyObject *o) {
+  PyObject* tmp;
+  struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *p = (struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)o;
+  tmp = ((PyObject*)p->_functions);
+  p->_functions = Py_None; Py_INCREF(Py_None);
+  Py_XDECREF(tmp);
+  return 0;
+}
+static PyObject *__pyx_sq_item_7cexprtk_13_symbol_table__Symbol_Table_String_Variables(PyObject *o, Py_ssize_t i) {
+  PyObject *r;
+  PyObject *x = PyInt_FromSsize_t(i); if(!x) return 0;
+  r = Py_TYPE(o)->tp_as_mapping->mp_subscript(o, x);
+  Py_DECREF(x);
+  return r;
+}
+
+static int __pyx_mp_ass_subscript_7cexprtk_13_symbol_table__Symbol_Table_String_Variables(PyObject *o, PyObject *i, PyObject *v) {
+  if (v) {
+    return __pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_3__setitem__(o, i, v);
+  }
+  else {
+    PyErr_Format(PyExc_NotImplementedError,
+      "Subscript deletion not supported by %.200s", Py_TYPE(o)->tp_name);
+    return -1;
+  }
+}
+
+static PyMethodDef __pyx_methods_7cexprtk_13_symbol_table__Symbol_Table_String_Variables[] = {
+  {"items", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_9items, METH_NOARGS, 0},
+  {"iteritems", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_11iteritems, METH_NOARGS, 0},
+  {"iterkeys", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_13iterkeys, METH_NOARGS, 0},
+  {"itervalues", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_15itervalues, METH_NOARGS, 0},
+  {"keys", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_17keys, METH_NOARGS, 0},
+  {"values", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_19values, METH_NOARGS, 0},
+  {"has_key", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_21has_key, METH_O, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_25__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_27__setstate_cython__, METH_O, 0},
+  {0, 0, 0, 0}
+};
+
+static PySequenceMethods __pyx_tp_as_sequence__Symbol_Table_String_Variables = {
+  __pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_7__len__, /*sq_length*/
+  0, /*sq_concat*/
+  0, /*sq_repeat*/
+  __pyx_sq_item_7cexprtk_13_symbol_table__Symbol_Table_String_Variables, /*sq_item*/
+  0, /*sq_slice*/
+  0, /*sq_ass_item*/
+  0, /*sq_ass_slice*/
+  __pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_23__contains__, /*sq_contains*/
+  0, /*sq_inplace_concat*/
+  0, /*sq_inplace_repeat*/
+};
+
+static PyMappingMethods __pyx_tp_as_mapping__Symbol_Table_String_Variables = {
+  __pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_7__len__, /*mp_length*/
+  __pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_1__getitem__, /*mp_subscript*/
+  __pyx_mp_ass_subscript_7cexprtk_13_symbol_table__Symbol_Table_String_Variables, /*mp_ass_subscript*/
+};
+
+static PyTypeObject __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_String_Variables = {
+  PyVarObject_HEAD_INIT(0, 0)
+  "cexprtk._symbol_table._Symbol_Table_String_Variables", /*tp_name*/
+  sizeof(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables), /*tp_basicsize*/
+  0, /*tp_itemsize*/
+  __pyx_tp_dealloc_7cexprtk_13_symbol_table__Symbol_Table_String_Variables, /*tp_dealloc*/
+  #if PY_VERSION_HEX < 0x030800b4
+  0, /*tp_print*/
+  #endif
+  #if PY_VERSION_HEX >= 0x030800b4
+  0, /*tp_vectorcall_offset*/
+  #endif
+  0, /*tp_getattr*/
+  0, /*tp_setattr*/
+  #if PY_MAJOR_VERSION < 3
+  0, /*tp_compare*/
+  #endif
+  #if PY_MAJOR_VERSION >= 3
+  0, /*tp_as_async*/
+  #endif
+  0, /*tp_repr*/
+  0, /*tp_as_number*/
+  &__pyx_tp_as_sequence__Symbol_Table_String_Variables, /*tp_as_sequence*/
+  &__pyx_tp_as_mapping__Symbol_Table_String_Variables, /*tp_as_mapping*/
+  0, /*tp_hash*/
+  0, /*tp_call*/
+  0, /*tp_str*/
+  0, /*tp_getattro*/
+  0, /*tp_setattro*/
+  0, /*tp_as_buffer*/
+  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
+  "Class providing the .string_variables property for Symbol_Table.\n\n  Provides a dictionary like interface, methods pass-through to\n  C++ symbol_table object owned by parent Symbol_Table.", /*tp_doc*/
+  __pyx_tp_traverse_7cexprtk_13_symbol_table__Symbol_Table_String_Variables, /*tp_traverse*/
+  __pyx_tp_clear_7cexprtk_13_symbol_table__Symbol_Table_String_Variables, /*tp_clear*/
+  0, /*tp_richcompare*/
+  0, /*tp_weaklistoffset*/
+  __pyx_pw_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_5__iter__, /*tp_iter*/
+  0, /*tp_iternext*/
+  __pyx_methods_7cexprtk_13_symbol_table__Symbol_Table_String_Variables, /*tp_methods*/
+  0, /*tp_members*/
+  0, /*tp_getset*/
+  0, /*tp_base*/
+  0, /*tp_dict*/
+  0, /*tp_descr_get*/
+  0, /*tp_descr_set*/
+  0, /*tp_dictoffset*/
+  0, /*tp_init*/
+  0, /*tp_alloc*/
+  __pyx_tp_new_7cexprtk_13_symbol_table__Symbol_Table_String_Variables, /*tp_new*/
+  0, /*tp_free*/
+  0, /*tp_is_gc*/
+  0, /*tp_bases*/
+  0, /*tp_mro*/
+  0, /*tp_cache*/
+  0, /*tp_subclasses*/
+  0, /*tp_weaklist*/
+  0, /*tp_del*/
+  0, /*tp_version_tag*/
+  #if PY_VERSION_HEX >= 0x030400a1
+  0, /*tp_finalize*/
+  #endif
+  #if PY_VERSION_HEX >= 0x030800b1
+  0, /*tp_vectorcall*/
+  #endif
+  #if PY_VERSION_HEX >= 0x030800b4 && PY_VERSION_HEX < 0x03090000
+  0, /*tp_print*/
+  #endif
+};
 
 static PyObject *__pyx_tp_new_7cexprtk_13_symbol_table_Symbol_Table(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
   struct __pyx_obj_7cexprtk_13_symbol_table_Symbol_Table *p;
@@ -11488,6 +15069,7 @@ static PyObject *__pyx_tp_new_7cexprtk_13_symbol_table_Symbol_Table(PyTypeObject
   p->_variables = ((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Variables *)Py_None); Py_INCREF(Py_None);
   p->_constants = ((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Constants *)Py_None); Py_INCREF(Py_None);
   p->_functions = ((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *)Py_None); Py_INCREF(Py_None);
+  p->_string_variables = ((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)Py_None); Py_INCREF(Py_None);
   if (unlikely(__pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_3__cinit__(o, __pyx_empty_tuple, NULL) < 0)) goto bad;
   return o;
   bad:
@@ -11514,6 +15096,7 @@ static void __pyx_tp_dealloc_7cexprtk_13_symbol_table_Symbol_Table(PyObject *o) 
   Py_CLEAR(p->_variables);
   Py_CLEAR(p->_constants);
   Py_CLEAR(p->_functions);
+  Py_CLEAR(p->_string_variables);
   (*Py_TYPE(o)->tp_free)(o);
 }
 
@@ -11528,6 +15111,9 @@ static int __pyx_tp_traverse_7cexprtk_13_symbol_table_Symbol_Table(PyObject *o, 
   }
   if (p->_functions) {
     e = (*v)(((PyObject *)p->_functions), a); if (e) return e;
+  }
+  if (p->_string_variables) {
+    e = (*v)(((PyObject *)p->_string_variables), a); if (e) return e;
   }
   return 0;
 }
@@ -11544,6 +15130,9 @@ static int __pyx_tp_clear_7cexprtk_13_symbol_table_Symbol_Table(PyObject *o) {
   tmp = ((PyObject*)p->_functions);
   p->_functions = ((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
+  tmp = ((PyObject*)p->_string_variables);
+  p->_string_variables = ((struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *)Py_None); Py_INCREF(Py_None);
+  Py_XDECREF(tmp);
   return 0;
 }
 
@@ -11559,11 +15148,16 @@ static PyObject *__pyx_getprop_7cexprtk_13_symbol_table_12Symbol_Table_constants
   return __pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_9constants_1__get__(o);
 }
 
+static PyObject *__pyx_getprop_7cexprtk_13_symbol_table_12Symbol_Table_string_variables(PyObject *o, CYTHON_UNUSED void *x) {
+  return __pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_16string_variables_1__get__(o);
+}
+
 static PyMethodDef __pyx_methods_7cexprtk_13_symbol_table_Symbol_Table[] = {
   {"__reduce__", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_1__reduce__, METH_NOARGS, 0},
   {"_populateVariables", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_9_populateVariables, METH_O, 0},
   {"_populateConstants", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_11_populateConstants, METH_VARARGS|METH_KEYWORDS, 0},
   {"_populateFunctions", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_13_populateFunctions, METH_O, 0},
+  {"_populateStringVariables", (PyCFunction)__pyx_pw_7cexprtk_13_symbol_table_12Symbol_Table_15_populateStringVariables, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -11571,6 +15165,7 @@ static struct PyGetSetDef __pyx_getsets_7cexprtk_13_symbol_table_Symbol_Table[] 
   {(char *)"functions", __pyx_getprop_7cexprtk_13_symbol_table_12Symbol_Table_functions, 0, (char *)0, 0},
   {(char *)"variables", __pyx_getprop_7cexprtk_13_symbol_table_12Symbol_Table_variables, 0, (char *)0, 0},
   {(char *)"constants", __pyx_getprop_7cexprtk_13_symbol_table_12Symbol_Table_constants, 0, (char *)0, 0},
+  {(char *)"string_variables", __pyx_getprop_7cexprtk_13_symbol_table_12Symbol_Table_string_variables, 0, (char *)0, 0},
   {0, 0, 0, 0, 0}
 };
 
@@ -11690,12 +15285,18 @@ static struct PyModuleDef __pyx_moduledef = {
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_BadVariableException, __pyx_k_BadVariableException, sizeof(__pyx_k_BadVariableException), 0, 0, 1, 1},
-  {&__pyx_kp_s_Cannot_set_variable_as_a_functio, __pyx_k_Cannot_set_variable_as_a_functio, sizeof(__pyx_k_Cannot_set_variable_as_a_functio), 0, 0, 1, 0},
-  {&__pyx_kp_s_Cannot_set_variable_constant_alr, __pyx_k_Cannot_set_variable_constant_alr, sizeof(__pyx_k_Cannot_set_variable_constant_alr), 0, 0, 1, 0},
+  {&__pyx_kp_s_Cannot_set_string_variable_becau, __pyx_k_Cannot_set_string_variable_becau, sizeof(__pyx_k_Cannot_set_string_variable_becau), 0, 0, 1, 0},
+  {&__pyx_kp_s_Cannot_set_string_variable_becau_2, __pyx_k_Cannot_set_string_variable_becau_2, sizeof(__pyx_k_Cannot_set_string_variable_becau_2), 0, 0, 1, 0},
+  {&__pyx_kp_s_Cannot_set_string_variable_becau_3, __pyx_k_Cannot_set_string_variable_becau_3, sizeof(__pyx_k_Cannot_set_string_variable_becau_3), 0, 0, 1, 0},
+  {&__pyx_kp_s_Cannot_set_variable_because_a_co, __pyx_k_Cannot_set_variable_because_a_co, sizeof(__pyx_k_Cannot_set_variable_because_a_co), 0, 0, 1, 0},
+  {&__pyx_kp_s_Cannot_set_variable_because_a_fu, __pyx_k_Cannot_set_variable_because_a_fu, sizeof(__pyx_k_Cannot_set_variable_because_a_fu), 0, 0, 1, 0},
+  {&__pyx_kp_s_Cannot_set_variable_because_a_st, __pyx_k_Cannot_set_variable_because_a_st, sizeof(__pyx_k_Cannot_set_variable_because_a_st), 0, 0, 1, 0},
   {&__pyx_kp_s_Error_creating_constant_named_s, __pyx_k_Error_creating_constant_named_s, sizeof(__pyx_k_Error_creating_constant_named_s), 0, 0, 1, 0},
   {&__pyx_kp_s_Error_creating_variable_named_s, __pyx_k_Error_creating_variable_named_s, sizeof(__pyx_k_Error_creating_variable_named_s), 0, 0, 1, 0},
   {&__pyx_kp_s_Function, __pyx_k_Function, sizeof(__pyx_k_Function), 0, 0, 1, 0},
-  {&__pyx_kp_s_Function_cannot_be_set_as_a_vari, __pyx_k_Function_cannot_be_set_as_a_vari, sizeof(__pyx_k_Function_cannot_be_set_as_a_vari), 0, 0, 1, 0},
+  {&__pyx_kp_s_Function_cannot_be_set_because_a, __pyx_k_Function_cannot_be_set_because_a, sizeof(__pyx_k_Function_cannot_be_set_because_a), 0, 0, 1, 0},
+  {&__pyx_kp_s_Function_cannot_be_set_because_a_2, __pyx_k_Function_cannot_be_set_because_a_2, sizeof(__pyx_k_Function_cannot_be_set_because_a_2), 0, 0, 1, 0},
+  {&__pyx_kp_s_Function_cannot_be_set_because_a_3, __pyx_k_Function_cannot_be_set_because_a_3, sizeof(__pyx_k_Function_cannot_be_set_because_a_3), 0, 0, 1, 0},
   {&__pyx_kp_s_Function_has_same_name_as_a_buil, __pyx_k_Function_has_same_name_as_a_buil, sizeof(__pyx_k_Function_has_same_name_as_a_buil), 0, 0, 1, 0},
   {&__pyx_n_s_KeyError, __pyx_k_KeyError, sizeof(__pyx_k_KeyError), 0, 0, 1, 1},
   {&__pyx_n_s_NameShadowException, __pyx_k_NameShadowException, sizeof(__pyx_k_NameShadowException), 0, 0, 1, 1},
@@ -11706,16 +15307,20 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_Symbol_Table, __pyx_k_Symbol_Table, sizeof(__pyx_k_Symbol_Table), 0, 0, 1, 1},
   {&__pyx_n_s_Symbol_Table_Constants, __pyx_k_Symbol_Table_Constants, sizeof(__pyx_k_Symbol_Table_Constants), 0, 0, 1, 1},
   {&__pyx_n_s_Symbol_Table_Functions, __pyx_k_Symbol_Table_Functions, sizeof(__pyx_k_Symbol_Table_Functions), 0, 0, 1, 1},
+  {&__pyx_n_s_Symbol_Table_String_Variables, __pyx_k_Symbol_Table_String_Variables, sizeof(__pyx_k_Symbol_Table_String_Variables), 0, 0, 1, 1},
   {&__pyx_n_s_Symbol_Table_Variables, __pyx_k_Symbol_Table_Variables, sizeof(__pyx_k_Symbol_Table_Variables), 0, 0, 1, 1},
+  {&__pyx_kp_s_The_following_constant_names_are, __pyx_k_The_following_constant_names_are, sizeof(__pyx_k_The_following_constant_names_are), 0, 0, 1, 0},
   {&__pyx_kp_s_The_following_function_names_are, __pyx_k_The_following_function_names_are, sizeof(__pyx_k_The_following_function_names_are), 0, 0, 1, 0},
-  {&__pyx_kp_s_The_following_names_are_in_both, __pyx_k_The_following_names_are_in_both, sizeof(__pyx_k_The_following_names_are_in_both), 0, 0, 1, 0},
+  {&__pyx_kp_s_The_following_string_variable_na, __pyx_k_The_following_string_variable_na, sizeof(__pyx_k_The_following_string_variable_na), 0, 0, 1, 0},
+  {&__pyx_kp_s_The_following_variable_names_are, __pyx_k_The_following_variable_names_are, sizeof(__pyx_k_The_following_variable_names_are), 0, 0, 1, 0},
   {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
   {&__pyx_kp_s_Unknown_function, __pyx_k_Unknown_function, sizeof(__pyx_k_Unknown_function), 0, 0, 1, 0},
+  {&__pyx_kp_s_Unknown_string_variable, __pyx_k_Unknown_string_variable, sizeof(__pyx_k_Unknown_string_variable), 0, 0, 1, 0},
   {&__pyx_kp_s_Unknown_variable, __pyx_k_Unknown_variable, sizeof(__pyx_k_Unknown_variable), 0, 0, 1, 0},
   {&__pyx_n_s_ValueError, __pyx_k_ValueError, sizeof(__pyx_k_ValueError), 0, 0, 1, 1},
   {&__pyx_n_s_VariableNameShadowException, __pyx_k_VariableNameShadowException, sizeof(__pyx_k_VariableNameShadowException), 0, 0, 1, 1},
-  {&__pyx_kp_s__3, __pyx_k__3, sizeof(__pyx_k__3), 0, 0, 1, 0},
-  {&__pyx_kp_s__9, __pyx_k__9, sizeof(__pyx_k__9), 0, 0, 1, 0},
+  {&__pyx_kp_s__10, __pyx_k__10, sizeof(__pyx_k__10), 0, 0, 1, 0},
+  {&__pyx_kp_s__4, __pyx_k__4, sizeof(__pyx_k__4), 0, 0, 1, 0},
   {&__pyx_n_s_abs, __pyx_k_abs, sizeof(__pyx_k_abs), 0, 0, 1, 1},
   {&__pyx_n_s_acos, __pyx_k_acos, sizeof(__pyx_k_acos), 0, 0, 1, 1},
   {&__pyx_n_s_acosh, __pyx_k_acosh, sizeof(__pyx_k_acosh), 0, 0, 1, 1},
@@ -11778,6 +15383,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_no_default___reduce___due_to_non, __pyx_k_no_default___reduce___due_to_non, sizeof(__pyx_k_no_default___reduce___due_to_non), 0, 0, 1, 0},
   {&__pyx_n_s_populateConstants, __pyx_k_populateConstants, sizeof(__pyx_k_populateConstants), 0, 0, 1, 1},
   {&__pyx_n_s_populateFunctions, __pyx_k_populateFunctions, sizeof(__pyx_k_populateFunctions), 0, 0, 1, 1},
+  {&__pyx_n_s_populateStringVariables, __pyx_k_populateStringVariables, sizeof(__pyx_k_populateStringVariables), 0, 0, 1, 1},
   {&__pyx_n_s_populateVariables, __pyx_k_populateVariables, sizeof(__pyx_k_populateVariables), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
   {&__pyx_n_s_rad2deg, __pyx_k_rad2deg, sizeof(__pyx_k_rad2deg), 0, 0, 1, 1},
@@ -11797,6 +15403,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_sinc, __pyx_k_sinc, sizeof(__pyx_k_sinc), 0, 0, 1, 1},
   {&__pyx_n_s_sinh, __pyx_k_sinh, sizeof(__pyx_k_sinh), 0, 0, 1, 1},
   {&__pyx_n_s_sqrt, __pyx_k_sqrt, sizeof(__pyx_k_sqrt), 0, 0, 1, 1},
+  {&__pyx_n_s_string_variables, __pyx_k_string_variables, sizeof(__pyx_k_string_variables), 0, 0, 1, 1},
   {&__pyx_n_s_sum, __pyx_k_sum, sizeof(__pyx_k_sum), 0, 0, 1, 1},
   {&__pyx_n_s_swap, __pyx_k_swap, sizeof(__pyx_k_swap), 0, 0, 1, 1},
   {&__pyx_n_s_tan, __pyx_k_tan, sizeof(__pyx_k_tan), 0, 0, 1, 1},
@@ -11809,9 +15416,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 145, __pyx_L1_error)
-  __pyx_builtin_ReferenceError = __Pyx_GetBuiltinName(__pyx_n_s_ReferenceError); if (!__pyx_builtin_ReferenceError) __PYX_ERR(0, 151, __pyx_L1_error)
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 208, __pyx_L1_error)
+  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_builtin_ReferenceError = __Pyx_GetBuiltinName(__pyx_n_s_ReferenceError); if (!__pyx_builtin_ReferenceError) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 257, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(1, 61, __pyx_L1_error)
   return 0;
@@ -11823,54 +15430,54 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "cexprtk/_symbol_table.pyx":151
+  /* "cexprtk/_symbol_table.pyx":197
  *     cdef string strkey
  *     if not self._csymtableptr:
  *       raise ReferenceError("Parent Symbol_Table no longer exists")             # <<<<<<<<<<<<<<
  *     strkey = key.encode("ascii")
  * 
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_Parent_Symbol_Table_no_longer_ex); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 151, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__4);
-  __Pyx_GIVEREF(__pyx_tuple__4);
-
-  /* "(tree fragment)":2
- * def __reduce_cython__(self):
- *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
- * def __setstate_cython__(self, __pyx_state):
- *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
- */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_self__csymtableptr_cannot_be_con); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_Parent_Symbol_Table_no_longer_ex); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "(tree fragment)":4
- *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
- * def __setstate_cython__(self, __pyx_state):
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
  *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_self__csymtableptr_cannot_be_con); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_self__csymtableptr_cannot_be_con); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(1, 2, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "(tree fragment)":2
- * def __reduce_cython__(self):
- *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
- * def __setstate_cython__(self, __pyx_state):
+  /* "(tree fragment)":4
  *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_self__csymtableptr_cannot_be_con); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_self__csymtableptr_cannot_be_con); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
+ */
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_self__csymtableptr_cannot_be_con); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
+
   /* "(tree fragment)":4
  *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_self__csymtableptr_cannot_be_con); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(1, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__8);
-  __Pyx_GIVEREF(__pyx_tuple__8);
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_self__csymtableptr_cannot_be_con); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__9);
+  __Pyx_GIVEREF(__pyx_tuple__9);
 
   /* "(tree fragment)":2
  * def __reduce_cython__(self):
@@ -11878,18 +15485,37 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(1, 2, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__10);
-  __Pyx_GIVEREF(__pyx_tuple__10);
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__11);
+  __Pyx_GIVEREF(__pyx_tuple__11);
 
   /* "(tree fragment)":4
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
  * def __setstate_cython__(self, __pyx_state):
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")             # <<<<<<<<<<<<<<
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(1, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_s_no_default___reduce___due_to_non); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__12);
+  __Pyx_GIVEREF(__pyx_tuple__12);
+
+  /* "(tree fragment)":2
+ * def __reduce_cython__(self):
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
+ */
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_s_self__csymtableptr_cannot_be_con); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(1, 2, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
+
+  /* "(tree fragment)":4
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")
+ * def __setstate_cython__(self, __pyx_state):
+ *     raise TypeError("self._csymtableptr cannot be converted to a Python object for pickling")             # <<<<<<<<<<<<<<
+ */
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_s_self__csymtableptr_cannot_be_con); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__14);
+  __Pyx_GIVEREF(__pyx_tuple__14);
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -11948,33 +15574,33 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_Variables.items = (PyObject *(*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Variables *, int __pyx_skip_dispatch))__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_items;
   __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_Variables._get_variable_list = (PyObject *(*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Variables *))__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables__get_variable_list;
   __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_Variables.has_key = (PyObject *(*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Variables *, PyObject *, int __pyx_skip_dispatch))__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Variables_has_key;
-  if (PyType_Ready(&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables) < 0) __PYX_ERR(0, 132, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables.tp_dictoffset && __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables.tp_dict, __pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_Variables) < 0) __PYX_ERR(0, 132, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Symbol_Table_Variables, (PyObject *)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables) < 0) __PYX_ERR(0, 132, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables.tp_dict, __pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_Variables) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Symbol_Table_Variables, (PyObject *)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
   if (__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables.tp_weaklistoffset == 0) __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables.tp_weaklistoffset = offsetof(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Variables, __weakref__);
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables) < 0) __PYX_ERR(0, 132, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables) < 0) __PYX_ERR(0, 178, __pyx_L1_error)
   __pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_Variables = &__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Variables;
   __pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_Constants = &__pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_Constants;
   __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_Constants.items = (PyObject *(*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Constants *, int __pyx_skip_dispatch))__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_items;
   __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_Constants._get_variable_list = (PyObject *(*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Constants *))__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants__get_variable_list;
   __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_Constants.has_key = (PyObject *(*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Constants *, PyObject *, int __pyx_skip_dispatch))__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Constants_has_key;
-  if (PyType_Ready(&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants) < 0) __PYX_ERR(0, 218, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants) < 0) __PYX_ERR(0, 267, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants.tp_dictoffset && __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants.tp_dict, __pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_Constants) < 0) __PYX_ERR(0, 218, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Symbol_Table_Constants, (PyObject *)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants) < 0) __PYX_ERR(0, 218, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants.tp_dict, __pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_Constants) < 0) __PYX_ERR(0, 267, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Symbol_Table_Constants, (PyObject *)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants) < 0) __PYX_ERR(0, 267, __pyx_L1_error)
   if (__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants.tp_weaklistoffset == 0) __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants.tp_weaklistoffset = offsetof(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Constants, __weakref__);
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants) < 0) __PYX_ERR(0, 218, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants) < 0) __PYX_ERR(0, 267, __pyx_L1_error)
   __pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_Constants = &__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Constants;
   __pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_Functions = &__pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_Functions;
   __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_Functions._getitem = (__pyx_t_24cexprtk_custom_functions_cfunction_ptr (*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *, PyObject *))__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__getitem;
@@ -11985,19 +15611,35 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_Functions._checkForException = (PyObject *(*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *))__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions__checkForException;
   __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_Functions.items = (PyObject *(*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *, int __pyx_skip_dispatch))__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_items;
   __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_Functions.has_key = (PyObject *(*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions *, PyObject *, int __pyx_skip_dispatch))__pyx_f_7cexprtk_13_symbol_table_23_Symbol_Table_Functions_has_key;
-  if (PyType_Ready(&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions) < 0) __PYX_ERR(0, 282, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions.tp_dictoffset && __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions.tp_dict, __pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_Functions) < 0) __PYX_ERR(0, 282, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Symbol_Table_Functions, (PyObject *)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions) < 0) __PYX_ERR(0, 282, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions.tp_dict, __pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_Functions) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Symbol_Table_Functions, (PyObject *)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
   if (__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions.tp_weaklistoffset == 0) __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions.tp_weaklistoffset = offsetof(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_Functions, __weakref__);
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions) < 0) __PYX_ERR(0, 282, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions) < 0) __PYX_ERR(0, 331, __pyx_L1_error)
   __pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_Functions = &__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_Functions;
-  if (PyType_Ready(&__pyx_type_7cexprtk_13_symbol_table_Symbol_Table) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_String_Variables = &__pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_String_Variables;
+  __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_String_Variables.items = (PyObject *(*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *, int __pyx_skip_dispatch))__pyx_f_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_items;
+  __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_String_Variables._get_variable_list = (PyObject *(*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *))__pyx_f_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables__get_variable_list;
+  __pyx_vtable_7cexprtk_13_symbol_table__Symbol_Table_String_Variables.has_key = (PyObject *(*)(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables *, PyObject *, int __pyx_skip_dispatch))__pyx_f_7cexprtk_13_symbol_table_30_Symbol_Table_String_Variables_has_key;
+  if (PyType_Ready(&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_String_Variables) < 0) __PYX_ERR(0, 519, __pyx_L1_error)
+  #if PY_VERSION_HEX < 0x030800B1
+  __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_String_Variables.tp_print = 0;
+  #endif
+  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_String_Variables.tp_dictoffset && __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_String_Variables.tp_getattro == PyObject_GenericGetAttr)) {
+    __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_String_Variables.tp_getattro = __Pyx_PyObject_GenericGetAttr;
+  }
+  if (__Pyx_SetVtable(__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_String_Variables.tp_dict, __pyx_vtabptr_7cexprtk_13_symbol_table__Symbol_Table_String_Variables) < 0) __PYX_ERR(0, 519, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Symbol_Table_String_Variables, (PyObject *)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_String_Variables) < 0) __PYX_ERR(0, 519, __pyx_L1_error)
+  if (__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_String_Variables.tp_weaklistoffset == 0) __pyx_type_7cexprtk_13_symbol_table__Symbol_Table_String_Variables.tp_weaklistoffset = offsetof(struct __pyx_obj_7cexprtk_13_symbol_table__Symbol_Table_String_Variables, __weakref__);
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_String_Variables) < 0) __PYX_ERR(0, 519, __pyx_L1_error)
+  __pyx_ptype_7cexprtk_13_symbol_table__Symbol_Table_String_Variables = &__pyx_type_7cexprtk_13_symbol_table__Symbol_Table_String_Variables;
+  if (PyType_Ready(&__pyx_type_7cexprtk_13_symbol_table_Symbol_Table) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_7cexprtk_13_symbol_table_Symbol_Table.tp_print = 0;
   #endif
@@ -12006,7 +15648,7 @@ static int __Pyx_modinit_type_init_code(void) {
   }
   #if CYTHON_COMPILING_IN_CPYTHON
   {
-    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_7cexprtk_13_symbol_table_Symbol_Table, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 28, __pyx_L1_error)
+    PyObject *wrapper = PyObject_GetAttrString((PyObject *)&__pyx_type_7cexprtk_13_symbol_table_Symbol_Table, "__init__"); if (unlikely(!wrapper)) __PYX_ERR(0, 40, __pyx_L1_error)
     if (Py_TYPE(wrapper) == &PyWrapperDescr_Type) {
       __pyx_wrapperbase_7cexprtk_13_symbol_table_12Symbol_Table_6__init__ = *((PyWrapperDescrObject *)wrapper)->d_base;
       __pyx_wrapperbase_7cexprtk_13_symbol_table_12Symbol_Table_6__init__.doc = __pyx_doc_7cexprtk_13_symbol_table_12Symbol_Table_6__init__;
@@ -12014,7 +15656,7 @@ static int __Pyx_modinit_type_init_code(void) {
     }
   }
   #endif
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Symbol_Table, (PyObject *)&__pyx_type_7cexprtk_13_symbol_table_Symbol_Table) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Symbol_Table, (PyObject *)&__pyx_type_7cexprtk_13_symbol_table_Symbol_Table) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
   __pyx_ptype_7cexprtk_13_symbol_table_Symbol_Table = &__pyx_type_7cexprtk_13_symbol_table_Symbol_Table;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -12307,7 +15949,7 @@ if (!__Pyx_RefNanny) {
  * 
  * from ._exceptions import BadVariableException, NameShadowException, VariableNameShadowException, ReservedFunctionShadowException             # <<<<<<<<<<<<<<
  * 
- * cdef class Symbol_Table:
+ * 
  */
   __pyx_t_2 = PyList_New(4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -12344,21 +15986,26 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cexprtk/_symbol_table.pyx":63
- *     self._functions._csymtableptr = NULL
+  /* "cexprtk/_symbol_table.pyx":83
+ *     self._string_variables._csymtableptr = NULL
  * 
- *   def __init__(self, variables, constants = {}, add_constants = False, functions = {},):             # <<<<<<<<<<<<<<
+ *   def __init__(self, variables, constants = {}, add_constants = False, functions = {}, string_variables = {}):             # <<<<<<<<<<<<<<
  *     """Instantiate Symbol_Table defining variables and constants for Expression class.
  * 
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_k_ = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_k__2 = __pyx_t_1;
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_k__3 = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
 
@@ -12374,8 +16021,8 @@ if (!__Pyx_RefNanny) {
 
   /* "vector.to_py":60
  * 
- * @cname("__pyx_convert_vector_to_py___pyx_t_6exprtk_LabelFloatPair")
- * cdef object __pyx_convert_vector_to_py___pyx_t_6exprtk_LabelFloatPair(vector[X]& v):             # <<<<<<<<<<<<<<
+ * @cname("__pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair")
+ * cdef object __pyx_convert_vector_to_py___pyx_t_6exprtk_LabelStringPair(vector[X]& v):             # <<<<<<<<<<<<<<
  *     return [v[i] for i in range(v.size())]
  * 
  */

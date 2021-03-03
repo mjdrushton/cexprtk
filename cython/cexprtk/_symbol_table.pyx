@@ -25,6 +25,18 @@ from ._functionargs import functionargs
 
 from ._exceptions import BadVariableException, NameShadowException, VariableNameShadowException, ReservedFunctionShadowException
 
+
+cdef bool is_constant(string& strkey, exprtk.symbol_table_type* csymtableptr):
+  cdef exprtk.variable_ptr vptr = csymtableptr[0].get_variable(strkey)
+  return vptr != NULL and csymtableptr[0].is_constant_node(strkey)
+
+cdef bool is_variable(string& strkey, exprtk.symbol_table_type* csymtableptr):
+  cdef exprtk.variable_ptr vptr = csymtableptr[0].get_variable(strkey)
+  return vptr != NULL and not is_constant(strkey, csymtableptr)
+
+cdef bool is_string_variable(string& key, exprtk.symbol_table_type* csymtableptr):
+  return csymtableptr[0].is_stringvar(key)
+
 cdef class Symbol_Table:
   """Class for providing variable and constant values to Expression instances."""
 
@@ -32,7 +44,8 @@ cdef class Symbol_Table:
     constants = dict(self.constants)
     variables = dict(self.variables)
     functions = dict(self.functions)
-    return (Symbol_Table, (variables, constants, False, functions))
+    string_variables = dict(self.string_variables)
+    return (Symbol_Table, (variables, constants, False, functions, string_variables))
 
   def __cinit__(self):
     self._csymtableptr = new exprtk.symbol_table_type()
@@ -52,6 +65,12 @@ cdef class Symbol_Table:
     self._constants = _Symbol_Table_Constants()
     # ... set the internal pointer held by _constants
     self._constants._csymtableptr = self._csymtableptr
+
+    # Set up the string_variables dictionary
+    self._string_variables = _Symbol_Table_String_Variables()
+    self._string_variables._csymtableptr = self._csymtableptr
+    self._string_variables._functions = PyWeakref_NewProxy(self._functions, None)
+
     
 
   def __dealloc__(self):
@@ -59,8 +78,9 @@ cdef class Symbol_Table:
     self._variables._csymtableptr = NULL
     self._constants._csymtableptr = NULL
     self._functions._csymtableptr = NULL
+    self._string_variables._csymtableptr = NULL
 
-  def __init__(self, variables, constants = {}, add_constants = False, functions = {},):
+  def __init__(self, variables, constants = {}, add_constants = False, functions = {}, string_variables = {}):
     """Instantiate Symbol_Table defining variables and constants for Expression class.
 
     :param variables: Mapping between variable name and initial variable value.
@@ -77,23 +97,39 @@ cdef class Symbol_Table:
       Dictionary keys specify function names and values should be functions.
     :type functions: dict
 
+    :param string_variables: Dictionary of string variables to be made available in expressions.
+    :type string_variables: dict
+
     """
 
-    shadowed = set(variables.keys()) & set(constants.keys())
+    shadowed = (set(functions.keys()) | set(constants.keys()) | set(string_variables.keys())) & set(variables.keys())
     if shadowed:
       msg = [s for s in sorted(shadowed)]
-      msg = "The following names are in both variables and constants: %s" % ",".join(msg)
+      msg = "The following variable names are also found in constants functions or string_variables: %s" % ",".join(msg)
       raise VariableNameShadowException(msg)
 
-    shadowed = (set(variables.keys()) | set(constants.keys())) & set(functions.keys())
+    shadowed = (set(variables.keys() | set(functions.keys()) | set(string_variables.keys())) & set(constants.keys()))
     if shadowed:
       msg = [s for s in sorted(shadowed)]
-      msg = "The following function names are also in variables or constants: %s" % ",".join(msg)
+      msg = "The following constant names are also found in variables, functions or string_variables: %s" % ",".join(msg)
+      raise VariableNameShadowException(msg)
+
+    shadowed = (set(variables.keys()) | set(constants.keys()) | set(string_variables.keys())) & set(functions.keys())
+    if shadowed:
+      msg = [s for s in sorted(shadowed)]
+      msg = "The following function names are also found in variables, constants or string_variables: %s" % ",".join(msg)
+      raise VariableNameShadowException(msg)
+
+    shadowed = (set(variables.keys()) | set(constants.keys()) | set(functions.keys())) & set(string_variables.keys())
+    if shadowed:
+      msg = [s for s in sorted(shadowed)]
+      msg = "The following string_variable names are also found in variables, constants or functions: %s" % ",".join(msg)
       raise VariableNameShadowException(msg)
 
     self._populateVariables(variables)
     self._populateConstants(constants, add_constants)
     self._populateFunctions(functions)
+    self._populateStringVariables(string_variables)
 
   def _populateVariables(self,object variables):
     cdef bytes cstr
@@ -116,6 +152,11 @@ cdef class Symbol_Table:
     for k,v in functions.items():
       self.functions[k] = v
 
+  def _populateStringVariables(self, object string_variables):
+    for k,v in string_variables.items():
+      self.string_variables[k] = v
+
+
   property functions:
     def __get__(self):
       return PyWeakref_NewProxy(self._functions, None)
@@ -127,6 +168,11 @@ cdef class Symbol_Table:
   property constants:
     def __get__(self):
       return PyWeakref_NewProxy(self._constants, None)
+
+  property string_variables:
+    def __get__(self):
+      return PyWeakref_NewProxy(self._string_variables, None)
+
 
 
 cdef class _Symbol_Table_Variables:
@@ -152,12 +198,15 @@ cdef class _Symbol_Table_Variables:
     strkey = key.encode("ascii")
 
     if self._functions.has_key(key):
-      raise VariableNameShadowException("Cannot set variable as a function already exists with the same name: "+key)
+      raise KeyError("Cannot set variable because a function already exists with the same name: "+key)
+
+    if is_constant(strkey, self._csymtableptr):
+      raise KeyError("Cannot set variable because a constant already exists with the same name: "+key)
+
+    if is_string_variable(strkey, self._csymtableptr):
+      raise KeyError("Cannot set variable because a string variable already exists with the same name: "+key)
 
     cdef exprtk.variable_ptr vptr = self._csymtableptr[0].get_variable(strkey)
-    if vptr != NULL and self._csymtableptr[0].is_constant_node(strkey):
-      raise KeyError("Cannot set variable constant already exists with the same name: "+key)
-
     if vptr == NULL:
       rv = self._csymtableptr[0].create_variable(strkey, value)
     else:
@@ -401,8 +450,14 @@ cdef class _Symbol_Table_Functions:
 
     # Check if there is already a variable or constant assigned to this key.
     # If there is, then raise VariableShadow exception.
-    if self._csymtableptr[0].get_variable(strkey) != NULL:
-      raise VariableNameShadowException("Function cannot be set as a variable or constant shares the same name:" + key)
+    if is_constant(strkey, self._csymtableptr):
+      raise KeyError("Function cannot be set because a constant shares the same name:" + key)
+
+    if is_variable(strkey, self._csymtableptr):
+      raise KeyError("Function cannot be set because a variable shares the same name:" + key)
+
+    if is_string_variable(strkey, self._csymtableptr):
+      raise KeyError("Function cannot be set because a string variable shares the same name:" + key)
 
     cfuncptr = self._getitem(strkey)
     if cfuncptr != NULL:
@@ -455,6 +510,102 @@ cdef class _Symbol_Table_Functions:
   cpdef has_key(self, object key):
     cdef bytes cstr_key = key.encode("ascii")
     return self._getitem(cstr_key) != NULL
+
+  def __contains__(self, object key):
+    return self.has_key(key)
+
+
+
+cdef class _Symbol_Table_String_Variables:
+  """Class providing the .string_variables property for Symbol_Table.
+
+  Provides a dictionary like interface, methods pass-through to
+  C++ symbol_table object owned by parent Symbol_Table."""
+
+  def __getitem__(self, object key):
+    cdef bytes cstr_key = key.encode("ascii")
+    cdef object strv
+    cdef exprtk.symbol_table_type* st = self._csymtableptr
+    cdef exprtk.stringvar_ptr vptr = st[0].get_stringvar(cstr_key)
+    if vptr != NULL:
+      strv = vptr[0].ref().decode("ascii")
+      return strv
+    else:
+      raise KeyError("Unknown string_variable: "+key)
+
+  def __setitem__(self, object key, object value):
+    cdef int rv
+    cdef string strkey
+    cdef string var
+    if not self._csymtableptr:
+      raise ReferenceError("Parent Symbol_Table no longer exists")
+    strkey = key.encode("ascii")
+    varkey = value.encode("ascii")
+
+    if self._functions.has_key(key):
+      raise KeyError("Cannot set string variable because a function already exists with the same name: "+key)
+
+    if is_constant(strkey, self._csymtableptr):
+      raise KeyError("Cannot set string variable because a constant already exists with the same name: "+key)
+
+    if is_variable(strkey, self._csymtableptr):
+      raise KeyError("Cannot set string variable because a variable already exists with the same name: "+key)
+
+    cdef exprtk.stringvar_ptr vptr = self._csymtableptr[0].get_stringvar(strkey)
+    if vptr == NULL:
+      rv = self._csymtableptr[0].create_stringvar(strkey, varkey)
+    else:
+      rv = cexprtk_util.stringVariableAssign(self._csymtableptr[0], strkey, varkey)
+
+    if not rv:
+      raise KeyError("Unknown variable: "+key)
+
+  def __iter__(self):
+    return self.iterkeys()
+
+  def __len__(self):
+    return len(self.items())
+
+  cpdef list items(self):
+    cdef object strk
+    cdef object strv
+    cdef list retlist = []
+
+    for (k,v) in self._get_variable_list():
+      if not self._csymtableptr.is_constant_node(k):
+        strk = k.decode("ascii")
+        strv = v.decode("ascii")
+        retlist.append((strk, strv))
+    return retlist
+
+  def iteritems(self):
+    return iter(self.items())
+
+  def iterkeys(self):
+    return iter(self.keys())
+
+  def itervalues(self):
+    return iter(self.values())
+
+  def keys(self):
+    return [ k for (k,v) in self.items()]
+
+  def values(self):
+    return [ v for (k,v) in self.items() ]
+
+  cdef list _get_variable_list(self):
+    cdef exprtk.LabelStringPairVector itemvector = exprtk.LabelStringPairVector()
+    self._csymtableptr.get_stringvar_list(itemvector)
+    return itemvector
+
+  cpdef has_key(self, object key):
+    try:
+      key = str(key)
+    except ValueError:
+      return False
+    
+    cdef bytes cstr_key = key.encode("ascii")
+    return is_string_variable(cstr_key, self._csymtableptr)
 
   def __contains__(self, object key):
     return self.has_key(key)

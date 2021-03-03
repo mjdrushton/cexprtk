@@ -13,7 +13,6 @@ cdef class _Symbol_Table_Variables:
   cdef exprtk.symbol_table_type* _csymtableptr
   cpdef list items(self)
   cdef list _get_variable_list(self)
-  cdef list _get_variable_list(self)
   cpdef has_key(self, object key)
 
 cdef class _Symbol_Table_Constants:
@@ -43,9 +42,21 @@ cdef class _Symbol_Table_Functions:
   cpdef list items(self)
   cpdef has_key(self, object key)
 
+cdef class _Symbol_Table_String_Variables:
+  cdef object __weakref__
+
+  cdef object _functions
+
+  cdef exprtk.symbol_table_type* _csymtableptr
+  cpdef list items(self)
+  cdef list _get_variable_list(self)
+  cpdef has_key(self, object key)
+
+
 cdef class Symbol_Table:
   cdef exprtk.symbol_table_type* _csymtableptr
   cdef _Symbol_Table_Variables _variables
   cdef _Symbol_Table_Constants _constants
   cdef _Symbol_Table_Functions _functions
+  cdef _Symbol_Table_String_Variables _string_variables
 

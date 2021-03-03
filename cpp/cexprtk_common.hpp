@@ -10,6 +10,7 @@
 
 typedef std::pair<std::string, double> LabelFloatPair;
 typedef std::vector<LabelFloatPair> LabelFloatPairVector;
+
 typedef std::vector<exprtk::parser_error::type> ErrorList;
 typedef double ExpressionValueType;
 typedef exprtk::parser<ExpressionValueType> Parser;
