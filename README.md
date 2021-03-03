@@ -322,7 +322,7 @@ __Returns:__
 Class for providing variable and constant values to `Expression` instances.
 
 
-##### def __init__(self, *variables*, *constants* = {}, *add_constants* = False, functions = {}):
+##### def __init__(self, *variables*, *constants* = {}, *add_constants* = False, functions = {}, *string_variables* = {}):
 Instantiate `Symbol_Table` defining variables and constants for use with `Expression` class.
 
 __Example:__
@@ -343,6 +343,7 @@ __Parameters:__
 * __constants__ (*dict*) Dictionary containing values that should be added to `Symbol_Table` as constants. These can be used a variables within expressions but their values cannot be updated following `Symbol_Table` instantiation.
 * __add_constants__ (*bool*) If `True`, add the standard constants `pi`, `inf`, `epsilon` to the 'constants' dictionary before populating the `Symbol_Table`
 * __functions__ (*dict*) Dictionary containing custom functions to be made available to expressions. Dictionary keys specify function names and values should be functions.
+* __string_variables__ (*dict*) Mapping between variable name and initial variable value for string variables.
 
 ##### variables
 Returns dictionary like object containing variable values. `Symbol_Table` values can be updated through this object.
@@ -382,6 +383,29 @@ Returns dictionary like object containing custom python functions to use in expr
 __Returns:__
 
 * Dictionary like giving function stored in this `Symbol_Table`. Keys are function names (as used in `Expression`) and these map to python callable objects including functions, functors, and `functools.partial`.
+
+##### string_variables
+Returns dictionary like object containing string variable values. `Symbol_Table` values can be updated through this object.
+
+__Example:__
+
+```python
+	>>> import cexprtk
+	>>> st = cexprtk.Symbol_Table({})
+	>>> st.string_variables['s1'] = 'he'
+	>>> st.string_variables['s2'] = 'l'
+	>>> st.string_variables['s3'] = 'lo'
+	>>> expression = cexprtk.Expression("return[s1+s2+s3+' world']", st)
+	>>> expression.value()
+	nan
+	>>> expression.results()
+	['hello world']
+```
+
+__Returns:__
+
+* Dictionary like giving the string variables stored in this `Symbol_Table`. Keys are variables names and these map to string values.
+
 
 ---
 
