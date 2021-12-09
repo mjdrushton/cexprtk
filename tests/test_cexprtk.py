@@ -91,6 +91,26 @@ class ExpressionTestCase(unittest.TestCase):
     assert len(results) == 1
     assert results[0] == "been"
 
+  def test_String_If_Statement(self):
+    st = cexprtk.Symbol_Table({}, string_variables={"x" : "one"})
+    expression = cexprtk.Expression("if (x=='one') 1;else 10;", st)
+    assert 1 == expression.value()
+
+    assert st.string_variables["x"] == "one"
+    st.string_variables["x"] = "two"
+    assert st.string_variables["x"] == "two"
+    assert 10 == expression.value()
+
+    expression = cexprtk.Expression("if (x=='one') return [1];else return [10];", st)
+    assert st.string_variables["x"] == "two"
+    expression.value()
+    assert 10 == expression.results()[0]
+
+    st.string_variables["x"] = "one"
+    assert st.string_variables["x"] == "one"
+    expression.value()
+    assert 1 == expression.results()[0]
+ 
 
 class Symbol_TableVariablesTestCase(unittest.TestCase):
   """Tests for cexprtk._Symbol_Table_Variables"""

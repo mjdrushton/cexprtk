@@ -9,8 +9,7 @@ PACKAGE_DIR = os.path.join(CURR_DIR, 'cython', 'cexprtk')
 
 VERSION="0.4.0-dev"
 
-# PYTHON_MAJOR_VERSION = sys.version_info[0]
-PYTHON_MAJOR_VERSION = 2
+PYTHON_MAJOR_VERSION = sys.version_info[0]
 
 COMPILER_OPTIONS = dict(
     # bigobj is needed because the PE/COFF binary format
@@ -134,11 +133,10 @@ setup(name="cexprtk",
       classifiers=[
           "License :: OSI Approved :: Common Public License",
           "Programming Language :: C++",
-          "Programming Language :: Python :: 2.7",
-          "Programming Language :: Python :: 3.5",
           "Programming Language :: Python :: 3.6",
           "Programming Language :: Python :: 3.7",
           "Programming Language :: Python :: 3.8",
           "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
           "Programming Language :: Cython",
           "Topic :: Scientific/Engineering :: Mathematics"])
