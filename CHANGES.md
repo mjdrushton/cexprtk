@@ -1,6 +1,6 @@
 #Change Log
 
-## 0.4.0 (dev)
+## 0.4.0
 ### New Features
 
   * A new method is provided on the `cexprtk.Expression` class, `results()`, which returns a Python list containing floating point values (scalars), string values (strings), or lists of floating point values (vectors).
