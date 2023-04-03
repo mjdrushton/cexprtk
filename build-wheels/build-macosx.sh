@@ -10,7 +10,7 @@ ROOT_DIR="$SCRIPT_DIR/.."
 ENVS="$(pyenv local | xargs echo)"
 
 cd "$ROOT_DIR"
-for PE in 3.9.9 3.6.10 3.7.12 3.8.12;do
+for PE in 3.10.0 3.9.9 3.6.10 3.7.12 3.8.12;do
   pyenv local $PE
   PIP="$(pyenv which pip)"
   "$PIP" install --upgrade pip

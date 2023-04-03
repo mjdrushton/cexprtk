@@ -10,7 +10,7 @@ for PYBIN in /opt/python/cp3[!5]*/bin; do
     PYTHON="${PYBIN}/python"
     PIP="${PYBIN}/pip"
     "$PIP" install -r dev-requirements.txt
-    "$PIP" install
+    "$PIP" install --upgrade pip
     WHEEL_NAME="$("$PIP" wheel . -w wheelhouse/ | sed -n -e '/Created wheel for cexprtk:/{s/^.*filename=\(.*\.whl\) .*$/\1/;p;}')"
     
     # Bundle external shared libraries into the wheels
@@ -21,6 +21,7 @@ for PYBIN in /opt/python/cp3[!5]*/bin; do
     VENV_NAME="${HOME}/manylinux-venv-${VERSION}"
     "$PYTHON" -mvenv "$VENV_NAME"
     source "$VENV_NAME"/bin/activate
+    "$VENV_NAME"/bin/pip install --upgrade pip
     "$VENV_NAME"/bin/pip uninstall -y cexprtk
     "$VENV_NAME"/bin/pip install pytest wheel
     "$VENV_NAME"/bin/pip install "$FIXED_WHEEL"
