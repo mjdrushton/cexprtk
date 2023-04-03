@@ -59,7 +59,7 @@ arithmetic operations, functions and processes:
 
  (05) Functions:       abs, avg, ceil, clamp, equal, erf, erfc,  exp,
                        expm1, floor, frac,  log, log10, log1p,  log2,
-                       logn,  max,  min,  mul,  ncdf,  nequal,  root,
+                       logn, max,  min, mul,  ncdf,  not_equal, root,
                        round, roundn, sgn, sqrt, sum, swap, trunc
 
  (06) Trigonometry:    acos, acosh, asin, asinh, atan, atanh,  atan2,
@@ -115,7 +115,7 @@ Free  use  of  the  C++  Mathematical  Expression  Toolkit  Library is
 permitted under the guidelines and in accordance with the most current
 version of the MIT License.
 
-http://www.opensource.org/licenses/MIT
+https://www.opensource.org/licenses/MIT
 
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -124,7 +124,7 @@ The most  recent version  of the C++ Mathematical  Expression  Toolkit
 Library including all updates and tests can be found at the  following
 locations:
 
-  (a) Download:   http://www.partow.net/programming/exprtk/index.html
+  (a) Download:   https://www.partow.net/programming/exprtk/index.html
   (b) Repository: https://github.com/ArashPartow/exprtk
                   https://github.com/ArashPartow/exprtk-extras
 
@@ -321,7 +321,7 @@ of C++ compilers:
 +----------+---------------------------------------------------------+
 | ncdf     | Normal cumulative distribution function.  (eg: ncdf(x)) |
 +----------+---------------------------------------------------------+
-| nequal   | Not-equal test between x and y using normalised epsilon |
+| not_equal| Not-equal test between x and y using normalised epsilon |
 +----------+---------------------------------------------------------+
 | pow      | x to the power of y.  (eg: pow(x,y) == x ^ y)           |
 +----------+---------------------------------------------------------+
@@ -707,7 +707,7 @@ the  expression  instance  and  to also  allow  the  expression  to be
 evaluated using the current value of the element.
 
 Note:  Any  variable  reference  provided  to  a  given   symbol_table
-instance, must have a life time  at least as long as the  life-time of
+instance, must have a life-time  at least as long as the  life-time of
 the  symbol_table instance.  In the  event the  variable reference  is
 invalidated  before  the  symbol_table  or  any  dependent  expression
 instances  have  been  destructed,  then  any  associated   expression
@@ -767,8 +767,8 @@ normally would in a program, and when the expression is  evaluated the
 current values assigned to the variables will be used.
 
    typedef exprtk::symbol_table<double> symbol_table_t;
-   typedef exprtk::expression<double>     expression_t;
-   typedef exprtk::parser<double>             parser_t;
+   typedef exprtk::expression<double>   expression_t;
+   typedef exprtk::parser<double>       parser_t;
 
    symbol_table_t symbol_table;
    expression_t   expression;
@@ -811,8 +811,8 @@ expansive  discussion  please  review section  [17  -  Hierarchies  Of
 Symbol Tables]
 
    typedef exprtk::symbol_table<double> symbol_table_t;
-   typedef exprtk::expression<double>     expression_t;
-   typedef exprtk::parser<double>             parser_t;
+   typedef exprtk::expression<double>   expression_t;
+   typedef exprtk::parser<double>       parser_t;
 
    symbol_table_t symbol_table0;
    symbol_table_t symbol_table1;
@@ -868,8 +868,68 @@ a false result due to one or more of the following reasons:
   6. The symbol_table instance is in an invalid state
 
 
+A further property of symbol tables is that they can be classified  at
+instantiation as either being  mutable (by default) or  immutable. The
+following  demonstrates  construction  of  an  immutable  symbol table
+instance:
+
+  symbol_table_t immutable_symbol_table
+     (symbol_table_t::symtab_mutability_type::e_immutable);
+
+
+When a symbol table, that has been constructed as  being immutable, is
+registered with an expression, any statements in the expression string
+that modify  the variables  that are  managed by  the immutable symbol
+table will result in a compilation error. The operations that  trigger
+the mutability constraint are the following assignment operators:
+
+  1. Assignment:       :=
+  2. Assign operation: +=, -=, *=, /= , %=
+
+
+The  main reason  for this  functionality is  that, one  may want  the
+immutability properties that come with constness of a variable such as
+scalars, vectors  and strings,  but not  necessarily the  accompanying
+compile time  const-folding optimisations,  that would  result in  the
+value of  the variables  being retrieved  only once  at compile  time,
+causing  external updates  to the  variables to  not be  part of  the
+expression evaluation.
+
+   symbol_table_t immutable_symbol_table
+      (symbol_table_t::symtab_mutability_type::e_immutable);
+
+   T x = 0.0;
+
+   const std::string expression_str = "x + (y + y)";
+
+   immutable_symbol_table.add_variable("x" , x    );
+   immutable_symbol_table.add_constant("y" , 123.0);
+
+   expression_t expression;
+   expression.register_symbol_table(immutabile_symbol_table);
+
+   parser_t parser;
+   parser.compile(expression_str, expression)
+
+   for (; x < 10.0; ++x)
+   {
+      const auto expected_value = x + (123.0 + 123.0);
+      const auto result_value   = expression.value();
+      assert(expression.value() !=  expected_value);
+   }
+
+
+In the above example,  there are two variables  X and Y. Where  Y is a
+constant and X is a normal variable. Both are registered with a symbol
+table that is immutable. The  expression when compiled will result  in
+the "(y + y)" part being  const-folded at compile time to the  literal
+value of 246. Whereas  the current value of  X, being updated via  the
+for-loop, externally to  the expression and  the symbol table  will be
+available to the expression upon each evaluation.
+
+
 (2) Expression
-A structure that holds an abstract syntax tree or AST for a  specified
+A structure that holds an Abstract Syntax Tree or AST for a  specified
 expression and is used to evaluate said expression. Evaluation of  the
 expression is accomplished by performing a post-order traversal of the
 AST.  If  a  compiled  Expression  uses  variables  or  user   defined
@@ -1020,7 +1080,7 @@ may include user defined variables or functions. These are embedded as
 references into the expression's AST. When copying an expression, said
 references  need to  also  be  copied. If  the references  are blindly
 copied,  it  will then  result  in two  or more  identical expressions
-utilizing the exact same  references for variables. This  obviously is
+utilising the exact same  references for variables. This  obviously is
 not the  default assumed  scenario and  will give  rise to non-obvious
 behaviours  when  using the  expressions in  various contexts such  as
 multi-threading et al.
@@ -1110,6 +1170,7 @@ enabled by default. The options and their explanations are as follows:
    (5) Sequence Check
    (6) Commutative Check
    (7) Strength Reduction Check
+   (8) Stack And Node Depth Check
 
 
 (1) Replacer (e_replacer)
@@ -1217,6 +1278,43 @@ numerical overflows and  that the original  form of the  expression is
 desired over the strength reduced form. In these situations it is best
 to turn off strength reduction optimisations  or to use a type with  a
 larger numerical bound.
+
+
+(8) Stack And Node Depth Check
+ExprTk  incorporates   a  recursive   descent  parser.   When  parsing
+expressions comprising inner sub-expressions, the recursive nature  of
+the parsing process causes the stack to grow. If the expression causes
+the stack to grow  beyond the stack size  limit, this would lead  to a
+stackoverflow  and  its  associated  stack  corruption  and   security
+vulnerability issues.
+
+Similarly to parsing, evaluating an expression may cause the stack  to
+grow. Such things like user defined functions, composite functions and
+the general nature of the AST  being evaluated can cause the stack  to
+grow,  and may  result in  potential stackoverflow  issues as  denoted
+above.
+
+ExprTk provides a set of checks that prevent both of the above denoted
+problems at  compile time.  These check  rely on  two specific  limits
+being set on the parser instance, these limits are:
+
+   1. max_stack_depth (default:   400)
+   2. max_node_depth  (default: 10000)
+
+
+The following demonstrates how these two parser parameters can be set:
+
+   parser_t parser;
+
+   parser.set_max_stack_depth(100);
+   parser.set_max_node_depth(200);
+
+
+In  the above  code, during  parsing if  the stack  depth reaches  or
+exceeds  100 levels,  the parsing  process will  immediately halt  and
+return with a failure.  Similarly, during synthesizing the  AST nodes,
+if the  compilation process  detects an  AST tree  depth exceeding 200
+levels the parsing process will halt and return a parsing failure.
 
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1342,7 +1440,7 @@ noted:
 
 
 Note: In example 6 from the above set, it is assumed the user  defined
-function foo has been registered  as having a side_effect. By  default
+function foo has been registered  as having a side-effect. By  default
 all user defined  functions are assumed  to have side-effects,  unless
 they are  configured in  their constructors  to not  have side-effects
 using   the   'disable_has_side_effects'  free   function.   For  more
@@ -1780,7 +1878,7 @@ value is not a vector but rather a single value.
    sum(x > 0 and x < 5) == x[]
 
 
-When utilizing external user defined  vectors via the symbol table  as
+When utilising external user defined  vectors via the symbol table  as
 opposed to expression local defined vectors, the typical  'add_vector'
 method from the symbol table will register the entirety of the  vector
 that is passed. The following example attempts to evaluate the sum  of
@@ -2322,8 +2420,8 @@ methods, composited functions and implicitly registering the functions
 with the denoted symbol table.
 
    typedef exprtk::symbol_table<T>         symbol_table_t;
-   typedef exprtk::function_compositor<T>    compositor_t;
-   typedef typename compositor_t::function     function_t;
+   typedef exprtk::function_compositor<T>  compositor_t;
+   typedef typename compositor_t::function function_t;
 
    symbol_table_t symbol_table;
 
@@ -2351,11 +2449,11 @@ expression, an instance of each function needs to be registered with a
 symbol_table that  has been  associated with  the expression instance.
 The following demonstrates how all the pieces are put together:
 
-   typedef exprtk::symbol_table<double>      symbol_table_t;
+   typedef exprtk::symbol_table<double>        symbol_table_t;
    typedef exprtk::expression<double>          expression_t;
-   typedef exprtk::parser<double>                  parser_t;
+   typedef exprtk::parser<double>              parser_t;
    typedef exprtk::function_compositor<double> compositor_t;
-   typedef typename compositor_t::function       function_t;
+   typedef typename compositor_t::function     function_t;
 
    foo<double> f;
    boo<double> b;
@@ -2747,7 +2845,7 @@ expression that makes use of various elements of each symbol table is
 then compiled and later on evaluated:
 
    typedef exprtk::symbol_table<double> symbol_table_t;
-   typedef exprtk::expression<double>     expression_t;
+   typedef exprtk::expression<double>   expression_t;
 
    // Setup global constants symbol table
    symbol_table_t glbl_const_symbol_table;
@@ -2908,8 +3006,8 @@ variables with the  latter method using  the 'unknown_symbol_resolver'
 component.
 
    typedef exprtk::symbol_table<T> symbol_table_t;
-   typedef exprtk::expression<T>     expression_t;
-   typedef exprtk::parser<T>             parser_t;
+   typedef exprtk::expression<T>   expression_t;
+   typedef exprtk::parser<T>       parser_t;
 
    symbol_table_t unknown_var_symbol_table;
 
@@ -2981,8 +3079,8 @@ should raise a compilation error. The following example demonstrates a
 simple user defined USR:
 
    typedef exprtk::symbol_table<T> symbol_table_t;
-   typedef exprtk::expression<T>     expression_t;
-   typedef exprtk::parser<T>             parser_t;
+   typedef exprtk::expression<T>   expression_t;
+   typedef exprtk::parser<T>       parser_t;
 
    template <typename T>
    struct my_usr : public parser_t::unknown_symbol_resolver
@@ -3458,8 +3556,8 @@ redefined as a function taking degree input.
     ...
 
     typedef exprtk::symbol_table<T> symbol_table_t;
-    typedef exprtk::expression<T>     expression_t;
-    typedef exprtk::parser<T>             parser_t;
+    typedef exprtk::expression<T>   expression_t;
+    typedef exprtk::parser<T>       parser_t;
 
     typedef typename parser_t::settings_store settings_t;
 
@@ -3489,7 +3587,7 @@ ExprTk reserved words, the add_function call will fail.
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [SECTION 20 - EXPRESSION RETURN VALUES]
-ExprTk expressions can return immediately from any point by  utilizing
+ExprTk expressions can return immediately from any point by  utilising
 the return call. Furthermore the  return call can be used  to transfer
 out multiple return values from within the expression.
 
@@ -3511,8 +3609,8 @@ expression will return normally.
                   " return [x, y, x + y, x - y, 'return-call 3'] ";
 
    typedef exprtk::symbol_table<double> symbol_table_t;
-   typedef exprtk::expression<double>     expression_t;
-   typedef exprtk::parser<double>             parser_t;
+   typedef exprtk::expression<double>   expression_t;
+   typedef exprtk::parser<double>       parser_t;
 
    symbol_table_t symbol_table;
    expression_t   expression;
@@ -3574,8 +3672,8 @@ itself  to  have  the result  variables  be  assigned the  appropriate
 values.
 
    typedef exprtk::symbol_table<double> symbol_table_t;
-   typedef exprtk::expression<double>     expression_t;
-   typedef exprtk::parser<double>             parser_t;
+   typedef exprtk::expression<double>   expression_t;
+   typedef exprtk::parser<double>       parser_t;
 
    std::string expression_string =
                   " var x := 123.456;     "
@@ -3751,8 +3849,8 @@ expression's associated  symbol table.  In the  following example, the
 file I/O package is made available for the given expression:
 
    typedef exprtk::symbol_table<T> symbol_table_t;
-   typedef exprtk::expression<T>     expression_t;
-   typedef exprtk::parser<T>             parser_t;
+   typedef exprtk::expression<T>   expression_t;
+   typedef exprtk::parser<T>       parser_t;
 
    exprtk::rtl::io::file::package<T> fileio_package;
 
@@ -3980,9 +4078,9 @@ Simpson's rule. The  integrate function has  two overloads, where  the
 variable of integration can  either be passed as  a reference or as  a
 name in string form. Example usage of the function is as follows:
 
-   typedef exprtk::parser<T>             parser_t;
-   typedef exprtk::expression<T>     expression_t;
    typedef exprtk::symbol_table<T> symbol_table_t;
+   typedef exprtk::expression<T>   expression_t;
+   typedef exprtk::parser<T>       parser_t;
 
    std::string expression_string = "sqrt(1 - (x^2))";
 
@@ -4015,9 +4113,9 @@ where  the  variable of  differentiation  can either  be  passed as  a
 reference or as a name in string form. Example usage of the derivative
 function is as follows:
 
-   typedef exprtk::parser<T>             parser_t;
-   typedef exprtk::expression<T>     expression_t;
    typedef exprtk::symbol_table<T> symbol_table_t;
+   typedef exprtk::expression<T>   expression_t;
+   typedef exprtk::parser<T>       parser_t;
 
    std::string expression_string = "sqrt(1 - (x^2))";
 
@@ -4054,9 +4152,9 @@ variable of differentiation can either be passed as a reference or  as
 a name in string form. Example usage of the second_derivative function
 is as follows:
 
-   typedef exprtk::parser<T>             parser_t;
-   typedef exprtk::expression<T>     expression_t;
    typedef exprtk::symbol_table<T> symbol_table_t;
+   typedef exprtk::expression<T>   expression_t;
+   typedef exprtk::parser<T>       parser_t;
 
    std::string expression_string = "sqrt(1 - (x^2))";
 
@@ -4093,9 +4191,9 @@ variable of differentiation can either be passed as a reference or  as
 a name in string form. Example  usage of the third_derivative function
 is as follows:
 
-   typedef exprtk::parser<T>             parser_t;
-   typedef exprtk::expression<T>     expression_t;
    typedef exprtk::symbol_table<T> symbol_table_t;
+   typedef exprtk::expression<T>   expression_t;
+   typedef exprtk::parser<T>       parser_t;
 
    std::string expression_string = "sqrt(1 - (x^2))";
 
@@ -4310,7 +4408,7 @@ into account when using ExprTk:
       of that  symbol-table, otherwise  the result  will be undefined
       behavior.
 
- (10) Equal  and  Nequal  are  normalised-epsilon  equality routines,
+ (10) Equal and not_equal  are  normalised-epsilon  equality routines,
       which use epsilons of 0.0000000001 and 0.000001 for double  and
       float types respectively.
 
@@ -4517,9 +4615,9 @@ struct myfunc : public exprtk::ifunction<T>
 int main()
 {
    typedef exprtk::symbol_table<double> symbol_table_t;
-   typedef exprtk::expression<double>     expression_t;
-   typedef exprtk::parser<double>             parser_t;
-   typedef exprtk::parser_error::type          error_t;
+   typedef exprtk::expression<double>   expression_t;
+   typedef exprtk::parser<double>       parser_t;
+   typedef exprtk::parser_error::type   error_t;
 
    std::string expression_str =
                   "z := 2 myfunc([4 + sin(x / pi)^3],y ^ 2)";
@@ -4591,52 +4689,58 @@ part of a compiler command line switch or scoped around the include to
 the ExprTk header. The defines are as follows:
 
    (01) exprtk_enable_debugging
-   (02) exprtk_disable_comments
-   (03) exprtk_disable_break_continue
-   (04) exprtk_disable_sc_andor
-   (05) exprtk_disable_return_statement
-   (06) exprtk_disable_enhanced_features
-   (07) exprtk_disable_string_capabilities
-   (08) exprtk_disable_superscalar_unroll
-   (09) exprtk_disable_rtl_io_file
-   (10) exprtk_disable_rtl_vecops
-   (11) exprtk_disable_caseinsensitivity
-
+   (02) exprtk_disable_cardinal_pow_optimisation
+   (03) exprtk_disable_comments
+   (04) exprtk_disable_break_continue
+   (05) exprtk_disable_sc_andor
+   (06) exprtk_disable_return_statement
+   (07) exprtk_disable_enhanced_features
+   (08) exprtk_disable_string_capabilities
+   (09) exprtk_disable_superscalar_unroll
+   (10) exprtk_disable_rtl_io
+   (11) exprtk_disable_rtl_io_file
+   (12) exprtk_disable_rtl_vecops
+   (13) exprtk_disable_caseinsensitivity
+   (14) exprtk_enable_range_runtime_checks
 
 (01) exprtk_enable_debugging
 This define will enable printing of debug information to stdout during
 the compilation process.
 
-(02) exprtk_disable_comments
+(02) exprtk_disable_cardinal_pow_optimisation
+This  define   will  disable  the optimisation  invoked when  constant
+integers are used as powers in exponentiation expressions (eg: x^7).
+
+(03) exprtk_disable_comments
 This define will disable the ability for expressions to have comments.
 Expressions that have comments when parsed with a build that has  this
 option, will result in a compilation failure.
 
-(03) exprtk_disable_break_continue
+(04) exprtk_disable_break_continue
 This  define  will  disable  the  loop-wise  'break'  and   'continue'
 capabilities. Any expression that contains those keywords will  result
 in a compilation failure.
 
-(04) exprtk_disable_sc_andor
+(05) exprtk_disable_sc_andor
 This define  will disable  the short-circuit  '&' (and)  and '|'  (or)
 operators
 
-(05) exprtk_disable_return_statement
+(06) exprtk_disable_return_statement
 This define will disable use of return statements within expressions.
 
-(06) exprtk_disable_enhanced_features
+(07) exprtk_disable_enhanced_features
 This  define  will  disable all  enhanced  features  such as  strength
 reduction and special  function optimisations and  expression specific
 type instantiations.  This feature  will reduce  compilation times and
 binary sizes but will  also result in massive  performance degradation
 of expression evaluations.
 
-(07) exprtk_disable_string_capabilities
+(08) exprtk_disable_string_capabilities
 This  define  will  disable all  string  processing  capabilities. Any
 expression that contains a string or string related syntax will result
 in a compilation failure.
 
-(08) exprtk_disable_superscalar_unroll
+(09) exprtk_disable_superscalar_unroll
 This define will set  the loop unroll batch  size to 4 operations  per
 loop  instead of  the default  8 operations.  This define  is used  in
 operations that  involve vectors  and aggregations  over vectors. When
@@ -4644,21 +4748,31 @@ targeting  non-superscalar  architectures, it  may  be recommended  to
 build using this particular option if efficiency of evaluations is  of
 concern.
 
-(09) exprtk_disable_rtl_io_file
+(10) exprtk_disable_rtl_io
+This define will  disable all of  basic IO RTL  package features. When
+present, any attempt to register the basic IO RTL package with a given
+symbol table will fail causing a compilation error.
+
+(11) exprtk_disable_rtl_io_file
 This  define will  disable  the  file I/O  RTL package  features. When
 present, any  attempts to register  the file I/O package with  a given
 symbol table will fail causing a compilation error.
 
-(10) exprtk_disable_rtl_vecops
+(12) exprtk_disable_rtl_vecops
 This define will  disable the extended  vector operations RTL  package
 features. When present, any attempts to register the vector operations
 package with  a given  symbol table  will fail  causing a  compilation
 error.
 
-(11) exprtk_disable_caseinsensitivity
+(13) exprtk_disable_caseinsensitivity
 This define  will disable  case-insensitivity when  matching variables
 and  functions. Furthermore  all reserved  and keywords  will only  be
 acknowledged when in all lower-case.
+
+(14) exprtk_enable_range_runtime_checks
+This define will enable run-time checks pertaining to vector  indexing
+operations used  in any  of the  vector-to-vector and vector-to-scalar
+operations.
 
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
