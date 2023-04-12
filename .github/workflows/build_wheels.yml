@@ -18,7 +18,8 @@ jobs:
         env:
           CIBW_TEST_COMMAND: pytest {package}/tests
           CIBW_TEST_REQUIRES: pytest
-           ...
+          CIBW_ARCHS_MACOS: x86_64 arm64
+
         # with:
         #   package-dir: .
         #   output-dir: wheelhouse
