@@ -1,6 +1,16 @@
 #Change Log
 
-## 0.4.0
+## 0.4.1 
+
+### Changed
+
+ * Updated exprtk header to version current on 22nd February 2023.
+    - According to exprtk documentation changes relate to renaming of `nequal` function to `not_equal`.
+
+### Bug-Fixes
+  * Allow build under python 3.11. Used current version of cython to recreate .cpp files.
+
+## 0.4.0 (2021-12-22)
 ### New Features
 
   * A new method is provided on the `cexprtk.Expression` class, `results()`, which returns a Python list containing floating point values (scalars), string values (strings), or lists of floating point values (vectors).
