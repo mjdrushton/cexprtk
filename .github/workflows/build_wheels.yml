@@ -22,6 +22,7 @@ jobs:
           CIBW_TEST_COMMAND_MACOS: pytest {package}/tests
           CIBW_TEST_COMMAND_LINUX: pytest {package}/tests
           CIBW_TEST_COMMAND_WINDOWS: pytest {package}\tests
+          CIBW_SKIP: pp*
 
         # with:
         #   package-dir: .
