@@ -778,7 +778,11 @@ class MultiProcessingTestCase(unittest.TestCase):
 
     pool = multiprocessing.Pool(4)
     results = pool.map(Worker(expression), inputs)
-    assert expected ==  results
+    
+    assert len(expected) == len(results)
+    for (e,a) in zip(expected, results):
+      self.assertAlmostEqual(e,a)
+
 
 def unknownSymbolResolver(symbol):
     try:

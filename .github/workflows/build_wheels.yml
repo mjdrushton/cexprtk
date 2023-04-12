@@ -22,7 +22,7 @@ jobs:
           CIBW_TEST_COMMAND_MACOS: pytest {package}/tests
           CIBW_TEST_COMMAND_WINDOWS: pytest {package}\tests
           CIBW_TEST_REQUIRES: pytest
-          CIBW_TEST_SKIP: *-macosx_arm64
+          CIBW_TEST_SKIP: "*-macosx_arm64"
 
         # with:
         #   package-dir: .
