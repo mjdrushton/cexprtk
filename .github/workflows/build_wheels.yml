@@ -16,9 +16,12 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.12.1
         env:
-          CIBW_TEST_COMMAND: pytest {package}/tests
+          CIBW_TEST_COMMAND: 
           CIBW_TEST_REQUIRES: pytest
           CIBW_ARCHS_MACOS: x86_64 arm64
+          CIBW_TEST_COMMAND_MACOS: pytest {package}/tests
+          CIBW_TEST_COMMAND_LINUX: pytest {package}/tests
+          CIBW_TEST_COMMAND_WINDOWS: pytest {package}\tests
 
         # with:
         #   package-dir: .
