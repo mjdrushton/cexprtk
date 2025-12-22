@@ -7,28 +7,35 @@ jobs:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-20.04, windows-2019, macos-11]
+        os: [ubuntu-22.04, windows-2022, macos-14]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - name: Build wheels
-        uses: pypa/cibuildwheel@v2.12.1
+        uses: pypa/cibuildwheel@v3.3.0
         env:
-          CIBW_ARCHS_MACOS: x86_64 arm64
-          CIBW_SKIP: pp*
-          CIBW_TEST_COMMAND_LINUX: pytest {package}/tests
-          CIBW_TEST_COMMAND_MACOS: pytest {package}/tests
-          CIBW_TEST_COMMAND_WINDOWS: pytest {package}\tests
-          CIBW_TEST_REQUIRES: pytest
+          # CPython 3.10–3.14 only
+          CIBW_BUILD: "cp310-* cp311-* cp312-* cp313-* cp314-*"
+
+          # Skip PyPy
+          CIBW_SKIP: "pp*"
+
+          # macOS: build Intel + Apple Silicon
+          CIBW_ARCHS_MACOS: "x86_64 arm64"
+
+          # Tests
+          CIBW_TEST_REQUIRES: "pytest"
+          CIBW_TEST_COMMAND_LINUX: "pytest {package}/tests"
+          CIBW_TEST_COMMAND_MACOS: "pytest {package}/tests"
+          CIBW_TEST_COMMAND_WINDOWS: "pytest {package}\\tests"
+
+          # Do not run tests on macOS arm64 (still build wheels)
           CIBW_TEST_SKIP: "*-macosx_arm64"
 
-        # with:
-        #   package-dir: .
-        #   output-dir: wheelhouse
-        #   config-file: "{package}/pyproject.toml"
-
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v6
         with:
+          name: wheels-${{ matrix.os }}
           path: ./wheelhouse/*.whl
