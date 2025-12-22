@@ -1,0 +1,38 @@
+[build-system]
+requires = [
+  "setuptools>=64",
+  "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cexprtk"
+version = "0.4.3"
+description = "Mathematical expression parser: cython wrapper around the 'C++ Mathematical Expression Toolkit Library'"
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.10"
+license = { text = "CPL" }
+authors = [
+  { name = "M.J.D. Rushton", email = "m.j.d.rushton@gmail.com" },
+]
+keywords = ["math", "formula", "parser", "arithmetic", "evaluate"]
+classifiers = [
+  "Programming Language :: C++",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Cython",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[project.urls]
+Homepage = "https://github.com/mjdrushton/cexprtk"
+Source = "https://github.com/mjdrushton/cexprtk"
+
+[tool.setuptools]
+package-dir = {"" = "cython"}
+packages = ["cexprtk"]
+include-package-data = true
