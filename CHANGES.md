@@ -1,6 +1,17 @@
 #Change Log
 
-## 0.4.1 
+## 0.4.2
+
+### Changed
+
+  * Re-cythonized files to allow building on python 3.14.
+  * Updated scripts to build wheels for newer python versions 3.10-3.14 (also dropped support for end of life python version)
+
+### Bug-Fixes
+
+  * Now builds on python 3.14 (Windows).
+
+## 0.4.1 (2023-04-12)
 
 ### Changed
 

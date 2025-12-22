@@ -14,5 +14,5 @@ build
 .python-version
 venv3
 venv-36
-venv-3.*
+venv-3*
 wheelhouse
