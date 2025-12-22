@@ -14,17 +14,28 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Set up QEMU for ARM64
+        if: matrix.os == 'ubuntu-22.04'
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v3.3.0
         env:
-          # CPython 3.10–3.14 only
           CIBW_BUILD: "cp310-* cp311-* cp312-* cp313-* cp314-*"
 
-          # Skip PyPy
-          CIBW_SKIP: "pp*"
+          # CI-only: ensure Cython is present so wheels are built from .pyx
+          CIBW_BEFORE_BUILD: "python -m pip install -U pip cython"
 
           # macOS: build Intel + Apple Silicon
           CIBW_ARCHS_MACOS: "x86_64 arm64"
+
+          # Linux: build x86_64 + aarch64
+          CIBW_ARCHS_LINUX: "x86_64 aarch64"
+
+          # Skip musllinux on ARM (only build manylinux for aarch64)
+          CIBW_SKIP: "*-musllinux_aarch64"
 
           # Tests
           CIBW_TEST_REQUIRES: "pytest"
@@ -32,8 +43,8 @@ jobs:
           CIBW_TEST_COMMAND_MACOS: "pytest {package}/tests"
           CIBW_TEST_COMMAND_WINDOWS: "pytest {package}\\tests"
 
-          # Do not run tests on macOS arm64 (still build wheels)
-          CIBW_TEST_SKIP: "*-macosx_arm64"
+          # Do not run tests on macOS arm64, and do not run tests under QEMU for manylinux aarch64
+          CIBW_TEST_SKIP: "*-macosx_arm64 *-manylinux_aarch64"
 
       - uses: actions/upload-artifact@v6
         with:
