@@ -56,6 +56,17 @@ pip wheel . -w wheelhouse
 call venv-314\Scripts\deactivate
 
 
+IF NOT exist venv-315 (
+    py -3.15 -mvenv venv-315
+)
+
+call venv-315\Scripts\activate
+python -m pip install --upgrade pip
+pip install --upgrade "setuptools>=38.6.0"
+pip install wheel
+pip wheel . -w wheelhouse
+call venv-315\Scripts\deactivate
+
 @REM Test the wheels
 
 call venv-310\Scripts\activate
@@ -92,3 +103,10 @@ pip install pytest
 pip install wheelhouse\cexprtk-0.4.2-cp314-cp314-win_amd64.whl
 python -mpytest tests
 call venv-314\Scripts\deactivate
+
+call venv-315\Scripts\activate
+pip uninstall -y cexprtk
+pip install pytest
+pip install wheelhouse\cexprtk-0.4.2-cp315-cp315-win_amd64.whl
+python -mpytest tests
+call venv-315\Scripts\deactivate

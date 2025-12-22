@@ -4,8 +4,8 @@
 
 ### Changed
 
-  * Re-cythonized files to allow building on python 3.14.
-  * Updated scripts to build wheels for newer python versions 3.10-3.14 (also dropped support for end of life python version)
+  * Re-cythonized files to allow building on python 3.10-3.15.
+  * Updated scripts to build wheels for newer python versions 3.10-3.15 (also dropped support for end of life python version)
 
 ### Bug-Fixes
 
